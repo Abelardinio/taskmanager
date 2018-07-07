@@ -1,5 +1,25 @@
-﻿<div>
-    <h1>Add task form</h1>
-	
-    <p>{{ message }}</p>
+﻿<div class="flexible container column">
+    <h2>Add task:</h2>
+    <hr/>
+    <form name="taskForm" novalidate ng-submit="submit()" class="flexible container column">
+        <p class="container column">
+            <label>Name</label>
+            <input type="text" name="name" ng-model="taskInfo.name" required />
+        </p>
+        <p>
+            <label>Priority</label>
+            <input type="number" min="1" name="priority" ng-model="taskInfo.priority" required />
+        </p>
+        <p>
+            <label>Time to complete</label>
+            <input type="datetime-local" name="timeToComplete" ng-model="taskInfo.timeToComplete" required />
+        </p>
+        <p class="flexible container column">
+            <label>Description</label>
+            <textarea class="flexible" type="text" name="description" ng-model="taskInfo.description" required></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Add task" class="btn-right btn-submit" ng-disabled="taskForm.$invalid">
+        </p>
+    </form>
 </div>

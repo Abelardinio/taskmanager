@@ -1,0 +1,123 @@
+﻿
+.container {
+    display: inherit;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+}
+
+.sidebar .container {
+    padding-top: 75px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .container .button:first-child { 
+    border-top-width: 2px;
+    border-radius: 5px 0 0 0;
+}
+
+.sidebar .container .button:last-child {
+    border-bottom-width: 2px;
+    border-radius: 0 0 0 5px;
+}
+
+.flexible {
+    flex: 1;
+}
+
+.details {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sidebar .button {
+    color: black;
+    border: solid #e7e7e7;
+    border-width: 0 0 0 2px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #e7e7e7;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sidebar .button.active {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+html, body {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h2 {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+form p label {
+    color: #757575
+}
+
+form p{
+    margin: 5px 0;
+}
+
+form p input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    display: block;
+    margin-top: 5px;
+}
+
+form p textarea {
+    resize: none;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.container.main {
+    min-width: 800px;
+    min-height: 600px;
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-submit {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn-submit:disabled {
+    background-color: #757575; 
+}

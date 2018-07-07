@@ -29,9 +29,16 @@
         };
     });
 
-    taskManager.controller('addTaskController', function ($scope) {
-        $scope.message = "Add task form";
-    });
+    taskManager.controller('addTaskController', ['$scope', '$http', function ($scope, $http) {
+        $scope.submit = function () {
+            $http.post("api/task", angular.toJson($scope.taskInfo))
+                .then(function (data, status, headers, config) {
+                })
+                .catch(function (data, status, header, config) {
+                    debugger;
+                });
+        }
+    }]);
 
     taskManager.controller('taskListController', function ($scope) {
         $scope.message = "Task list form";

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0939C197-8A01-4F8D-9D5E-80079327562E}</ProjectGuid>
+    <ProjectGuid>{F63A2721-A11D-4E17-A825-83848C812727}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskManager.Core</RootNamespace>
-    <AssemblyName>TaskManager.Core</AssemblyName>
+    <RootNamespace>TaskManager.Data</RootNamespace>
+    <AssemblyName>TaskManager.Data</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,17 +30,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
-    <Compile Include="DataProviders\ITaskDataProvider.cs" />
-    <Compile Include="ITask.cs" />
-    <Compile Include="ITaskInfo.cs" />
+    <Compile Include="DataProviders\TaskDataProvider.cs" />
+    <Compile Include="DependencyConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskStatus.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj">
+      <Project>{0939C197-8A01-4F8D-9D5E-80079327562E}</Project>
+      <Name>TaskManager.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj">
+      <Project>{834F3872-BC9F-4541-A6F0-D289F3A143A4}</Project>
+      <Name>TaskManager.DbConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
