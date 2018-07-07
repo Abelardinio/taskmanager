@@ -2,9 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <base href="/">
+    <title>Task Manager</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.js"></script>
+    <script src="/static/index.js"></script>
 </head>
-<body>
-    <div>This is body</div>
+<body ng-app="TaskManager">
+<div ng-controller="menuController">
+    <ul class="menu">
+        <li ng-class="menuClass('tasks/add')"><a href="/tasks/add">Add Task</a></li>
+        <li ng-class="menuClass('tasks')"><a href="/tasks">Tasks</a></li>
+    </ul>
+</div>
+<div ng-view></div>
 </body>
 </html>

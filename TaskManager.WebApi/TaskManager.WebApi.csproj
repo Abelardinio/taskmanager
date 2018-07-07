@@ -85,6 +85,9 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\index.html" />
+    <Content Include="Static\index.js" />
+    <Content Include="Static\templates\addTask.html" />
+    <Content Include="Static\templates\taskList.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +99,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
