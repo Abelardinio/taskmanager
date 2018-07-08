@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
@@ -17,6 +19,11 @@ namespace TaskManager.Data.DataProviders
         public Task Add(ITaskInfo task)
         {
             return _taskDataAccessor.Add(task);
+        }
+
+        public Task<IReadOnlyList<ITask>> Get()
+        {
+            return _taskDataAccessor.Get();
         }
     }
 }

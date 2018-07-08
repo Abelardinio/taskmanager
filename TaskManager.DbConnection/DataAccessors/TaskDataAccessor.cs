@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.DbConnection.Entities;
@@ -13,6 +16,14 @@ namespace TaskManager.DbConnection.DataAccessors
             {
                 context.Tasks.Add(new TaskEntity(task));
                 await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IReadOnlyList<ITask>> Get()
+        {
+            using (var context = new Context())
+            {
+                return await context.Tasks.ToListAsync();
             }
         }
     }

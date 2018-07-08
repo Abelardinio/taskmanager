@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using TaskManager.Core;
 using TaskManager.Core.DataProviders;
 using TaskManager.Model;
 
@@ -15,9 +16,9 @@ namespace TaskManager.WebApi.Controllers
             _taskDataProvider = taskDataProvider;
         }
 
-        public IReadOnlyList<string> Get()
+        public async Task<IReadOnlyList<ITask>> Get()
         {
-            return new List<string>{"s1", "2"};
+            return await _taskDataProvider.Get();
         }
 
         public async Task Post(TaskInfo taskInfo)
