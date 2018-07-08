@@ -102,8 +102,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\index.html" />
     <Content Include="Static\Content\index.css" />
+    <Content Include="Static\Content\libs\angular-notify.min.css" />
     <Content Include="Static\Scripts\index.js" />
+    <Content Include="Static\Scripts\libs\angular-notify.min.js" />
     <Content Include="Static\templates\addTask.html" />
+    <Content Include="Static\templates\notification.html" />
     <Content Include="Static\templates\taskList.html" />
     <Content Include="Web.config" />
   </ItemGroup>

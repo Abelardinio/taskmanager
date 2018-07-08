@@ -21,7 +21,7 @@ namespace TaskManager.WebApi.Controllers
             return await _taskDataProvider.Get();
         }
 
-        public async Task Post(TaskInfo taskInfo)
+        public async Task Add(TaskInfo taskInfo)
         {
             await _taskDataProvider.Add(taskInfo);
         }

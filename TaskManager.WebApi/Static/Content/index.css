@@ -121,3 +121,45 @@ form p textarea {
 .btn-submit:disabled {
     background-color: #757575; 
 }
+
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.fail-message {
+    background-color: #f44336;
+    color: white;
+}
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.scrollable {
+    overflow-y: auto;
+}

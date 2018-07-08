@@ -6,7 +6,9 @@
     <title>Task Manager</title>
     <script src="https://code.angularjs.org/1.7.2/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.7.2/angular-route.min.js"></script>
+    <script src="/static/Scripts/libs/angular-notify.min.js"></script>
     <script src="/static/scripts/index.js"></script>
+    <link rel="stylesheet" href="/static/content/libs/angular-notify.min.css" />
     <link rel="stylesheet" href="/static/content/index.css" />
 </head>
 <body ng-app="TaskManager">
@@ -19,7 +21,6 @@
     </div>
     <div class="container flexible">
         <div class="container details flexible" ng-view></div>
-        <div growl="" class="ng-isolate-scope"><div class="growl-container growl-fixed top-right" ng-class="wrapperClasses()"><!-- ngRepeat: message in growlMessages.directives[referenceId].messages --></div></div>
     </div>
 </div>
 </body>

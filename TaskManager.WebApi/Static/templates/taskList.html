@@ -1,5 +1,36 @@
-﻿<div class="flexible">
-    <h2>Task list</h2>
-    <hr />
-    <p>{{ message }}</p>
+﻿<div class="flexible container column">
+    <h2>Tasks</h2>
+    <hr/>
+    <div class="flexible container scrollable">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Added</th>
+                <th>Time to complete</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasks">
+                    <td>{{task.Name}}</td>
+                    <td>{{task.Priority}}</td>
+                    <td>{{task.TimeToComplete}}</td>
+                    <td>{{task.TimeToComplete}}</td>
+                    <td><button>Complete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div>
+            <h3>Name</h3>
+            <h3>Priority</h3>
+            <h3>Added</h3>
+            <h3>Time to complete</h3>
+            <h3>Status</h3>
+            <h3>Description</h3>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 ﻿(function (angular) {
 
-    var taskManager = angular.module('TaskManager', ['ngRoute']);
+    var taskManager = angular.module('TaskManager', ['ngRoute', 'cgNotify']);
 
     taskManager.config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -29,18 +29,35 @@
         };
     });
 
-    taskManager.controller('addTaskController', ['$scope', '$http', function ($scope, $http) {
+    taskManager.controller('addTaskController', ['$scope', '$http', 'notify', function ($scope, $http, $notify) {
         $scope.submit = function () {
             $http.post("api/task", angular.toJson($scope.taskInfo))
                 .then(function (data, status, headers, config) {
+                    $notify({
+                        message: "Task has been successfuly added.",
+                        classes: "success-message",
+                        templateUrl: "static/templates/notification.html",
+                        position: "right",
+                        duration: 1500
+                    });
                 })
                 .catch(function (data, status, header, config) {
-                    debugger;
+                    $notify({
+                        message: "Task has not been added. Something went wrong.",
+                        classes: "fail-message",
+                        templateUrl: "static/templates/notification.html",
+                        position: "right",
+                        duration: 1500
+                    });
                 });
         }
     }]);
 
-    taskManager.controller('taskListController', function ($scope) {
+    taskManager.controller('taskListController', function ($scope, $http) {
+        $scope.tasks = [];
+        $http.get("api/task").then(function (data, status, headers, config) {
+            $scope.tasks = data.data;
+        });
         $scope.message = "Task list form";
     });
 
