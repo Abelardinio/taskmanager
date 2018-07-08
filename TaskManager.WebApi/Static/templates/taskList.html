@@ -1,7 +1,7 @@
 ﻿<div class="flexible container column">
     <h2>Tasks</h2>
     <hr/>
-    <div class="flexible container scrollable">
+    <div class="flexible container scrollable" on-element-scroll on-scroll-to-bottom="onScrollToBottom()">
         <table>
             <thead>
             <tr>
@@ -13,11 +13,11 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="task in tasks">
+                <tr ng-repeat="task in tasks| limitTo:barLimit" ng-click="onRowClick(task.Id)" ng-class="{selected: task.Id === selectedTaskId}">
                     <td>{{task.Name}}</td>
                     <td>{{task.Priority}}</td>
-                    <td>{{task.TimeToComplete}}</td>
-                    <td>{{task.TimeToComplete}}</td>
+                    <td>{{task.TimeToComplete | date : "medium"}}</td>
+                    <td>{{task.TimeToComplete | date : "medium"}}</td>
                     <td><button>Complete</button></td>
                 </tr>
             </tbody>
@@ -25,12 +25,11 @@
     </div>
     <div>
         <div>
-            <h3>Name</h3>
-            <h3>Priority</h3>
-            <h3>Added</h3>
-            <h3>Time to complete</h3>
-            <h3>Status</h3>
-            <h3>Description</h3>
+            <h3>{{selectedTask.Name}}</h3>
+            <h3>{{selectedTask.Description}}</h3>
+            <h3>{{selectedTask.Status}}</h3>
+            <h3>{{selectedTask.Priority}}</h3>
+            <h3>{{selectedTask.TimeToComplete | date : "medium"}}</h3>
         </div>
     </div>
 </div>

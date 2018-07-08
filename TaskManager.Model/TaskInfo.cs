@@ -9,5 +9,6 @@ namespace TaskManager.Model
         public string Description { get; set; }
         public int Priority { get; set; }
         public DateTime TimeToComplete { get; set; }
+        public DateTime Added { get; set; }
     }
 }

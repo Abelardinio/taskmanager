@@ -1,7 +1,7 @@
 ﻿<div class="flexible container column">
     <h2>Add task</h2>
     <hr/>
-    <form name="taskForm" novalidate ng-submit="submit()" class="flexible container column">
+    <form name="taskForm" novalidate ng-submit="onSubmitButtonClick()" class="flexible container column">
         <p class="container column">
             <label>Name</label>
             <input type="text" name="name" ng-model="taskInfo.name" required />
@@ -11,8 +11,15 @@
             <input type="number" min="1" name="priority" ng-model="taskInfo.priority" required />
         </p>
         <p>
-            <label>Time to complete</label>
-            <input type="datetime-local" name="timeToComplete" ng-model="taskInfo.timeToComplete" required />
+            <label>Time to complete:</label>
+        </p>
+        <p>
+            <label>Weeks</label>
+            <input type="number" min="0" name="priority" ng-model="taskInfo.weeks" required />
+            <label>Days</label>
+            <input type="number" min="0" max="6" name="priority" ng-model="taskInfo.days" required />
+            <label>Hours</label>
+            <input type="number" min="1" max="23" name="priority" ng-model="taskInfo.hours" required />
         </p>
         <p class="flexible container column">
             <label>Description</label>

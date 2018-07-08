@@ -8,5 +8,6 @@ namespace TaskManager.Core
         string Description { get; }
         int Priority { get; }
         DateTime TimeToComplete { get; }
+        DateTime Added { get; }
     }
 }

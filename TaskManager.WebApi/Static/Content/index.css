@@ -85,7 +85,7 @@ form p{
     margin: 5px 0;
 }
 
-form p input {
+form p input{
     border: 1px solid #ccc;
     padding: 8px;
     display: block;
@@ -150,6 +150,10 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #ddd;
+}
+
+table tr.selected {
+    background-color: #8cd98c;
 }
 
 table th {

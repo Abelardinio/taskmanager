@@ -11,14 +11,8 @@ namespace TaskManager.WebApi
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",
-                "api/{controller}/{id}",
+                "{controller}/{id}",
                 new {id = RouteParameter.Optional});
-
-            config.Routes.MapHttpRoute(
-                "Default",
-                "{*anything}",
-                new {controller = "Home", action = "Index"}
-            );
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
         }

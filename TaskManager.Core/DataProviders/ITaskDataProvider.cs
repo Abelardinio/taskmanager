@@ -7,5 +7,6 @@ namespace TaskManager.Core.DataProviders
     {
         Task Add(ITaskInfo task);
         Task<IReadOnlyList<ITask>> Get();
+        Task<ITask> Get(int taskId);
     }
 }

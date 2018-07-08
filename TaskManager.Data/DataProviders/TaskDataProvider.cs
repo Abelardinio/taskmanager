@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
@@ -24,6 +23,11 @@ namespace TaskManager.Data.DataProviders
         public Task<IReadOnlyList<ITask>> Get()
         {
             return _taskDataAccessor.Get();
+        }
+
+        public Task<ITask> Get(int taskId)
+        {
+            return _taskDataAccessor.Get(taskId);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace TaskManager.DbConnection.Entities
             Description = taskInfo.Description;
             Priority = taskInfo.Priority;
             TimeToComplete = taskInfo.TimeToComplete;
+            Added = taskInfo.Added;
             Status = TaskStatus.Active;
         }
 
@@ -23,6 +24,7 @@ namespace TaskManager.DbConnection.Entities
         public string Description { get; set; }
         public int Priority { get; set; }
         public DateTime TimeToComplete { get; set; }
+        public DateTime Added { get; set; }
         public TaskStatus Status { get; set; }
     }
 }

@@ -103,8 +103,16 @@
     <Content Include="Content\index.html" />
     <Content Include="Static\Content\index.css" />
     <Content Include="Static\Content\libs\angular-notify.min.css" />
-    <Content Include="Static\Scripts\index.js" />
+    <Content Include="Static\Scripts\controllers.js" />
+    <Content Include="Static\Scripts\directives.js" />
+    <Content Include="Static\Scripts\init.js" />
     <Content Include="Static\Scripts\libs\angular-notify.min.js" />
+    <Content Include="Static\Scripts\routes.js" />
+    <Content Include="Static\Scripts\ui\components\routeManager.js" />
+    <Content Include="Static\Scripts\ui\controllers\addTaskController.js" />
+    <Content Include="Static\Scripts\ui\components\notifyManager.js" />
+    <Content Include="Static\Scripts\ui\controllers\tasksController.js" />
+    <Content Include="Static\Scripts\ui\services\taskService.js" />
     <Content Include="Static\templates\addTask.html" />
     <Content Include="Static\templates\notification.html" />
     <Content Include="Static\templates\taskList.html" />
@@ -113,11 +121,12 @@
   <ItemGroup>
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\TaskInfoModel.cs" />
+    <Compile Include="Model\TaskInfoTimeSpan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +143,7 @@
       <Name>TaskManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

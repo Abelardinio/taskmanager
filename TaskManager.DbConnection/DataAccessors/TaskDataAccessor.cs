@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
@@ -24,6 +23,14 @@ namespace TaskManager.DbConnection.DataAccessors
             using (var context = new Context())
             {
                 return await context.Tasks.ToListAsync();
+            }
+        }
+
+        public async Task<ITask> Get(int taskId)
+        {
+            using (var context = new Context())
+            {
+                return await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
             }
         }
     }
