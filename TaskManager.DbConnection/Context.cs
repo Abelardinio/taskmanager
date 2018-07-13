@@ -1,11 +1,12 @@
 ﻿using System.Data.Entity;
+using TaskManager.Core;
 using TaskManager.DbConnection.Entities;
 
 namespace TaskManager.DbConnection
 {
-    internal class Context : DbContext
+    public class Context : DbContext, IConnectionScope
     {
-        internal Context() : base("DbConnection")
+        public Context() : base("DbConnection")
         {
         }
 

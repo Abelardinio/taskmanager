@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
     <Compile Include="DataProviders\ITaskDataProvider.cs" />
+    <Compile Include="IConnectionContext.cs" />
+    <Compile Include="IConnectionScope.cs" />
     <Compile Include="IPageable.cs" />
     <Compile Include="ITask.cs" />
     <Compile Include="ITaskFilter.cs" />

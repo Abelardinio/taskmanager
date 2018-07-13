@@ -1,38 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.DbConnection.Entities;
+using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.DbConnection.DataAccessors
 {
     public class TaskDataAccessor : ITaskDataAccessor
     {
+        private readonly IContextFactory _factory;
+
+        public TaskDataAccessor(IContextFactory factory)
+        {
+            _factory = factory;
+        }
+
         public async Task Add(ITaskInfo task)
         {
-            using (var context = new Context())
-            {
-                context.Tasks.Add(new TaskEntity(task));
-                await context.SaveChangesAsync();
-            }
+            var context = _factory.Get();
+
+            context.Tasks.Add(new TaskEntity(task));
+            await context.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<ITask>> Get(ITaskFilter filter)
+        public IQueryable<ITask> Get()
         {
-            using (var context = new Context())
-            {
-                return await context.Tasks.OrderBy(x=>x.Id).Skip(() => filter.Skip).Take(() => filter.Take).ToListAsync();
-            }
+            return _factory.Get().Tasks
+                .Where(x => x.Status != TaskStatus.Removed)
+                .OrderBy(x => x.Id);
         }
 
-        public async Task<ITask> Get(int taskId)
+        public async Task UpdateStatus(int taskId, TaskStatus status)
         {
-            using (var context = new Context())
+            var context = _factory.Get();
+            var task = await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
+            if (task == null)
             {
-                return await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
+                throw new ArgumentException($"Task with taskId = '{taskId}' not found ", nameof(taskId));
             }
+            task.Status = status;
+            await context.SaveChangesAsync();
         }
     }
 }

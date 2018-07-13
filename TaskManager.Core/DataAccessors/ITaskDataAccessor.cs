@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace TaskManager.Core.DataAccessors
@@ -6,7 +6,7 @@ namespace TaskManager.Core.DataAccessors
     public interface ITaskDataAccessor
     {
         Task Add(ITaskInfo task);
-        Task<IReadOnlyList<ITask>> Get(ITaskFilter filter);
-        Task<ITask> Get(int taskId);
+        IQueryable<ITask> Get();
+        Task UpdateStatus(int taskId, TaskStatus status);
     }
 }

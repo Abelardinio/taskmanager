@@ -6,7 +6,7 @@ using TaskManager.Core;
 namespace TaskManager.DbConnection.Entities
 {
     [Table("Tasks")]
-    internal class TaskEntity : ITask
+    public class TaskEntity : ITask
     {
         public TaskEntity(){}
 
