@@ -18,9 +18,9 @@ namespace TaskManager.WebApi.Controllers
             _taskDataProvider = taskDataProvider;
         }
 
-        public async Task<IReadOnlyList<ITask>> Get()
+        public async Task<IReadOnlyList<ITask>> Get([FromUri] TaskFilter filter)
         {
-            return await _taskDataProvider.Get();
+            return await _taskDataProvider.Get(filter);
         }
 
         public async Task<ITask> Get(int id)

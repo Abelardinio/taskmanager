@@ -36,7 +36,9 @@
   <ItemGroup>
     <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
     <Compile Include="DataProviders\ITaskDataProvider.cs" />
+    <Compile Include="IPageable.cs" />
     <Compile Include="ITask.cs" />
+    <Compile Include="ITaskFilter.cs" />
     <Compile Include="ITaskInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskStatus.cs" />

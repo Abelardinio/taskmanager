@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
@@ -18,11 +19,11 @@ namespace TaskManager.DbConnection.DataAccessors
             }
         }
 
-        public async Task<IReadOnlyList<ITask>> Get()
+        public async Task<IReadOnlyList<ITask>> Get(ITaskFilter filter)
         {
             using (var context = new Context())
             {
-                return await context.Tasks.ToListAsync();
+                return await context.Tasks.OrderBy(x=>x.Id).Skip(() => filter.Skip).Take(() => filter.Take).ToListAsync();
             }
         }
 

@@ -20,9 +20,9 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.Add(task);
         }
 
-        public Task<IReadOnlyList<ITask>> Get()
+        public Task<IReadOnlyList<ITask>> Get(ITaskFilter filter)
         {
-            return _taskDataAccessor.Get();
+            return _taskDataAccessor.Get(filter);
         }
 
         public Task<ITask> Get(int taskId)
