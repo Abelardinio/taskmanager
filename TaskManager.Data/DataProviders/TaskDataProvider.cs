@@ -25,9 +25,32 @@ namespace TaskManager.Data.DataProviders
 
         public IQueryable<ITask> Get(ITaskFilter filter)
         {
-            return _taskDataAccessor.Get()
-                .Skip(() => filter.Skip)
-                .Take(() => filter.Take); 
+            var query = _taskDataAccessor.Get()
+                .Where(x => x.Status != TaskStatus.Removed);
+
+            switch (filter.Type)
+            {
+                case TakeType.None:
+                    return query.OrderBy(x => x.Id).Take(filter.Count * 2);
+                case TakeType.Before:
+                    return query.Where(x => x.Id < filter.TaskId)
+                        .OrderByDescending(x => x.Id)
+                        .Take(filter.Count).OrderBy(x => x.Id);
+                case TakeType.After:
+                    return query.Where(x => x.Id > filter.TaskId)
+                        .OrderBy(x => x.Id)
+                        .Take(filter.Count).OrderBy(x => x.Id);
+                case TakeType.BeforeAndAfter:
+                    return query.OrderBy(x => x.Id).Where(x => x.Id > filter.TaskId)
+                        .Take(filter.Count)
+                        .Concat(query
+                            .Where(x => x.Id < filter.TaskId)
+                            .OrderByDescending(x => x.Id)
+                            .Take(filter.Count)).Concat(query.Where(x => x.Id == filter.TaskId)).OrderBy(x => x.Id);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(filter.Type));
+            }
+
         }
 
         public Task<ITask> Get(int taskId)

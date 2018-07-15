@@ -28,9 +28,7 @@ namespace TaskManager.DbConnection.DataAccessors
 
         public IQueryable<ITask> Get()
         {
-            return _factory.Get().Tasks
-                .Where(x => x.Status != TaskStatus.Removed)
-                .OrderBy(x => x.Id);
+            return _factory.Get().Tasks;
         }
 
         public async Task UpdateStatus(int taskId, TaskStatus status)
