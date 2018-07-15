@@ -101,21 +101,6 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\index.html" />
-    <Content Include="Static\Content\index.css" />
-    <Content Include="Static\Content\libs\angular-notify.min.css" />
-    <Content Include="Static\Scripts\controllers.js" />
-    <Content Include="Static\Scripts\directives.js" />
-    <Content Include="Static\Scripts\init.js" />
-    <Content Include="Static\Scripts\libs\angular-notify.min.js" />
-    <Content Include="Static\Scripts\routes.js" />
-    <Content Include="Static\Scripts\ui\components\routeManager.js" />
-    <Content Include="Static\Scripts\ui\controllers\addTaskController.js" />
-    <Content Include="Static\Scripts\ui\components\notifyManager.js" />
-    <Content Include="Static\Scripts\ui\controllers\tasksController.js" />
-    <Content Include="Static\Scripts\ui\services\taskService.js" />
-    <Content Include="Static\templates\addTask.html" />
-    <Content Include="Static\templates\notification.html" />
-    <Content Include="Static\templates\taskList.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
