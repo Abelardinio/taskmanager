@@ -1,0 +1,47 @@
+table td .btn{
+    display: block;
+    margin: auto;
+    width: 120px;
+}
+
+table tr td, table tr th{
+    padding-left: 24px;
+}
+
+.time-to-complete-column{
+    width:140px;
+}
+
+.added-column{
+    width:180px;
+}
+
+table tr th.added-column{
+    text-align: center;
+    padding-left: 0px;
+}
+
+.priority-column{
+    width:80px;
+}
+
+table tr td.priority-column{
+    text-align: center;
+    padding-left: 0px;
+}
+
+.action-column{
+    text-align: center;
+    width: 100px;
+}
+
+app-task-details{
+    padding-top:15px;
+}
+
+.empty-line{
+    height: 5px;
+    background-color: white;
+    z-index: 1000;
+}
+

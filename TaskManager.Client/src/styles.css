@@ -1,0 +1,14 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import '../node_modules/font-awesome/css/font-awesome.css';
+@import './app/styles/notification.css';
+@import './app/styles/table.css';
+@import './app/styles/form.css';
+@import './app/styles/button.css';
+@import './app/styles/layout.css';
+@import './app/styles/page.css';
+@import './app/styles/validation.css';
+@import './app/styles/select.css';
+
+::-webkit-scrollbar { 
+    display: none; 
+}

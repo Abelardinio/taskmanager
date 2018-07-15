@@ -1,0 +1,51 @@
+<div class="flex-column flexible">
+  <h2>Tasks</h2>
+  <hr/>
+  <div class="empty-line"></div>
+  <div class="flex-column flexible scrollable" (scroll)="onTableScroll($event)">
+      <div >
+          <table mat-table [dataSource]="dataSource" >
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+            </ng-container>
+        
+            <!-- Priority Column -->
+            <ng-container matColumnDef="Priority">
+              <th class="priority-column" mat-header-cell *matHeaderCellDef> Priority </th>
+              <td class="priority-column" mat-cell *matCellDef="let element"> {{element.Priority}} </td>
+            </ng-container>
+        
+            <!-- Added Column -->
+            <ng-container matColumnDef="Added">
+              <th class="added-column" mat-header-cell *matHeaderCellDef> Added </th>
+              <td class="added-column" mat-cell *matCellDef="let element"> {{element.Added | date: 'medium'}} </td>
+            </ng-container>
+        
+            <!-- Time to complete Column -->
+            <ng-container matColumnDef="TimeToComplete">
+              <th class="time-to-complete-column" mat-header-cell *matHeaderCellDef> Time to complete </th>
+              <td class="time-to-complete-column" mat-cell *matCellDef="let element"> <timer [completionDate] = "element.TimeToComplete" expiredPlaceholder="Time Expired!"></timer></td>
+              <!-- {{element.Timer }} -->
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="Action">
+              <th class="action-column" mat-header-cell *matHeaderCellDef> Action </th>
+              <td class="action-column" mat-cell *matCellDef="let element">
+                <button class="btn" *ngIf="element.Status === 1" (click)="onCompleteButtonClick(element)"><i class="fa fa-refresh fa-spin" *ngIf="element.IsLoading"></i>Complete</button>
+                <button class="btn" *ngIf="element.Status === 2" (click)="onRemoveButtonClick(element)"><i class="fa fa-refresh fa-spin" *ngIf="element.IsLoading"></i>Remove</button>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowSelect(row , $event)" [ngClass]="{'selected': selectedTask.Id === row.Id}"></tr>
+          </table>
+        </div>
+  </div>
+  <app-task-details [task] = "selectedTask" class="flex-column">
+
+  </app-task-details>
+</div>

@@ -1,0 +1,24 @@
+.flex-column, .flex-row{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.flexible{
+    flex: 1;
+}
+
+html, body {
+    display: flex;
+    position: fixed;
+}
+
+.scrollable{
+    overflow: auto;
+}

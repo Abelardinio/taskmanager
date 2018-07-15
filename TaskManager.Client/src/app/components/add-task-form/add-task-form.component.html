@@ -1,0 +1,47 @@
+<div class="flex-column flexible">
+  <h2>Add task</h2>
+  <hr/>
+  <form (ngSubmit)="onSubmit()" [class.validated]="formIsValidated" class="flex-column flexible" [formGroup]="form">
+    <label>Name:</label>
+    <div class="form-row">
+      <input type="text" formControlName="name" minlength="8" maxlength="100">
+      <div class="validation-error" *ngIf="name.invalid && formIsValidated">
+        <div *ngIf="name.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors.minlength">
+          Name must be between 8 and 100 characters long.
+        </div>
+      </div>
+    </div>
+    <label>Priority:</label>
+    <div class="form-row">
+      <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
+    </div>
+    <label>Time to complete:</label>
+    <div class="flex-row timepicker">
+      <div>
+        <label>Weeks</label>
+        <ng-select class="custom" [items]="weeksArray" [searchable]="false" formControlName="weeks"></ng-select>
+      </div>
+      <div>
+        <label>Days</label>
+        <ng-select class="custom" [items]="daysArray" [searchable]="false" formControlName="days"></ng-select>
+      </div>
+      <div>
+        <label>Hours</label>
+        <ng-select class="custom" [items]="hoursArray" [searchable]="false" formControlName="hours"></ng-select>
+      </div>
+      <div>
+        <div class="validation-error" *ngIf="timeToCompleteIsInvalid && formIsValidated">Time to complete can't be less then 1 hour.</div>
+      </div>
+    </div>
+    <label>Description:</label>
+    <div class="flexible flex-column textarea-container">
+      <textarea class="flexible" type="text" name="description" formControlName="description" maxlength="1000"></textarea>
+    </div>
+    <div>
+      <button type="submit" class="btn-right btn-submit" [disabled]="formIsLoading"> <i class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add task</button>
+    </div>
+  </form>
+</div>

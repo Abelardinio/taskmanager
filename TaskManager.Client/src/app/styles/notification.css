@@ -1,0 +1,23 @@
+simple-notification .simple-notification.success {
+    background-color: #4CAF50; 
+}
+
+simple-notification .simple-notification.error {
+    background: #ff5656f0;
+}
+
+simple-notification .simple-notification.info {
+    background: #008CBA;
+}
+
+simple-notification .simple-notification .sn-title {
+    font-family: Verdana,sans-serif;
+    font-size: 15px;    
+    line-height: 1.5;
+    color: white;
+}
+
+simple-notification .simple-notification .icon svg {
+    height: 24px;
+    width: 24px;
+}

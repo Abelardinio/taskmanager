@@ -39,7 +39,7 @@ namespace TaskManager.Data.DataProviders
                 case TakeType.After:
                     return query.Where(x => x.Id > filter.TaskId)
                         .OrderBy(x => x.Id)
-                        .Take(filter.Count).OrderBy(x => x.Id);
+                        .Take(filter.Count);
                 case TakeType.BeforeAndAfter:
                     return query.OrderBy(x => x.Id).Where(x => x.Id > filter.TaskId)
                         .Take(filter.Count)

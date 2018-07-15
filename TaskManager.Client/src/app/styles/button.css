@@ -1,0 +1,32 @@
+.btn-right {
+    float: right;
+}
+
+.btn-submit {
+    padding: 15px 32px;
+    font-size: 16px;
+    width: 150px;
+    height: unset;    
+    font-size: 16px;
+}  
+
+.btn-submit .fa, .btn .fa{
+    margin-left: -12px;
+    margin-right: 8px;
+}
+
+.btn{    
+    padding: 10px 20px;    
+    font-size: 14px;
+}
+
+.btn, .btn-submit{
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+  

@@ -1,0 +1,12 @@
+<div class="flex-row flexible">
+  <div class="flex-column sidebar">
+    <div class="flex-column">
+        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/tasks/add" class="button">Add Task</a>
+        <a [class.active]="isTasksLinkActive('/tasks')" routerLink="/tasks" class="button">Tasks</a>
+    </div>
+  </div>  
+  <div class="flex-column flexible content ">
+    <simple-notifications [options]="{position:['top', 'right'], timeOut: 2500, showProgressBar: false }" ></simple-notifications>
+    <router-outlet></router-outlet>
+  </div>
+</div>

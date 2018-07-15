@@ -1,0 +1,24 @@
+form textarea {
+    resize: none;
+    padding-top: 5px;
+}
+
+form input, form textarea{
+    color: #757575;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+form label {
+    color: #757575;
+    padding-bottom: 20px;
+}
+.form-row{
+    height: 60px;
+}
+
+form.validated .ng-invalid:not(form)  {
+    border: 1px solid #ff5656f0; /* red */
+}

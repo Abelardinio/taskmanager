@@ -1,0 +1,10 @@
+.validation-error{
+    background: #ff5656f0;
+    color: white;
+    height: 20px;
+    position: absolute;
+    box-shadow: 1px 1px 1px #aaaaaa;
+    padding: 3px;
+}
+
+

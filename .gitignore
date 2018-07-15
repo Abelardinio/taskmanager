@@ -4,3 +4,43 @@ bin
 obj
 packages
 .vs
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/TaskManager.Client/dist
+/TaskManager.Client/tmp
+/TaskManager.Client/out-tsc
+
+# dependencies
+/TaskManager.Client/node_modules
+
+# IDEs and editors
+/TaskManager.Client/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/TaskManager.Client/.sass-cache
+/TaskManager.Client/connect.lock
+/TaskManager.Client/coverage
+/TaskManager.Client/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/TaskManager.Client/typings
+
+# System Files
+.DS_Store
+Thumbs.db
