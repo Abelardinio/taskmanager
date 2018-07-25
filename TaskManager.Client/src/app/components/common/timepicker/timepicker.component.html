@@ -1,0 +1,30 @@
+<div>
+  <label>Weeks</label>
+  <ng-select [ngModel]="time.weeks"
+             (ngModelChange)="time.weeks = $event" 
+             (change)="onValueChange()"
+             [items]="weeksArray"
+             [searchable]="false"
+             [disabled] = "isDisabled"
+             class="custom" ></ng-select>
+</div>
+<div>
+  <label>Days</label>
+  <ng-select [ngModel]="time.days"
+             (ngModelChange)="time.days = $event"
+             (change)="onValueChange()" 
+             class="custom"
+             [items]="daysArray"
+             [disabled] = "isDisabled"
+             [searchable]="false"></ng-select>
+</div>
+<div>
+  <label>Hours</label>
+  <ng-select [ngModel]="time.hours"
+             (ngModelChange)="time.hours = $event"
+             (change)="onValueChange()"
+             class="custom"
+             [items]="hoursArray"
+             [disabled] = "isDisabled"
+             [searchable]="false"></ng-select>
+</div>

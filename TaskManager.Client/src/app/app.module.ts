@@ -13,6 +13,7 @@ import { TasksFormComponent } from './components/tasks-form/tasks-form.component
 import { AddTaskFormComponent } from './components/add-task-form/add-task-form.component';
 import { TimerComponent } from './components/common/timer/timer.component';
 import { TaskDetailsComponent } from './components/shared/task-details/task-details.component';
+import { TimepickerComponent } from './components/common/timepicker/timepicker.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TaskDetailsComponent } from './components/shared/task-details/task-deta
     TasksFormComponent,
     AddTaskFormComponent,
     TimerComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    TimepickerComponent
   ],
   imports: [
     BrowserModule,

@@ -19,21 +19,10 @@
       <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
     </div>
     <label>Time to complete:</label>
-    <div class="flex-row timepicker">
+    <div class="flex-row">
+      <timepicker formControlName="timeToComplete" class="flex-row"></timepicker>
       <div>
-        <label>Weeks</label>
-        <ng-select class="custom" [items]="weeksArray" [searchable]="false" formControlName="weeks"></ng-select>
-      </div>
-      <div>
-        <label>Days</label>
-        <ng-select class="custom" [items]="daysArray" [searchable]="false" formControlName="days"></ng-select>
-      </div>
-      <div>
-        <label>Hours</label>
-        <ng-select class="custom" [items]="hoursArray" [searchable]="false" formControlName="hours"></ng-select>
-      </div>
-      <div>
-        <div class="validation-error" *ngIf="timeToCompleteIsInvalid && formIsValidated">Time to complete can't be less then 1 hour.</div>
+        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">Time to complete can't be less then 1 hour.</div>       
       </div>
     </div>
     <label>Description:</label>

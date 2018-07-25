@@ -4,6 +4,7 @@ import { NotificationsService } from 'angular2-notifications';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { TaskService } from '../../services/TaskService';
 import { finalize } from 'rxjs/operators';
+import { CustomValidators } from '../common/custom-validators';
 
 @Component({
   selector: 'app-add-task-form',
@@ -32,9 +33,7 @@ export class AddTaskFormComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]),
       priority: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(1000)]),
       description: new FormControl(''),
-      days: new FormControl(0),
-      hours: new FormControl(0),
-      weeks: new FormControl(0)
+      timeToComplete: new FormControl(new TimeSpan(0,0,0), [CustomValidators.timepickerRequired])
     });
 
     this.priorityArray.shift();
@@ -42,13 +41,12 @@ export class AddTaskFormComponent implements OnInit {
 
   public onSubmit() {
 
-    if (this.form.valid && !this.timeToCompleteIsInvalid) {
+    if (this.form.valid) {
       let result = this.form.value;
-      let taskInfo = new TaskInfo(result.name, result.description, result.priority, new TimeSpan(result.weeks, result.days, result.hours));
-
+            
       this.form.disable();
       this.formIsLoading = true;
-      this._taskService.Add(taskInfo)
+      this._taskService.Add(result)
         .pipe(finalize(() => this._onSubmitEnd()))
         .subscribe(
           data => this._notifications.success('Task was successfuly added.'),
@@ -59,15 +57,8 @@ export class AddTaskFormComponent implements OnInit {
     }
   }
 
-  public get timeToCompleteIsInvalid() {
-    var form = this.form;
-
-    return form.get('weeks').value === 0 &&
-      form.get('days').value === 0 &&
-      form.get('hours').value === 0;
-  }
-
   public get name() { return this.form.get('name'); }
+  public get timeToComplete() { return this.form.get('timeToComplete'); }
 
   private _generateArray(n: number): Array<number> {
     return Array.apply(null, { length: n }).map(Function.call, Number);
