@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskInfo, TimeSpan } from '../../models/TaskInfo';
+import { TimeSpan } from '../../models/TaskInfo';
 import { NotificationsService } from 'angular2-notifications';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { TaskService } from '../../services/TaskService';
 import { finalize } from 'rxjs/operators';
 import { CustomValidators } from '../common/custom-validators';
+import { Utils } from '../common/utils';
 
 @Component({
   selector: 'app-add-task-form',
@@ -16,10 +17,7 @@ import { CustomValidators } from '../common/custom-validators';
 export class AddTaskFormComponent implements OnInit {
 
   public form: FormGroup;
-  public daysArray = this._generateArray(7);
-  public hoursArray = this._generateArray(24);
-  public weeksArray = this._generateArray(52);
-  public priorityArray = this._generateArray(100);
+  public priorityArray = Utils.generateArray(100);
   public formIsValidated = false;
   public formIsLoading = false;
 
@@ -59,10 +57,6 @@ export class AddTaskFormComponent implements OnInit {
 
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
-
-  private _generateArray(n: number): Array<number> {
-    return Array.apply(null, { length: n }).map(Function.call, Number);
-  }
 
   private _onSubmitEnd() {
     this.formIsValidated = false;

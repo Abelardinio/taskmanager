@@ -1,6 +1,7 @@
 import { Component, forwardRef, Directive } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl } from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'timepicker',
@@ -17,9 +18,9 @@ import { TimeSpan } from '../../../models/TaskInfo';
 
 export class TimepickerComponent implements ControlValueAccessor{
 
-  public daysArray = this._generateArray(7);
-  public hoursArray = this._generateArray(24);
-  public weeksArray = this._generateArray(52);
+  public daysArray = Utils.generateArray(7);
+  public hoursArray = Utils.generateArray(24);
+  public weeksArray = Utils.generateArray(52);
   public time: TimeSpan
   isDisabled: Boolean = false;
   onChange;
@@ -52,10 +53,6 @@ export class TimepickerComponent implements ControlValueAccessor{
 
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
-  }
-
-  private _generateArray(n: number): Array<number> {
-    return Array.apply(null, { length: n }).map(Function.call, Number);
   }
 }
 
