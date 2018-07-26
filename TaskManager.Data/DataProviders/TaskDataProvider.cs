@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
+using TaskManager.Core.Exceptions;
 using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.Data.DataProviders
@@ -67,15 +68,15 @@ namespace TaskManager.Data.DataProviders
                 switch (status)
                 {
                     case TaskStatus.Completed:
-                        if (task.Status != TaskStatus.Active) throw new ArgumentException("Unactive task cannot be completed.");
+                        if (task.Status != TaskStatus.Active) throw new InvalidArgumentException("Unactive task cannot be completed.");
                         await _taskDataAccessor.UpdateStatus(taskId, status);
                         return;
                     case TaskStatus.Removed:
-                        if (task.Status != TaskStatus.Completed) throw new ArgumentException("Uncompleted task cannot be removed.");
+                        if (task.Status != TaskStatus.Completed) throw new InvalidArgumentException("Uncompleted task cannot be removed.");
                         await _taskDataAccessor.UpdateStatus(taskId, status);
                         return;
                     default:
-                        throw new ArgumentException("Invalid argument value. It can have only 'Completed' or 'Removed' value.", nameof(status));
+                        throw new InvalidArgumentException("Invalid status value. It can have only 'Completed' or 'Removed' value.");
                 }
             }
         }

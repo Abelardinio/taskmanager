@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace TaskManager.WebApi
 {
@@ -15,6 +16,7 @@ namespace TaskManager.WebApi
                 new {id = RouteParameter.Optional});
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Services.Replace(typeof(IExceptionHandler), new ApiExceptionHandler());
         }
     }
 }

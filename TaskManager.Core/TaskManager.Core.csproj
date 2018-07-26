@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
     <Compile Include="DataProviders\ITaskDataProvider.cs" />
+    <Compile Include="Exceptions\InvalidArgumentException.cs" />
+    <Compile Include="Exceptions\TaskManagerException.cs" />
     <Compile Include="IConnectionContext.cs" />
     <Compile Include="IConnectionScope.cs" />
     <Compile Include="ITask.cs" />
