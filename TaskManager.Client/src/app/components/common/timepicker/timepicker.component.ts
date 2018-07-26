@@ -1,4 +1,4 @@
-import { Component, forwardRef, Directive } from '@angular/core';
+import { Component, forwardRef} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl } from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
 import { Utils } from '../utils';
@@ -29,10 +29,6 @@ export class TimepickerComponent implements ControlValueAccessor{
   constructor() { }
 
   ngOnInit() {
-  }
-
-  get value(): TimeSpan {
-    return this.time;
   }
 
   onValueChange() {
