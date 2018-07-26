@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
+using TaskManager.Common.Resources;
 using TaskManager.Core.Exceptions;
 
-namespace TaskManager.WebApi
+namespace TaskManager.Common.Api
 {
     public class ApiExceptionHandler : ExceptionHandler
     {
@@ -22,7 +23,7 @@ namespace TaskManager.WebApi
             }
             else
             {
-                message = "Unknown error occured. Contact your administrator for more details.";
+                message = ErrorMessages.Unknown;
             }
 
             var result = new HttpResponseMessage(HttpStatusCode.BadRequest)

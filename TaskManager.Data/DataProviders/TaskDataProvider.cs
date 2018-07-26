@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
@@ -68,15 +69,15 @@ namespace TaskManager.Data.DataProviders
                 switch (status)
                 {
                     case TaskStatus.Completed:
-                        if (task.Status != TaskStatus.Active) throw new InvalidArgumentException("Unactive task cannot be completed.");
+                        if (task.Status != TaskStatus.Active) throw new InvalidArgumentException(ErrorMessages.Tasks_CompleteUnactive);
                         await _taskDataAccessor.UpdateStatus(taskId, status);
                         return;
                     case TaskStatus.Removed:
-                        if (task.Status != TaskStatus.Completed) throw new InvalidArgumentException("Uncompleted task cannot be removed.");
+                        if (task.Status != TaskStatus.Completed) throw new InvalidArgumentException(ErrorMessages.Tasks_RemoveUncompleted);
                         await _taskDataAccessor.UpdateStatus(taskId, status);
                         return;
                     default:
-                        throw new InvalidArgumentException("Invalid status value. It can have only 'Completed' or 'Removed' value.");
+                        throw new InvalidArgumentException(ErrorMessages.Tasks_InvalidStatusParameterValue);
                 }
             }
         }

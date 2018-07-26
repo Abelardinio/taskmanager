@@ -103,7 +103,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiExceptionHandler.cs" />
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -116,6 +115,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common.Api\TaskManager.Common.Api.csproj">
+      <Project>{0A0B1F52-9B39-475D-BD7F-D3463B4024DC}</Project>
+      <Name>TaskManager.Common.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj">
       <Project>{0939c197-8a01-4f8d-9d5e-80079327562e}</Project>
       <Name>TaskManager.Core</Name>
