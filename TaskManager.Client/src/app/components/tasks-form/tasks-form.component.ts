@@ -4,8 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TaskFilter, TakeType } from '../../models/TaskFilter';
 export { TaskStatus } from '../../models/enums/TaskStatus';
-import { finalize, take } from 'rxjs/operators';
-import { NotificationsService } from 'angular2-notifications';
+import { finalize} from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Task } from '../../models/Task';
 import { TaskListDataSource } from '../../models/data-sources/TaskListDataSource';
@@ -28,7 +27,6 @@ export class TasksFormComponent implements OnInit, OnDestroy {
   tableIsInitialized: boolean;
   fetchDataInterval;
   constructor(
-    private _notifications: NotificationsService,
     private _taskService: TaskService,
     private route: ActivatedRoute,
     private location: Location) {
@@ -85,8 +83,7 @@ export class TasksFormComponent implements OnInit, OnDestroy {
     this._taskService.Complete(element.Id)
       .pipe(finalize(() => { element.IsLoading = false; }))
       .subscribe(
-        () => { element.Status = TaskStatus.Completed; this._notifications.success('Task was completed.'); },
-        () => this._notifications.error('Task was not completed. Something went wrong.'));
+        () => { element.Status = TaskStatus.Completed; });
   }
 
   onRemoveButtonClick(element) {
@@ -98,11 +95,9 @@ export class TasksFormComponent implements OnInit, OnDestroy {
       .subscribe(
         () => {
           element.Status = TaskStatus.Removed;
-          this._notifications.success('Task was deleted.');
           this.tasks.splice(this.tasks.indexOf(element), 1);
           this.subject.next(this.tasks); this._selectTask(null);
-        },
-        () => this._notifications.error('Task was not deleted. Something went wrong.'));
+        });
   }
 
   onTableScroll(e) {

@@ -6,6 +6,7 @@ import { TaskService } from '../../services/TaskService';
 import { finalize } from 'rxjs/operators';
 import { CustomValidators } from '../common/custom-validators';
 import { Utils } from '../common/utils';
+import { SuccessMessages } from '../../resources/success-messages';
 
 @Component({
   selector: 'app-add-task-form',
@@ -46,9 +47,7 @@ export class AddTaskFormComponent implements OnInit {
       this.formIsLoading = true;
       this._taskService.Add(result)
         .pipe(finalize(() => this._onSubmitEnd()))
-        .subscribe(
-          data => this._notifications.success('Task was successfuly added.'),
-          error => this._notifications.error('Task was not added. Something went wrong.'));
+        .subscribe();
     } else {
       this.formIsValidated = true;
       this._notifications.info('All the highlighted fields should be completed.');
