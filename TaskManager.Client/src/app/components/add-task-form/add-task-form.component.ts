@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { CustomValidators } from '../common/custom-validators';
 import { Utils } from '../common/utils';
 import { Messages } from '../../resources/messages';
+import { Labels } from '../../resources/labels';
 
 @Component({
   selector: 'app-add-task-form',
@@ -56,7 +57,8 @@ export class AddTaskFormComponent implements OnInit {
 
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
-  public get Messages(){ return Messages.Tasks.Validation}
+  public get messages(){ return Messages.Tasks.Validation}
+  public get labels(){return Labels.Tasks}
 
   private _onSubmitEnd() {
     this.formIsValidated = false;

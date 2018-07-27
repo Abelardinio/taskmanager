@@ -2,23 +2,23 @@
   <table style="height: 100%;">
         <tbody >
           <tr>
-            <td><label>Name:</label> </td>
+            <td><label>{{labels.Name}}:</label> </td>
             <td>{{task.Name}}</td>
           </tr>
           <tr class="description-field">
-            <td><label>Description:</label></td>
+            <td><label>{{labels.Description}}:</label></td>
             <td ><div class="scrollable">{{task.Description}}</div></td>
           </tr>
           <tr>
-            <td><label>Status:</label></td>
+            <td><label>{{labels.Status}}:</label></td>
             <td>{{taskStatus}}</td>
           </tr>
           <tr>
-            <td><label>Priority:</label></td>
+            <td><label>{{labels.Priority}}:</label></td>
             <td>{{task.Priority}}</td>
           </tr>
           <tr>
-            <td><label>Added:</label></td>
+            <td><label>{{labels.Added}}:</label></td>
             <td>{{task.Added| date: 'medium'}}</td>
           </tr>
         </tbody>

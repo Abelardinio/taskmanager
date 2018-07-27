@@ -2,30 +2,30 @@
   <h2>Add task</h2>
   <hr/>
   <form (ngSubmit)="onSubmit()" [class.validated]="formIsValidated" class="flex-column flexible" [formGroup]="form">
-    <label>Name:</label>
+    <label>{{labels.Name}}:</label>
     <div class="form-row">
       <input type="text" formControlName="name" minlength="8" maxlength="100">
       <div class="validation-error" *ngIf="name.invalid && formIsValidated">
         <div *ngIf="name.errors.required">
-          {{Messages.NameRequired}}
+          {{messages.NameRequired}}
         </div>
         <div *ngIf="name.errors.minlength">
-          {{Messages.NameMinLength}}
+          {{messages.NameMinLength}}
         </div>
       </div>
     </div>
-    <label>Priority:</label>
+    <label>{{labels.Priority}}:</label>
     <div class="form-row">
       <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
     </div>
-    <label>Time to complete:</label>
+    <label>{{labels.TimeToComplete}}:</label>
     <div class="flex-row">
       <timepicker formControlName="timeToComplete" class="flex-row"></timepicker>
       <div>
-        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{Messages.TimeToCompleteRequired}}</div>       
+        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{messages.TimeToCompleteRequired}}</div>       
       </div>
     </div>
-    <label>Description:</label>
+    <label>{{labels.Description}}:</label>
     <div class="flexible flex-column textarea-container">
       <textarea class="flexible" type="text" name="description" formControlName="description" maxlength="1000"></textarea>
     </div>

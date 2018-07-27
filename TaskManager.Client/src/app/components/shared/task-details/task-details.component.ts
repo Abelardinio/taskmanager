@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskStatus } from '../../../models/enums/TaskStatus';
+import { Labels } from '../../../resources/labels';
 
 @Component({
   selector: 'app-task-details',
@@ -17,4 +18,5 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   public get taskStatus() { return TaskStatus[this.task.Status]; }
+  public get labels() { return Labels.Tasks}
 }

@@ -1,5 +1,5 @@
 <div>
-  <label>Weeks</label>
+  <label>{{labels.Weeks}} </label>
   <ng-select [ngModel]="time.weeks"
              (ngModelChange)="time.weeks = $event" 
              (change)="onValueChange()"
@@ -9,7 +9,7 @@
              class="custom" ></ng-select>
 </div>
 <div>
-  <label>Days</label>
+  <label>{{labels.Days}}</label>
   <ng-select [ngModel]="time.days"
              (ngModelChange)="time.days = $event"
              (change)="onValueChange()" 
@@ -19,7 +19,7 @@
              [searchable]="false"></ng-select>
 </div>
 <div>
-  <label>Hours</label>
+  <label>{{labels.Hours}}</label>
   <ng-select [ngModel]="time.hours"
              (ngModelChange)="time.hours = $event"
              (change)="onValueChange()"

@@ -1,7 +1,8 @@
 import { Component, forwardRef} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl } from '../../../../../node_modules/@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR} from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
 import { Utils } from '../utils';
+import { Labels } from '../../../resources/labels';
 
 @Component({
   selector: 'timepicker',
@@ -50,5 +51,7 @@ export class TimepickerComponent implements ControlValueAccessor{
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
+
+  get labels(){ return Labels.TimePicker}
 }
 
