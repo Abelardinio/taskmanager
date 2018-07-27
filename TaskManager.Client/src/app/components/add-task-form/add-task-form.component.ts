@@ -8,6 +8,8 @@ import { CustomValidators } from '../common/custom-validators';
 import { Utils } from '../common/utils';
 import { Messages } from '../../resources/messages';
 import { Labels } from '../../resources/labels';
+import { FormBase } from '../common/form-base';
+import { Observable } from '../../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-add-task-form',
@@ -16,17 +18,17 @@ import { Labels } from '../../resources/labels';
   host: { 'class': 'flex-column flexible' }
 })
 
-export class AddTaskFormComponent implements OnInit {
+export class AddTaskFormComponent extends FormBase implements OnInit {
+  protected form: FormGroup;
 
-  public form: FormGroup;
   public priorityArray = Utils.generateArray(100);
-  public formIsValidated = false;
-  public formIsLoading = false;
 
   public constructor(
-    private _notifications: NotificationsService,
+    protected notifications: NotificationsService,
     private _formBuilder: FormBuilder,
-    private _taskService: TaskService) { }
+    private _taskService: TaskService) { 
+      super();
+    }
 
   public ngOnInit() {
     this.form = this._formBuilder.group({
@@ -38,31 +40,13 @@ export class AddTaskFormComponent implements OnInit {
 
     this.priorityArray.shift();
   }
-
-  public onSubmit() {
-
-    if (this.form.valid) {
-      let result = this.form.value;
-            
-      this.form.disable();
-      this.formIsLoading = true;
-      this._taskService.Add(result)
-        .pipe(finalize(() => this._onSubmitEnd()))
-        .subscribe();
-    } else {
-      this.formIsValidated = true;
-      this._notifications.info(Messages.Common.FormValidationMessage);
-    }
+  
+  submitAction(value: any) :Observable<Object> {
+    return this._taskService.Add(value);
   }
-
+  
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
   public get messages(){ return Messages.Tasks.Validation}
   public get labels(){return Labels.Tasks}
-
-  private _onSubmitEnd() {
-    this.formIsValidated = false;
-    this.form.enable();
-    this.formIsLoading = false;
-  }
 }
