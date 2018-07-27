@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from '../../../node_modules/rxjs/operators';
-import { SuccessMessages } from '../resources/success-messages';
+import { catchError, tap } from 'rxjs/operators';
+import { Messages } from '../resources/messages';
 
 @Injectable({
     providedIn: 'root',
@@ -26,7 +26,7 @@ export class TaskService {
 
     public Add(taskInfo: TaskInfo): Observable<Object> {
         return this._httpClient.post(environment.API_URL + '/task', JSON.stringify(taskInfo), { headers: this._headers })
-                               .pipe(tap(() => { this._notifications.success(SuccessMessages.Tasks.Added) }),
+                               .pipe(tap(() => { this._notifications.success(Messages.Tasks.Added) }),
                                      catchError(this.handleError()));
     }
 
@@ -43,13 +43,13 @@ export class TaskService {
 
     public Complete(taskId: number): Observable<Object> {
         return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete', {})
-                               .pipe(tap(() => { this._notifications.success(SuccessMessages.Tasks.Completed) }),
+                               .pipe(tap(() => { this._notifications.success(Messages.Tasks.Completed) }),
                                      catchError(this.handleError()));
     }
 
     public Delete(taskId: number): Observable<Object> {
         return this._httpClient.delete(environment.API_URL + '/task/' + taskId, {})
-                               .pipe(tap(() => { this._notifications.success(SuccessMessages.Tasks.Removed) }),
+                               .pipe(tap(() => { this._notifications.success(Messages.Tasks.Removed) }),
                                      catchError(this.handleError()));
     }
 

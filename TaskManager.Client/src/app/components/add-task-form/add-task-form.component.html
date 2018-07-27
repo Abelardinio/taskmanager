@@ -7,10 +7,10 @@
       <input type="text" formControlName="name" minlength="8" maxlength="100">
       <div class="validation-error" *ngIf="name.invalid && formIsValidated">
         <div *ngIf="name.errors.required">
-          Name is required.
+          {{Messages.NameRequired}}
         </div>
         <div *ngIf="name.errors.minlength">
-          Name must be between 8 and 100 characters long.
+          {{Messages.NameMinLength}}
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="flex-row">
       <timepicker formControlName="timeToComplete" class="flex-row"></timepicker>
       <div>
-        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">Time to complete can't be less then 1 hour.</div>       
+        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{Messages.TimeToCompleteRequired}}</div>       
       </div>
     </div>
     <label>Description:</label>

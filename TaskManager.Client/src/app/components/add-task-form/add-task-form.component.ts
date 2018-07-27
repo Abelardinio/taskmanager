@@ -6,7 +6,7 @@ import { TaskService } from '../../services/TaskService';
 import { finalize } from 'rxjs/operators';
 import { CustomValidators } from '../common/custom-validators';
 import { Utils } from '../common/utils';
-import { SuccessMessages } from '../../resources/success-messages';
+import { Messages } from '../../resources/messages';
 
 @Component({
   selector: 'app-add-task-form',
@@ -50,12 +50,13 @@ export class AddTaskFormComponent implements OnInit {
         .subscribe();
     } else {
       this.formIsValidated = true;
-      this._notifications.info('All the highlighted fields should be completed.');
+      this._notifications.info(Messages.Common.FormValidationMessage);
     }
   }
 
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
+  public get Messages(){ return Messages.Tasks.Validation}
 
   private _onSubmitEnd() {
     this.formIsValidated = false;
