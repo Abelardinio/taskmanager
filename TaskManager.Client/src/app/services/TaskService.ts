@@ -1,7 +1,7 @@
 import { TaskInfo } from '../models/TaskInfo';
 import { TaskFilter } from '../models/TaskFilter';
 import { NotificationsService } from 'angular2-notifications';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -60,7 +60,7 @@ export class TaskService  extends BaseService{
     }
 
     /**
-     * Returns an observable of http delete method which changes task status to 'Deleted'
+     * Returns an observable of http delete method which changes task status to 'Removed'
      * @param taskId - task Id
      */
     public Delete(taskId: number): Observable<Object> {
