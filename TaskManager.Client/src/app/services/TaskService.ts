@@ -16,11 +16,11 @@ import { BaseService } from './BaseService';
 /**
  * Provides functionality for api/task methods calls
  */
-export class TaskService  extends BaseService{
+export class TaskService extends BaseService {
 
     constructor(
         protected notifications: NotificationsService,
-        private _httpClient: HttpClient) {            
+        private _httpClient: HttpClient) {
         super();
     }
 
@@ -30,7 +30,7 @@ export class TaskService  extends BaseService{
      */
     public Add(taskInfo: TaskInfo): Observable<Object> {
         return this._httpClient.post(environment.API_URL + '/task', JSON.stringify(taskInfo), { headers: this.headers })
-                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Added) }),
+                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Added); }),
                                      catchError(this.handleError()));
     }
 
@@ -55,7 +55,7 @@ export class TaskService  extends BaseService{
      */
     public Complete(taskId: number): Observable<Object> {
         return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete', {})
-                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed) }),
+                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed); }),
                                      catchError(this.handleError()));
     }
 
@@ -65,7 +65,7 @@ export class TaskService  extends BaseService{
      */
     public Delete(taskId: number): Observable<Object> {
         return this._httpClient.delete(environment.API_URL + '/task/' + taskId, {})
-                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Removed) }),
+                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Removed); }),
                                      catchError(this.handleError()));
     }
 }

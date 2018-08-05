@@ -17,12 +17,12 @@ import { Labels } from '../../../resources/labels';
   ]
 })
 
-export class TimepickerComponent implements ControlValueAccessor{
+export class TimepickerComponent implements ControlValueAccessor {
 
   public daysArray = Utils.generateArray(7);
   public hoursArray = Utils.generateArray(24);
   public weeksArray = Utils.generateArray(52);
-  public time: TimeSpan
+  public time: TimeSpan;
   isDisabled: Boolean = false;
   onChange;
   onTouched;

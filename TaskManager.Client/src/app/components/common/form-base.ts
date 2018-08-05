@@ -8,15 +8,13 @@ export abstract class FormBase {
     protected formIsValidated = false;
     protected formIsLoading = false;
 
-    constructor(){}
-
-    protected abstract notifications: NotificationsService;
-    protected abstract submitAction(value:any) : Observable<Object>;
     protected abstract form: FormGroup;
+    protected abstract notifications: NotificationsService;
+    protected abstract submitAction(value: any): Observable<Object>;
 
     protected onSubmit() {
         if (this.form.valid) {
-            let result = this.form.value;
+            const result = this.form.value;
 
             this.form.disable();
             this.formIsLoading = true;

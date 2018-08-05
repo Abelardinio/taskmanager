@@ -1,5 +1,5 @@
-import { Observable } from "../../../../node_modules/rxjs";
-import { Task } from "../Task";
+import { Observable } from '../../../../node_modules/rxjs';
+import { Task } from '../Task';
 import { DataSource } from '@angular/cdk/table';
 
 export class TaskListDataSource extends DataSource<Task> {

@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'app';
 
-  constructor (private router:Router){
+  constructor(private router: Router) {
 
   }
 
   public isTasksLinkActive(url: string): boolean {
-    let currentUrl = this.router.url;
-    return (currentUrl.indexOf(url) >= 0) && (currentUrl.indexOf("tasks/add") <= 0);
+    const currentUrl = this.router.url;
+    return (currentUrl.indexOf(url) >= 0) && (currentUrl.indexOf('tasks/add') <= 0);
   }
 }

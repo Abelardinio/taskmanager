@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { TimeSpan } from '../../models/TaskInfo';
 import { NotificationsService } from 'angular2-notifications';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { TaskService } from '../../services/TaskService';
-import { finalize } from 'rxjs/operators';
 import { CustomValidators } from '../common/custom-validators';
 import { Utils } from '../common/utils';
 import { Messages } from '../../resources/messages';
@@ -26,27 +25,27 @@ export class AddTaskFormComponent extends FormBase implements OnInit {
   public constructor(
     protected notifications: NotificationsService,
     private _formBuilder: FormBuilder,
-    private _taskService: TaskService) { 
-      super();
-    }
+    private _taskService: TaskService) {
+    super();
+  }
 
   public ngOnInit() {
     this.form = this._formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]),
       priority: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(1000)]),
       description: new FormControl(''),
-      timeToComplete: new FormControl(new TimeSpan(0,0,0), [CustomValidators.timepickerRequired])
+      timeToComplete: new FormControl(new TimeSpan(0, 0, 0), [CustomValidators.timepickerRequired])
     });
 
     this.priorityArray.shift();
   }
-  
-  submitAction(value: any) :Observable<Object> {
+
+  submitAction(value: any): Observable<Object> {
     return this._taskService.Add(value);
   }
-  
+
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
-  public get messages(){ return Messages.Tasks.Validation}
-  public get labels(){return Labels.Tasks}
+  public get messages() { return Messages.Tasks.Validation; }
+  public get labels() { return Labels.Tasks; }
 }

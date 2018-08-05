@@ -1,6 +1,6 @@
-import { HttpHeaders } from "../../../node_modules/@angular/common/http";
-import { Observable } from "../../../node_modules/rxjs";
-import { NotificationsService } from "../../../node_modules/angular2-notifications";
+import { HttpHeaders } from '../../../node_modules/@angular/common/http';
+import { Observable } from '../../../node_modules/rxjs';
+import { NotificationsService } from '../../../node_modules/angular2-notifications';
 
 /**
  * Base class for common functionality of http requests
@@ -8,12 +8,12 @@ import { NotificationsService } from "../../../node_modules/angular2-notificatio
 export abstract class BaseService {
     protected headers: HttpHeaders;
     protected abstract notifications: NotificationsService;
-    
-    constructor() {        
+
+    constructor() {
         this.headers = new HttpHeaders();
         this.headers = this.headers.append('Content-Type', 'application/json');
     }
-    
+
     /**
      * Http request error handler which notifies a user an error occured and rethrows that error
      * @param operation - name of the operation that failed
