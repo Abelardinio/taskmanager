@@ -18,5 +18,5 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   public get taskStatus() { return TaskStatus[this.task.Status]; }
-  public get labels() { return Labels.Tasks}
+  public get labels() { return Labels.Tasks; }
 }

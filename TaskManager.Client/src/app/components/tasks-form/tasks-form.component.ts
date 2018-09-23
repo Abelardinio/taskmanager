@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TaskFilter, TakeType } from '../../models/TaskFilter';
 export { TaskStatus } from '../../models/enums/TaskStatus';
-import { finalize} from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Task } from '../../models/Task';
 import { TaskListDataSource } from '../../models/data-sources/TaskListDataSource';
@@ -34,11 +34,11 @@ export class TasksFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     let taketype = TakeType.None;
 
     if (id > 0) {
-      taketype = TakeType.BeforeAndAfter
+      taketype = TakeType.BeforeAndAfter;
     }
 
     this._taskService.Get(new TaskFilter(id, 30, taketype)).subscribe(
@@ -48,38 +48,38 @@ export class TasksFormComponent implements OnInit, OnDestroy {
 
         if (id !== 0) {
           this._selectTask(this._getTask(id));
-          
-          setTimeout(() => {          
-            document.getElementsByClassName( 'selected' )[ 0 ].scrollIntoView({block: "end", behavior: "smooth"});
-            setTimeout(() => {          
+
+          setTimeout(() => {
+            document.getElementsByClassName('selected')[0].scrollIntoView({ block: 'end', behavior: 'smooth' });
+            setTimeout(() => {
               this.tableIsInitialized = true;
             }, 300);
           }, 300);
-        }else{
+        } else {
           this.tableIsInitialized = true;
         }
       });
 
-      this.fetchDataInterval = setInterval(()=>{
-          if (this.tasks.length<30){
-            this._loadNextTasks();
-          }
-      }, 10000);
+    this.fetchDataInterval = setInterval(() => {
+      if (this.tasks.length < 30) {
+        this._loadNextTasks();
+      }
+    }, 10000);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearInterval(this.fetchDataInterval);
   }
 
   onRowSelect(task: Task, event) {
-    if (event.target.className === "btn") return;
+    if (event.target.className === 'btn') { return; }
     this._selectTask(task);
   }
 
   onCompleteButtonClick(element) {
-    if (element.IsLoading) return;
+    if (element.IsLoading) { return; }
     element.IsLoading = true;
-    
+
     this._taskService.Complete(element.Id)
       .pipe(finalize(() => { element.IsLoading = false; }))
       .subscribe(
@@ -87,7 +87,7 @@ export class TasksFormComponent implements OnInit, OnDestroy {
   }
 
   onRemoveButtonClick(element) {
-    if (element.IsLoading) return;
+    if (element.IsLoading) { return; }
     element.IsLoading = true;
 
     this._taskService.Delete(element.Id)
@@ -101,9 +101,9 @@ export class TasksFormComponent implements OnInit, OnDestroy {
   }
 
   onTableScroll(e) {
-    if (!this.tableIsInitialized) return;
-    const tableViewHeight = e.target.offsetHeight // viewport: ~500px
-    const tableScrollHeight = e.target.scrollHeight // length of all table
+    if (!this.tableIsInitialized) { return; }
+    const tableViewHeight = e.target.offsetHeight; // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight; // length of all table
     const scrollLocation = e.target.scrollTop; // how far user scrolled
 
     // If the user has scrolled within 200px of the bottom, add more data
@@ -112,18 +112,18 @@ export class TasksFormComponent implements OnInit, OnDestroy {
     const bottomLimit = limit;
     if (scrollLocation > topLimit) {
       if (!this.tableTopIsLoading) {
-        this.tableTopIsLoading = true;        
+        this.tableTopIsLoading = true;
         this._loadNextTasks();
       }
     }
 
     if (scrollLocation < bottomLimit) {
       if (!this.tableBottomIsLoading) {
-        this.tableBottomIsLoading = true;        
+        this.tableBottomIsLoading = true;
         this._loadPreviousTasks();
       }
     }
-  }  
+  }
 
   private _loadPreviousTasks() {
     this._taskService.Get(new TaskFilter(this.tasks[0].Id, 20, TakeType.Before)).subscribe(
@@ -132,7 +132,7 @@ export class TasksFormComponent implements OnInit, OnDestroy {
         this.tasks.splice(this.tasks.length - (<Task[]>data).length, (<Task[]>data).length);
 
         this.subject.next(this.tasks);
-        let timeout = (<Task[]>data).length === 0 ? 3000 : 100;
+        const timeout = (<Task[]>data).length === 0 ? 3000 : 100;
         setTimeout(() => {
           this.tableBottomIsLoading = false;
         }, timeout);
@@ -146,23 +146,22 @@ export class TasksFormComponent implements OnInit, OnDestroy {
         this.tasks.splice(0, (<Task[]>data).length);
 
         this.subject.next(this.tasks);
-        let timeout = (<Task[]>data).length === 0 ? 3000 : 100;
+        const timeout = (<Task[]>data).length === 0 ? 3000 : 100;
         setTimeout(() => {
           this.tableTopIsLoading = false;
         }, timeout);
       });
   }
 
-  
+
 
   private _selectTask(task: Task) {
     if (task) {
       this.selectedTask = task;
-      this.location.go("tasks/" + task.Id);
-    }
-    else {
+      this.location.go('tasks/' + task.Id);
+    } else {
       this.selectedTask = {};
-      this.location.go("tasks");
+      this.location.go('tasks');
     }
   }
 

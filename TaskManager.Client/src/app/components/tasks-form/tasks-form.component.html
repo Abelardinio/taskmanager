@@ -27,7 +27,7 @@
             <!-- Time to complete Column -->
             <ng-container matColumnDef="TimeToComplete">
               <th class="time-to-complete-column" mat-header-cell *matHeaderCellDef> Time to complete </th>
-              <td class="time-to-complete-column" mat-cell *matCellDef="let element"> <timer [completionDate] = "element.TimeToComplete" expiredPlaceholder="Time Expired!"></timer></td>
+              <td class="time-to-complete-column" mat-cell *matCellDef="let element"> <app-timer [completionDate] = "element.TimeToComplete" expiredPlaceholder="Time Expired!"></app-timer></td>
               <!-- {{element.Timer }} -->
             </ng-container>
 

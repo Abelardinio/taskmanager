@@ -1,11 +1,11 @@
-import { Component, forwardRef} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR} from '../../../../../node_modules/@angular/forms';
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
 import { Utils } from '../utils';
 import { Labels } from '../../../resources/labels';
 
 @Component({
-  selector: 'timepicker',
+  selector: 'app-timepicker',
   templateUrl: './timepicker.component.html',
   styleUrls: ['./timepicker.component.css'],
   providers: [
@@ -29,9 +29,6 @@ export class TimepickerComponent implements ControlValueAccessor {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
   onValueChange() {
     this.onChange(this.time);
   }
@@ -52,6 +49,6 @@ export class TimepickerComponent implements ControlValueAccessor {
     this.isDisabled = isDisabled;
   }
 
-  get labels(){ return Labels.TimePicker}
+  get labels() { return Labels.TimePicker; }
 }
 

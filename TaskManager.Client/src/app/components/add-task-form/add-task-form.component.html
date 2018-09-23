@@ -20,7 +20,7 @@
     </div>
     <label>{{labels.TimeToComplete}}:</label>
     <div class="flex-row">
-      <timepicker formControlName="timeToComplete" class="flex-row"></timepicker>
+      <app-timepicker formControlName="timeToComplete" class="flex-row"></app-timepicker>
       <div>
         <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{messages.TimeToCompleteRequired}}</div>       
       </div>
