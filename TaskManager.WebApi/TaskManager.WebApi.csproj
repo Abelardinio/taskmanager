@@ -109,7 +109,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model\TaskFilter.cs" />
     <Compile Include="Model\TaskInfoModel.cs" />
     <Compile Include="Model\TaskInfoTimeSpan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

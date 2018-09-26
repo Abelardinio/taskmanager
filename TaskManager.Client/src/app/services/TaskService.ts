@@ -1,5 +1,4 @@
 import { TaskInfo } from '../models/TaskInfo';
-import { TaskFilter } from '../models/TaskFilter';
 import { NotificationsService } from 'angular2-notifications';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -36,16 +35,11 @@ export class TaskService extends BaseService {
 
     /**
      * Returns an observable of http get method which returns a collection of task
-     * @param filter - task filter
      */
-    public Get(filter: TaskFilter): Observable<Object> {
-        let params = new HttpParams();
-        params = params.append('taskId', filter.taskId.toString());
-        params = params.append('count', filter.count.toString());
-        params = params.append('type', filter.type.toString());
+    public Get(): Observable<Object> {
 
 
-        return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers, params: params })
+        return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers })
                                .pipe(catchError(this.handleError()));
     }
 

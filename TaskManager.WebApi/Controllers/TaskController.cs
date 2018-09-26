@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TaskManager.Core;
@@ -24,11 +22,11 @@ namespace TaskManager.WebApi.Controllers
             _context = context;
         }
 
-        public async Task<IReadOnlyList<ITask>> Get([FromUri] TaskFilter filter)
+        public async Task<IReadOnlyList<ITask>> Get()
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.Get(filter).ToListAsync();
+                return await _taskDataProvider.Get().ToListAsync();
             }
         }
 

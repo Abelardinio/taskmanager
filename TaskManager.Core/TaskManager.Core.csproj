@@ -41,7 +41,6 @@
     <Compile Include="IConnectionContext.cs" />
     <Compile Include="IConnectionScope.cs" />
     <Compile Include="ITask.cs" />
-    <Compile Include="ITaskFilter.cs" />
     <Compile Include="ITaskInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TakeType.cs" />

@@ -14,6 +14,7 @@ import { AddTaskFormComponent } from './components/add-task-form/add-task-form.c
 import { TimerComponent } from './components/common/timer/timer.component';
 import { TaskDetailsComponent } from './components/shared/task-details/task-details.component';
 import { TimepickerComponent } from './components/common/timepicker/timepicker.component';
+import { TableComponent } from './components/common/table/table.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimepickerComponent } from './components/common/timepicker/timepicker.c
     AddTaskFormComponent,
     TimerComponent,
     TaskDetailsComponent,
-    TimepickerComponent
+    TimepickerComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
