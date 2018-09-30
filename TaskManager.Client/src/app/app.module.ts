@@ -9,22 +9,22 @@ import { MatTableModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TasksFormComponent } from './components/tasks-form/tasks-form.component';
-import { AddTaskFormComponent } from './components/add-task-form/add-task-form.component';
 import { TimerComponent } from './components/common/timer/timer.component';
-import { TaskDetailsComponent } from './components/shared/task-details/task-details.component';
+import { TaskDetailsComponent } from './components/panels/task-details/task-details.component';
 import { TimepickerComponent } from './components/common/timepicker/timepicker.component';
 import { TableComponent } from './components/common/table/table.component';
+import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-page.component';
+import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksFormComponent,
-    AddTaskFormComponent,
     TimerComponent,
     TaskDetailsComponent,
     TimepickerComponent,
-    TableComponent
+    TableComponent,
+    AddTaskPageComponent,
+    TasksPageComponent
   ],
   imports: [
     BrowserModule,

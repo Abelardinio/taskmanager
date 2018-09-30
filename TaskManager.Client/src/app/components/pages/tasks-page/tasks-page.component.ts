@@ -1,17 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TaskService } from '../../services/TaskService';
-export { TaskStatus } from '../../models/enums/TaskStatus';
+import { Component, OnInit } from '@angular/core';
+import { Task } from '../../../models/Task';
+import { TaskService } from '../../../services/TaskService';
 import { finalize } from 'rxjs/operators';
-import { Task } from '../../models/Task';
-import { TaskStatus } from '../../models/enums/TaskStatus';
+import { TaskStatus } from '../../../models/enums/TaskStatus';
 
 @Component({
-  selector: 'app-tasks-form',
-  templateUrl: './tasks-form.component.html',
-  styleUrls: ['./tasks-form.component.css'],
+  selector: 'app-tasks-page',
+  templateUrl: './tasks-page.component.html',
+  styleUrls: ['./tasks-page.component.css'],
   host: { 'class': 'flex-column flexible' }
 })
-export class TasksFormComponent implements OnInit, OnDestroy {
+export class TasksPageComponent implements OnInit {
   tasks: Task[] = [];
   selectedTask = {};
 
@@ -25,9 +24,6 @@ export class TasksFormComponent implements OnInit, OnDestroy {
       data => {
         this.tasks.push(...(<Task[]>data));
       });
-  }
-
-  ngOnDestroy() {
   }
 
   onCompleteButtonClick(element) {
@@ -68,5 +64,3 @@ export class TasksFormComponent implements OnInit, OnDestroy {
 
   get taskStatus() { return TaskStatus; }
 }
-
-

@@ -1,23 +1,22 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { TimeSpan } from '../../models/TaskInfo';
+import { Component, OnInit } from '@angular/core';
+import { FormBase } from '../../common/form-base';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Utils } from '../../common/utils';
 import { NotificationsService } from 'angular2-notifications';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { TaskService } from '../../services/TaskService';
-import { CustomValidators } from '../common/custom-validators';
-import { Utils } from '../common/utils';
-import { Messages } from '../../resources/messages';
-import { Labels } from '../../resources/labels';
-import { FormBase } from '../common/form-base';
-import { Observable } from '../../../../node_modules/rxjs';
+import { TaskService } from '../../../services/TaskService';
+import { TimeSpan } from '../../../models/TaskInfo';
+import { CustomValidators } from '../../common/custom-validators';
+import { Observable } from 'rxjs';
+import { Messages } from '../../../resources/messages';
+import { Labels } from '../../../resources/labels';
 
 @Component({
-  selector: 'app-add-task-form',
-  templateUrl: './add-task-form.component.html',
-  styleUrls: ['./add-task-form.component.css'],
+  selector: 'app-add-task-page',
+  templateUrl: './add-task-page.component.html',
+  styleUrls: ['./add-task-page.component.css'],
   host: { 'class': 'flex-column flexible' }
 })
-
-export class AddTaskFormComponent extends FormBase implements OnInit {
+export class AddTaskPageComponent extends FormBase implements OnInit {
   protected form: FormGroup;
 
   public priorityArray = Utils.generateArray(100);
@@ -48,4 +47,5 @@ export class AddTaskFormComponent extends FormBase implements OnInit {
   public get timeToComplete() { return this.form.get('timeToComplete'); }
   public get messages() { return Messages.Tasks.Validation; }
   public get labels() { return Labels.Tasks; }
+
 }
