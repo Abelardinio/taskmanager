@@ -15,6 +15,7 @@ import { TimepickerComponent } from './components/common/timepicker/timepicker.c
 import { TableComponent } from './components/common/table/table.component';
 import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-page.component';
 import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.component';
+import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter/tasks-grid-filter.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.com
     TimepickerComponent,
     TableComponent,
     AddTaskPageComponent,
-    TasksPageComponent
+    TasksPageComponent,
+    TasksGridFilterComponent
   ],
   imports: [
     BrowserModule,

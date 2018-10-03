@@ -13,6 +13,7 @@ import { TaskStatus } from '../../../models/enums/TaskStatus';
 export class TasksPageComponent implements OnInit {
   tasks: Task[] = [];
   selectedTask = {};
+  isGridRefreshing: boolean = false;
 
   constructor(
     private _taskService: TaskService) {
@@ -20,10 +21,7 @@ export class TasksPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._taskService.Get().subscribe(
-      data => {
-        this.tasks.push(...(<Task[]>data));
-      });
+    this._fetchData();
   }
 
   onCompleteButtonClick(element) {
@@ -51,6 +49,20 @@ export class TasksPageComponent implements OnInit {
 
   onRowSelected(task: Task) {
     this._selectTask(task);
+  }
+
+  onRefreshButtonClick(){
+    this._fetchData();
+  }
+
+  _fetchData(){
+    this.isGridRefreshing = true;
+    this._taskService.Get()
+    .pipe(finalize(() => { this.isGridRefreshing = false;}))
+    .subscribe(
+      data => {
+        this.tasks.push(...(<Task[]>data));
+      });   
   }
 
 

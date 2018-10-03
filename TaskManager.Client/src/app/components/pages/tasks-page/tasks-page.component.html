@@ -1,7 +1,9 @@
 <div class="flex-column flexible">
   <h2>Tasks</h2>
   <hr/>
-  <div class="empty-line"></div>
+  <div class="flex-column">
+    <app-tasks-grid-filter (refreshButtonClick)="onRefreshButtonClick($event)" [isRefreshing]="isGridRefreshing" ></app-tasks-grid-filter>
+  </div>
   <div class="flex-column flexible scrollable" >
       <div >
           <app-table [elements]="tasks" (rowSelected) = "onRowSelected($event)">
