@@ -62,7 +62,7 @@ export class TasksPageComponent implements OnInit {
     .subscribe(
       data => {
         this.tasks.push(...(<Task[]>data));
-      });   
+      });
   }
 
 

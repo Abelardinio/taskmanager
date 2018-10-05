@@ -33,4 +33,9 @@ table th {
     text-align: left;
     background-color: #4CAF50;
     color: white;
+    cursor: pointer;
+}
+
+table th:hover{
+    background-color: #3e8e41;
 }
