@@ -33,9 +33,12 @@ table th {
     text-align: left;
     background-color: #4CAF50;
     color: white;
-    cursor: pointer;
 }
 
-table th:hover{
+table th.sortable:hover {
     background-color: #3e8e41;
+}
+
+table th.sortable {
+    cursor: pointer;
 }

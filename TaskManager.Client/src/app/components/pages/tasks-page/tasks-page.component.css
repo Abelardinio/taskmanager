@@ -8,11 +8,11 @@ table tr td, table tr th{
     padding-left: 24px;
 }
 
-.time-to-complete-column{
+:host ::ng-deep .time-to-complete-column{
     width:140px;
 }
 
-.added-column{
+:host ::ng-deep .added-column{
     width:180px;
 }
 
@@ -21,7 +21,7 @@ table tr th.added-column{
     padding-left: 0px;
 }
 
-.priority-column{
+:host ::ng-deep .priority-column{
     width:80px;
 }
 
@@ -30,7 +30,7 @@ table tr td.priority-column{
     padding-left: 0px;
 }
 
-.action-column{
+:host ::ng-deep .action-column{
     text-align: center;
     width: 100px;
 }
@@ -41,6 +41,10 @@ app-task-details{
 
 app-tasks-grid-filter{
     padding-bottom: 5px;
+}
+
+app-table-header{
+    display: contents;
 }
 
 .empty-line{

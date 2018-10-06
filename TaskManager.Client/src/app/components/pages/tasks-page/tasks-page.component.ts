@@ -3,6 +3,10 @@ import { Task } from '../../../models/Task';
 import { TaskService } from '../../../services/TaskService';
 import { finalize } from 'rxjs/operators';
 import { TaskStatus } from '../../../models/enums/TaskStatus';
+import { TableHeaderInfo } from '../../common/table/table-header/TableHeaderInfo';
+import { TaskSortingColumn } from '../../../models/enums/TaskSortingColumn';
+import { TaskFilter } from '../../../models/TaskFilter';
+import { SortingOrder } from '../../../models/enums/SortingOrder';
 
 @Component({
   selector: 'app-tasks-page',
@@ -14,6 +18,12 @@ export class TasksPageComponent implements OnInit {
   tasks: Task[] = [];
   selectedTask = {};
   isGridRefreshing: boolean = false;
+  headers:TableHeaderInfo[] = [ new TableHeaderInfo("Name", "column", TaskSortingColumn.Name),
+                                new TableHeaderInfo("Priority", "priority-column", TaskSortingColumn.Priority),
+                                new TableHeaderInfo("Added", "added-column", TaskSortingColumn.Added),
+                                new TableHeaderInfo("Time to complete", "time-to-complete-column", TaskSortingColumn.TimeToComplete),
+                                new TableHeaderInfo("Action", "action-column", null, false)];
+  filter: TaskFilter =  new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name);
 
   constructor(
     private _taskService: TaskService) {
@@ -55,16 +65,20 @@ export class TasksPageComponent implements OnInit {
     this._fetchData();
   }
 
+  onFilterChange(){
+    this._fetchData();
+  }
+
   _fetchData(){
     this.isGridRefreshing = true;
-    this._taskService.Get()
+    this._taskService.Get(this.filter)
     .pipe(finalize(() => { this.isGridRefreshing = false;}))
     .subscribe(
       data => {
+        this.tasks = [];
         this.tasks.push(...(<Task[]>data));
       });
   }
-
 
   _selectTask(task: Task) {
     if (task) {

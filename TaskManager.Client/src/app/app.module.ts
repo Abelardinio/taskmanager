@@ -16,6 +16,7 @@ import { TableComponent } from './components/common/table/table.component';
 import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-page.component';
 import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.component';
 import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter/tasks-grid-filter.component';
+import { TableHeaderComponent } from './components/common/table/table-header/table-header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter
     TableComponent,
     AddTaskPageComponent,
     TasksPageComponent,
-    TasksGridFilterComponent
+    TasksGridFilterComponent,
+    TableHeaderComponent
   ],
   imports: [
     BrowserModule,

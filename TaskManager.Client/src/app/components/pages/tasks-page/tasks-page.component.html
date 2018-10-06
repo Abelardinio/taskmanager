@@ -8,11 +8,7 @@
       <div >
           <app-table [elements]="tasks" (rowSelected) = "onRowSelected($event)">
               <ng-template #headerTemplate>
-                <th> Name </th>
-                <th class="priority-column"> Priority </th>
-                <th class="added-column"> Added </th>
-                <th class="time-to-complete-column"> Time to complete </th>
-                <th class="action-column"> Action </th>
+                <app-table-header [headers]="headers" [(sortingOrder)]="filter.SortingOrder" [(columnNumber)] = "filter.SortingColumn" (sortingChange) = "onFilterChange()"></app-table-header>
               </ng-template>
               <ng-template #rowTemplate let-element>
                   <td>{{ element.Name }}</td>
