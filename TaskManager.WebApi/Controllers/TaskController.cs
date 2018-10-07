@@ -22,11 +22,11 @@ namespace TaskManager.WebApi.Controllers
             _context = context;
         }
 
-        public async Task<IReadOnlyList<ITask>> Get()
+        public async Task<IReadOnlyList<ITask>> Get([FromUri] TaskFilter filter)
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.Get().ToListAsync();
+                return await _taskDataProvider.Get(filter).ToListAsync();
             }
         }
 

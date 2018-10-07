@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Common.Resources;
@@ -25,9 +24,9 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.Add(task);
         }
 
-        public IQueryable<ITask> Get()
+        public IQueryable<ITask> Get(ITaskFilter filter)
         {
-            return _taskDataAccessor.Get()
+            return _taskDataAccessor.Get().Sort(filter)
                 .Where(x => x.Status != TaskStatus.Removed);
         }
 
