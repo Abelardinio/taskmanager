@@ -5,8 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { MatTableModule} from '@angular/material';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TimerComponent } from './components/common/timer/timer.component';
@@ -17,6 +16,8 @@ import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-
 import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.component';
 import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter/tasks-grid-filter.component';
 import { TableHeaderComponent } from './components/common/table/table-header/table-header.component';
+import { SearchComponent } from './components/common/search/search.component';
+import { DatepickerComponent } from './components/common/datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -28,18 +29,20 @@ import { TableHeaderComponent } from './components/common/table/table-header/tab
     AddTaskPageComponent,
     TasksPageComponent,
     TasksGridFilterComponent,
-    TableHeaderComponent
+    TableHeaderComponent,
+    SearchComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatTableModule,
+    BrowserAnimationsModule,
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot(),
+    NgDatepickerModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

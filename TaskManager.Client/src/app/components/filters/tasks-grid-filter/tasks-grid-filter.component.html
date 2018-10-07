@@ -1,5 +1,21 @@
 <div class="filter-panel flex-row">
-  <div></div>
+  <div class="flex-row filter-row flexible">
+    <app-search class="flex-row flexible"></app-search>
+    <label>Added:</label>
+    <div>
+      <app-datepicker></app-datepicker>
+    </div>
+    <div>
+        <app-datepicker></app-datepicker>
+    </div>
+    <label>Priority:</label>
+    <div>
+        <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
+    </div>
+    <div>
+        <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
+    </div>
+  </div>
   <div>
     <button class="btn refresh" (click)="onRefreshButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Refresh</button>
   </div>

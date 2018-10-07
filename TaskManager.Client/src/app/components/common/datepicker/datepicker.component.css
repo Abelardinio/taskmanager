@@ -1,0 +1,16 @@
+:host ::ng-deep .topbar-container, :host ::ng-deep .main-calendar-container{
+    width:auto !important;
+}
+:host ::ng-deep .ngx-datepicker-container .ngx-datepicker-input{
+    color: #757575;
+    height: 30px;
+    width: 150px!important;
+    border-width: 2px!important;
+    border-style: inset!important;
+    border-color: initial!important;
+    border-image: initial!important;
+    padding: 1px!important;
+    font-size: 15px!important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+}

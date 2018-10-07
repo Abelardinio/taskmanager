@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Utils } from '../../common/utils';
 
 @Component({
   selector: 'app-tasks-grid-filter',
@@ -11,6 +12,7 @@ export class TasksGridFilterComponent implements OnInit {
   @Output() refreshButtonClick = new EventEmitter<any>();
   constructor() { }
 
+  public priorityArray = Utils.generateArray(100);
 
   ngOnInit() {
     this.refreshButtonClick

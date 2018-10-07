@@ -3,14 +3,6 @@ form textarea {
     padding-top: 5px;
 }
 
-form input, form textarea{
-    color: #757575;
-    height: 30px;
-    font-size: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
 form label {
     color: #757575;
     padding-bottom: 20px;
