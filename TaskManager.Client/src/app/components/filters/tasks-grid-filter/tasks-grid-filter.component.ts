@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Utils } from '../../common/utils';
+import { Labels } from '../../../resources/labels';
+import { TaskFilter } from '../../../models/TaskFilter';
 
 @Component({
   selector: 'app-tasks-grid-filter',
@@ -9,7 +11,9 @@ import { Utils } from '../../common/utils';
 export class TasksGridFilterComponent implements OnInit {
 
   @Input() isRefreshing: boolean;
-  @Output() refreshButtonClick = new EventEmitter<any>();
+  @Input() filter: TaskFilter;
+  @Output() filterChange = new EventEmitter<TaskFilter>();
+  @Output() refresh = new EventEmitter<any>();
   constructor() { }
 
   public priorityArray = Utils.generateArray(100);
@@ -19,7 +23,14 @@ export class TasksGridFilterComponent implements OnInit {
 
   onRefreshButtonClick() {
     if (!this.isRefreshing) {
-      this.refreshButtonClick.emit(this);
+      this.refresh.emit(this);
     }
   }
+
+  onFilterChange() {
+    this.filterChange.emit(this.filter);
+    this.refresh.emit(this);
+  }
+
+  public get labels() { return Labels.Tasks; }
 }

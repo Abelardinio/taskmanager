@@ -1,6 +1,6 @@
 <div class="filter-panel flex-row">
   <div class="flex-row filter-row flexible">
-    <app-search class="flex-row flexible"></app-search>
+    <app-search [placeholder]="labels.Placeholders.Search" [className]="'flexible'" [(value)]="filter.Name" (valueChange)="onFilterChange()"></app-search>
     <label>Added:</label>
     <div>
       <app-datepicker></app-datepicker>
@@ -10,10 +10,10 @@
     </div>
     <label>Priority:</label>
     <div>
-        <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
+        <ng-select class="custom" [items]="priorityArray" [searchable]="false"></ng-select>
     </div>
     <div>
-        <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>
+        <ng-select class="custom" [items]="priorityArray" [searchable]="false"></ng-select>
     </div>
   </div>
   <div>

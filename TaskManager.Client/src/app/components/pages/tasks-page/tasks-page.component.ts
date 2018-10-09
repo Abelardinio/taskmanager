@@ -23,7 +23,7 @@ export class TasksPageComponent implements OnInit {
                                 new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
                                 new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
                                 new TableHeaderInfo('Action', 'action-column', null, false)];
-  filter: TaskFilter = new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name);
+  filter: TaskFilter = new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name, '');
 
   constructor(
     private _taskService: TaskService) {
@@ -61,11 +61,7 @@ export class TasksPageComponent implements OnInit {
     this._selectTask(task);
   }
 
-  onRefreshButtonClick() {
-    this._fetchData();
-  }
-
-  onFilterChange() {
+  onRefresh() {
     this._fetchData();
   }
 

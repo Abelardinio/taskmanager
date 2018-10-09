@@ -5,7 +5,10 @@ export const Labels = {
         TimeToComplete: 'Time to complete',
         Description: 'Description',
         Added: 'Added',
-        Status: 'Status'
+        Status: 'Status',
+        Placeholders: {
+            Search: 'Search by name...'
+        }
     },
     TimePicker: {
         Weeks: 'Weeks',
