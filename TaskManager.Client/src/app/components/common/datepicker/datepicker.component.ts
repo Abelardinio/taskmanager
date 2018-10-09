@@ -8,7 +8,7 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./datepicker.component.css']
 })
 export class DatepickerComponent implements OnInit {
-  
+
   options: DatepickerOptions = {
     minYear: 1970,
     maxYear: 2030,
@@ -19,7 +19,7 @@ export class DatepickerComponent implements OnInit {
     placeholder: 'Date from...', // HTML input placeholder attribute (default: '')
     addClass: 'datepicker', // Optional, value to pass on to [ngClass] on the input field
   };
-  
+
   constructor() { }
 
   ngOnInit() {

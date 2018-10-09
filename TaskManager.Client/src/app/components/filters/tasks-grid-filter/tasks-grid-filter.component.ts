@@ -15,11 +15,10 @@ export class TasksGridFilterComponent implements OnInit {
   public priorityArray = Utils.generateArray(100);
 
   ngOnInit() {
-    this.refreshButtonClick
   }
 
   onRefreshButtonClick() {
-    if (!this.isRefreshing){
+    if (!this.isRefreshing) {
       this.refreshButtonClick.emit(this);
     }
   }

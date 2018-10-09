@@ -10,10 +10,10 @@ import { SortingOrder } from '../../../../models/enums/SortingOrder';
 export class TableHeaderComponent implements OnInit {
 
   @Input() headers: TableHeaderInfo[];
-  @Input() sortingOrder: SortingOrder;  
-  @Output() sortingOrderChange:EventEmitter<SortingOrder> = new EventEmitter<SortingOrder>();
+  @Input() sortingOrder: SortingOrder;
+  @Output() sortingOrderChange: EventEmitter<SortingOrder> = new EventEmitter<SortingOrder>();
   @Input() columnNumber: number;
-  @Output() columnNumberChange:EventEmitter<number> = new EventEmitter<number>();
+  @Output() columnNumberChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() sortingChange = new EventEmitter<any>();
 
   constructor() { }
@@ -21,11 +21,11 @@ export class TableHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onHeaderClick(header : TableHeaderInfo){
-    if(header.Sortable){
-      if(this.columnNumber === header.SortingNumber){
-          this.sortingOrder = this.sortingOrder === SortingOrder.Asc ? SortingOrder.Desc : SortingOrder.Asc;
-      }else{
+  onHeaderClick(header: TableHeaderInfo) {
+    if (header.Sortable) {
+      if (this.columnNumber === header.SortingNumber) {
+        this.sortingOrder = this.sortingOrder === SortingOrder.Asc ? SortingOrder.Desc : SortingOrder.Asc;
+      } else {
         this.columnNumber = header.SortingNumber;
         this.sortingOrder = SortingOrder.Desc;
       }
