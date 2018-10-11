@@ -44,6 +44,10 @@ export class TaskService extends BaseService {
         params = params.append('name', filter.Name ? filter.Name.toString() : '');
         params = params.append('addedFrom', filter.AddedFrom ? filter.AddedFrom.toLocaleDateString() : '');
         params = params.append('addedTo', filter.AddedTo ? filter.AddedTo.toLocaleDateString() : '');
+        if (filter.Priority){
+            params = params.append('priorityFrom', filter.Priority.From ? filter.Priority.From.toString() : '');
+            params = params.append('priorityTo', filter.Priority.To ? filter.Priority.To.toString() : '');
+        }
 
         return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers, params: params })
                                .pipe(catchError(this.handleError()));

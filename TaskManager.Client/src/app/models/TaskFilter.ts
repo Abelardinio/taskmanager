@@ -1,5 +1,6 @@
 import { SortingOrder } from './enums/SortingOrder';
 import { TaskSortingColumn } from './enums/TaskSortingColumn';
+import { NumberRange } from './NumberRange';
 
 export class TaskFilter {
     constructor(
@@ -7,6 +8,7 @@ export class TaskFilter {
       public SortingColumn: TaskSortingColumn = 0,
       public Name?: string,
       public AddedFrom?: Date,
-      public AddedTo?: Date
+      public AddedTo?: Date,
+      public Priority?: NumberRange
     ) { }
   }

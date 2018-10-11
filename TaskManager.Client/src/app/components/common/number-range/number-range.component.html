@@ -1,0 +1,16 @@
+<div>
+  <ng-select [ngModel]="innerValue ? innerValue.From : ''"
+             (ngModelChange)="onFromModelChange($event)" 
+             (change)="onValueChange()"
+             [items]="numberArray"
+             [searchable]="false"
+             class="custom" ></ng-select>
+</div>
+<div>
+  <ng-select [ngModel]="innerValue ? innerValue.To : ''"
+             (ngModelChange)="onToModelChange($event)" 
+             (change)="onValueChange()"
+             [items]="numberArray"
+             [searchable]="false"
+             class="custom" ></ng-select>
+</div>

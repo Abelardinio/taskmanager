@@ -18,6 +18,7 @@ import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter
 import { TableHeaderComponent } from './components/common/table/table-header/table-header.component';
 import { SearchComponent } from './components/common/search/search.component';
 import { DatepickerComponent } from './components/common/datepicker/datepicker.component';
+import { NumberRangeComponent } from './components/common/number-range/number-range.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DatepickerComponent } from './components/common/datepicker/datepicker.c
     TasksGridFilterComponent,
     TableHeaderComponent,
     SearchComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    NumberRangeComponent
   ],
   imports: [
     BrowserModule,
