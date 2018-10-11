@@ -3,10 +3,10 @@
     <app-search [placeholder]="labels.Placeholders.Search" [className]="'flexible'" [(value)]="filter.Name" (valueChange)="onFilterChange()"></app-search>
     <label>Added:</label>
     <div>
-      <app-datepicker></app-datepicker>
+      <app-datepicker [(ngModel)]="filter.AddedFrom" (ngModelChange)="onFilterChange()"></app-datepicker>
     </div>
     <div>
-        <app-datepicker></app-datepicker>
+        <app-datepicker [(ngModel)]="filter.AddedTo" (ngModelChange)="onFilterChange()"></app-datepicker>
     </div>
     <label>Priority:</label>
     <div>

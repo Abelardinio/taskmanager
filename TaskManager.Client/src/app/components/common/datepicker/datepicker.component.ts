@@ -1,13 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, forwardRef } from '@angular/core';
 import { DatepickerOptions } from 'ng2-datepicker';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ValueAccessorBase } from '../value-accessor-base';
 
 
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.css']
+  styleUrls: ['./datepicker.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => DatepickerComponent),
+    }
+  ]
 })
-export class DatepickerComponent implements OnInit {
+export class DatepickerComponent extends ValueAccessorBase<Date> implements OnInit {
 
   options: DatepickerOptions = {
     minYear: 1970,
@@ -19,8 +28,6 @@ export class DatepickerComponent implements OnInit {
     placeholder: 'Date from...', // HTML input placeholder attribute (default: '')
     addClass: 'datepicker', // Optional, value to pass on to [ngClass] on the input field
   };
-
-  constructor() { }
 
   ngOnInit() {
   }

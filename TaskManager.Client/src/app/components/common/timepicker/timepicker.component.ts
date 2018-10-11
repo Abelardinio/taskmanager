@@ -18,7 +18,7 @@ import { ValueAccessorBase } from '../value-accessor-base';
   ]
 })
 
-export class TimepickerComponent extends ValueAccessorBase<TimeSpan> implements ControlValueAccessor {
+export class TimepickerComponent extends ValueAccessorBase<TimeSpan> {
 
   public daysArray = Utils.generateArray(7);
   public hoursArray = Utils.generateArray(24);

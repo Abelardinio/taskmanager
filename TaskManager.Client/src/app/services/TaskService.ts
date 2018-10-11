@@ -41,7 +41,9 @@ export class TaskService extends BaseService {
         let params = new HttpParams();
         params = params.append('sortingColumn', filter.SortingColumn.toString());
         params = params.append('sortingOrder', filter.SortingOrder.toString());
-        params = params.append('name', filter.Name.toString());
+        params = params.append('name', filter.Name ? filter.Name.toString() : '');
+        params = params.append('addedFrom', filter.AddedFrom ? filter.AddedFrom.toLocaleDateString() : '');
+        params = params.append('addedTo', filter.AddedTo ? filter.AddedTo.toLocaleDateString() : '');
 
         return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers, params: params })
                                .pipe(catchError(this.handleError()));
