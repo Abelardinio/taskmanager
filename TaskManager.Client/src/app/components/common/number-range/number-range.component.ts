@@ -1,7 +1,8 @@
 import { Component, forwardRef, Input} from '@angular/core';
 import { ValueAccessorBase } from '../value-accessor-base';
 import { NumberRange } from '../../../models/NumberRange';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR} from '@angular/forms';
+import _ = require('lodash');
 
 @Component({
   selector: 'app-number-range',
@@ -16,18 +17,23 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class NumberRangeComponent extends ValueAccessorBase<NumberRange> {
   @Input() numberArray: number[];
+  fromArray: number[];
+  toArray: number[];
   ngOnInit() {
+    this.fromArray = this.numberArray;
+    this.toArray = this.numberArray;
   }
 
   onFromModelChange(v:number){
     this.initValue();
-
     this.value.From = v;
+    this.toArray = _.filter(this.numberArray, x => x > v);
   }
 
   onToModelChange(v:number){
     this.initValue();
     this.value.To = v;
+    this.fromArray = _.filter(this.numberArray, x => x < v);
   }
 
   initValue(){
