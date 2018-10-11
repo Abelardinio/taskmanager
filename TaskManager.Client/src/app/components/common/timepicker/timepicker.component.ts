@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '../../../../../node_mod
 import { TimeSpan } from '../../../models/TaskInfo';
 import { Utils } from '../utils';
 import { Labels } from '../../../resources/labels';
+import { ValueAccessorBase } from '../value-accessor-base';
 
 @Component({
   selector: 'app-timepicker',
@@ -17,33 +18,12 @@ import { Labels } from '../../../resources/labels';
   ]
 })
 
-export class TimepickerComponent implements ControlValueAccessor {
+export class TimepickerComponent extends ValueAccessorBase<TimeSpan> implements ControlValueAccessor {
 
   public daysArray = Utils.generateArray(7);
   public hoursArray = Utils.generateArray(24);
   public weeksArray = Utils.generateArray(52);
-  public time: TimeSpan;
   isDisabled: Boolean = false;
-  onChange;
-  onTouched;
-
-  constructor() { }
-
-  onValueChange() {
-    this.onChange(this.time);
-  }
-
-  writeValue(obj: TimeSpan): void {
-    this.time = obj;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
 
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;

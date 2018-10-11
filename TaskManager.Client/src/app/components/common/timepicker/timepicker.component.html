@@ -1,7 +1,7 @@
 <div>
   <label>{{labels.Weeks}} </label>
-  <ng-select [ngModel]="time.weeks"
-             (ngModelChange)="time.weeks = $event" 
+  <ng-select [ngModel]="innerValue.weeks"
+             (ngModelChange)="innerValue.weeks = $event" 
              (change)="onValueChange()"
              [items]="weeksArray"
              [searchable]="false"
@@ -10,8 +10,8 @@
 </div>
 <div>
   <label>{{labels.Days}}</label>
-  <ng-select [ngModel]="time.days"
-             (ngModelChange)="time.days = $event"
+  <ng-select [ngModel]="innerValue.days"
+             (ngModelChange)="innerValue.days = $event"
              (change)="onValueChange()" 
              class="custom"
              [items]="daysArray"
@@ -20,8 +20,8 @@
 </div>
 <div>
   <label>{{labels.Hours}}</label>
-  <ng-select [ngModel]="time.hours"
-             (ngModelChange)="time.hours = $event"
+  <ng-select [ngModel]="innerValue.hours"
+             (ngModelChange)="innerValue.hours = $event"
              (change)="onValueChange()"
              class="custom"
              [items]="hoursArray"
