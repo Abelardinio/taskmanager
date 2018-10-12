@@ -7,7 +7,9 @@ export const Labels = {
         Added: 'Added',
         Status: 'Status',
         Placeholders: {
-            Search: 'Search by name...'
+            Search: 'Search by name...',
+            DateFrom: 'Date from...',
+            DateTo: 'Date to...'
         }
     },
     TimePicker: {

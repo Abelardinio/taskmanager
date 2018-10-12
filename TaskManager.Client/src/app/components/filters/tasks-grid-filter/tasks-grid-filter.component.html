@@ -4,10 +4,10 @@
       (valueChange)="onFilterChange()"></app-search>
     <label>Added:</label>
     <div>
-      <app-datepicker [(ngModel)]="filter.AddedFrom" (ngModelChange)="onFilterChange()"></app-datepicker>
+      <app-datepicker [(ngModel)]="filter.AddedFrom" (ngModelChange)="onFilterChange()" [placeholder]="labels.Placeholders.DateFrom"></app-datepicker>
     </div>
     <div>
-      <app-datepicker [(ngModel)]="filter.AddedTo" (ngModelChange)="onFilterChange()"></app-datepicker>
+      <app-datepicker [(ngModel)]="filter.AddedTo" (ngModelChange)="onFilterChange()" [placeholder]="labels.Placeholders.DateTo"></app-datepicker>
     </div>
     <label>Priority:</label>
     <app-number-range [numberArray]="priorityArray" [(ngModel)]="filter.Priority" (ngModelChange)="onFilterChange()"></app-number-range>

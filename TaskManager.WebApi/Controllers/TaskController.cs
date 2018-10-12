@@ -26,7 +26,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.Get(filter).ToListAsync();
+                return await _taskDataProvider.GetUnremoved().ApplyFilter(filter).ToListAsync();
             }
         }
 

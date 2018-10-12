@@ -24,10 +24,9 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.Add(task);
         }
 
-        public IQueryable<ITask> Get(ITaskFilter filter)
+        public IQueryable<ITask> GetUnremoved()
         {
-            return _taskDataAccessor.Get().Sort(filter)
-                .Where(x => x.Status != TaskStatus.Removed);
+            return _taskDataAccessor.Get().Where(x => x.Status != TaskStatus.Removed);
         }
 
         public Task<ITask> Get(int taskId)

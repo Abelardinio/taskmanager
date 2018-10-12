@@ -42,8 +42,8 @@ export class TaskService extends BaseService {
         params = params.append('sortingColumn', filter.SortingColumn.toString());
         params = params.append('sortingOrder', filter.SortingOrder.toString());
         params = params.append('name', filter.Name ? filter.Name.toString() : '');
-        params = params.append('addedFrom', filter.AddedFrom ? filter.AddedFrom.toLocaleDateString() : '');
-        params = params.append('addedTo', filter.AddedTo ? filter.AddedTo.toLocaleDateString() : '');
+        params = params.append('addedFrom', filter.AddedFrom ? filter.AddedFrom.toDateString() : '');
+        params = params.append('addedTo', filter.AddedTo ? filter.AddedTo.toDateString() : '');
         if (filter.Priority) {
             params = params.append('priorityFrom', filter.Priority.From ? filter.Priority.From.toString() : '');
             params = params.append('priorityTo', filter.Priority.To ? filter.Priority.To.toString() : '');
