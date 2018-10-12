@@ -4,4 +4,3 @@ export class NumberRange {
       public To: number
     ) { }
   }
-  
