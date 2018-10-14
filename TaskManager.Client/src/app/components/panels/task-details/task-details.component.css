@@ -28,3 +28,7 @@ table td{
     vertical-align: top;
     width: 100%;
 }
+
+.scrollable{
+    border-width: 0;
+}

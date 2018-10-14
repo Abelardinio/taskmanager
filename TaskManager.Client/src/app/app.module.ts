@@ -19,6 +19,7 @@ import { TableHeaderComponent } from './components/common/table/table-header/tab
 import { SearchComponent } from './components/common/search/search.component';
 import { DatepickerComponent } from './components/common/datepicker/datepicker.component';
 import { NumberRangeComponent } from './components/common/number-range/number-range.component';
+import { PagerComponent } from './components/common/pager/pager.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NumberRangeComponent } from './components/common/number-range/number-ra
     TableHeaderComponent,
     SearchComponent,
     DatepickerComponent,
-    NumberRangeComponent
+    NumberRangeComponent,
+    PagerComponent
   ],
   imports: [
     BrowserModule,

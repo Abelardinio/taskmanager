@@ -36,11 +36,16 @@ table tr td.priority-column{
 }
 
 app-task-details{
-    padding-top:15px;
+    padding-top:5px;
 }
 
 app-tasks-grid-filter{
     padding-bottom: 5px;
+}
+
+
+.pager-container{
+    margin-top: 5px
 }
 
 app-table-header{
@@ -52,4 +57,3 @@ app-table-header{
     background-color: white;
     z-index: 1000;
 }
-

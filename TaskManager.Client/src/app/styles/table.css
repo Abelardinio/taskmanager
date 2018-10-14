@@ -8,6 +8,7 @@ table td, table th {
     border: 1px solid #ddd;
     padding: 8px;
 }
+
 table tr:nth-child(even){background-color: #f2f2f2;}
 
 table tr:nth-child(even) {
@@ -15,7 +16,7 @@ table tr:nth-child(even) {
 }
 
 table tr{
-    color: #555353;           
+    color: #555353;
     font-size: 14px;
 }
 
@@ -41,4 +42,24 @@ table th.sortable:hover {
 
 table th.sortable {
     cursor: pointer;
+}
+
+.scrollable{
+    border: 1px solid #ddd;
+}
+
+.scrollable table tr:last-child td{
+    border-bottom-width: 0;
+}
+
+.scrollable table tr *:last-child{
+    border-right-width: 0;
+}
+
+.scrollable table tr *:first-child{
+    border-left-width: 0;
+}
+
+.scrollable table tr th{
+    border-top-width: 0;
 }

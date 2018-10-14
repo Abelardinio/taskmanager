@@ -1,0 +1,59 @@
+:host{
+    display:contents;
+}
+
+:host ::ng-deep .ng-select .ng-select-container{
+    min-height: auto;
+}
+
+.ng-select{
+    margin-top: 10px;
+    padding-bottom: 0;
+}
+
+:host ::ng-deep .ng-select .ng-dropdown-panel{
+    top:100%;
+}
+
+:host ::ng-deep .ng-has-value{
+    margin-top: -22px;
+}
+
+
+label{
+    margin: 10px 0 0 10px;
+}
+
+.pager{
+    justify-content: space-between;
+}
+
+.pager > *, .page-size > *{
+    margin-left: 10px;
+}
+
+.page-nav-button{
+    background-color: white;
+    color: #757575;
+    padding: 10px 5px 0 10px;
+    margin-top: -8px;
+}
+
+.page-nav-button.next i{
+    margin-left: 8px;
+}
+
+.page-nav-button:focus{
+    outline:0;
+}
+
+:host ::ng-deep .page-nav-select .ng-arrow-wrapper{
+    display: none;
+}
+
+.page-nav-button:hover{
+    color: black;
+}
+.page-nav-select .ng-select.custom{
+    width: 75px;
+}
