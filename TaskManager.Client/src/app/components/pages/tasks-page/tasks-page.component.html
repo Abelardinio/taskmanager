@@ -24,7 +24,7 @@
       </div>
   </div>
   <div class="bordered-panel pager-container">
-    <app-pager></app-pager>
+    <app-pager [(ngModel)]="filter.PagingInfo" (ngModelChange)="onRefresh()" [pagesCount]="pagesCount"></app-pager>
   </div>
   <div class="flex-column">
       <app-task-details [task] = "selectedTask" class="flex-column"></app-task-details>

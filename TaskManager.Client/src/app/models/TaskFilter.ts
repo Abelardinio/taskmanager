@@ -1,14 +1,16 @@
 import { SortingOrder } from './enums/SortingOrder';
 import { TaskSortingColumn } from './enums/TaskSortingColumn';
 import { NumberRange } from './NumberRange';
+import { PagingInfo } from './PagingInfo';
 
 export class TaskFilter {
     constructor(
       public SortingOrder: SortingOrder = 0,
       public SortingColumn: TaskSortingColumn = 0,
+      public PagingInfo: PagingInfo,
       public Name?: string,
       public AddedFrom?: Date,
       public AddedTo?: Date,
-      public Priority?: NumberRange
+      public Priority?: NumberRange,
     ) { }
   }

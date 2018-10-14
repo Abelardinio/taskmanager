@@ -48,6 +48,8 @@ export class TaskService extends BaseService {
             params = params.append('priorityFrom', filter.Priority.From ? filter.Priority.From.toString() : '');
             params = params.append('priorityTo', filter.Priority.To ? filter.Priority.To.toString() : '');
         }
+        params = params.append('pageSize', filter.PagingInfo.Size.toString());
+        params = params.append('pageNumber', filter.PagingInfo.Number.toString());
 
         return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers, params: params })
                                .pipe(catchError(this.handleError()));

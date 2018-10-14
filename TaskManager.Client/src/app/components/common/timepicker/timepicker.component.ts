@@ -1,5 +1,5 @@
 import { Component, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '../../../../../node_modules/@angular/forms';
+import { NG_VALUE_ACCESSOR } from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
 import { Utils } from '../utils';
 import { Labels } from '../../../resources/labels';

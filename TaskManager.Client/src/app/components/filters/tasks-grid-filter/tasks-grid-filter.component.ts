@@ -19,6 +19,7 @@ export class TasksGridFilterComponent implements OnInit {
   public priorityArray = Utils.generateArray(100);
 
   ngOnInit() {
+    this.priorityArray.shift();
   }
 
   onRefreshButtonClick() {

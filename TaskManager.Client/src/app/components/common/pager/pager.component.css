@@ -21,7 +21,7 @@
 
 
 label{
-    margin: 10px 0 0 10px;
+    margin: 8px 0 0 10px;
 }
 
 .pager{
@@ -54,6 +54,19 @@ label{
 .page-nav-button:hover{
     color: black;
 }
+
+.page-nav-button:disabled{
+    cursor: default;
+}
+
+.page-nav-button:disabled:hover{
+    color: #757575;
+}
 .page-nav-select .ng-select.custom{
     width: 75px;
+}
+
+:host ::ng-deep  .page-nav-select .ng-select.custom .ng-value {
+    width: 100%;
+    text-align: center;
 }
