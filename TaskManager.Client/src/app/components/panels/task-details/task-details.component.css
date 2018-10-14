@@ -10,18 +10,13 @@ label{
 
 table td{
     border-width: 0px;
+    padding-left: 0px;
 }
 .details table tr{
     background-color: white;
 }
 .details table tr td:first-child{
     width: 150px;
-}
-
-.details{
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 .description-field div{

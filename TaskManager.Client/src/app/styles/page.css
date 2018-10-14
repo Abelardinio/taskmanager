@@ -34,3 +34,9 @@ input, textarea{
     padding-right: 5px;
 }
 
+.bordered-panel{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+

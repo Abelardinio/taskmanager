@@ -1,14 +1,6 @@
-.filter-panel{
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
 button.refresh{
     width: 100px;
-}
-
-.filter-panel > div{
-    padding: 10px;
+    margin-left: 10px;
 }
 
 label{
@@ -17,8 +9,4 @@ label{
 
 .filter-panel .filter-row > *{
     margin-left: 10px;
-}
-
-.filter-panel .filter-row > *:nth-child(1){
-    margin-left: 0;
 }

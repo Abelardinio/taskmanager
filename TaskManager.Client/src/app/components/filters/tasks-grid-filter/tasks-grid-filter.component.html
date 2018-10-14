@@ -1,4 +1,4 @@
-<div class="filter-panel flex-row">
+<div class="filter-panel bordered-panel flex-row">
   <div class="flex-row filter-row flexible">
     <app-search [placeholder]="labels.Placeholders.Search" [className]="'flexible'" [(value)]="filter.Name"
       (valueChange)="onFilterChange()"></app-search>
@@ -12,7 +12,7 @@
     <label>Priority:</label>
     <app-number-range [numberArray]="priorityArray" [(ngModel)]="filter.Priority" (ngModelChange)="onFilterChange()"></app-number-range>
   </div>
-  <div>
+  <div >
     <button class="btn refresh" (click)="onRefreshButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Refresh</button>
   </div>
 </div>
