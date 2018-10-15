@@ -8,6 +8,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { Messages } from '../resources/messages';
 import { BaseService } from './BaseService';
 import { TaskFilter } from '../models/TaskFilter';
+import { PagedResult } from '../models/PagedResult';
+import { Task } from '../models/Task';
 
 @Injectable({
     providedIn: 'root',
@@ -37,7 +39,7 @@ export class TaskService extends BaseService {
     /**
      * Returns an observable of http get method which returns a collection of task
      */
-    public Get(filter: TaskFilter): Observable<Object> {
+    public Get(filter: TaskFilter): Observable<PagedResult<Task>> {
         let params = new HttpParams();
         params = params.append('sortingColumn', filter.SortingColumn.toString());
         params = params.append('sortingOrder', filter.SortingOrder.toString());
@@ -51,8 +53,9 @@ export class TaskService extends BaseService {
         params = params.append('pageSize', filter.PagingInfo.Size.toString());
         params = params.append('pageNumber', filter.PagingInfo.Number.toString());
 
-        return this._httpClient.get(environment.API_URL + '/task', { headers: this.headers, params: params })
-                               .pipe(catchError(this.handleError()));
+        return <Observable<PagedResult<Task>>>this._httpClient
+                .get(environment.API_URL + '/task', { headers: this.headers, params: params })
+                .pipe(catchError(this.handleError()));
     }
 
     /**
