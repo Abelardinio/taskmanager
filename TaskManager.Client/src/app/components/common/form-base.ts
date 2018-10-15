@@ -4,13 +4,13 @@ import { Messages } from '../../resources/messages';
 import { NotificationsService } from '../../../../node_modules/angular2-notifications';
 import { Observable } from '../../../../node_modules/rxjs';
 
-export abstract class FormBase {
+export abstract class FormBase<T> {
     protected formIsValidated = false;
     protected formIsLoading = false;
 
     protected abstract form: FormGroup;
     protected abstract notifications: NotificationsService;
-    protected abstract submitAction(value: any): Observable<Object>;
+    protected abstract submitAction(value: T): Observable<Object>;
 
     protected onSubmit() {
         if (this.form.valid) {

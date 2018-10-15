@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Utils } from '../../common/utils';
 import { NotificationsService } from 'angular2-notifications';
 import { TaskService } from '../../../services/TaskService';
-import { TimeSpan } from '../../../models/TaskInfo';
+import { TimeSpan, TaskInfo } from '../../../models/TaskInfo';
 import { CustomValidators } from '../../common/custom-validators';
 import { Observable } from 'rxjs';
 import { Messages } from '../../../resources/messages';
@@ -16,7 +16,7 @@ import { Labels } from '../../../resources/labels';
   styleUrls: ['./add-task-page.component.css'],
   host: { 'class': 'flex-column flexible' }
 })
-export class AddTaskPageComponent extends FormBase implements OnInit {
+export class AddTaskPageComponent extends FormBase<TaskInfo> implements OnInit {
   protected form: FormGroup;
 
   public priorityArray = Utils.generateArray(100);
@@ -39,7 +39,7 @@ export class AddTaskPageComponent extends FormBase implements OnInit {
     this.priorityArray.shift();
   }
 
-  submitAction(value: any): Observable<Object> {
+  submitAction(value: TaskInfo): Observable<Object> {
     return this._taskService.Add(value);
   }
 
