@@ -74,7 +74,8 @@ export class TasksPageComponent implements OnInit {
       .subscribe(
         data => {
           this.tasks = [];
-          this.tasks.push(...(<Task[]>data));
+          this.pagesCount = (<any> data).PagesCount;
+          this.tasks.push(...(<Task[]>(<any>data).Items));
         });
   }
 

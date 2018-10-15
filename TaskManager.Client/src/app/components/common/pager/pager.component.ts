@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ValueAccessorBase } from '../value-accessor-base';
 import { PagingInfo } from 'src/app/models/PagingInfo';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -15,12 +15,17 @@ import { Utils } from '../utils';
       useExisting: forwardRef(() => PagerComponent),
     }]
 })
-export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnInit {
+export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnInit, OnChanges {
   @Input() pagesCount: number;
   pageSizeArray: number[] = [20, 50, 100];
   pageNumberArray: number[];
   ngOnInit() {
-    this.pageNumberArray = Utils.generateArray(this.pagesCount);
+    this.pageNumberArray = Utils.generateArray(this.pagesCount + 1);
+    this.pageNumberArray.shift();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.pageNumberArray = Utils.generateArray(this.pagesCount + 1);
     this.pageNumberArray.shift();
   }
 
@@ -35,7 +40,7 @@ export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnI
   }
 
   onNextButtonClick() {
-    if (this.value.Number < this.pagesCount - 1) {
+    if (this.value.Number < this.pagesCount) {
       this.initValue();
       this.value.Number++;
       this.onValueChange();

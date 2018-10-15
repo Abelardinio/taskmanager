@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace TaskManager.Core
 {
@@ -14,9 +15,20 @@ namespace TaskManager.Core
             return filter.Filter(input);
         }
 
-        public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> input, IFilter<T> filter)
+        public static Task<IPagedResult<T>> GetPagedResultAsync<T>(this IQueryable<T> input, IFilter<T> filter)
         {
-            return input.Sort(filter).Filter(filter);
+            return Task.Run(() =>
+            {
+                var items = input.Sort(filter).Filter(filter);
+
+                return (IPagedResult<T>) new PagedResult<T>
+                {
+                    Items = items.Skip(filter.PageSize * (filter.PageNumber - 1))
+                        .Take(filter.PageSize)
+                        .ToList(),
+                    PagesCount = (items.Count() + filter.PageSize - 1) / filter.PageSize
+                };
+            });
         }
     }
 }

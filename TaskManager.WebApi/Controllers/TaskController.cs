@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TaskManager.Core;
@@ -22,11 +20,11 @@ namespace TaskManager.WebApi.Controllers
             _context = context;
         }
 
-        public async Task<IReadOnlyList<ITask>> Get([FromUri] TaskFilter filter)
+        public async Task<IPagedResult<ITask>> Get([FromUri] TaskFilter filter)
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.GetUnremoved().ApplyFilter(filter).ToListAsync();
+                return await _taskDataProvider.GetUnremoved().GetPagedResultAsync(filter);
             }
         }
 
