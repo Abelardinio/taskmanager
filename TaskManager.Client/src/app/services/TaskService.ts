@@ -41,8 +41,8 @@ export class TaskService extends BaseService {
      */
     public Get(filter: TaskFilter): Observable<PagedResult<Task>> {
         let params = new HttpParams();
-        params = params.append('sortingColumn', filter.SortingColumn.toString());
-        params = params.append('sortingOrder', filter.SortingOrder.toString());
+        params = params.append('sortingColumn', filter.SortingInfo.Column.toString());
+        params = params.append('sortingOrder', filter.SortingInfo.Order.toString());
         params = params.append('name', filter.Name ? filter.Name.toString() : '');
         params = params.append('addedFrom', filter.AddedFrom ? filter.AddedFrom.toDateString() : '');
         params = params.append('addedTo', filter.AddedTo ? filter.AddedTo.toDateString() : '');

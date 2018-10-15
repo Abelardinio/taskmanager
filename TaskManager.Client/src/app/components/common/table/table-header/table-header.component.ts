@@ -1,36 +1,38 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, forwardRef} from '@angular/core';
 import { TableHeaderInfo } from './TableHeaderInfo';
 import { SortingOrder } from '../../../../models/enums/SortingOrder';
+import { ValueAccessorBase } from '../../value-accessor-base';
+import { SortingInfo } from 'src/app/models/SortingInfo';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-table-header',
   templateUrl: './table-header.component.html',
-  styleUrls: ['./table-header.component.css']
+  styleUrls: ['./table-header.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => TableHeaderComponent),
+    }]
 })
-export class TableHeaderComponent implements OnInit {
+export class TableHeaderComponent<T> extends ValueAccessorBase<SortingInfo<T>> implements OnInit {
 
-  @Input() public headers: TableHeaderInfo[];
-  @Input() public sortingOrder: SortingOrder;
-  @Output() public sortingOrderChange: EventEmitter<SortingOrder> = new EventEmitter<SortingOrder>();
-  @Input() public columnNumber: number;
-  @Output() public columnNumberChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() public sortingChange = new EventEmitter<any>();
+  @Input() public headers: TableHeaderInfo<T>[];
 
   public ngOnInit() {
   }
 
-  public onHeaderClick(header: TableHeaderInfo) {
+  public onHeaderClick(header: TableHeaderInfo<T>) {
     if (header.Sortable) {
-      if (this.columnNumber === header.SortingNumber) {
-        this.sortingOrder = this.sortingOrder === SortingOrder.Asc ? SortingOrder.Desc : SortingOrder.Asc;
+      if (this.value.Column === header.SortingNumber) {
+        this.value.Order = this.value.Order === SortingOrder.Asc ? SortingOrder.Desc : SortingOrder.Asc;
       } else {
-        this.columnNumber = header.SortingNumber;
-        this.sortingOrder = SortingOrder.Desc;
+        this.value.Column = header.SortingNumber;
+        this.value.Order = SortingOrder.Desc;
       }
 
-      this.sortingOrderChange.emit(this.sortingOrder);
-      this.columnNumberChange.emit(this.columnNumber);
-      this.sortingChange.emit();
+      this.onValueChange();
     }
   }
 }

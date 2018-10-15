@@ -1,4 +1,4 @@
 <th *ngFor="let header of headers" (click)="onHeaderClick(header)" class="{{header.ClassName}}" [ngClass]="{'sortable': header.Sortable }">
-    <i *ngIf="header.Sortable && columnNumber === header.SortingNumber" class="fa fa-angle-{{sortingOrder === 0 ? 'up' : 'down'}}"></i>
+    <i *ngIf="header.Sortable && innerValue && innerValue.Column === header.SortingNumber" class="fa fa-angle-{{innerValue && innerValue.Order === 0 ? 'up' : 'down'}}"></i>
     <span> {{header.Text}} </span>
  </th>

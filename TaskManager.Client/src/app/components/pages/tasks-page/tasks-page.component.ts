@@ -8,6 +8,7 @@ import { TaskSortingColumn } from '../../../models/enums/TaskSortingColumn';
 import { TaskFilter } from '../../../models/TaskFilter';
 import { SortingOrder } from '../../../models/enums/SortingOrder';
 import { PagingInfo } from 'src/app/models/PagingInfo';
+import { SortingInfo } from 'src/app/models/SortingInfo';
 
 @Component({
   selector: 'app-tasks-page',
@@ -20,12 +21,14 @@ export class TasksPageComponent implements OnInit {
   public selectedTask = {};
   public isGridRefreshing: Boolean = false;
   public pagesCount = 10;
-  public headers: TableHeaderInfo[] = [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
+  public headers: TableHeaderInfo<TaskSortingColumn>[] = [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
                                        new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
                                        new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
                                        new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
                                        new TableHeaderInfo('Action', 'action-column', null, false)];
-  public filter: TaskFilter = new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name, new PagingInfo(1, 20));
+  public filter: TaskFilter = new TaskFilter(
+                              new SortingInfo<TaskSortingColumn>(SortingOrder.Desc, TaskSortingColumn.Name),
+                              new PagingInfo(1, 20));
 
   constructor(
     private _taskService: TaskService) {
