@@ -3,7 +3,7 @@ import { TimeSpan } from '../../models/TaskInfo';
 
 export class CustomValidators {
 
-    static timepickerRequired(control: AbstractControl): { [key: string]: boolean } | null {
+    public static timepickerRequired(control: AbstractControl): { [key: string]: boolean } | null {
         const value = <TimeSpan>control.value;
 
         return value === null ||

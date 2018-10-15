@@ -10,25 +10,24 @@ import { TaskFilter } from '../../../models/TaskFilter';
 })
 export class TasksGridFilterComponent implements OnInit {
 
-  @Input() isRefreshing: boolean;
-  @Input() filter: TaskFilter;
-  @Output() filterChange = new EventEmitter<TaskFilter>();
-  @Output() refresh = new EventEmitter<any>();
-  constructor() { }
+  @Input() public isRefreshing: boolean;
+  @Input() public filter: TaskFilter;
+  @Output() public filterChange = new EventEmitter<TaskFilter>();
+  @Output() public refresh = new EventEmitter<any>();
 
   public priorityArray = Utils.generateArray(100);
 
-  ngOnInit() {
+  public ngOnInit() {
     this.priorityArray.shift();
   }
 
-  onRefreshButtonClick() {
+  public onRefreshButtonClick() {
     if (!this.isRefreshing) {
       this.refresh.emit(this);
     }
   }
 
-  onFilterChange() {
+  public onFilterChange() {
     this.filterChange.emit(this.filter);
     this.refresh.emit(this);
   }

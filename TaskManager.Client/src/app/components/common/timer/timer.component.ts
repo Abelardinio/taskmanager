@@ -10,25 +10,25 @@ export class TimerComponent implements OnInit, OnDestroy {
   constructor() { }
 
   @Input()
-  completionDate: string;
+  public completionDate: string;
 
   @Input()
-  expiredPlaceholder: string;
+  public expiredPlaceholder: string;
 
-  timeLeft;
-  interval;
+  public timeLeft;
+  public interval;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.timeLeft = this.completionDate;
     this.initTimer();
     this._setTimeLeft();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     clearInterval(this.interval);
   }
 
-  initTimer() {
+  public initTimer() {
     this.interval = setInterval(() => this._setTimeLeft(), 1000);
   }
 

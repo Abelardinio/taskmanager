@@ -9,19 +9,17 @@ import { SortingOrder } from '../../../../models/enums/SortingOrder';
 })
 export class TableHeaderComponent implements OnInit {
 
-  @Input() headers: TableHeaderInfo[];
-  @Input() sortingOrder: SortingOrder;
-  @Output() sortingOrderChange: EventEmitter<SortingOrder> = new EventEmitter<SortingOrder>();
-  @Input() columnNumber: number;
-  @Output() columnNumberChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() sortingChange = new EventEmitter<any>();
+  @Input() public headers: TableHeaderInfo[];
+  @Input() public sortingOrder: SortingOrder;
+  @Output() public sortingOrderChange: EventEmitter<SortingOrder> = new EventEmitter<SortingOrder>();
+  @Input() public columnNumber: number;
+  @Output() public columnNumberChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public sortingChange = new EventEmitter<any>();
 
-  constructor() { }
-
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onHeaderClick(header: TableHeaderInfo) {
+  public onHeaderClick(header: TableHeaderInfo) {
     if (header.Sortable) {
       if (this.columnNumber === header.SortingNumber) {
         this.sortingOrder = this.sortingOrder === SortingOrder.Asc ? SortingOrder.Desc : SortingOrder.Asc;

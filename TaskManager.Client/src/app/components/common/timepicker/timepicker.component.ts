@@ -23,9 +23,9 @@ export class TimepickerComponent extends ValueAccessorBase<TimeSpan> {
   public daysArray = Utils.generateArray(7);
   public hoursArray = Utils.generateArray(24);
   public weeksArray = Utils.generateArray(52);
-  isDisabled: Boolean = false;
+  public isDisabled: Boolean = false;
 
-  setDisabledState?(isDisabled: boolean): void {
+  public setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
 

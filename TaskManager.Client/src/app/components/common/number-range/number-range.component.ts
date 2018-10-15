@@ -16,27 +16,28 @@ import * as _ from 'lodash';
     }]
 })
 export class NumberRangeComponent extends ValueAccessorBase<NumberRange> implements OnInit {
-  @Input() numberArray: number[];
-  fromArray: number[];
-  toArray: number[];
-  ngOnInit() {
+  @Input() public numberArray: number[];
+  public fromArray: number[];
+  public toArray: number[];
+
+  public ngOnInit() {
     this.fromArray = this.numberArray;
     this.toArray = this.numberArray;
   }
 
-  onFromModelChange(v: number) {
+  public onFromModelChange(v: number) {
     this.initValue();
     this.value.From = v;
     this.toArray = _.filter(this.numberArray, x => x > v);
   }
 
-  onToModelChange(v: number) {
+  public onToModelChange(v: number) {
     this.initValue();
     this.value.To = v;
     this.fromArray = _.filter(this.numberArray, x => x < v);
   }
 
-  initValue() {
+  private initValue() {
     if (!this.value) {
       this.value = new NumberRange(null, null);
     }

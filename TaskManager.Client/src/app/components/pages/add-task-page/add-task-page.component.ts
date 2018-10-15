@@ -39,7 +39,7 @@ export class AddTaskPageComponent extends FormBase<TaskInfo> implements OnInit {
     this.priorityArray.shift();
   }
 
-  submitAction(value: TaskInfo): Observable<Object> {
+  protected submitAction(value: TaskInfo): Observable<Object> {
     return this._taskService.Add(value);
   }
 

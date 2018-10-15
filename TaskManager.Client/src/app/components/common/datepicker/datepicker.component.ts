@@ -17,8 +17,9 @@ import { ValueAccessorBase } from '../value-accessor-base';
   ]
 })
 export class DatepickerComponent extends ValueAccessorBase<Date> implements OnInit {
-  @Input() placeholder: string;
-  options: DatepickerOptions = {
+  @Input() public placeholder: string;
+
+  private options: DatepickerOptions = {
     minYear: 1970,
     maxYear: 2030,
     displayFormat: 'MMM D[,] YYYY',
@@ -29,7 +30,7 @@ export class DatepickerComponent extends ValueAccessorBase<Date> implements OnIn
     addClass: 'datepicker', // Optional, value to pass on to [ngClass] on the input field
   };
 
-  ngOnInit() {
+  public ngOnInit() {
     this.options.placeholder = this.placeholder;
   }
 

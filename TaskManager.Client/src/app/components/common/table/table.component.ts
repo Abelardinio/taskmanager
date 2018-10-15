@@ -7,18 +7,16 @@ import { Component, OnInit, Input, ContentChild, TemplateRef, ElementRef, Output
 })
 export class TableComponent implements OnInit {
 
-  @Input() elements: any[];
-  @Output() rowSelected = new EventEmitter<any>();
-  @ContentChild('headerTemplate') headerTemplate: TemplateRef<ElementRef>;
-  @ContentChild('rowTemplate') rowTemplate: TemplateRef<ElementRef>;
-  selected: any = {};
+  @Input() public elements: any[];
+  @Output() public rowSelected = new EventEmitter<any>();
+  @ContentChild('headerTemplate') public headerTemplate: TemplateRef<ElementRef>;
+  @ContentChild('rowTemplate') public rowTemplate: TemplateRef<ElementRef>;
+  public selected: any = {};
 
-  constructor() { }
-
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onRowSelect(element: any, event) {
+  public onRowSelect(element: any, event) {
     if (event.target.className === 'btn') { return; }
     this.selected = element;
     this.rowSelected.emit(element);

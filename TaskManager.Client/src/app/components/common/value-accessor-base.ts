@@ -21,26 +21,26 @@ export class ValueAccessorBase<T> implements ControlValueAccessor {
     }
   }
 
-  onValueChange() {
+  public onValueChange() {
     this.changed.forEach(f => f(this.innerValue));
   }
 
-  touch() {
+  public touch() {
     this.touched.forEach(f => f());
   }
 
 
-  writeValue(value: T) {
+  public writeValue(value: T) {
     this.innerValue = value;
   }
 
 
-  registerOnChange(fn: (value: T) => void) {
+  public registerOnChange(fn: (value: T) => void) {
     this.changed.push(fn);
   }
 
 
-  registerOnTouched(fn: () => void) {
+  public registerOnTouched(fn: () => void) {
     this.touched.push(fn);
   }
 }

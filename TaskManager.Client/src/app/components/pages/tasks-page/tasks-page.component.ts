@@ -16,27 +16,27 @@ import { PagingInfo } from 'src/app/models/PagingInfo';
   host: { 'class': 'flex-column flexible' }
 })
 export class TasksPageComponent implements OnInit {
-  tasks: Task[] = [];
-  selectedTask = {};
-  isGridRefreshing: Boolean = false;
-  pagesCount = 10;
-  headers: TableHeaderInfo[] = [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
-                                new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
-                                new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
-                                new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
-                                new TableHeaderInfo('Action', 'action-column', null, false)];
-  filter: TaskFilter = new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name, new PagingInfo(1, 20));
+  public tasks: Task[] = [];
+  public selectedTask = {};
+  public isGridRefreshing: Boolean = false;
+  public pagesCount = 10;
+  public headers: TableHeaderInfo[] = [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
+                                       new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
+                                       new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
+                                       new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
+                                       new TableHeaderInfo('Action', 'action-column', null, false)];
+  public filter: TaskFilter = new TaskFilter(SortingOrder.Desc, TaskSortingColumn.Name, new PagingInfo(1, 20));
 
   constructor(
     private _taskService: TaskService) {
 
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this._fetchData();
   }
 
-  onCompleteButtonClick(element) {
+  public onCompleteButtonClick(element) {
     if (element.IsLoading) { return; }
     element.IsLoading = true;
 
@@ -46,7 +46,7 @@ export class TasksPageComponent implements OnInit {
         () => { element.Status = TaskStatus.Completed; });
   }
 
-  onRemoveButtonClick(element) {
+  public onRemoveButtonClick(element) {
     if (element.IsLoading) { return; }
     element.IsLoading = true;
 
@@ -59,15 +59,15 @@ export class TasksPageComponent implements OnInit {
         });
   }
 
-  onRowSelected(task: Task) {
+  public onRowSelected(task: Task) {
     this._selectTask(task);
   }
 
-  onRefresh() {
+  public onRefresh() {
     this._fetchData();
   }
 
-  _fetchData() {
+  private _fetchData() {
     this.isGridRefreshing = true;
     this._taskService.Get(this.filter)
       .pipe(finalize(() => { this.isGridRefreshing = false; }))
@@ -79,7 +79,7 @@ export class TasksPageComponent implements OnInit {
         });
   }
 
-  _selectTask(task: Task) {
+  private _selectTask(task: Task) {
     if (task) {
       this.selectedTask = task;
     } else {

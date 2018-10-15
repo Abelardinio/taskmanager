@@ -10,11 +10,11 @@ import { Labels } from '../../../resources/labels';
 export class TaskDetailsComponent implements OnInit {
 
   @Input()
-  task;
+  public task;
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   public get taskStatus() { return TaskStatus[this.task.Status]; }

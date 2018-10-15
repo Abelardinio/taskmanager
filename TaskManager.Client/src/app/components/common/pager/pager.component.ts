@@ -16,30 +16,31 @@ import { Utils } from '../utils';
     }]
 })
 export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnInit, OnChanges {
-  @Input() pagesCount: number;
-  pageSizeArray: number[] = [20, 50, 100];
-  pageNumberArray: number[];
-  ngOnInit() {
+  @Input() public pagesCount: number;
+  public pageSizeArray: number[] = [20, 50, 100];
+  public pageNumberArray: number[];
+
+  public ngOnInit() {
     this.pageNumberArray = Utils.generateArray(this.pagesCount + 1);
     this.pageNumberArray.shift();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     this.pageNumberArray = Utils.generateArray(this.pagesCount + 1);
     this.pageNumberArray.shift();
   }
 
-  onNumberChange(v: number) {
+  public onNumberChange(v: number) {
     this.initValue();
     this.value.Number = v;
   }
 
-  onSizeChange(v: number) {
+  public onSizeChange(v: number) {
     this.initValue();
     this.value.Size = v;
   }
 
-  onNextButtonClick() {
+  public onNextButtonClick() {
     if (this.value.Number < this.pagesCount) {
       this.initValue();
       this.value.Number++;
@@ -47,7 +48,7 @@ export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnI
     }
   }
 
-  onPrevButtonClick() {
+  public onPrevButtonClick() {
     if (this.value.Number > 1) {
       this.initValue();
       this.value.Number--;
@@ -55,7 +56,7 @@ export class PagerComponent extends ValueAccessorBase<PagingInfo> implements OnI
     }
   }
 
-  initValue() {
+  private initValue() {
     if (!this.value) {
       this.value = new PagingInfo(null, null);
     }
