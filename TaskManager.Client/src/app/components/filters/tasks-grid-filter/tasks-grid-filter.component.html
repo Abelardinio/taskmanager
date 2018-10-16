@@ -1,7 +1,9 @@
 <div class="filter-panel bordered-panel flex-row">
   <div class="flex-row filter-row flexible">
-    <app-search [placeholder]="labels.Placeholders.Search" [className]="'flexible'" [(value)]="filter.Name"
-      (valueChange)="onFilterChange()"></app-search>
+    <app-search [(ngModel)]="filter.Name"
+                (ngModelChange)="onFilterChange()"
+                [placeholder]="labels.Placeholders.Search"
+                [className]="'flexible'" ></app-search>
     <label>Added:</label>
     <div>
       <app-datepicker [(ngModel)]="filter.AddedFrom" (ngModelChange)="onFilterChange()" [placeholder]="labels.Placeholders.DateFrom"></app-datepicker>

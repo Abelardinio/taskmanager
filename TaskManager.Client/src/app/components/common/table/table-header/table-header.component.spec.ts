@@ -3,8 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableHeaderComponent } from './table-header.component';
 
 describe('TableHeaderComponent', () => {
-  let component: TableHeaderComponent;
-  let fixture: ComponentFixture<TableHeaderComponent>;
+  let component: TableHeaderComponent<any>;
+  let fixture: ComponentFixture<TableHeaderComponent<any>>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
