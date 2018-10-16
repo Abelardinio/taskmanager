@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NumberRangeComponent } from './number-range.component';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 describe('NumberRangeComponent', () => {
   let component: NumberRangeComponent;
@@ -8,6 +10,7 @@ describe('NumberRangeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ FormsModule, NgSelectModule ],
       declarations: [ NumberRangeComponent ]
     })
     .compileComponents();
