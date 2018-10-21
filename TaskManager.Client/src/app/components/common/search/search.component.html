@@ -1,1 +1,1 @@
-<input type="text" class="{{className}}" placeholder="{{placeholder}}" (keyup)="valueSubject.next($event.target.value)">
+<input type="text" class="{{className}}" placeholder="{{placeholder}}" (input)="valueSubject.next($event.target.value)" [ngModel] = "value">
