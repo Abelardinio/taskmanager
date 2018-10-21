@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-timer',
@@ -28,26 +29,21 @@ export class TimerComponent implements OnInit, OnDestroy {
     clearInterval(this.interval);
   }
 
-  public initTimer() {
+  private initTimer() {
     this.interval = setInterval(() => this._setTimeLeft(), 1000);
   }
 
   private _setTimeLeft() {
-    const now = new Date().getTime();
-    const distance = Date.parse(this.completionDate) - now;
 
-    if (distance < 0) {
+    var dateTimeRange = Utils.getDateTimeRange(new Date(), new Date(this.completionDate))
+
+    if (!dateTimeRange) {
       clearInterval(this.interval);
       this.timeLeft = this.expiredPlaceholder;
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    this.timeLeft = days + 'd ' + hours + 'h '
-      + minutes + 'm ' + seconds + 's ';
+    this.timeLeft = dateTimeRange.days + 'd ' + dateTimeRange.hours + 'h '
+      + dateTimeRange.minutes + 'm ' + dateTimeRange.seconds + 's ';
   }
 }

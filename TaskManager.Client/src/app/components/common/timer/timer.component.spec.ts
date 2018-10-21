@@ -13,13 +13,16 @@ describe('TimerComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  it('should render placeholder if time is expired', () => {
     fixture = TestBed.createComponent(TimerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    var date = new Date();
+    date.setDate(date.getDate() - 1);
+
+    component.completionDate = date.toDateString();
+    component.expiredPlaceholder = "expired";
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.innerText).toBe("expired");
   });
 });
