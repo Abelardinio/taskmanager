@@ -6,24 +6,24 @@ import { By } from '@angular/platform-browser';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  const value = "value";
-  const emptyValue = "";
+  const value = 'value';
+  const emptyValue = '';
 
-  const testComponentInput = (input) =>{
+  const testComponentInput = (input) => {
     component.value = input;
     fixture.detectChanges();
 
     return fixture.whenStable().then(() => {
       expect(fixture.debugElement.query(By.css('input')).nativeElement.value).toBe(input);
     });
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ SearchComponent ]
+      imports: [FormsModule],
+      declarations: [SearchComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

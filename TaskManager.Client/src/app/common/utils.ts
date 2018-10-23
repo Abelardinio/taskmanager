@@ -5,7 +5,7 @@ export class Utils {
 
     /**
      * Generate an array of numbers of size n
-     * 
+     *
      * @param n size of an array
      */
     public static generateArray(n: number): Array<number> {
@@ -14,11 +14,11 @@ export class Utils {
 
     /**
      * Returns an amount of time between two dates
-     * 
+     *
      * @param startDate start date
      * @param endDate ends date
      */
-    public static getDateTimeRange(startDate: Date, endDate: Date) : DateTimeRange{
+    public static getDateTimeRange(startDate: Date, endDate: Date): DateTimeRange {
         const distance = endDate.getTime() - startDate.getTime();
 
         if (distance < 0) {
@@ -30,6 +30,6 @@ export class Utils {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        return new DateTimeRange(days, hours, minutes, seconds)
+        return new DateTimeRange(days, hours, minutes, seconds);
     }
 }

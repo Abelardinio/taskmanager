@@ -1,8 +1,8 @@
-import { FormGroup } from "@angular/forms";
-import { NotificationsService } from "angular2-notifications";
-import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
-import { Messages } from "src/app/resources/messages";
+import { FormGroup } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { Messages } from 'src/app/resources/messages';
 
 
 export abstract class FormBase<T> {
@@ -17,8 +17,8 @@ export abstract class FormBase<T> {
         if (this.form.valid) {
             const result = this.form.value;
 
-            this.form.disable();
             this.formIsLoading = true;
+            this.form.disable();
             this.submitAction(result)
                 .pipe(finalize(() => this.onSubmitEnd()))
                 .subscribe();
@@ -28,10 +28,9 @@ export abstract class FormBase<T> {
         }
     }
 
-
     protected onSubmitEnd() {
         this.formIsValidated = false;
-        this.form.enable();
         this.formIsLoading = false;
+        this.form.enable();
     }
 }

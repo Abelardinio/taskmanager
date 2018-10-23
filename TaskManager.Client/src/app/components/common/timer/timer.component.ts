@@ -35,7 +35,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private _setTimeLeft() {
 
-    var dateTimeRange = Utils.getDateTimeRange(new Date(), new Date(this.completionDate))
+    const dateTimeRange = Utils.getDateTimeRange(new Date(), new Date(this.completionDate));
 
     if (!dateTimeRange) {
       clearInterval(this.interval);

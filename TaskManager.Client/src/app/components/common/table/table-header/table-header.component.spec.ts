@@ -11,12 +11,12 @@ describe('TableHeaderComponent', () => {
   let component: TableHeaderComponent<any>;
   let fixture: ComponentFixture<TableHeaderComponent<any>>;
 
-  let headers: TableHeaderInfo<number>[] = [new TableHeaderInfo('First', 'First', 0),
-                                            new TableHeaderInfo('Second', 'Second', 1),
-                                            new TableHeaderInfo('Third', 'Third', 2),
-                                            new TableHeaderInfo('Fourth', 'Fourth', null, false)];
+  const headers: TableHeaderInfo<number>[] = [new TableHeaderInfo('First', 'First', 0),
+                                              new TableHeaderInfo('Second', 'Second', 1),
+                                              new TableHeaderInfo('Third', 'Third', 2),
+                                              new TableHeaderInfo('Fourth', 'Fourth', null, false)];
 
-  let value = new SortingInfo<number>(SortingOrder.Desc, 0);
+  let value: SortingInfo<number>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

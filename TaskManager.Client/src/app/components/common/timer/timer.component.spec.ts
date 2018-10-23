@@ -17,12 +17,12 @@ describe('TimerComponent', () => {
     fixture = TestBed.createComponent(TimerComponent);
     component = fixture.componentInstance;
 
-    var date = new Date();
+    const date = new Date();
     date.setDate(date.getDate() - 1);
 
     component.completionDate = date.toDateString();
-    component.expiredPlaceholder = "expired";
+    component.expiredPlaceholder = 'expired';
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.innerText).toBe("expired");
+    expect(fixture.debugElement.nativeElement.innerText).toBe('expired');
   });
 });
