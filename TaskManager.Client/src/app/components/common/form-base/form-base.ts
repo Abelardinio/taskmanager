@@ -1,8 +1,9 @@
-import { FormGroup } from '@angular/forms';
-import { finalize } from '../../../../node_modules/rxjs/operators';
-import { Messages } from '../../resources/messages';
-import { NotificationsService } from '../../../../node_modules/angular2-notifications';
-import { Observable } from '../../../../node_modules/rxjs';
+import { FormGroup } from "@angular/forms";
+import { NotificationsService } from "angular2-notifications";
+import { Observable } from "rxjs";
+import { finalize } from "rxjs/operators";
+import { Messages } from "src/app/resources/messages";
+
 
 export abstract class FormBase<T> {
     protected formIsValidated = false;

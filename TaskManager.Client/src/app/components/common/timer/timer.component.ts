@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Utils } from '../utils';
+import { Utils } from '../../../common/utils';
 
 @Component({
   selector: 'app-timer',

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBase } from '../../common/form-base';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Utils } from '../../common/utils';
+import { Utils } from '../../../common/utils';
 import { NotificationsService } from 'angular2-notifications';
 import { TaskService } from '../../../services/TaskService';
 import { TimeSpan, TaskInfo } from '../../../models/TaskInfo';
@@ -9,6 +8,7 @@ import { CustomValidators } from '../../common/custom-validators';
 import { Observable } from 'rxjs';
 import { Messages } from '../../../resources/messages';
 import { Labels } from '../../../resources/labels';
+import { FormBase } from '../../common/form-base/form-base';
 
 @Component({
   selector: 'app-add-task-page',

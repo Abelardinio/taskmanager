@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimepickerComponent } from './timepicker.component';
 import { FormsModule } from '@angular/forms';
-import { NgSelectModule, NgSelectComponent } from '@ng-select/ng-select';
-import { TimeSpan } from 'src/app/models/TaskInfo';
-import { By } from '@angular/platform-browser';
+import { NgSelectModule} from '@ng-select/ng-select';
+import { By, BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TimepickerComponent', () => {
   let component: TimepickerComponent;
@@ -12,7 +12,10 @@ describe('TimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, NgSelectModule ],
+      imports: [ FormsModule, NgSelectModule,
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule, ],
       declarations: [ TimepickerComponent ]
     })
     .compileComponents();
@@ -24,9 +27,8 @@ describe('TimepickerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should have render', () => {
-    component.value = new TimeSpan(1,0,0);
-    const element = fixture.debugElement.query(By.directive(NgSelectComponent));
-    expect(element.nativeElement.value).toBe('1');
+  it('should have render 3 selects', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('ng-select').length).toBe(3);
   });
 });

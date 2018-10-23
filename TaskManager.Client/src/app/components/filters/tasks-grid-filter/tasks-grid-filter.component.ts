@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Utils } from '../../common/utils';
+import { Utils } from '../../../common/utils';
 import { Labels } from '../../../resources/labels';
 import { TaskFilter } from '../../../models/TaskFilter';
 

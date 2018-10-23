@@ -1,4 +1,5 @@
-import { Utils } from "./utils";
+import * as _ from 'lodash';
+import { Utils } from '../common/utils';
 
 describe('Utils methods tests', () => {
 
@@ -10,5 +11,13 @@ describe('Utils methods tests', () => {
       expect(range.hours).toBe(1);
       expect(range.minutes).toBe(30);
       expect(range.seconds).toBe(30);
+  });
+
+  it('generateArray should generate an array of numbers', () => {
+    var array = Utils.generateArray(3);
+    expect(array.length).toBe(3);
+    _.forEach(array, (number, index) => {
+      expect(number).toBe(index);
+    });
   });
 });

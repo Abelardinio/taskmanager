@@ -2,7 +2,7 @@ import { Component, OnInit, forwardRef, Input, OnChanges, SimpleChanges } from '
 import { ValueAccessorBase } from '../value-accessor-base';
 import { PagingInfo } from 'src/app/models/PagingInfo';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Utils } from '../utils';
+import { Utils } from '../../../common/utils';
 
 @Component({
   selector: 'app-pager',

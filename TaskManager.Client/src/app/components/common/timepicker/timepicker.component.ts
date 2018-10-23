@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '../../../../../node_modules/@angular/forms';
 import { TimeSpan } from '../../../models/TaskInfo';
-import { Utils } from '../utils';
+import { Utils } from '../../../common/utils';
 import { Labels } from '../../../resources/labels';
 import { ValueAccessorBase } from '../value-accessor-base';
 

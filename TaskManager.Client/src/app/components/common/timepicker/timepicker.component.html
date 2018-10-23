@@ -1,6 +1,6 @@
 <div>
   <label>{{labels.Weeks}} </label>
-  <ng-select [ngModel]="innerValue.weeks"
+  <ng-select [ngModel]="innerValue ? innerValue.weeks : undefined"
              (ngModelChange)="innerValue.weeks = $event" 
              (change)="onValueChange()"
              [items]="weeksArray"
@@ -10,7 +10,7 @@
 </div>
 <div>
   <label>{{labels.Days}}</label>
-  <ng-select [ngModel]="innerValue.days"
+  <ng-select [ngModel]="innerValue ? innerValue.days : undefined"
              (ngModelChange)="innerValue.days = $event"
              (change)="onValueChange()" 
              class="custom"
@@ -20,7 +20,7 @@
 </div>
 <div>
   <label>{{labels.Hours}}</label>
-  <ng-select [ngModel]="innerValue.hours"
+  <ng-select [ngModel]="innerValue ? innerValue.hours : undefined"
              (ngModelChange)="innerValue.hours = $event"
              (change)="onValueChange()"
              class="custom"
