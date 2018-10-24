@@ -19,7 +19,7 @@ namespace TaskManager.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ErrorMessages {
@@ -75,6 +75,15 @@ namespace TaskManager.Common.Resources {
         public static string Tasks_InvalidStatusParameterValue {
             get {
                 return ResourceManager.GetString("Tasks_InvalidStatusParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task with id &quot;{0}&quot; was not found..
+        /// </summary>
+        public static string Tasks_NotFound {
+            get {
+                return ResourceManager.GetString("Tasks_NotFound", resourceCulture);
             }
         }
         

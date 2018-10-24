@@ -7,7 +7,6 @@ namespace TaskManager.Core.DataProviders
     {
         Task Add(ITaskInfo task);
         IQueryable<ITask> GetUnremoved();
-        Task<ITask> Get(int taskId);
-        Task UpdateStatus(int taskId, TaskStatus status);
+        Task UpdateStatusAsync(int taskId, TaskStatus status);
     }
 }

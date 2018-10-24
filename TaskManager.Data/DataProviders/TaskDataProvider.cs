@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Common.Resources;
@@ -29,14 +30,9 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.Get().Where(x => x.Status != TaskStatus.Removed);
         }
 
-        public Task<ITask> Get(int taskId)
+        public async Task UpdateStatusAsync(int taskId, TaskStatus status)
         {
-            return _taskDataAccessor.Get().FirstOrDefaultAsync(x => x.Id == taskId);
-        }
-
-        public async Task UpdateStatus(int taskId, TaskStatus status)
-        {
-            var task = await Get(taskId);
+            var task = await _taskDataAccessor.Get().FirstOrDefaultAsync(x => x.Id == taskId);
 
             if (task != null)
             {
@@ -54,6 +50,8 @@ namespace TaskManager.Data.DataProviders
                         throw new InvalidArgumentException(ErrorMessages.Tasks_InvalidStatusParameterValue);
                 }
             }
+
+            throw new NotFoundException(String.Format(ErrorMessages.Tasks_NotFound, taskId));
         }
     }
 }

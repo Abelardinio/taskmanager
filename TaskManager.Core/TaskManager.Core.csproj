@@ -37,6 +37,7 @@
     <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
     <Compile Include="DataProviders\ITaskDataProvider.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\TaskManagerException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IConnectionContext.cs" />

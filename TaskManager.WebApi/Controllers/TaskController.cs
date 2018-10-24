@@ -28,14 +28,6 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
-        public async Task<ITask> Get(int id)
-        {
-            using (_context.Scope())
-            {
-                return await _taskDataProvider.Get(id);
-            }
-        }
-
         public async Task Add(TaskInfoModel taskInfoModel)
         {
             var taskInfo = new TaskInfo
@@ -59,7 +51,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                await _taskDataProvider.UpdateStatus(id, TaskStatus.Removed);
+                await _taskDataProvider.UpdateStatusAsync(id, TaskStatus.Removed);
             }
         }
 
@@ -68,7 +60,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                await _taskDataProvider.UpdateStatus(taskId, TaskStatus.Completed);
+                await _taskDataProvider.UpdateStatusAsync(taskId, TaskStatus.Completed);
             }
         }
     }
