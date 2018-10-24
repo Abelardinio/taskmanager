@@ -27,7 +27,7 @@ namespace TaskManager.Data.DataProviders
 
         public IQueryable<ITask> GetUnremoved()
         {
-            return _taskDataAccessor.Get().Where(x => x.Status != TaskStatus.Removed);
+            return _taskDataAccessor.Get().Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
         }
 
         public async Task UpdateStatusAsync(int taskId, TaskStatus status)

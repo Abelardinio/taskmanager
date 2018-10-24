@@ -77,6 +77,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\TaskFilterTests.cs" />
     <Compile Include="Stubs\StubSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\TaskDataProviderTests.cs" />
@@ -86,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common.Api\TaskManager.Common.Api.csproj">
+      <Project>{0A0B1F52-9B39-475D-BD7F-D3463B4024DC}</Project>
+      <Name>TaskManager.Common.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Common.Resources\TaskManager.Common.Resources.csproj">
       <Project>{F953E910-A362-4414-A130-2B8D5F33B9F2}</Project>
       <Name>TaskManager.Common.Resources</Name>
@@ -101,6 +106,10 @@
     <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj">
       <Project>{834F3872-BC9F-4541-A6F0-D289F3A143A4}</Project>
       <Name>TaskManager.DbConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.WebApi\TaskManager.WebApi.csproj">
+      <Project>{4ED54743-6A83-45FD-8C83-FCD71C587AD7}</Project>
+      <Name>TaskManager.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -1,36 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManager.Common.Api;
 using TaskManager.Core;
 
 namespace TaskManager.WebApi.Model
 {
-    public class TaskFilter : IFilter<ITask>
+    public class TaskFilter : BaseFilter<TaskSortingColumn, ITask>
     {
-        public SortingOrder SortingOrder { get; set; }
-        public int SortingColumn { get; set; }
         public string Name { get; set; }
         public DateTime? AddedFrom { get; set; }
         public DateTime? AddedTo { get; set; }
         public int? PriorityFrom { get; set; }
         public int? PriorityTo { get; set; }
-        public int PageSize { get; set; }
-        public int PageNumber { get; set; }
 
-        public IQueryable<ITask> Sort(IQueryable<ITask> input)
-        {
-            switch (SortingOrder)
-            {
-                case SortingOrder.Asc:
-                    return SortingDictionaryAsc[SortingColumn](input);
-                case SortingOrder.Desc:
-                    return SortingDictionaryDesc[SortingColumn](input);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public IQueryable<ITask> Filter(IQueryable<ITask> input)
+        public override IQueryable<ITask> Filter(IQueryable<ITask> input)
         {
             return input.Where(x => (string.IsNullOrEmpty(Name) || x.Name.Contains(Name)) &&
                                     (!AddedFrom.HasValue || x.Added >= AddedFrom) &&
@@ -39,22 +23,26 @@ namespace TaskManager.WebApi.Model
                                     (!PriorityTo.HasValue || x.Priority <= PriorityTo));
         }
 
-        private static readonly IDictionary<int, Func<IQueryable<ITask>, IQueryable<ITask>>> SortingDictionaryAsc =
-            new Dictionary<int, Func<IQueryable<ITask>, IQueryable<ITask>>>
+        protected override IDictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>> SortingDictionaryAsc => SortDictionaryAsc;
+
+        protected override IDictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>> SortingDictionaryDesc => SortDictionaryDesc;
+
+        private static readonly IDictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>> SortDictionaryAsc =
+            new Dictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>>
             {
-                {0, x => x.OrderBy(y => y.Name)},
-                {1, x => x.OrderBy(y => y.Priority)},
-                {2, x => x.OrderBy(y => y.Added)},
-                {3, x => x.OrderBy(y => y.TimeToComplete)}
+                {TaskSortingColumn.Name, x => x.OrderBy(y => y.Name)},
+                {TaskSortingColumn.Priority, x => x.OrderBy(y => y.Priority)},
+                {TaskSortingColumn.Added, x => x.OrderBy(y => y.Added)},
+                {TaskSortingColumn.TimeToComplete, x => x.OrderBy(y => y.TimeToComplete)}
             };
 
-        private static readonly IDictionary<int, Func<IQueryable<ITask>, IQueryable<ITask>>> SortingDictionaryDesc =
-            new Dictionary<int, Func<IQueryable<ITask>, IQueryable<ITask>>>
+        private static readonly IDictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>> SortDictionaryDesc =
+            new Dictionary<TaskSortingColumn, Func<IQueryable<ITask>, IQueryable<ITask>>>
             {
-                {0, x => x.OrderByDescending(y => y.Name)},
-                {1, x => x.OrderByDescending(y => y.Priority)},
-                {2, x => x.OrderByDescending(y => y.Added)},
-                {3, x => x.OrderByDescending(y => y.TimeToComplete)}
+                {TaskSortingColumn.Name, x => x.OrderByDescending(y => y.Name)},
+                {TaskSortingColumn.Priority, x => x.OrderByDescending(y => y.Priority)},
+                {TaskSortingColumn.Added, x => x.OrderByDescending(y => y.Added)},
+                {TaskSortingColumn.TimeToComplete, x => x.OrderByDescending(y => y.TimeToComplete)}
             };
     }
 }

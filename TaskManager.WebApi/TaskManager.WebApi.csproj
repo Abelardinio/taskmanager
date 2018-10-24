@@ -112,6 +112,7 @@
     <Compile Include="Model\TaskFilter.cs" />
     <Compile Include="Model\TaskInfoModel.cs" />
     <Compile Include="Model\TaskInfoTimeSpan.cs" />
+    <Compile Include="Model\TaskSortingColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

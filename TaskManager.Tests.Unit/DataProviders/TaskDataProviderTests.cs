@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
@@ -112,6 +113,15 @@ namespace TaskManager.Tests.Unit.DataProviders
         {
             Action action = () => { _taskDataProvider.UpdateStatusAsync(NotFoundTaskId, TaskStatus.Removed).Wait(); };
             action.Should().Throw<NotFoundException>().WithMessage(String.Format(ErrorMessages.Tasks_NotFound, NotFoundTaskId));
+        }
+
+        [Test]
+        public void GetUnremovedTasksTest()
+        {
+            var tasks = _taskDataProvider.GetUnremoved().ToList();
+            tasks.Count.Should().Be(2);
+            tasks.Should().Contain(x => x.Id == ActiveTaskId);
+            tasks.Should().Contain(x => x.Id == CompletedTaskId);
         }
     }
 }
