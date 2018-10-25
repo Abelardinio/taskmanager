@@ -98,14 +98,14 @@ namespace TaskManager.Tests.Unit.DataProviders
         public void CompleteTaskSuccessTest()
         {
             _taskDataProvider.UpdateStatusAsync(ActiveTaskId, TaskStatus.Completed).Wait();
-            _taskDataAccessorMock.Verify(x => x.UpdateStatus(It.IsAny<int>(), It.IsAny<TaskStatus>()), Times.Once());
+            _taskDataAccessorMock.Verify(x => x.UpdateStatus(ActiveTaskId, TaskStatus.Completed), Times.Once());
         }
 
         [Test]
         public void RemoveTaskSuccessTest()
         {
             _taskDataProvider.UpdateStatusAsync(CompletedTaskId, TaskStatus.Removed).Wait();
-            _taskDataAccessorMock.Verify(x => x.UpdateStatus(It.IsAny<int>(), It.IsAny<TaskStatus>()), Times.Once());
+            _taskDataAccessorMock.Verify(x => x.UpdateStatus(CompletedTaskId, TaskStatus.Removed), Times.Once());
         }
 
         [Test]
