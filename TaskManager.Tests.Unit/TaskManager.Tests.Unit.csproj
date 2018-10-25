@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiExceptionHandlerTests.cs" />
+    <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Filters\TaskFilterTests.cs" />
     <Compile Include="Stubs\StubSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
