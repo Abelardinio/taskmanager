@@ -25,7 +25,7 @@ namespace TaskManager.Common.Api
 
             var result = new HttpResponseMessage(HttpStatusCode.BadRequest)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(new { Message = message }))
+                Content = new StringContent(JsonConvert.SerializeObject(new BadRequestResponseContent { Message = message }))
             };
 
             context.Result = new ApiExceptionResult(result);

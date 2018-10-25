@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using FluentAssertions;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using TaskManager.Common.Api;
 using TaskManager.Common.Resources;
@@ -24,7 +25,7 @@ namespace TaskManager.Tests.Unit
         {
             SetExceptionHandlerContext(new TaskManagerException(Message));
             _handler.Handle(_context);
-            await AssertResponseMessage(_context.Result, Message);
+            (await GetContent(_context.Result)).Message.Should().Be(Message);
         }
 
         [Test]
@@ -32,7 +33,7 @@ namespace TaskManager.Tests.Unit
         {
             SetExceptionHandlerContext(new Exception());
             _handler.Handle(_context);
-            await AssertResponseMessage(_context.Result, ErrorMessages.Unknown);
+            (await GetContent(_context.Result)).Message.Should().Be(ErrorMessages.Unknown);
         }
 
         private void SetExceptionHandlerContext(Exception ex)
@@ -45,10 +46,10 @@ namespace TaskManager.Tests.Unit
             _context = new ExceptionHandlerContext(exceptionContext);
         }
 
-        private static async Task AssertResponseMessage(IHttpActionResult result, string message)
+        private static async Task<BadRequestResponseContent> GetContent(IHttpActionResult result)
         {
             var responseMessage = await result.ExecuteAsync(new CancellationToken());
-            (await responseMessage.Content.ReadAsStringAsync()).Should().Contain(message);
+            return JsonConvert.DeserializeObject<BadRequestResponseContent>(await responseMessage.Content.ReadAsStringAsync());
         }
     }
 }
