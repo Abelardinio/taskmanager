@@ -11,16 +11,16 @@ namespace TaskManager.DbConnection.DataAccessors
 {
     public class TaskDataAccessor : ITaskDataAccessor
     {
-        private readonly IContextFactory _factory;
+        private readonly IContextStorage _contextStorage;
 
-        public TaskDataAccessor(IContextFactory factory)
+        public TaskDataAccessor(IContextStorage contextStorage)
         {
-            _factory = factory;
+            _contextStorage = contextStorage;
         }
 
         public async Task Add(ITaskInfo task)
         {
-            var context = _factory.Get();
+            var context = _contextStorage.Get();
 
             context.Tasks.Add(new TaskEntity(task));
             await context.SaveChangesAsync();
@@ -28,12 +28,12 @@ namespace TaskManager.DbConnection.DataAccessors
 
         public IQueryable<ITask> Get()
         {
-            return _factory.Get().Tasks;
+            return _contextStorage.Get().Tasks;
         }
 
         public async Task UpdateStatus(int taskId, TaskStatus status)
         {
-            var context = _factory.Get();
+            var context = _contextStorage.Get();
             var task = await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
             if (task == null)
             {

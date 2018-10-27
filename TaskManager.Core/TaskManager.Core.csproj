@@ -34,14 +34,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionContext\IConnectionScopeFactory.cs" />
+    <Compile Include="ConnectionContext\IDatabaseScope.cs" />
     <Compile Include="DataAccessors\ITaskDataAccessor.cs" />
     <Compile Include="DataProviders\ITaskDataProvider.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\TaskManagerException.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="IConnectionContext.cs" />
-    <Compile Include="IConnectionScope.cs" />
+    <Compile Include="ConnectionContext\IConnectionContext.cs" />
+    <Compile Include="ConnectionContext\IConnectionScope.cs" />
     <Compile Include="IFilterable.cs" />
     <Compile Include="IPageable.cs" />
     <Compile Include="IPagedResult.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="ITask.cs" />
     <Compile Include="IFilter.cs" />
     <Compile Include="ITaskInfo.cs" />
+    <Compile Include="ConnectionContext\ITransactionScope.cs" />
     <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortingOrder.cs" />

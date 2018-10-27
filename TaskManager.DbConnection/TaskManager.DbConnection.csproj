@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionContext.cs" />
+    <Compile Include="ContextFactory.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DataAccessors\TaskDataAccessor.cs" />
     <Compile Include="Entities\TaskEntity.cs" />
-    <Compile Include="IContextFactory.cs" />
+    <Compile Include="IContextStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace TaskManager.Core
+namespace TaskManager.Core.ConnectionContext
 {
     public interface IConnectionScope : IDisposable
     {
-        
     }
 }
