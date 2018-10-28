@@ -15,6 +15,7 @@
         ],
         "use-host-property-decorator": false,
         "no-shadowed-variable": false,
-        "member-access": true
+        "member-access": true,
+        "no-any": false
     }
 }
