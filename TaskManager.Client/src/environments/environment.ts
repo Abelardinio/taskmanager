@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    API_URL: 'http://taskmanager/api'
+    API_URL: 'http://taskmanager/api',
+    MESSAGING_URL: 'http://taskmanager/messaging'
 };
 
 /*

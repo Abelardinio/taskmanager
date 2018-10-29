@@ -37,6 +37,7 @@ export class TasksPageComponent implements OnInit {
 
   public ngOnInit() {
     this._fetchData();
+    this._taskService.onTaskDeleted((id) => { console.log(id); });
   }
 
   public onCompleteButtonClick(element) {

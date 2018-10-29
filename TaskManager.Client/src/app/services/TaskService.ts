@@ -10,6 +10,7 @@ import { BaseService } from './BaseService';
 import { TaskFilter } from '../models/TaskFilter';
 import { PagedResult } from '../models/PagedResult';
 import { Task } from '../models/Task';
+import { MessagingServiceConnection } from '../common/MessagingServiceConnection';
 
 @Injectable({
     providedIn: 'root',
@@ -22,8 +23,11 @@ export class TaskService extends BaseService {
 
     constructor(
         protected notifications: NotificationsService,
-        private _httpClient: HttpClient) {
+        private _httpClient: HttpClient,
+        private _messagingConnection: MessagingServiceConnection) {
         super();
+
+        this._messagingConnection.init('/tasks');
     }
 
     /**
@@ -76,5 +80,14 @@ export class TaskService extends BaseService {
         return this._httpClient.delete(environment.API_URL + '/task/' + taskId, {})
                                .pipe(tap(() => { this.notifications.success(Messages.Tasks.Removed); }),
                                      catchError(this.handleError()));
+    }
+
+    /**
+     * Calls a handler when task was deleted
+     *
+     * @param fn event handler
+     */
+    public onTaskDeleted(fn: (id: number) => void) {
+        this._messagingConnection.on('TASK_DELETED', fn);
     }
 }
