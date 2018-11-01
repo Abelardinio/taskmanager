@@ -5,8 +5,8 @@ namespace TaskManager.Core.DataAccessors
 {
     public interface ITaskDataAccessor
     {
-        Task Add(ITaskInfo task);
+        Task AddAsync(ITaskInfo task);
         IQueryable<ITask> Get();
-        Task UpdateStatus(int taskId, TaskStatus status);
+        Task UpdateStatusAsync(int taskId, TaskStatus status);
     }
 }

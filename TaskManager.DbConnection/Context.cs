@@ -19,7 +19,7 @@ namespace TaskManager.DbConnection
             }
         }
 
-        public DbSet<TaskEntity> Tasks { get; set; }
+        public virtual IDbSet<TaskEntity> Tasks { get; set; }
 
         public bool IsDisposed { get; private set; }
 

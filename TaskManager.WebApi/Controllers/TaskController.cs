@@ -25,7 +25,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.GetUnremoved().GetPagedResultAsync(filter);
+                return await _taskDataProvider.GetLiveTasks().GetPagedResultAsync(filter);
             }
         }
 
@@ -44,7 +44,7 @@ namespace TaskManager.WebApi.Controllers
 
             using (_context.Scope())
             {
-                await _taskDataProvider.Add(taskInfo);
+                await _taskDataProvider.AddAsync(taskInfo);
             }
         }
 

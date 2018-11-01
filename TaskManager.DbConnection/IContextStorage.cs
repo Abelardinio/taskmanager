@@ -1,7 +1,7 @@
 ﻿namespace TaskManager.DbConnection
 {
     /// <summary>
-    /// Creates an istance of a new database context
+    /// Creates an instance of a new database context
     /// </summary>
     public interface IContextStorage
     {

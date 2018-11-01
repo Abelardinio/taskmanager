@@ -93,6 +93,7 @@
     <Compile Include="ApiExceptionHandlerTests.cs" />
     <Compile Include="ConnectionContextTests.cs" />
     <Compile Include="ContextTests.cs" />
+    <Compile Include="DataAccessors\TaskDataAccessorTests.cs" />
     <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Filters\TaskFilterTests.cs" />
     <Compile Include="Stubs\StubSet.cs" />

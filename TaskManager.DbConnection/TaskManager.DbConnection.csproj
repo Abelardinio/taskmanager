@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common.Resources\TaskManager.Common.Resources.csproj">
+      <Project>{F953E910-A362-4414-A130-2B8D5F33B9F2}</Project>
+      <Name>TaskManager.Common.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj">
       <Project>{0939C197-8A01-4F8D-9D5E-80079327562E}</Project>
       <Name>TaskManager.Core</Name>

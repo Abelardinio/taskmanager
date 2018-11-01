@@ -2,8 +2,10 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
+using TaskManager.Core.Exceptions;
 using TaskManager.DbConnection.Entities;
 using TaskStatus = TaskManager.Core.TaskStatus;
 
@@ -18,7 +20,7 @@ namespace TaskManager.DbConnection.DataAccessors
             _contextStorage = contextStorage;
         }
 
-        public async Task Add(ITaskInfo task)
+        public async Task AddAsync(ITaskInfo task)
         {
             var context = _contextStorage.Get();
 
@@ -30,17 +32,32 @@ namespace TaskManager.DbConnection.DataAccessors
         {
             return _contextStorage.Get().Tasks;
         }
-
-        public async Task UpdateStatus(int taskId, TaskStatus status)
+        
+        public async Task UpdateStatusAsync(int taskId, TaskStatus status)
         {
             var context = _contextStorage.Get();
             var task = await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
-            if (task == null)
+
+            if (task != null)
             {
-                throw new ArgumentException($"Task with taskId = '{taskId}' not found ", nameof(taskId));
+                switch (status)
+                {
+                    case TaskStatus.Completed:
+                        if (task.Status != TaskStatus.Active) throw new InvalidArgumentException(ErrorMessages.Tasks_CompleteUnactive);
+                        task.Status = status;
+                        await context.SaveChangesAsync();
+                        return;
+                    case TaskStatus.Removed:
+                        if (task.Status != TaskStatus.Completed) throw new InvalidArgumentException(ErrorMessages.Tasks_RemoveUncompleted);
+                        task.Status = status;
+                        await context.SaveChangesAsync();
+                        return;
+                    default:
+                        throw new InvalidArgumentException(ErrorMessages.Tasks_InvalidStatusParameterValue);
+                }
             }
-            task.Status = status;
-            await context.SaveChangesAsync();
+
+            throw new NotFoundException(String.Format(ErrorMessages.Tasks_NotFound, taskId));
         }
     }
 }
