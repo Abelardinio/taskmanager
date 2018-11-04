@@ -1,15 +1,19 @@
-﻿using TaskManager.Core.ConnectionContext;
+﻿using System;
+using TaskManager.Core.ConnectionContext;
 
 namespace TaskManager.Data
 {
     public class ConnectionContext : IConnectionContext
     {
         private readonly IConnectionScopeFactory _factory;
+        private readonly IEventScopeFactory _eventScopeFactory;
         private IDatabaseScope _scope;
+        private IEventConnectionScope _eventScope;
 
-        public ConnectionContext(IConnectionScopeFactory factory)
+        public ConnectionContext(IConnectionScopeFactory factory, IEventScopeFactory eventScopeFactory)
         {
             _factory = factory;
+            _eventScopeFactory = eventScopeFactory;
         }
 
         public IConnectionScope Scope()
@@ -30,6 +34,16 @@ namespace TaskManager.Data
             }
 
             return _scope;
+        }
+
+        public IEventScope EventScope()
+        {
+            if (_eventScope == null || _eventScope.IsDisposed)
+            {
+                _eventScope = _eventScopeFactory.Create();
+            }
+
+            return _eventScope;
         }
     }
 }

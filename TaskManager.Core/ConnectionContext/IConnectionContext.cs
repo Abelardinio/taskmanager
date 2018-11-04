@@ -5,5 +5,7 @@
         IConnectionScope Scope();
 
         ITransactionScope TransactionScope();
+
+        IEventScope EventScope();
     }
 }

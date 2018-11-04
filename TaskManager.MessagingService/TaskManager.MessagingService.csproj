@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="app_offline.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

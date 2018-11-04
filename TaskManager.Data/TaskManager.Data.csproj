@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ConnectionContext.cs" />
     <Compile Include="DataProviders\TaskDataProvider.cs" />
+    <Compile Include="DataSettings.cs" />
     <Compile Include="DependencyConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj">
       <Project>{834F3872-BC9F-4541-A6F0-D289F3A143A4}</Project>
       <Name>TaskManager.DbConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj">
+      <Project>{BC715178-5C5F-4023-90D0-734132D5BE1E}</Project>
+      <Name>TaskManager.ServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

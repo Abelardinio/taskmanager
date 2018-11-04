@@ -10,6 +10,7 @@ namespace TaskManager.Tests.Unit
     {
         private IConnectionContext _connectionContext;
         private Mock<IConnectionScopeFactory> _factoryMock;
+        private Mock<IEventScopeFactory> _eventScopeFactoryMock;
         private Mock<IDatabaseScope> _databaseScopeMock;
 
         [SetUp]
@@ -17,8 +18,9 @@ namespace TaskManager.Tests.Unit
         {
             _factoryMock = new Mock<IConnectionScopeFactory>();
             _databaseScopeMock = new Mock<IDatabaseScope>();
+            _eventScopeFactoryMock = new Mock<IEventScopeFactory>();
             _factoryMock.Setup(x => x.Create(It.IsAny<bool>())).Returns(_databaseScopeMock.Object);
-            _connectionContext = new ConnectionContext(_factoryMock.Object);
+            _connectionContext = new ConnectionContext(_factoryMock.Object, _eventScopeFactoryMock.Object);
         }
 
         [TestCase(true)]

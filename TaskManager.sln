@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.WebApi", "TaskManager.WebApi\TaskManager.WebApi.csproj", "{4ED54743-6A83-45FD-8C83-FCD71C587AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Core", "TaskManager.Core\TaskManager.Core.csproj", "{0939C197-8A01-4F8D-9D5E-80079327562E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Core", "TaskManager.Core\TaskManager.Core.csproj", "{0939C197-8A01-4F8D-9D5E-80079327562E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Model", "TaskManager.Model\TaskManager.Model.csproj", "{80B276A8-8B19-430B-BA08-B16763B446B1}"
 EndProject
@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.Tests", "TaskMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Tests.Unit", "TaskManager.Tests.Unit\TaskManager.Tests.Unit.csproj", "{DF9D00DD-4598-4EF0-8C18-7925F5B405EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.MessagingService", "TaskManager.MessagingService\TaskManager.MessagingService.csproj", "{5ACD06AD-99B0-4296-B46C-A503A7D20B38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService", "TaskManager.MessagingService\TaskManager.MessagingService.csproj", "{5ACD06AD-99B0-4296-B46C-A503A7D20B38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.ServiceBus", "TaskManager.ServiceBus\TaskManager.ServiceBus.csproj", "{BC715178-5C5F-4023-90D0-734132D5BE1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{5ACD06AD-99B0-4296-B46C-A503A7D20B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ACD06AD-99B0-4296-B46C-A503A7D20B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ACD06AD-99B0-4296-B46C-A503A7D20B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC715178-5C5F-4023-90D0-734132D5BE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC715178-5C5F-4023-90D0-734132D5BE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC715178-5C5F-4023-90D0-734132D5BE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC715178-5C5F-4023-90D0-734132D5BE1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,8 +7,7 @@ namespace TaskManager.MessagingService
     {
         public Task BroadcastHello()
         {
-            return Clients.All.SendAsync("hello");
+            return Clients.All.SendAsync("/tasks");
         }
-
     }
 }
