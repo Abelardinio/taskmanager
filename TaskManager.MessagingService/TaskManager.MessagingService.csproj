@@ -22,9 +22,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
     <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />
   </ItemGroup>
