@@ -9,6 +9,7 @@ import { TaskFilter } from '../../../models/TaskFilter';
 import { SortingOrder } from '../../../models/enums/SortingOrder';
 import { PagingInfo } from 'src/app/models/PagingInfo';
 import { SortingInfo } from 'src/app/models/SortingInfo';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-tasks-page',
@@ -37,7 +38,12 @@ export class TasksPageComponent implements OnInit {
 
   public ngOnInit() {
     this._fetchData();
-    this._taskService.onTaskDeleted((id) => { console.log(id); });
+    this._taskService.onTaskDeleted((id) => {
+      _.remove(this.tasks, (task) => task.Id === id);
+    });
+    this._taskService.onTaskCompleted((id) => {
+      _.find(this.tasks, (task) => task.Id === id).Status = TaskStatus.Completed;
+    });
   }
 
   public onCompleteButtonClick(element) {

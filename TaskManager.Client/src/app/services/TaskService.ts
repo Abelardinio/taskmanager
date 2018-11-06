@@ -90,4 +90,13 @@ export class TaskService extends BaseService {
     public onTaskDeleted(fn: (id: number) => void) {
         this._messagingConnection.on('TASK_DELETED', fn);
     }
+
+     /**
+     * Calls a handler when task was deleted
+     *
+     * @param fn event handler
+     */
+    public onTaskCompleted(fn: (id: number) => void) {
+        this._messagingConnection.on('TASK_COMPLETED', fn);
+    }
 }
