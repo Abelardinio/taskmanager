@@ -1,55 +1,47 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
-using Ninject;
-using TaskManager.Core.ConnectionContext;
-using TaskManager.Core.EventAccessors;
-using TaskManager.Core.Messages;
+using TaskManager.Core;
 using TaskManager.ServiceBus;
-using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.MessagingService
 {
     public class MessagingHostedService : IHostedService
     {
-        private readonly IHubContext<TasksHub> _tasksHubContext;
-        private readonly IKernel _kernel;
+        private readonly IDependencyResolver _resolver;
+        private IConnectionStorage _connectionStorage;
+        private List<IMessagingService> _messagingServices;
+        private IConnectionFactory _connectionFactory;
 
-        public MessagingHostedService(IKernel kernel, IHubContext<TasksHub> tasksHubContext)
+        public MessagingHostedService(IHubContext<TasksHub> tasksHubContext, IDependencyResolver resolver)
         {
-            _tasksHubContext = tasksHubContext;
-            _kernel = kernel;
+            _resolver = resolver;
+            HubContext.SetTasksHubContext(tasksHubContext);
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _kernel.Get<IConnectionFactory>().Create();
-            _kernel.Get<IEventScopeFactory>().Create();
-            var taskEventAccessor = _kernel.Get<ITaskEventAccessor>();
-            taskEventAccessor.OnStatusUpdated(OnStatusUpdated);
+            var tuple = _resolver.Resolve<Tuple<IConnectionFactory, IConnectionStorage, List<IMessagingService>>>();
+
+            _connectionFactory = tuple.Item1;
+            _connectionStorage = tuple.Item2;
+            _messagingServices = tuple.Item3;
+
+
+            _connectionFactory.Create();
+            _messagingServices.ForEach(x => x.Start());
 
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _kernel.Get<IConnectionStorage>().Get().Dispose();
-            _kernel.Get<IChannelStorage>().Get().Dispose();
+            _messagingServices.ForEach( x=>x.Dispose());
+            _connectionStorage.Get().Dispose();
             return Task.CompletedTask;
-        }
-
-        public void OnStatusUpdated(ITaskStatusUpdatedMessage message)
-        {
-            switch (message.Status)
-            {
-                case Core.TaskStatus.Completed:
-                    _tasksHubContext.Clients.All.SendAsync("TASK_COMPLETED", message.TaskId);
-                    break;
-                case TaskStatus.Removed:
-                    _tasksHubContext.Clients.All.SendAsync("TASK_DELETED", message.TaskId);
-                    break;
-            }
         }
     }
 }

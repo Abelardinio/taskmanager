@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,7 +12,9 @@ using Ninject;
 using Ninject.Activation;
 using Ninject.Infrastructure.Disposal;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Core;
 using TaskManager.MessagingService.AppSettings;
+using TaskManager.MessagingService.Dependency;
 
 namespace TaskManager.MessagingService
 {
@@ -21,7 +22,6 @@ namespace TaskManager.MessagingService
     {
         private readonly AsyncLocal<Scope> _scopeProvider = new AsyncLocal<Scope>();
         private IOptions<AppSettings.AppSettingsModel> _settings;
-        private IHubContext<TasksHub> _tasksHubContext;
         private IKernel Kernel { get; set; }
 
         private object Resolve(Type type) => Kernel.Get(type);
@@ -55,7 +55,7 @@ namespace TaskManager.MessagingService
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHostedService<MessagingHostedService>();
-            services.AddSingleton<IKernel>(provider => Kernel);
+            services.AddSingleton<IDependencyResolver, DependencyResolver>();
 
             services.AddRequestScopingMiddleware(() => _scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
@@ -92,9 +92,10 @@ namespace TaskManager.MessagingService
             // Cross-wire required framework services
             Kernel.BindToMethod(app.GetRequestService<IViewBufferScope>);
             Kernel.Bind<ILoggerFactory>().ToConstant(loggerFactory);
-            Kernel.Bind<IOptions<AppSettingsModel>>().ToMethod(context => _settings);
+            Kernel.Bind<IOptions<AppSettingsModel>>().ToMethod(context => _settings).InSingletonScope();
 
-            DependencyConfig.Configure(Kernel, RequestScope);
+            DependencyConfig.Configure(Kernel);
+            DependencyResolver.SetResolver(Kernel);
 
             return Kernel;
         }
