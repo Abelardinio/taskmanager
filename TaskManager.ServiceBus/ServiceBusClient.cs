@@ -32,7 +32,7 @@ namespace TaskManager.ServiceBus
             {
                 handler((T)_serializer.Deserialize(ea.Body));
             };
-            channel.BasicConsume(queue: QueueNumber.TaskStatusUpdated.ToString(),
+            channel.BasicConsume(queue: number.ToString(),
                 autoAck: true,
                 consumer: consumer);
         }

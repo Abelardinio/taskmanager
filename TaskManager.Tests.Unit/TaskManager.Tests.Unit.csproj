@@ -96,6 +96,7 @@
     <Compile Include="DataAccessors\TaskDataAccessorTests.cs" />
     <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Filters\TaskFilterTests.cs" />
+    <Compile Include="ServiceBusTest.cs" />
     <Compile Include="Stubs\StubSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\TaskDataProviderTests.cs" />
@@ -124,6 +125,10 @@
     <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj">
       <Project>{834F3872-BC9F-4541-A6F0-D289F3A143A4}</Project>
       <Name>TaskManager.DbConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj">
+      <Project>{BC715178-5C5F-4023-90D0-734132D5BE1E}</Project>
+      <Name>TaskManager.ServiceBus</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskManager.WebApi\TaskManager.WebApi.csproj">
       <Project>{4ED54743-6A83-45FD-8C83-FCD71C587AD7}</Project>
