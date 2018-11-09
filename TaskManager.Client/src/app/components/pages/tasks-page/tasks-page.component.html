@@ -2,11 +2,11 @@
   <h2>Tasks</h2>
   <hr/>
   <div class="flex-column">
-    <app-tasks-grid-filter (refresh)="onRefresh()" [isRefreshing]="isGridRefreshing" [(filter)]="filter" ></app-tasks-grid-filter>
+    <app-tasks-grid-filter (refresh)="onFilterChange()" [isRefreshing]="isGridRefreshing" [(filter)]="filter" ></app-tasks-grid-filter>
   </div>
   <div class="flex-column flexible scrollable" >
       <div >
-          <app-table [elements]="tasks" (rowSelected) = "onRowSelected($event)">
+          <app-table [elements]="rows" (rowSelected) = "onRowSelected($event)">
               <ng-template #headerTemplate>
                 <app-table-header [headers]="headers" [(ngModel)]="filter.SortingInfo" (ngModelChange)="onRefresh()"></app-table-header>
               </ng-template>

@@ -10,6 +10,9 @@ import { SortingOrder } from '../../../models/enums/SortingOrder';
 import { PagingInfo } from 'src/app/models/PagingInfo';
 import { SortingInfo } from 'src/app/models/SortingInfo';
 import * as _ from 'lodash';
+import { TableBase } from '../../common/table-base/table-base';
+import { Observable } from 'rxjs';
+import { PagedResult } from 'src/app/models/PagedResult';
 
 @Component({
   selector: 'app-tasks-page',
@@ -17,33 +20,37 @@ import * as _ from 'lodash';
   styleUrls: ['./tasks-page.component.css'],
   host: { 'class': 'flex-column flexible' }
 })
-export class TasksPageComponent implements OnInit {
-  public tasks: Task[] = [];
+export class TasksPageComponent extends TableBase<Task, TaskSortingColumn> implements OnInit {
   public selectedTask = {};
-  public isGridRefreshing: Boolean = false;
   public pagesCount = 10;
-  public headers: TableHeaderInfo<TaskSortingColumn>[] = [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
-                                       new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
-                                       new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
-                                       new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
-                                       new TableHeaderInfo('Action', 'action-column', null, false)];
+
+  public headers: TableHeaderInfo<TaskSortingColumn>[] =
+    [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
+      new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
+      new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
+      new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
+      new TableHeaderInfo('Action', 'action-column', null, false)];
+
   public filter: TaskFilter = new TaskFilter(
                               new SortingInfo<TaskSortingColumn>(SortingOrder.Desc, TaskSortingColumn.Name),
                               new PagingInfo(1, 20));
 
   constructor(
     private _taskService: TaskService) {
+    super();
+  }
 
+  public getAction(filter: TaskFilter): Observable<PagedResult<Task>> {
+    return this._taskService.Get(filter);
   }
 
   public ngOnInit() {
-    this._fetchData();
-    this._taskService.onTaskDeleted((id) => {
-      _.remove(this.tasks, (task) => task.Id === id);
-    });
-    this._taskService.onTaskCompleted((id) => {
-      _.find(this.tasks, (task) => task.Id === id).Status = TaskStatus.Completed;
-    });
+
+    this._taskService.onTaskDeleted(id => super.removeRow(id));
+
+    this._taskService.onTaskCompleted(id => { super.getRow(id).Status = TaskStatus.Completed; });
+
+    super.ngOnInit();
   }
 
   public onCompleteButtonClick(element) {
@@ -57,7 +64,7 @@ export class TasksPageComponent implements OnInit {
   }
 
   public onRemoveButtonClick(element) {
-    if (element.IsLoading) { return; }
+    if (element.IsLoading || element.Status === TaskStatus.Removed) { return; }
     element.IsLoading = true;
 
     this._taskService.Delete(element.Id)
@@ -65,35 +72,13 @@ export class TasksPageComponent implements OnInit {
       .subscribe(
         () => {
           element.Status = TaskStatus.Removed;
-          this.tasks.splice(this.tasks.indexOf(element), 1);
+          super.removeRow(element.Id);
         });
   }
 
   public onRowSelected(task: Task) {
-    this._selectTask(task);
-  }
-
-  public onRefresh() {
-    this._fetchData();
-  }
-
-  private _fetchData() {
-    this.isGridRefreshing = true;
-    this._taskService.Get(this.filter)
-      .pipe(finalize(() => { this.isGridRefreshing = false; }))
-      .subscribe(
-        data => {
-          this.tasks = [];
-          this.pagesCount = data.PagesCount;
-          this.tasks.push(...data.Items);
-        });
-  }
-
-  private _selectTask(task: Task) {
     if (task) {
       this.selectedTask = task;
-    } else {
-      this.selectedTask = {};
     }
   }
 
