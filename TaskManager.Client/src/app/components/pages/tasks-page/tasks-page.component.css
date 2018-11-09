@@ -35,6 +35,10 @@ table tr td.priority-column{
     width: 100px;
 }
 
+:host ::ng-deep .action-column .btn{
+    display: inline-flex;
+}
+
 app-task-details{
     padding-top:5px;
 }
