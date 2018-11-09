@@ -2,7 +2,7 @@
   <h2>Tasks</h2>
   <hr/>
   <div class="flex-column">
-    <app-tasks-grid-filter (refresh)="onFilterChange()" [isRefreshing]="isGridRefreshing" [(filter)]="filter" ></app-tasks-grid-filter>
+    <app-tasks-grid-filter (filterChange)="onFilterChange()" [isRefreshing]="isGridRefreshing" [(filter)]="filter" ></app-tasks-grid-filter>
   </div>
   <div class="flex-column flexible scrollable" >
       <div >

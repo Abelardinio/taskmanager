@@ -15,6 +15,6 @@
     <app-number-range [numberArray]="priorityArray" [(ngModel)]="filter.Priority" (ngModelChange)="onFilterChange()"></app-number-range>
   </div>
   <div >
-    <button class="btn refresh" (click)="onRefreshButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Refresh</button>
+    <button class="btn refresh" (click)="onClearButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Clear</button>
   </div>
 </div>

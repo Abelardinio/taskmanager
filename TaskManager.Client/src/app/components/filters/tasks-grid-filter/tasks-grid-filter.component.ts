@@ -13,7 +13,6 @@ export class TasksGridFilterComponent implements OnInit {
   @Input() public isRefreshing: boolean;
   @Input() public filter: TaskFilter;
   @Output() public filterChange = new EventEmitter<TaskFilter>();
-  @Output() public refresh = new EventEmitter<any>();
 
   public priorityArray = Utils.generateArray(100);
 
@@ -21,15 +20,16 @@ export class TasksGridFilterComponent implements OnInit {
     this.priorityArray.shift();
   }
 
-  public onRefreshButtonClick() {
-    if (!this.isRefreshing) {
-      this.refresh.emit(this);
-    }
+  public onClearButtonClick() {
+    this.filter.AddedFrom = null;
+    this.filter.AddedTo = null;
+    this.filter.Name = null;
+    this.filter.Priority = null;
+    this.onFilterChange();
   }
 
   public onFilterChange() {
     this.filterChange.emit(this.filter);
-    this.refresh.emit(this);
   }
 
   public get labels() { return Labels.Tasks; }
