@@ -17,7 +17,7 @@
                   <td class="time-to-complete-column"><app-timer [completionDate] = "element.TimeToComplete" expiredPlaceholder="Time Expired!"></app-timer></td>
                   <td class="action-column">
                       <button class="btn" *ngIf="element.Status === taskStatus.Active" (click)="onCompleteButtonClick(element)"><i class="fa fa-refresh fa-spin" *ngIf="element.IsLoading"></i>Complete</button>
-                    <button class="btn" *ngIf="element.Status === taskStatus.Completed" (click)="onRemoveButtonClick(element)"><i class="fa fa-refresh fa-spin" *ngIf="element.IsLoading"></i>Remove</button>
+                      <button class="btn" *ngIf="element.Status === taskStatus.Completed" (click)="onRemoveButtonClick(element)"><i class="fa fa-refresh fa-spin" *ngIf="element.IsLoading"></i>Remove</button>
                   </td>
               </ng-template>
             </app-table>

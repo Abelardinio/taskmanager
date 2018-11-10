@@ -5,7 +5,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let element of elements; let i = index" (click)="onRowSelect(element, $event)" [ngClass]="{'selected': selected.Id === element.Id}" [@elmentRemoved] [@valueUpdated]="element.Status"> 
+    <tr *ngFor="let element of elements; let i = index" (click)="onRowSelect(element, $event)" [ngClass]="{'selected': selected.Id === element.Id}" [@valueUpdated]="element.Status"> 
         <ng-template #nextTmpl ngFor let-element [ngForOf]="[element]" [ngForTemplate]="rowTemplate"></ng-template>
     </tr>
   </tbody>

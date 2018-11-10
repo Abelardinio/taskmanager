@@ -6,25 +6,6 @@ import { trigger, transition, query, style, stagger, animate, keyframes, state }
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
   animations: [
-    trigger('elmentRemoved', [
-      transition('* => *', [
-        query(':enter', style({ opacity: 0 }), { optional: true }),
-
-        query(':enter', stagger('10ms', [
-          animate('.1s ease-in', keyframes([
-            style({ opacity: 0, transform: 'translateY(-75%)', offset: 1.0 }),
-            style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
-            style({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
-          ]))]), { optional: true }),
-
-        query(':leave', stagger('70ms', [
-          animate('.1s ease-out', keyframes([
-            style({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
-            style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
-            style({ opacity: 0, transform: 'translateY(-75%)', offset: 1.0 }),
-          ]))]), { optional: true })
-      ])
-    ]),
     trigger('valueUpdated', [
       state('void => *', style({ opacity: 1, backgroundColor: 'white' })),
       transition('void => *', []),
