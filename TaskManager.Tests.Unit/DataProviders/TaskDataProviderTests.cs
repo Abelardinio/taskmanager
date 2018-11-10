@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Moq;
@@ -78,6 +79,30 @@ namespace TaskManager.Tests.Unit.DataProviders
             tasks.Count.Should().Be(2);
             tasks.Should().Contain(x => x.Id == ActiveTaskId);
             tasks.Should().Contain(x => x.Id == CompletedTaskId);
+        }
+
+        [Test]
+        public void AfterUpdateStatusSuccessShouldCallStatusUpdatedEventTest()
+        {
+            _taskDataProvider.UpdateStatusAsync(TaskId, TaskStatus.Completed);
+            _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
+            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed), Times.Once());
+            _connectionContextMock.Verify(x=>x.EventScope(), Times.Once);
+        }
+
+        [Test]
+        public void AfterUpdateStatusFailShouldNotCallStatusUpdatedEventTest()
+        {
+            _taskDataAccessorMock.Setup(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed)).Throws<Exception>();
+            Action action = () =>
+            {
+                _taskDataProvider.UpdateStatusAsync(TaskId, TaskStatus.Completed).Wait();
+            };
+
+            action.Should().Throw<Exception>();
+            _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
+            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed), Times.Never);
+            _connectionContextMock.Verify(x => x.EventScope(), Times.Never);
         }
     }
 }
