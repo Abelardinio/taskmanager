@@ -94,6 +94,7 @@
     <Compile Include="ConnectionContextTests.cs" />
     <Compile Include="ContextTests.cs" />
     <Compile Include="DataAccessors\TaskDataAccessorTests.cs" />
+    <Compile Include="Enums\ScopeType.cs" />
     <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Filters\TaskFilterTests.cs" />
     <Compile Include="ServiceBusTest.cs" />
