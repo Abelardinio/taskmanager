@@ -21,19 +21,16 @@ import { PagedResult } from 'src/app/models/PagedResult';
   host: { 'class': 'flex-column flexible' }
 })
 export class TasksPageComponent extends TableBase<Task, TaskSortingColumn> implements OnInit {
-  public selectedTask = {};
-  public pagesCount = 10;
-
   public headers: TableHeaderInfo<TaskSortingColumn>[] =
     [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
-      new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
-      new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
-      new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
-      new TableHeaderInfo('Action', 'action-column', null, false)];
+    new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
+    new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
+    new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
+    new TableHeaderInfo('Action', 'action-column', null, false)];
 
   public filter: TaskFilter = new TaskFilter(
-                              new SortingInfo<TaskSortingColumn>(SortingOrder.Desc, TaskSortingColumn.Name),
-                              new PagingInfo(1, 20));
+    new SortingInfo<TaskSortingColumn>(SortingOrder.Desc, TaskSortingColumn.Name),
+    new PagingInfo(1, 20));
 
   constructor(
     private _taskService: TaskService) {
@@ -48,38 +45,23 @@ export class TasksPageComponent extends TableBase<Task, TaskSortingColumn> imple
 
     this._taskService.onTaskDeleted(id => super.removeRow(id));
 
-    this._taskService.onTaskCompleted(id => { super.getRow(id).Status = TaskStatus.Completed; });
+    this._taskService.onTaskCompleted(id => super.updateRow(id, (row) => { row.Status = TaskStatus.Completed; }));
 
     super.ngOnInit();
   }
 
-  public onCompleteButtonClick(element) {
-    if (element.IsLoading) { return; }
-    element.IsLoading = true;
-
-    this._taskService.Complete(element.Id)
-      .pipe(finalize(() => { element.IsLoading = false; }))
-      .subscribe(
-        () => { element.Status = TaskStatus.Completed; });
+  public onCompleteButtonClick(element: Task) {
+    this.rowAjaxAction(
+      element.Id,
+      () => this._taskService.Complete(element.Id),
+      () => super.updateRow(element.Id, (row) => { row.Status = TaskStatus.Completed; }));
   }
 
-  public onRemoveButtonClick(element) {
-    if (element.IsLoading || element.Status === TaskStatus.Removed) { return; }
-    element.IsLoading = true;
-
-    this._taskService.Delete(element.Id)
-      .pipe(finalize(() => { element.IsLoading = false; }))
-      .subscribe(
-        () => {
-          element.Status = TaskStatus.Removed;
-          super.removeRow(element.Id);
-        });
-  }
-
-  public onRowSelected(task: Task) {
-    if (task) {
-      this.selectedTask = task;
-    }
+  public onRemoveButtonClick(element: Task) {
+    this.rowAjaxAction(
+      element.Id,
+      () => this._taskService.Delete(element.Id),
+      () => super.removeRow(element.Id));
   }
 
   get taskStatus() { return TaskStatus; }

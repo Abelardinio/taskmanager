@@ -2,7 +2,7 @@
   <div class="flex-column sidebar">
     <div class="flex-column">
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/tasks/add" class="button">Add Task</a>
-        <a [class.active]="isTasksLinkActive('/tasks')" routerLink="/tasks" class="button">Tasks</a>
+        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/tasks" class="button">Tasks</a>
     </div>
   </div>  
   <div class="flex-column flexible content ">

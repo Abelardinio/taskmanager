@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
 
   public onRowSelect(element: any, event) {
     if (event.target.className === 'btn') { return; }
-    this.selected = element;
+    this.selected = element.Model;
     this.rowSelected.emit(element);
   }
 }

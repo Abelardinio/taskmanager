@@ -6,12 +6,28 @@ import { finalize } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { IRowModel } from 'src/app/models/IRowModel';
 
+class RowInfo<TRowModel> {
+    constructor(model: TRowModel) {
+        this.Model = model;
+        this.SystemInfo = {
+            Version: 1,
+            IsLoading: false
+        };
+    }
+    public Model: TRowModel;
+    public SystemInfo: {
+        Version: number,
+        IsLoading: boolean
+    };
+}
+
 export abstract class TableBase<TRowModel extends IRowModel, TSortingColumn> implements OnInit {
 
     protected abstract filter: BaseFilter<TSortingColumn>;
     public isGridRefreshing: Boolean = false;
     public pagesCount: number;
-    public rows: TRowModel[];
+    public rows: RowInfo<TRowModel>[];
+    public selectedRow: RowInfo<TRowModel>;
 
     protected abstract getAction(filter: BaseFilter<TSortingColumn>): Observable<PagedResult<TRowModel>>;
 
@@ -20,11 +36,21 @@ export abstract class TableBase<TRowModel extends IRowModel, TSortingColumn> imp
     }
 
     public removeRow(id: number): void {
-        _.remove(this.rows, (row) => row.Id === id);
+        const row = this.getRow(id);
+
+        if (row) {
+            _.remove(this.rows, row => row.Model.Id === id);
+            row.SystemInfo.Version++;
+        }
     }
 
-    public getRow(id: number): TRowModel {
-        return _.find(this.rows, (row) => row.Id === id);
+    public updateRow(id: number, updateHandler: (model: TRowModel) => void) {
+        const row = this.getRow(id);
+
+        if (row) {
+            updateHandler(row.Model);
+            row.SystemInfo.Version++;
+        }
     }
 
     public onRefresh() {
@@ -44,7 +70,29 @@ export abstract class TableBase<TRowModel extends IRowModel, TSortingColumn> imp
                 data => {
                     this.rows = [];
                     this.pagesCount = data.PagesCount;
-                    this.rows.push(...data.Items);
+                    this.rows.push(...this.getRowInfo(data.Items));
                 });
+    }
+
+    public onRowSelected(row: RowInfo<TRowModel>) {
+        if (row) {
+            this.selectedRow = row;
+        }
+    }
+
+    protected rowAjaxAction(id: number, action: () => Observable<Object>, onSuccess: (value: Object) => void) {
+        const row = this.getRow(id);
+        if (row.SystemInfo.IsLoading) { return; }
+        row.SystemInfo.IsLoading = true;
+
+        action().pipe(finalize(() => { row.SystemInfo.IsLoading = false; })).subscribe(onSuccess);
+    }
+
+    private getRow(id: number): RowInfo<TRowModel> {
+        return _.find(this.rows, (row) => row.Model.Id === id);
+    }
+
+    private getRowInfo(items: TRowModel[]): RowInfo<TRowModel>[] {
+        return _.map(items, item => new RowInfo<TRowModel>(item));
     }
 }

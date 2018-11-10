@@ -12,9 +12,4 @@ export class AppComponent {
   constructor(private router: Router) {
 
   }
-
-  public isTasksLinkActive(url: string): boolean {
-    const currentUrl = this.router.url;
-    return (currentUrl.indexOf(url) >= 0) && (currentUrl.indexOf('tasks/add') <= 0);
-  }
 }
