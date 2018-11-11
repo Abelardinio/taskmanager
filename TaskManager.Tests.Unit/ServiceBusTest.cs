@@ -9,10 +9,8 @@ using TaskManager.ServiceBus.EventAccessors;
 
 namespace TaskManager.Tests.Unit
 {
-    [TestFixture]
     public class ServiceBusTest
     {
-        [Test]
         public void IntegrationTest()
         {
             var mocksettings = new Mock<DataSettings>();
