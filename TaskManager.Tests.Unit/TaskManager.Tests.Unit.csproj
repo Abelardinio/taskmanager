@@ -104,6 +104,7 @@
     <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Filters\TaskFilterTests.cs" />
     <Compile Include="ServiceBusTest.cs" />
+    <Compile Include="ServiceBus\ServiceBusClientTests.cs" />
     <Compile Include="ServiceBus\ServiceBusConnectionFactoryTests.cs" />
     <Compile Include="Stubs\StubSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
