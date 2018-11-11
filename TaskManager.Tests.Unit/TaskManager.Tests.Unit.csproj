@@ -51,8 +51,8 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentAssertions, Version=5.4.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.5.4.2\lib\net47\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=5.5.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.5.5.0\lib\net47\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>

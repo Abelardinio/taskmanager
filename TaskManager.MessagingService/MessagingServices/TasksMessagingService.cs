@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.SignalR;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.EventAccessors;
@@ -11,7 +10,7 @@ namespace TaskManager.MessagingService.MessagingServices
     {
         private readonly IEventConnectionContext _context;
         private readonly ITaskEventAccessor _accessor;
-        private readonly IHubContext<TasksHub> _tasksHubContext;
+        private readonly IHubClient<TasksHub> _tasksHubContext;
 
         private IEventScope _eventScope;
 
@@ -31,7 +30,7 @@ namespace TaskManager.MessagingService.MessagingServices
 
         public void Dispose()
         {
-            _eventScope.Dispose();
+            _eventScope?.Dispose();
         }
 
         public void OnStatusUpdated(ITaskStatusUpdatedMessage message)
@@ -39,10 +38,10 @@ namespace TaskManager.MessagingService.MessagingServices
             switch (message.Status)
             {
                 case TaskStatus.Completed:
-                    _tasksHubContext.Clients.All.SendAsync("TASK_COMPLETED", message.TaskId);
+                    _tasksHubContext.SendAsync("TASK_COMPLETED", message.TaskId);
                     break;
                 case TaskStatus.Removed:
-                    _tasksHubContext.Clients.All.SendAsync("TASK_DELETED", message.TaskId);
+                    _tasksHubContext.SendAsync("TASK_DELETED", message.TaskId);
                     break;
             }
         }

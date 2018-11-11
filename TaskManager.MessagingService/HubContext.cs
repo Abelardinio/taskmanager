@@ -4,14 +4,14 @@ namespace TaskManager.MessagingService
 {
     public class HubContext : IHubContextAccessor
     {
-        private static IHubContext<TasksHub> _tasksHubContext;
+        private static IHubClient<TasksHub> _tasksHubContext;
 
         public static void SetTasksHubContext(IHubContext<TasksHub> tasksHubContext)
         {
-            _tasksHubContext = tasksHubContext;
+            _tasksHubContext = new HubClient<TasksHub>(tasksHubContext);
         }
 
-        public IHubContext<TasksHub> TasksHubContext
+        public IHubClient<TasksHub> TasksHubContext
         {
             get { return _tasksHubContext; }
         }

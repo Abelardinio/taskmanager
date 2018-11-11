@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.SignalR;
-
-namespace TaskManager.MessagingService
+﻿namespace TaskManager.MessagingService
 {
     public interface IHubContextAccessor
     {
-        IHubContext<TasksHub> TasksHubContext { get; }
+        IHubClient<TasksHub> TasksHubContext { get; }
     }
 }
