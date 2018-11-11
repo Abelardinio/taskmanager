@@ -23,6 +23,7 @@ namespace TaskManager.Data
             kernel.Bind<IConnectionSettings>().To<DataSettings>();
             kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
+            kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
 
             kernel.Get<IConnectionFactory>().Create();
         }

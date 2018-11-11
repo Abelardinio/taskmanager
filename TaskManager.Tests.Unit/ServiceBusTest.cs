@@ -21,12 +21,13 @@ namespace TaskManager.Tests.Unit
             mocksettings.SetupGet(x => x.VirtualHost).Returns("/");
             mocksettings.SetupGet(x => x.HostName).Returns("localhost");
             mocksettings.SetupGet(x => x.Port).Returns(5672);
-            var connfactory = new ServiceBusConnectionFactory(mocksettings.Object);
+            var rabbitMqFacroty = new RabbitMqConnectionFactory(mocksettings.Object);
+            var connfactory = new ServiceBusConnectionFactory(rabbitMqFacroty);
             connfactory.Create();
             var factory = new ChannelFactory(connfactory);
             factory.Create();
             var taskEventAccessor = new TaskEventAccessor(new ServiceBusClient(new MessageSerializer(), factory));
-            //taskEventAccessor.OnStatusUpdated(OnStatusUpdated);
+            taskEventAccessor.OnStatusUpdated(OnStatusUpdated);
 
             while (true)
             {

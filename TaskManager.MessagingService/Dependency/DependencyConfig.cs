@@ -23,6 +23,7 @@ namespace TaskManager.MessagingService.Dependency
             kernel.Bind<IDependencyResolver>().To<DependencyResolver>().InSingletonScope();
             kernel.Bind<IMessagingService>().To<TasksMessagingService>();
             kernel.Bind<IEventConnectionContext>().To<ConnectionContext>();
+            kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
         }
     }
 }

@@ -6,23 +6,16 @@ namespace TaskManager.ServiceBus
     public class ServiceBusConnectionFactory : IConnectionFactory, IConnectionStorage
     {
         private IConnection _connection;
-        private readonly IConnectionSettings _settings;
+        private readonly IRabbitMqConnectionFactory _connectionFactory;
 
-        public ServiceBusConnectionFactory(IConnectionSettings settings)
+        public ServiceBusConnectionFactory(IRabbitMqConnectionFactory connectionFactory)
         {
-            _settings = settings;
+            _connectionFactory = connectionFactory;
         }
 
         public void Create()
         {
-            _connection = new ConnectionFactory
-            {
-                UserName = _settings.UserName,
-                Password = _settings.Password,
-                VirtualHost = _settings.VirtualHost,
-                HostName = _settings.HostName,
-                Port = _settings.Port
-            }.CreateConnection();
+            _connection = _connectionFactory.CreateConnection();
 
             DeclareQueues();
         }
