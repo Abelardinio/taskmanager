@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using System;
+using Ninject;
 using TaskManager.Core;
 
 namespace TaskManager.MessagingService.Dependency
@@ -13,6 +14,11 @@ namespace TaskManager.MessagingService.Dependency
         public T Resolve<T>()
         {
            return _kernel.Get<T>();
+        }
+
+        public object Resolve(Type type)
+        {
+            return _kernel.Get(type);
         }
     }
 }
