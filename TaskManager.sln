@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.WebApi", "TaskM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Core", "TaskManager.Core\TaskManager.Core.csproj", "{0939C197-8A01-4F8D-9D5E-80079327562E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Model", "TaskManager.Model\TaskManager.Model.csproj", "{80B276A8-8B19-430B-BA08-B16763B446B1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.DbConnection", "TaskManager.DbConnection\TaskManager.DbConnection.csproj", "{834F3872-BC9F-4541-A6F0-D289F3A143A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Data", "TaskManager.Data\TaskManager.Data.csproj", "{F63A2721-A11D-4E17-A825-83848C812727}"
@@ -29,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.ServiceBus", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.AspNetCore", "TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj", "{4B55EDB8-DC33-4F81-85CB-8FD6ECC7FFA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Tests.Unit.MessagingService", "TaskManager.Tests.Unit.MessagingService\TaskManager.Tests.Unit.MessagingService.csproj", "{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit.MessagingService", "TaskManager.Tests.Unit.MessagingService\TaskManager.Tests.Unit.MessagingService.csproj", "{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		{0939C197-8A01-4F8D-9D5E-80079327562E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0939C197-8A01-4F8D-9D5E-80079327562E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0939C197-8A01-4F8D-9D5E-80079327562E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80B276A8-8B19-430B-BA08-B16763B446B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80B276A8-8B19-430B-BA08-B16763B446B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80B276A8-8B19-430B-BA08-B16763B446B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80B276A8-8B19-430B-BA08-B16763B446B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{834F3872-BC9F-4541-A6F0-D289F3A143A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{834F3872-BC9F-4541-A6F0-D289F3A143A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{834F3872-BC9F-4541-A6F0-D289F3A143A4}.Release|Any CPU.ActiveCfg = Release|Any CPU

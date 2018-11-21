@@ -110,6 +110,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\TaskFilter.cs" />
+    <Compile Include="Model\TaskInfo.cs" />
     <Compile Include="Model\TaskInfoModel.cs" />
     <Compile Include="Model\TaskInfoTimeSpan.cs" />
     <Compile Include="Model\TaskSortingColumn.cs" />
@@ -127,10 +128,6 @@
     <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj">
       <Project>{f63a2721-a11d-4e17-a825-83848c812727}</Project>
       <Name>TaskManager.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TaskManager.Model\TaskManager.Model.csproj">
-      <Project>{80B276A8-8B19-430B-BA08-B16763B446B1}</Project>
-      <Name>TaskManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

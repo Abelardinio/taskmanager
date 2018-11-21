@@ -4,7 +4,6 @@ using System.Web.Http;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
-using TaskManager.Model;
 using TaskManager.WebApi.Model;
 using TaskStatus = TaskManager.Core.TaskStatus;
 

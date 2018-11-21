@@ -1,7 +1,7 @@
 ﻿using System;
 using TaskManager.Core;
 
-namespace TaskManager.Model
+namespace TaskManager.WebApi.Model
 {
     public class TaskInfo : ITaskInfo
     {
