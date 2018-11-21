@@ -1,36 +1,40 @@
-﻿using System;
-using TaskManager.Core;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.EventAccessors;
 using TaskManager.Core.Messages;
+using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.MessagingService.MessagingServices
 {
-    public class TasksMessagingService : IMessagingService
+    public class TasksMessagingService : IHostedService
     {
         private readonly IEventConnectionContext _context;
         private readonly ITaskEventAccessor _accessor;
-        private readonly IHubClient<TasksHub> _tasksHubContext;
+        private readonly IHubClient<TasksHub> _tasksHubClient;
 
         private IEventScope _eventScope;
 
-        public TasksMessagingService(IDependencyResolver resolver)
+        public TasksMessagingService( IEventConnectionContext context, ITaskEventAccessor accessor, IHubClient<TasksHub> tasksHubClient)
         {
-            var tuple = resolver.Resolve<Tuple<IEventConnectionContext, ITaskEventAccessor, IHubContextAccessor>>();
-            _context = tuple.Item1;
-            _accessor = tuple.Item2;
-            _tasksHubContext = tuple.Item3.TasksHubContext;
+            _context = context;
+            _accessor = accessor;
+            _tasksHubClient = tasksHubClient;
         }
 
-        public void Start()
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             _eventScope = _context.EventScope();
             _accessor.OnStatusUpdated(OnStatusUpdated);
+
+            return Task.CompletedTask;
         }
 
-        public void Dispose()
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             _eventScope?.Dispose();
+            return Task.CompletedTask;
         }
 
         public void OnStatusUpdated(ITaskStatusUpdatedMessage message)
@@ -38,10 +42,10 @@ namespace TaskManager.MessagingService.MessagingServices
             switch (message.Status)
             {
                 case TaskStatus.Completed:
-                    _tasksHubContext.SendAsync("TASK_COMPLETED", message.TaskId);
+                    _tasksHubClient.SendAsync("TASK_COMPLETED", message.TaskId);
                     break;
                 case TaskStatus.Removed:
-                    _tasksHubContext.SendAsync("TASK_DELETED", message.TaskId);
+                    _tasksHubClient.SendAsync("TASK_DELETED", message.TaskId);
                     break;
             }
         }

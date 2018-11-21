@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Microsoft.Extensions.Hosting;
+using Ninject;
 using Ninject.Extensions.NamedScope;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
@@ -19,11 +20,11 @@ namespace TaskManager.MessagingService.Dependency
             kernel.Bind<IConnectionStorage, IConnectionFactory>().To<ServiceBusConnectionFactory>().InSingletonScope();
             kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
-            kernel.Bind<IHubContextAccessor>().To<HubContext>().InSingletonScope();
             kernel.Bind<IDependencyResolver>().To<DependencyResolver>().InSingletonScope();
-            kernel.Bind<IMessagingService>().To<TasksMessagingService>();
+            kernel.Bind<IHostedService>().To<TasksMessagingService>();
             kernel.Bind<IEventConnectionContext>().To<ConnectionContext>();
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
+            kernel.Bind(typeof(IHubClient<>)).To(typeof(HubClient<>));
         }
     }
 }
