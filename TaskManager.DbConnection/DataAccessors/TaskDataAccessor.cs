@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;

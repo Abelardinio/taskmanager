@@ -1,15 +1,18 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.DbConnection.Entities;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace TaskManager.DbConnection
 {
-    public class Context : DbContext, IDatabaseScope
+    public sealed class Context : DbContext, IDatabaseScope
     {
+        private const string ConnectionString = "DbConnection";
         private readonly bool _isInTransactionScope;
-        private readonly DbContextTransaction _transaction;
+        private readonly IDbContextTransaction _transaction;
 
-        public Context(bool isInTransactionScope) : base("DbConnection")
+        public Context(bool isInTransactionScope) : base()
         {
             _isInTransactionScope = isInTransactionScope;
 
@@ -18,8 +21,15 @@ namespace TaskManager.DbConnection
                 _transaction = Database.BeginTransaction();
             }
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(ConnectionString);
+            }
+        }
 
-        public virtual IDbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<TaskEntity> Tasks { get; set; }
 
         public bool IsDisposed { get; private set; }
 
@@ -39,14 +49,14 @@ namespace TaskManager.DbConnection
             }
         }
 
-        protected override void Dispose(bool disposing)
+        public override void Dispose()
         {
             if (_isInTransactionScope)
             {
                 _transaction.Dispose();
             }
 
-            base.Dispose(disposing);
+            base.Dispose();
             IsDisposed = true;
         }
     }
