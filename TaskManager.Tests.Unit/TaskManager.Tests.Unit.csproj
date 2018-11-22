@@ -115,10 +115,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskManager.Common.Api\TaskManager.Common.Api.csproj">
-      <Project>{0A0B1F52-9B39-475D-BD7F-D3463B4024DC}</Project>
-      <Name>TaskManager.Common.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Common.Resources\TaskManager.Common.Resources.csproj">
       <Project>{F953E910-A362-4414-A130-2B8D5F33B9F2}</Project>
       <Name>TaskManager.Common.Resources</Name>

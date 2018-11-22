@@ -25,7 +25,12 @@ namespace TaskManager.Common.AspNetCore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(
+                config => {
+                    config.Filters.Add(typeof(ApiExceptionFilter));
+                }
+            );
+
             services.AddOptions();
 
             services.Configure<IISOptions>(options =>

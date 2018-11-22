@@ -8,7 +8,7 @@ namespace TaskManager.DbConnection
 {
     public sealed class Context : DbContext, IDatabaseScope
     {
-        private const string ConnectionString = "DbConnection";
+        private const string ConnectionString = "Server=SUZDORF10P01\\SQLSERVER2008;Database=TaskManager;User ID=admin;Password=Hello@123;";
         private readonly bool _isInTransactionScope;
         private readonly IDbContextTransaction _transaction;
 

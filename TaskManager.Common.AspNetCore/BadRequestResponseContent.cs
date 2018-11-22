@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Common.Api
+﻿namespace TaskManager.Common.AspNetCore
 {
     public class BadRequestResponseContent
     {
