@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using TaskManager.Common.AspNetCore.AppSettings;
 
-namespace TaskManager.MessagingService.AppSettings
+namespace TaskManager.Data.AppSettings
 {
     public class AppSettings : AppSettingsBase
     {

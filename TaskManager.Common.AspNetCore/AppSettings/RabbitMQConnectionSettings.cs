@@ -1,6 +1,6 @@
 ﻿using TaskManager.ServiceBus;
 
-namespace TaskManager.MessagingService.AppSettings
+namespace TaskManager.Common.AspNetCore.AppSettings
 {
     public class RabbitMqConnectionSettings : IConnectionSettings
     {

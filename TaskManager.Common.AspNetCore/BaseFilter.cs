@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskManager.Core;
 
-namespace TaskManager.Common.Api
+namespace TaskManager.Common.AspNetCore
 {
     public abstract class BaseFilter<TSortingColumn, T> : IFilter<T> where TSortingColumn : struct, IConvertible
     {

@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="ApiExceptionHandler.cs" />
     <Compile Include="ApiExceptionResult.cs" />
-    <Compile Include="BaseFilter.cs" />
     <Compile Include="BadRequestResponseContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

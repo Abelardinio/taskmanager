@@ -1,5 +1,4 @@
-﻿using System;
-using TaskManager.Core.ConnectionContext;
+﻿using TaskManager.Core.ConnectionContext;
 
 namespace TaskManager.Data
 {

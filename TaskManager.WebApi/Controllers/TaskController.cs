@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
@@ -9,7 +9,7 @@ using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.WebApi.Controllers
 {
-    public class TaskController : ApiController
+    public class TaskController : Controller
     {
         private readonly ITaskDataProvider _taskDataProvider;
         private readonly IConnectionContext _context;
@@ -20,7 +20,8 @@ namespace TaskManager.WebApi.Controllers
             _context = context;
         }
 
-        public async Task<IPagedResult<ITask>> Get([FromUri] TaskFilter filter)
+        [HttpGet]
+        public async Task<IPagedResult<ITask>> Index([FromQuery] TaskFilter filter)
         {
             using (_context.Scope())
             {
@@ -28,6 +29,7 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
+        [HttpPost]
         public async Task Add(TaskInfoModel taskInfoModel)
         {
             var taskInfo = new TaskInfo
@@ -46,7 +48,7 @@ namespace TaskManager.WebApi.Controllers
                 await _taskDataProvider.AddAsync(taskInfo);
             }
         }
-
+        [HttpDelete]
         public async Task Delete(int id)
         {
             using (_context.Scope())
@@ -55,6 +57,7 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
+        [HttpPut]
         [Route("task/{taskId}/complete")]
         public async Task Put(int taskId)
         {

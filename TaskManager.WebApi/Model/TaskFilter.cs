@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskManager.Common.Api;
+using TaskManager.Common.AspNetCore;
 using TaskManager.Core;
 
 namespace TaskManager.WebApi.Model

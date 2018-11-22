@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
+    <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
