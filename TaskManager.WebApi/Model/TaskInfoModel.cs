@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaskManager.WebApi.Model
+﻿namespace TaskManager.WebApi.Model
 {
     public class TaskInfoModel
     {

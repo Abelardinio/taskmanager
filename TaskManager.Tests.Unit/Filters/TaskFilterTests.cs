@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 using TaskManager.Core;
 using TaskManager.DbConnection.Entities;
 using TaskManager.WebApi.Model;
 
 namespace TaskManager.Tests.Unit.Filters
 {
-    [TestFixture]
     public class TaskFilterTests
     {
         private const int FirstTaskId = 1;
@@ -23,23 +22,16 @@ namespace TaskManager.Tests.Unit.Filters
         private const int SecondTaskPriority = 1;
         private const int ThirdTaskPriority = 5;
         private readonly DateTime _today = DateTime.Today;
-        private DateTime _firstTaskAdded;
-        private DateTime _secondTaskAdded;
-        private DateTime _thirdTaskAdded;
-        private DateTime _firstTaskTimeToComplete;
-        private DateTime _secondTaskTimeToComplete;
-        private DateTime _thirdTaskTimeToComplete;
-        private IQueryable<ITask> _tasks;
-
-        [SetUp]
-        public void SetUp()
+        private readonly IQueryable<ITask> _tasks;
+        
+        public TaskFilterTests()
         {
-            _firstTaskAdded = _today.AddDays(1);
-            _secondTaskAdded = _today.AddDays(5);
-            _thirdTaskAdded = _today.AddDays(3);
-            _firstTaskTimeToComplete = _today.AddDays(8);
-            _secondTaskTimeToComplete = _today.AddDays(10);
-            _thirdTaskTimeToComplete = _today.AddDays(12);
+            var firstTaskAdded = _today.AddDays(1);
+            var secondTaskAdded = _today.AddDays(5);
+            var thirdTaskAdded = _today.AddDays(3);
+            var firstTaskTimeToComplete = _today.AddDays(8);
+            var secondTaskTimeToComplete = _today.AddDays(10);
+            var thirdTaskTimeToComplete = _today.AddDays(12);
             _tasks = new List<ITask>
             {
                 new TaskEntity
@@ -47,32 +39,33 @@ namespace TaskManager.Tests.Unit.Filters
                     Id = FirstTaskId,
                     Name = FirstTaskName,
                     Priority = FirstTaskPriority,
-                    Added = _firstTaskAdded,
-                    TimeToComplete = _firstTaskTimeToComplete
+                    Added = firstTaskAdded,
+                    TimeToComplete = firstTaskTimeToComplete
                 },
                 new TaskEntity
                 {
                     Id = SecondTaskId,
                     Name = SecondTaskName,
                     Priority = SecondTaskPriority,
-                    Added = _secondTaskAdded,
-                    TimeToComplete = _secondTaskTimeToComplete
+                    Added = secondTaskAdded,
+                    TimeToComplete = secondTaskTimeToComplete
                 },
                 new TaskEntity
                 {
                     Id = ThirdTaskId,
                     Name = ThirdTaskName,
                     Priority = ThirdTaskPriority,
-                    Added = _thirdTaskAdded,
-                    TimeToComplete = _thirdTaskTimeToComplete
+                    Added = thirdTaskAdded,
+                    TimeToComplete = thirdTaskTimeToComplete
                 }
             }.AsQueryable();
         }
 
-        [TestCase(TaskSortingColumn.Name)]
-        [TestCase(TaskSortingColumn.Priority)]
-        [TestCase(TaskSortingColumn.Added)]
-        [TestCase(TaskSortingColumn.TimeToComplete)]
+        [Theory]
+        [InlineData(TaskSortingColumn.Name)]
+        [InlineData(TaskSortingColumn.Priority)]
+        [InlineData(TaskSortingColumn.Added)]
+        [InlineData(TaskSortingColumn.TimeToComplete)]
         public void SortTest(TaskSortingColumn sortingColumn)
         {
             var filter = new TaskFilter { SortingColumn = sortingColumn, SortingOrder = SortingOrder.Asc };
@@ -83,11 +76,12 @@ namespace TaskManager.Tests.Unit.Filters
             result.Should().BeInDescendingOrder(SortKeySelectorDictionary[sortingColumn]);
         }
 
-        [TestCase(null, new[] { FirstTaskId, SecondTaskId, ThirdTaskId })]
-        [TestCase("Fir", new [] { FirstTaskId })]
-        [TestCase("ir", new[] { FirstTaskId, ThirdTaskId })]
-        [TestCase("dT", new[] { SecondTaskId, ThirdTaskId })]
-        [TestCase("randomString", new int[] { })]
+        [Theory]
+        [InlineData(null, new[] { FirstTaskId, SecondTaskId, ThirdTaskId })]
+        [InlineData("Fir", new[] { FirstTaskId })]
+        [InlineData("ir", new[] { FirstTaskId, ThirdTaskId })]
+        [InlineData("dT", new[] { SecondTaskId, ThirdTaskId })]
+        [InlineData("randomString", new int[] { })]
         public void FilterByNameTest(string filterName, int[] taskIds )
         {
             var filter = new TaskFilter { Name = filterName };
@@ -95,34 +89,36 @@ namespace TaskManager.Tests.Unit.Filters
             AssertOnlyConatainsItems(result, taskIds);
         }
 
-        [TestCase(6, 9, new int[] { })]
-        [TestCase(null, null, new [] { FirstTaskId, SecondTaskId, ThirdTaskId})]
-        [TestCase(2, null, new[] { SecondTaskId, ThirdTaskId })]
-        [TestCase(null, 4, new[] { FirstTaskId, ThirdTaskId })]
-        [TestCase(2, 6, new[] { SecondTaskId, ThirdTaskId })]
-        public void FilterByAddedTest(int? numberOfdaysFrom, int? numberOfdaysTo, int[] taskIds)
+        [Theory]
+        [InlineData(6, 9, new int[] { })]
+        [InlineData(null, null, new[] { FirstTaskId, SecondTaskId, ThirdTaskId })]
+        [InlineData(2, null, new[] { SecondTaskId, ThirdTaskId })]
+        [InlineData(null, 4, new[] { FirstTaskId, ThirdTaskId })]
+        [InlineData(2, 6, new[] { SecondTaskId, ThirdTaskId })]
+        public void FilterByAddedTest(int? numberOfDaysFrom, int? numberOfDaysTo, int[] taskIds)
         {
             var filter = new TaskFilter();
 
-            if (numberOfdaysFrom != null)
+            if (numberOfDaysFrom != null)
             {
-                filter.AddedFrom = _today.AddDays(numberOfdaysFrom.Value);
+                filter.AddedFrom = _today.AddDays(numberOfDaysFrom.Value);
             }
 
-            if (numberOfdaysTo != null)
+            if (numberOfDaysTo != null)
             {
-                filter.AddedTo = _today.AddDays(numberOfdaysTo.Value);
+                filter.AddedTo = _today.AddDays(numberOfDaysTo.Value);
             }
 
             var result = filter.Filter(_tasks).ToList();
             AssertOnlyConatainsItems(result, taskIds);
         }
 
-        [TestCase(6, 9, new int[] { })]
-        [TestCase(null, null, new[] { FirstTaskId, SecondTaskId, ThirdTaskId })]
-        [TestCase(2, null, new[] { FirstTaskId, ThirdTaskId })]
-        [TestCase(null, 4, new[] { FirstTaskId, SecondTaskId })]
-        [TestCase(2, 6, new[] { FirstTaskId, ThirdTaskId })]
+        [Theory]
+        [InlineData(6, 9, new int[] { })]
+        [InlineData(null, null, new[] { FirstTaskId, SecondTaskId, ThirdTaskId })]
+        [InlineData(2, null, new[] { FirstTaskId, ThirdTaskId })]
+        [InlineData(null, 4, new[] { FirstTaskId, SecondTaskId })]
+        [InlineData(2, 6, new[] { FirstTaskId, ThirdTaskId })]
         public void FilterByPriorityTest(int? priorityFrom, int? priorityTo, int[] taskIds)
         {
             var filter = new TaskFilter

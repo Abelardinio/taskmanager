@@ -1,30 +1,26 @@
-﻿using System;
-using Moq;
-using NUnit.Framework;
+﻿using Moq;
+using Xunit;
 using RabbitMQ.Client;
 using TaskManager.ServiceBus;
 
 namespace TaskManager.Tests.Unit.ServiceBus
 {
-    [TestFixture]
     public class ServiceBusClientTests
     {
-        private Mock<IMessageSerializer> _serializerMock;
-        private Mock<IChannelStorage> _storageMock;
-        private Mock<IModel> _channelMock;
-        private IServiceBusClient _client;
+        private readonly Mock<IMessageSerializer> _serializerMock;
+        private readonly IServiceBusClient _client;
 
-        [SetUp]
-        public void SetUp()
+        public ServiceBusClientTests()
         {
-            _serializerMock =  new Mock<IMessageSerializer>();
-            _storageMock = new Mock<IChannelStorage>();
-            _channelMock = new Mock<IModel>();
-            _storageMock.Setup(x => x.Get()).Returns(_channelMock.Object);
-            _client =  new ServiceBusClient(_serializerMock.Object, _storageMock.Object);
+            _serializerMock = new Mock<IMessageSerializer>();
+            var storageMock = new Mock<IChannelStorage>();
+            var channelMock = new Mock<IModel>();
+            storageMock.Setup(x => x.Get()).Returns(channelMock.Object);
+            _client = new ServiceBusClient(_serializerMock.Object, storageMock.Object);
         }
 
-        [Test]
+
+        [Fact]
         public void SendMethodShouldSerializeObjectBeforeSendTest()
         {
             var sentObject = new object();

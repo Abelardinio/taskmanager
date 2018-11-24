@@ -2,27 +2,26 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using TaskManager.Core;
 
 namespace TaskManager.Tests.Unit
 {
-    [TestFixture]
     public class ExtensionsTests
     {
         private readonly IQueryable<int> _collection = Enumerable.Range(1, 95).AsQueryable();
         private readonly Mock<IFilter<int>> _filterMock = new Mock<IFilter<int>>();
 
-        [SetUp]
-        public void SetUp()
+        public ExtensionsTests()
         {
             _filterMock.Setup(x => x.Sort(_collection)).Returns(_collection);
             _filterMock.Setup(x => x.Filter(_collection)).Returns(_collection);
         }
 
-        [TestCase(1, 20, 5, 1, 20)]
-        [TestCase(2, 50, 2, 51, 44)]
-        [TestCase(2, 100, 1, 0, 0)]
+        [Theory]
+        [InlineData(1, 20, 5, 1, 20)]
+        [InlineData(2, 50, 2, 51, 44)]
+        [InlineData(2, 100, 1, 0, 0)]
         public async Task GetPagedResultTest(int pageNumber, int pageSize, int pagesCount, int rangeFrom, int rangeCount)
         {
             _filterMock.SetupGet(x => x.PageNumber).Returns(pageNumber);

@@ -1,14 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 using TaskManager.DbConnection;
 
 namespace TaskManager.Tests.Unit
 {
-    [TestFixture]
     public class ContextTests
     {
-        [Test]
-        public void ContextIsDisposedProperyTest()
+        [Fact]
+        public void ContextIsDisposedPropertyTest()
         {
             var context = new Context(false);
             context.IsDisposed.Should().BeFalse();

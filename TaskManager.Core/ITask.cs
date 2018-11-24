@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace TaskManager.Core
+﻿namespace TaskManager.Core
 {
     public interface ITask : ITaskInfo
     {

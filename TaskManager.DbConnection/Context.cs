@@ -6,7 +6,7 @@ using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace TaskManager.DbConnection
 {
-    public sealed class Context : DbContext, IDatabaseScope
+    public class Context : DbContext, IDatabaseScope
     {
         private const string ConnectionString = "Server=SUZDORF10P01\\SQLSERVER2008;Database=TaskManager;User ID=admin;Password=Hello@123;";
         private readonly bool _isInTransactionScope;
@@ -29,7 +29,7 @@ namespace TaskManager.DbConnection
             }
         }
 
-        public DbSet<TaskEntity> Tasks { get; set; }
+        public virtual DbSet<TaskEntity> Tasks { get; set; }
 
         public bool IsDisposed { get; private set; }
 

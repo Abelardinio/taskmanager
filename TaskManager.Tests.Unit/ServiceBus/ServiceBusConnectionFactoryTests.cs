@@ -1,22 +1,20 @@
 ﻿using System;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using RabbitMQ.Client;
 using TaskManager.ServiceBus;
 using IConnectionFactory = TaskManager.ServiceBus.IConnectionFactory;
 
 namespace TaskManager.Tests.Unit.ServiceBus
 {
-    [TestFixture]
     public class ServiceBusConnectionFactoryTests
     {
-        private Mock<IRabbitMqConnectionFactory> _rabbitMqFactoryMock;
-        private Mock<IConnection> _connectionMock;
-        private Mock<IModel> _channelMock;
-        private IConnectionFactory _connectionFactory;
+        private readonly Mock<IRabbitMqConnectionFactory> _rabbitMqFactoryMock;
+        private readonly Mock<IConnection> _connectionMock;
+        private readonly Mock<IModel> _channelMock;
+        private readonly IConnectionFactory _connectionFactory;
 
-        [SetUp]
-        public void SetUp()
+        public ServiceBusConnectionFactoryTests()
         {
             _rabbitMqFactoryMock = new Mock<IRabbitMqConnectionFactory>();
             _connectionMock = new Mock<IConnection>();
@@ -26,7 +24,7 @@ namespace TaskManager.Tests.Unit.ServiceBus
             _connectionFactory = new ServiceBusConnectionFactory(_rabbitMqFactoryMock.Object);
         }
 
-        [Test]
+        [Fact]
         public void QueuesAreDeclaredOnConnectionCreateTest()
         {
             _connectionFactory.Create();

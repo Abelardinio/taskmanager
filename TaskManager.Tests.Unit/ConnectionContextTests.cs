@@ -1,22 +1,20 @@
 ﻿using Moq;
-using NUnit.Framework;
+using Xunit;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Data;
 using TaskManager.Tests.Unit.Enums;
 
 namespace TaskManager.Tests.Unit
 {
-    [TestFixture]
     public class ConnectionContextTests
     {
-        private IConnectionContext _connectionContext;
-        private Mock<IConnectionScopeFactory> _factoryMock;
-        private Mock<IEventScopeFactory> _eventScopeFactoryMock;
-        private Mock<IDatabaseScope> _databaseScopeMock;
-        private Mock<IEventConnectionScope> _eventScopeMock;
-
-        [SetUp]
-        public void SetUp()
+        private readonly IConnectionContext _connectionContext;
+        private readonly Mock<IConnectionScopeFactory> _factoryMock;
+        private readonly Mock<IEventScopeFactory> _eventScopeFactoryMock;
+        private readonly Mock<IDatabaseScope> _databaseScopeMock;
+        private readonly Mock<IEventConnectionScope> _eventScopeMock;
+        
+        public ConnectionContextTests()
         {
             _factoryMock = new Mock<IConnectionScopeFactory>();
             _databaseScopeMock = new Mock<IDatabaseScope>();
@@ -27,9 +25,10 @@ namespace TaskManager.Tests.Unit
             _connectionContext = new ConnectionContext(_factoryMock.Object, _eventScopeFactoryMock.Object);
         }
 
-        [TestCase(ScopeType.DataBase, true)]
-        [TestCase(ScopeType.DataBase, false)]
-        [TestCase(ScopeType.Event, false)]
+        [Theory]
+        [InlineData(ScopeType.DataBase, true)]
+        [InlineData(ScopeType.DataBase, false)]
+        [InlineData(ScopeType.Event, false)]
         public void NewConnectionWillBeCreatedIfItIsNull(ScopeType type, bool isInTransactionScope)
         {
            ExecuteScope(type, isInTransactionScope);
@@ -41,9 +40,10 @@ namespace TaskManager.Tests.Unit
                 _eventScopeFactoryMock.Verify(x=>x.Create(), Times.Once());
         }
 
-        [TestCase(ScopeType.DataBase, true)]
-        [TestCase(ScopeType.DataBase, false)]
-        [TestCase(ScopeType.Event, false)]
+        [Theory]
+        [InlineData(ScopeType.DataBase, true)]
+        [InlineData(ScopeType.DataBase, false)]
+        [InlineData(ScopeType.Event, false)]
         public void NewConnectionWillBeCreatedIfItWasDisposed(ScopeType type, bool isInTransactionScope)
         {
             ExecuteScope(type, isInTransactionScope);
@@ -60,9 +60,10 @@ namespace TaskManager.Tests.Unit
                 _eventScopeFactoryMock.Verify(x => x.Create(), Times.Exactly(2));
         }
 
-        [TestCase(ScopeType.DataBase, true)]
-        [TestCase(ScopeType.DataBase, false)]
-        [TestCase(ScopeType.Event, false)]
+        [Theory]
+        [InlineData(ScopeType.DataBase, true)]
+        [InlineData(ScopeType.DataBase, false)]
+        [InlineData(ScopeType.Event, false)]
         public void NewConnectionWillNotBeCreatedIfItWasNotDisposed(ScopeType type, bool isInTransactionScope)
         {
             ExecuteScope(type, isInTransactionScope);

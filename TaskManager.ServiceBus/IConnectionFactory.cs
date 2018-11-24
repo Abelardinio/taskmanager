@@ -1,6 +1,4 @@
-﻿using RabbitMQ.Client;
-
-namespace TaskManager.ServiceBus
+﻿namespace TaskManager.ServiceBus
 {
     public interface IConnectionFactory
     {
