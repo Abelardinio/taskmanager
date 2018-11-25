@@ -14,9 +14,9 @@ namespace TaskManager.Common.AspNetCore
             var status = HttpStatusCode.InternalServerError;
             var message = ErrorMessages.Unknown; 
 
-            var exceptionType = context.Exception.GetType();
+            var exception = context.Exception;
 
-            if (exceptionType == typeof(TaskManagerException))
+            if (exception is TaskManagerException)
             {
                 message = context.Exception.Message;
                 status = HttpStatusCode.BadRequest;

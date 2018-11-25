@@ -21,7 +21,8 @@ namespace TaskManager.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IPagedResult<ITask>> Index([FromQuery] TaskFilter filter)
+        [Route("task")]
+        public async Task<IPagedResult<ITask>> Get([FromQuery] TaskFilter filter)
         {
             using (_context.Scope())
             {
@@ -30,7 +31,8 @@ namespace TaskManager.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task Add(TaskInfoModel taskInfoModel)
+        [Route("task")]
+        public async Task Add([FromBody] TaskInfoModel taskInfoModel)
         {
             var taskInfo = new TaskInfo
             {
@@ -49,11 +51,12 @@ namespace TaskManager.WebApi.Controllers
             }
         }
         [HttpDelete]
-        public async Task Delete(int id)
+        [Route("task/{taskId}")]
+        public async Task Delete(int taskId)
         {
             using (_context.Scope())
             {
-                await _taskDataProvider.UpdateStatusAsync(id, TaskStatus.Removed);
+                await _taskDataProvider.UpdateStatusAsync(taskId, TaskStatus.Removed);
             }
         }
 

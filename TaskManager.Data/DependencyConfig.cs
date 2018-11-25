@@ -27,8 +27,6 @@ namespace TaskManager.Data
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<ITaskDataProvider>().To<TaskDataProvider>();
             kernel.Bind<IConnectionSettings>().To<AppSettings.AppSettings>();
-
-            kernel.Get<IConnectionFactory>().Create();
         }
     }
 }

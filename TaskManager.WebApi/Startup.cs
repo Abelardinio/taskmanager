@@ -5,6 +5,7 @@ using Ninject;
 using TaskManager.Common.AspNetCore;
 using TaskManager.Data;
 using TaskManager.Data.AppSettings;
+using TaskManager.ServiceBus;
 
 namespace TaskManager.WebApi
 {
@@ -27,6 +28,8 @@ namespace TaskManager.WebApi
 
             DependencyConfig.Register(kernel);
             DependencyResolver.SetResolver(kernel);
+
+            kernel.Get<IConnectionFactory>().Create();
         }
     }
 }
