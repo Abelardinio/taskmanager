@@ -9,7 +9,7 @@ namespace TaskManager.Tests.Unit
         [Fact]
         public void ContextIsDisposedPropertyTest()
         {
-            var context = new Context(false);
+            var context = new Context(string.Empty, false);
             context.IsDisposed.Should().BeFalse();
             context.Dispose();
             context.IsDisposed.Should().BeTrue();

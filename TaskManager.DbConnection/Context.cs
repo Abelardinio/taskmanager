@@ -8,13 +8,14 @@ namespace TaskManager.DbConnection
 {
     public class Context : DbContext, IDatabaseScope
     {
-        private const string ConnectionString = "Server=SUZDORF10P01\\SQLSERVER2008;Database=TaskManager;User ID=admin;Password=Hello@123;";
+        private readonly string _connectionString;
         private readonly bool _isInTransactionScope;
         private readonly IDbContextTransaction _transaction;
 
-        public Context(bool isInTransactionScope) : base()
+        public Context(string connectionString, bool isInTransactionScope)
         {
             _isInTransactionScope = isInTransactionScope;
+            _connectionString = connectionString;
 
             if (isInTransactionScope)
             {
@@ -25,7 +26,7 @@ namespace TaskManager.DbConnection
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConnectionString, o => o.UseRowNumberForPaging());
+                optionsBuilder.UseSqlServer(_connectionString, o => o.UseRowNumberForPaging());
             }
         }
 
