@@ -27,14 +27,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  
-    <ItemGroup>
+
+  <ItemGroup>
     <None Update="app_offline.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="cd $(TargetDir)&#xD;&#xA;del app_offline.htm" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy  app_offline.htm &quot;bin\Debug\netcoreapp2.1&quot;" />
   </Target>
 </Project>
