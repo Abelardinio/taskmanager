@@ -25,7 +25,7 @@ namespace TaskManager.DbConnection
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConnectionString);
+                optionsBuilder.UseSqlServer(ConnectionString, o => o.UseRowNumberForPaging());
             }
         }
 

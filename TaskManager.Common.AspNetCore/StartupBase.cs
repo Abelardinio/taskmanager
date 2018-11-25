@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 using Ninject;
 using TaskManager.Core;
 
@@ -29,7 +30,7 @@ namespace TaskManager.Common.AspNetCore
                 config => {
                     config.Filters.Add(typeof(ApiExceptionFilter));
                 }
-            );
+            ).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); 
 
             services.AddOptions();
 
