@@ -4,6 +4,7 @@ using Ninject.Extensions.NamedScope;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Data;
 using TaskManager.MessagingService.MessagingServices;
 using TaskManager.ServiceBus;
 using TaskManager.ServiceBus.EventAccessors;

@@ -6,6 +6,7 @@ using Ninject;
 using TaskManager.MessagingService.AppSettings;
 using TaskManager.MessagingService.Dependency;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Data;
 using TaskManager.ServiceBus;
 
 namespace TaskManager.MessagingService
