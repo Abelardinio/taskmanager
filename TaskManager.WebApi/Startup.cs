@@ -14,7 +14,7 @@ namespace TaskManager.WebApi
         public Startup(IConfiguration configuration) : base(configuration)
         {
         }
-
+        
         protected override void ConfigureServicesComponents(IServiceCollection services)
         {
         }
@@ -30,6 +30,11 @@ namespace TaskManager.WebApi
             DependencyResolver.SetResolver(kernel);
 
             kernel.Get<IConnectionFactory>().Create();
+        }
+
+        protected override void OnShutdown(IKernel kernel)
+        {
+            kernel.Get<IConnectionStorage>().Get().Dispose();
         }
     }
 }

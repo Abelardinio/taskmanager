@@ -50,7 +50,7 @@ namespace TaskManager.Common.AspNetCore
             ConfigureServicesComponents(services);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime lifetime)
         {
             _kernel = new StandardKernel();
 
@@ -68,8 +68,12 @@ namespace TaskManager.Common.AspNetCore
                 app.UseDeveloperExceptionPage();
             }
 
+            lifetime.ApplicationStopped.Register(() => OnShutdown(_kernel));
+
             RegisterApplicationComponents(app, _kernel);
         }
+
+        protected abstract void OnShutdown(IKernel kernel);
 
         protected abstract void ConfigureServicesComponents(IServiceCollection services);
 

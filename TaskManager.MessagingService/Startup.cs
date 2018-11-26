@@ -45,5 +45,10 @@ namespace TaskManager.MessagingService
 
             kernel.Get<IConnectionFactory>().Create();
         }
+
+        protected override void OnShutdown(IKernel kernel)
+        {
+            kernel.Get<IConnectionStorage>().Get().Dispose();
+        }
     }
 }
