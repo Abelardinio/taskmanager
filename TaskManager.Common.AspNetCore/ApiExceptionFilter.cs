@@ -27,7 +27,7 @@ namespace TaskManager.Common.AspNetCore
             HttpResponse response = context.HttpContext.Response;
             response.StatusCode = (int)status;
             response.ContentType = "application/json";
-            var err = JsonConvert.SerializeObject(new BadRequestResponseContent {Message = message});
+            var err = JsonConvert.SerializeObject(new FailedRequestResponseContent {Message = message});
             response.WriteAsync(err);
         }
     }

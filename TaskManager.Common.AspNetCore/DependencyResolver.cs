@@ -2,7 +2,7 @@
 using Ninject;
 using TaskManager.Core;
 
-namespace TaskManager.Data
+namespace TaskManager.Common.AspNetCore
 {
     public class DependencyResolver : IDependencyResolver
     {

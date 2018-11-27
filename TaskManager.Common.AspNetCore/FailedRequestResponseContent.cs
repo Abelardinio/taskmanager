@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.Common.AspNetCore
 {
-    public class BadRequestResponseContent
+    public class FailedRequestResponseContent
     {
         public string Message { get; set; }
     }
