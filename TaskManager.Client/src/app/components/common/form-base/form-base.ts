@@ -6,14 +6,14 @@ import { Messages } from 'src/app/resources/messages';
 
 
 export abstract class FormBase<T> {
-    protected formIsValidated = false;
-    protected formIsLoading = false;
+    public formIsValidated = false;
+    public formIsLoading = false;
 
     protected abstract form: FormGroup;
     protected abstract notifications: NotificationsService;
     protected abstract submitAction(value: T): Observable<Object>;
 
-    protected onSubmit() {
+    public onSubmit() {
         if (this.form.valid) {
             const result = this.form.value;
 

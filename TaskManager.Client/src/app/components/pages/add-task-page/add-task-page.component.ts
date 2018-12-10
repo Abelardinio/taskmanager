@@ -17,7 +17,7 @@ import { FormBase } from '../../common/form-base/form-base';
   host: { 'class': 'flex-column flexible' }
 })
 export class AddTaskPageComponent extends FormBase<TaskInfo> implements OnInit {
-  protected form: FormGroup;
+  public form: FormGroup;
 
   public priorityArray = Utils.generateArray(100);
 

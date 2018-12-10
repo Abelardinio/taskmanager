@@ -1,18 +1,26 @@
 {
   "BuildSteps": [
     {
-      "Name": "Build solution",
+      "Name": "Build WebApi",
       "Type": "cmd",
       "Commands": [
-        "cd ..",
-		"dotnet publish"
+        "cd ..\\TaskManager.WebApi",
+		"dotnet publish -c Debug -o \\bin\\Debug\\netcoreapp2.1"
       ]
     },
+    {
+      "Name": "Build MessagingService",
+      "Type": "cmd",
+      "Commands": [
+        "cd ..\\TaskManager.MessagingService",
+		"dotnet publish -c Debug -o \\bin\\Debug\\netcoreapp2.1"
+      ]
+    },	
     {
       "Name": "Build angular client",
       "Type": "cmd",
       "Commands": [
-        "cd ..\TaskManager.Client",
+        "cd ..\\TaskManager.Client",
 		"call npm install",
 		"ng build --prod --extract-css=false"
       ]
@@ -25,20 +33,20 @@
           "Name": "taskmanager",
           "AppPoolName": "TaskManager",
           "ManagedRuntimeVersion": "No Managed Code",
-          "Path": "..\TaskManager.Client\dist\task-manager-client",
+          "Path": "..\\TaskManager.Client\\dist\\task-manager-client",
           "Applications": [
             {
               "Name": "api",
               "AppPoolName": "TaskManagerApi",
               "ManagedRuntimeVersion": "No Managed Code",
-              "Path": "..\TaskManager.WebApi\bin\Debug\netcoreapp2.1",
+              "Path": "..\\TaskManager.WebApi\\bin\\Debug\\netcoreapp2.1",
               "Applications": []
             },
             {
               "Name": "messaging",
               "AppPoolName": "TaskManagerMessaging",
               "ManagedRuntimeVersion": "No Managed Code",
-              "Path":  "..\TaskManager.MessagingService\bin\Debug\netcoreapp2.1",
+              "Path":  "..\\TaskManager.MessagingService\\bin\\Debug\\netcoreapp2.1",
               "Applications": []
             }
           ]

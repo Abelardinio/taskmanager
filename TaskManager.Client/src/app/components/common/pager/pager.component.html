@@ -1,20 +1,20 @@
 <div class="pager flex-row">
   <div class="page-nav flex-row">
-      <button class="btn page-nav-button" (click)="onPrevButtonClick()" [disabled]="!innerValue || innerValue.Number === 1"><i class="fa fa-caret-left"></i>Prev</button>
+      <button class="btn page-nav-button" (click)="onPrevButtonClick()" [disabled]="!value || value.Number === 1"><i class="fa fa-caret-left"></i>Prev</button>
       <div class="page-nav-select">
-        <ng-select [ngModel]="innerValue ? innerValue.Number : undefined"
+        <ng-select [ngModel]="value ? value.Number : undefined"
                    (ngModelChange)="onNumberChange($event)" 
                    (change)="onValueChange()"
                    [items]="pageNumberArray"
                    [searchable]="false"
                    class="custom" ></ng-select>
       </div>
-      <button class="btn page-nav-button next" (click)="onNextButtonClick()"[disabled]="!innerValue || innerValue.Number === pagesCount" >Next<i class="fa fa-caret-right"></i></button>
+      <button class="btn page-nav-button next" (click)="onNextButtonClick()"[disabled]="!value || value.Number === pagesCount" >Next<i class="fa fa-caret-right"></i></button>
   </div>
   <div class="flex-row page-size">
       <label>Size:</label>
       <div>
-        <ng-select [ngModel]="innerValue ? innerValue.Size : undefined"
+        <ng-select [ngModel]="value ? value.Size : undefined"
                    (ngModelChange)="onSizeChange($event)" 
                    (change)="onValueChange()"
                    [items]="pageSizeArray"

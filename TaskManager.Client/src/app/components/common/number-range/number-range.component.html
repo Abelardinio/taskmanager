@@ -1,5 +1,5 @@
 <div>
-  <ng-select [ngModel]="innerValue ? innerValue.From : undefined"
+  <ng-select [ngModel]="value ? value.From : undefined"
              (ngModelChange)="onFromModelChange($event)" 
              (change)="onValueChange()"
              [items]="fromArray"
@@ -7,7 +7,7 @@
              class="custom" ></ng-select>
 </div>
 <div>
-  <ng-select [ngModel]="innerValue ? innerValue.To : undefined"
+  <ng-select [ngModel]="value ? value.To : undefined"
              (ngModelChange)="onToModelChange($event)" 
              (change)="onValueChange()"
              [items]="toArray"
