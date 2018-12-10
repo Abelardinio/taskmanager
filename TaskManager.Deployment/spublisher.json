@@ -1,0 +1,49 @@
+{
+  "BuildSteps": [
+    {
+      "Name": "Build solution",
+      "Type": "cmd",
+      "Commands": [
+        "cd ..",
+		"dotnet publish"
+      ]
+    },
+    {
+      "Name": "Build angular client",
+      "Type": "cmd",
+      "Commands": [
+        "cd ..\TaskManager.Client",
+		"call npm install",
+		"ng build --prod --extract-css=false"
+      ]
+    },
+    {
+      "Name": "Create Iis Site structure",
+      "Type": "iis",
+      "Applications": [
+        {
+          "Name": "taskmanager",
+          "AppPoolName": "TaskManager",
+          "ManagedRuntimeVersion": "No Managed Code",
+          "Path": "..\TaskManager.Client\dist\task-manager-client",
+          "Applications": [
+            {
+              "Name": "api",
+              "AppPoolName": "TaskManagerApi",
+              "ManagedRuntimeVersion": "No Managed Code",
+              "Path": "..\TaskManager.WebApi\bin\Debug\netcoreapp2.1",
+              "Applications": []
+            },
+            {
+              "Name": "messaging",
+              "AppPoolName": "TaskManagerMessaging",
+              "ManagedRuntimeVersion": "No Managed Code",
+              "Path":  "..\TaskManager.MessagingService\bin\Debug\netcoreapp2.1",
+              "Applications": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
