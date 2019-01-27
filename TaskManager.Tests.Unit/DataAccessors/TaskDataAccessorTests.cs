@@ -53,7 +53,7 @@ namespace TaskManager.Tests.Unit.DataAccessors
                 Status = TaskStatus.Removed
             };
 
-            _contextMock = new Mock<Context>(null);
+            _contextMock = new Mock<Context>(null, false);
             var contextStorageMock = new Mock<IContextStorage>();
 
             _contextMock.Setup(x => x.SaveChangesAsync(default(CancellationToken))).ReturnsAsync(0);

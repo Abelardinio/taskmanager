@@ -7,24 +7,35 @@
 * [RabbitMQ](https://www.rabbitmq.com/download.html)
 * [NodeJS 10 or higher](https://nodejs.org/en/)
 * [URL Rewrite plugin for IIS](https://www.iis.net/downloads/microsoft/url-rewrite)
-* [spublisher](https://github.com/suzdorf/spublisher) 
 * npm and Angular cli installed globally
 * MS SQL server
 
-## installation
+## Installation
 
+* Ensure your MS SQL Server supports both SQL Server And Windows Authentication. Ensure it is available using connection string *"Server=(local);Integrated Security=SSPI;"*.
+* Ensure your RabbitMQ Server is available by default connection:
 
-* Make sure you rabbit mq instance is running under **localhost:5672** and has a default *guest*  user
-* Create an empty database in MS SQL server and add its connection string value to *"DbConnectionSettings"* connection string of **appsettings.json**  file of  TaskManager.WebApi project
-* Run cmd in TaskManager.Deployment folder
+```
+
+{
+    "Username": "guest",
+    "Password": "guest",
+    "VirtualHost": "/",
+    "HostName": "localhost",
+    "Port": "5672"
+}
+
+```
+* Execute cmd under administrator permissions within TaskManager.Deployment folder 
 * Execute command:
+
 ```
-spublisher
+install
+
 ```
-* After spublisher completes add to the hosts file the following line:
-```
-127.0.0.1 taskmanager
-```
+
+* The appliaction now is available at http:\\taskmanager
+
 ## To run developer server:
 
 * Go to TaskManager.Client

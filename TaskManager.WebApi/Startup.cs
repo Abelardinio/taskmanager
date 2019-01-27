@@ -1,10 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Core.ConnectionContext;
 using TaskManager.Data;
 using TaskManager.Data.AppSettings;
+using TaskManager.DbConnection;
 using TaskManager.ServiceBus;
 
 namespace TaskManager.WebApi
@@ -30,6 +36,17 @@ namespace TaskManager.WebApi
             DependencyResolver.SetResolver(kernel);
 
             kernel.Get<IConnectionFactory>().Create();
+
+            var tuple = kernel.Get<Tuple<IContextStorage, IConnectionContext>>();
+            var storage = tuple.Item1;
+            var context = tuple.Item2;
+
+            using (context.Scope())
+            {
+                storage.Get().Database.Migrate();
+            }
+
+            
         }
 
         protected override void OnShutdown(IKernel kernel)
