@@ -6,8 +6,8 @@ $sitename = "taskmanager";
 $apiname = "taskmanager\api";
 $messagingname = "taskmanager\messaging";
 $clientPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.Client\dist\task-manager-client"))
-$apiPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.WebApi\bin\Debug\netcoreapp2.1"))
-$messagingPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.MessagingService\bin\Debug\netcoreapp2.1"))
+$apiPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.WebApi\bin\Debug\netcoreapp2.2"))
+$messagingPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.MessagingService\bin\Debug\netcoreapp2.2"))
 
 
 Import-Module WebAdministration
