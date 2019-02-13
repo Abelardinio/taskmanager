@@ -22,6 +22,11 @@
         "ASPNETCORE_ENVIRONMENT": "dev"
       },
       "applicationUrl": "http://localhost:63307/"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}"
     }
   }
 }

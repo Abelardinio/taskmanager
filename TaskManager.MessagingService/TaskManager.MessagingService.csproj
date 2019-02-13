@@ -34,11 +34,11 @@
     </None>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
     <Exec Command="cd $(TargetDir)&#xD;&#xA;del app_offline.htm" />
   </Target>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy  app_offline.htm &quot;bin\Debug\netcoreapp2.2&quot;" />
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent"  Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec Command="copy  app_offline.htm &quot;&quot;$(TargetDir)&quot;" />
   </Target>
 </Project>
