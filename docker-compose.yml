@@ -21,3 +21,13 @@ services:
     environment:
         SA_PASSWORD: "YourStrong!Passw0rd"
         ACCEPT_EULA: "Y"
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15682:80"
+      - "5682:80"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
