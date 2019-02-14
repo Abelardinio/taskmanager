@@ -16,3 +16,8 @@ services:
      - "5001:5001"
     volumes:
      - .:/code
+  apidb:
+    image: "microsoft/mssql-server-linux"
+    environment:
+        SA_PASSWORD: "YourStrong!Passw0rd"
+        ACCEPT_EULA: "Y"
