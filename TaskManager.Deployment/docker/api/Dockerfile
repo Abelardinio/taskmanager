@@ -22,4 +22,5 @@ RUN dotnet publish "TaskManager.WebApi.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+COPY ["TaskManager.Deployment/docker/api/appsettings.prod.json", "."]
 ENTRYPOINT ["dotnet", "TaskManager.WebApi.dll"]

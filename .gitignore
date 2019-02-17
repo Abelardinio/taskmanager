@@ -1,7 +1,5 @@
 *.suo
 *.user
-appsettings.dev.json
-appsettings.prod.json
 bin
 obj
 packages

@@ -5,28 +5,31 @@ services:
       context: .
       dockerfile: ./TaskManager.Deployment/docker/api/Dockerfile
     ports:
-     - "5000:5000"
+     - "5000:80"
     volumes:
      - .:/code
+    environment:
+     - ASPNETCORE_ENVIRONMENT=prod
   messaging:
     build:
       context: .
       dockerfile: ./TaskManager.Deployment/docker/messaging/Dockerfile
     ports:
-     - "5001:5001"
+     - "5001:80"
     volumes:
      - .:/code
-  apidb:
-    image: "microsoft/mssql-server-linux"
     environment:
-        SA_PASSWORD: "YourStrong!Passw0rd"
-        ACCEPT_EULA: "Y"
+     - ASPNETCORE_ENVIRONMENT=prod
+  apidb:
+    build:
+      context: .
+      dockerfile: ./TaskManager.Deployment/docker/apidb/Dockerfile
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbit"
     ports:
-      - "15682:80"
-      - "5682:80"
+      - "15672"
+      - "5672"
     labels:
       NAME: "rabbitmq"
     volumes:
