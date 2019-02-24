@@ -22,8 +22,8 @@ services:
      - ASPNETCORE_ENVIRONMENT=prod
   apidb:
     build:
-      context: .
-      dockerfile: ./TaskManager.Deployment/docker/apidb/Dockerfile
+      context: ./TaskManager.Deployment
+      dockerfile: ./docker/apidb/Dockerfile
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbit"

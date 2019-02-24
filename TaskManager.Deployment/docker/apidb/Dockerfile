@@ -1,7 +1,7 @@
 FROM microsoft/mssql-server-linux
 
 RUN mkdir -p /opt/mssql-scripts
-COPY ["TaskManager.Deployment/CreateDatabaseAndUser.sql", "/opt/mssql-scripts"]
+COPY ["CreateDatabaseAndUser.sql", "/opt/mssql-scripts"]
 
 ENV MSSQL_SA_PASSWORD=P@ssw0rd
 ENV ACCEPT_EULA=Y
