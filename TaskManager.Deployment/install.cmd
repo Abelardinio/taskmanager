@@ -6,12 +6,4 @@ echo.  >> %WINDIR%\System32\Drivers\Etc\Hosts
 echo 127.0.0.1 taskmanager >> %WINDIR%\System32\Drivers\Etc\Hosts
 cd ..\TaskManager.Deployment
 
-cd ..\TaskManager.WebApi
-dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-
-cd ..\TaskManager.MessagingService
-dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-
-cd ..\TaskManager.Client
-call npm install
-ng build --prod --extract-css=false
+call build FolderProfile
