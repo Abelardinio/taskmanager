@@ -2,27 +2,23 @@ version: '3'
 services:
   api:
     build:
-      context: ./TaskManager.Deployment/docker/api
+      context: ./docker/api
       dockerfile: ./Dockerfile
-    ports:
-     - "5000:80"
     volumes:
      - .:/code
     environment:
      - ASPNETCORE_ENVIRONMENT=prod
   messaging:
     build:
-      context: ./TaskManager.Deployment/docker/messaging
+      context: ./docker/messaging
       dockerfile: ./Dockerfile
-    ports:
-     - "5001:80"
     volumes:
      - .:/code
     environment:
      - ASPNETCORE_ENVIRONMENT=prod
   apidb:
     build:
-      context: ./TaskManager.Deployment
+      context: .
       dockerfile: ./docker/apidb/Dockerfile
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -36,7 +32,7 @@ services:
       - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
   nginx:
     build:
-      context: ./TaskManager.Deployment/docker/nginx
+      context: ./docker/nginx
       dockerfile: ./Dockerfile
     ports:
-     - "5002:80"
+     - "5000:80"
