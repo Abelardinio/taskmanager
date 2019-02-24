@@ -1,1 +1,1 @@
-call build PackageProfile
+call build PackageProfile ../TaskManager.Deployment/docker/nginx/bin

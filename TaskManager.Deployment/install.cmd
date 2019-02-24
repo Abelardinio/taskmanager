@@ -6,4 +6,4 @@ echo.  >> %WINDIR%\System32\Drivers\Etc\Hosts
 echo 127.0.0.1 taskmanager >> %WINDIR%\System32\Drivers\Etc\Hosts
 cd ..\TaskManager.Deployment
 
-call build FolderProfile
+call build FolderProfile dist/task-manager-client
