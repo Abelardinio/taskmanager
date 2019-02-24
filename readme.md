@@ -34,7 +34,27 @@ install
 
 ```
 
-* The appliaction now is available at http:\\taskmanager
+* The appliaction now is available at http://taskmanager
+
+## Docker
+
+* Execute cmd within TaskManager.Deployment folder
+* Execute command:
+
+```
+package
+
+```
+
+* Execute command:
+
+```
+cd ..\TaskManager.Deployment
+docker-compose up -d
+
+```
+* Ensure all containers are _up_
+* The site is availbale by the url http://localhost:5000
 
 ## To run developer server:
 
