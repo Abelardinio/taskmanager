@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.WebApi", "TaskManager.WebApi\TaskManager.WebApi.csproj", "{4ED54743-6A83-45FD-8C83-FCD71C587AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.WebApi", "TaskManager.WebApi\TaskManager.WebApi.csproj", "{4ED54743-6A83-45FD-8C83-FCD71C587AD7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Core", "TaskManager.Core\TaskManager.Core.csproj", "{0939C197-8A01-4F8D-9D5E-80079327562E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.DbConnection", "TaskManager.DbConnection\TaskManager.DbConnection.csproj", "{834F3872-BC9F-4541-A6F0-D289F3A143A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.DbConnection", "TaskManager.DbConnection\TaskManager.DbConnection.csproj", "{834F3872-BC9F-4541-A6F0-D289F3A143A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Data", "TaskManager.Data\TaskManager.Data.csproj", "{F63A2721-A11D-4E17-A825-83848C812727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Data", "TaskManager.Data\TaskManager.Data.csproj", "{F63A2721-A11D-4E17-A825-83848C812727}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.Common", "TaskManager.Common", "{A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Common.Resources", "TaskManager.Common.Resources\TaskManager.Common.Resources.csproj", "{F953E910-A362-4414-A130-2B8D5F33B9F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.Resources", "TaskManager.Common.Resources\TaskManager.Common.Resources.csproj", "{F953E910-A362-4414-A130-2B8D5F33B9F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.Tests", "TaskManager.Tests", "{CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Tests.Unit", "TaskManager.Tests.Unit\TaskManager.Tests.Unit.csproj", "{DF9D00DD-4598-4EF0-8C18-7925F5B405EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit", "TaskManager.Tests.Unit\TaskManager.Tests.Unit.csproj", "{DF9D00DD-4598-4EF0-8C18-7925F5B405EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService", "TaskManager.MessagingService\TaskManager.MessagingService.csproj", "{5ACD06AD-99B0-4296-B46C-A503A7D20B38}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.AspNetCore", "TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj", "{4B55EDB8-DC33-4F81-85CB-8FD6ECC7FFA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit.MessagingService", "TaskManager.Tests.Unit.MessagingService\TaskManager.Tests.Unit.MessagingService.csproj", "{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Common.DbConnection", "TaskManager.Common.DbConnection\TaskManager.Common.DbConnection.csproj", "{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{DF9D00DD-4598-4EF0-8C18-7925F5B405EF} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
 		{4B55EDB8-DC33-4F81-85CB-8FD6ECC7FFA5} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
+		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BCF9DE-B1F3-48E5-AB19-4625D3CCCFBB}
