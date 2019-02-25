@@ -1,6 +1,6 @@
 ﻿using TaskManager.Common.AspNetCore.AppSettings;
 
-namespace TaskManager.Data.AppSettings
+namespace TaskManager.Common.Data.AppSettings
 {
     public class AppSettingsModel : AppSettingsModelBase
     {

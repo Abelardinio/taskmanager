@@ -8,6 +8,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
+      <ProjectReference Include="..\TaskManager.Common.Data\TaskManager.Common.Data.csproj" />
       <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
       <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj" />
       <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />

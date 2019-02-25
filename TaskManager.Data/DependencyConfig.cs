@@ -1,5 +1,7 @@
 ﻿using Ninject;
 using Ninject.Extensions.NamedScope;
+using TaskManager.Common.Data.AppSettings;
+using TaskManager.Common.Data;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
@@ -27,7 +29,7 @@ namespace TaskManager.Data
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<ITaskDataProvider>().To<TaskDataProvider>();
-            kernel.Bind<IConnectionSettings, IDbConnectionSettings>().To<AppSettings.AppSettings>().InSingletonScope();
+            kernel.Bind<IConnectionSettings, IDbConnectionSettings>().To<AppSettings>().InSingletonScope();
         }
     }
 }

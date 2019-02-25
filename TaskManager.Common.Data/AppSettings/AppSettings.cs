@@ -2,7 +2,7 @@
 using TaskManager.Common.AspNetCore.AppSettings;
 using TaskManager.Core;
 
-namespace TaskManager.Data.AppSettings
+namespace TaskManager.Common.Data.AppSettings
 {
     public class AppSettings : AppSettingsBase, IDbConnectionSettings
     {
@@ -12,9 +12,6 @@ namespace TaskManager.Data.AppSettings
             _dbConnectionSettings = options.Value.DbConnectionSettings;
         }
 
-        public string ConnectionString
-        {
-            get { return _dbConnectionSettings.ConnectionString; }
-        }
+        public string ConnectionString => _dbConnectionSettings.ConnectionString;
     }
 }

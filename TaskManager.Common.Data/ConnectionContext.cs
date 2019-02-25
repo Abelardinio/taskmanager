@@ -1,6 +1,6 @@
 ﻿using TaskManager.Core.ConnectionContext;
 
-namespace TaskManager.Data
+namespace TaskManager.Common.Data
 {
     public class ConnectionContext : IConnectionContext
     {

@@ -1,15 +1,13 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Data;
-using TaskManager.Data.AppSettings;
 using TaskManager.DbConnection;
 using TaskManager.ServiceBus;
 

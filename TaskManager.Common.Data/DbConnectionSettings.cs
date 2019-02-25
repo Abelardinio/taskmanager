@@ -1,6 +1,6 @@
 ﻿using TaskManager.Core;
 
-namespace TaskManager.Data
+namespace TaskManager.Common.Data
 {
     public class DbConnectionSettings : IDbConnectionSettings
     {
