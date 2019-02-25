@@ -1,5 +1,13 @@
 <div class="flex-column flexible">
-  <h2>Add task</h2>
+  <div class="flex-row page-header">
+    <h2>Add task</h2>
+    <div class="nav-buttons">
+        <a routerLink="/tasks" class="btn">
+          <i class="fa fa-arrow-left"></i>
+          Back to Tasks
+        </a>
+    </div>
+  </div>
   <hr/>
   <form (ngSubmit)="onSubmit()" [class.validated]="formIsValidated" class="flex-column flexible" [formGroup]="form">
     <label>{{labels.Name}}:</label>

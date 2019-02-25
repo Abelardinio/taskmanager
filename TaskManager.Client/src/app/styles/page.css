@@ -15,6 +15,15 @@ hr {
     margin-right: 0;
 }
 
+.page-header {
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.page-header .nav-buttons {
+    padding-top: 5px;
+}
+
 h2 {
     font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
