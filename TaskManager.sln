@@ -27,9 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.AspNetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit.MessagingService", "TaskManager.Tests.Unit.MessagingService\TaskManager.Tests.Unit.MessagingService.csproj", "{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Common.DbConnection", "TaskManager.Common.DbConnection\TaskManager.Common.DbConnection.csproj", "{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.DbConnection", "TaskManager.Common.DbConnection\TaskManager.Common.DbConnection.csproj", "{091572E3-209F-4DA6-BDE8-2D3F4B648E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Common.Data", "TaskManager.Common.Data\TaskManager.Common.Data.csproj", "{AAF8CE61-BCB8-4B4E-ABBA-16A672968243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.Data", "TaskManager.Common.Data\TaskManager.Common.Data.csproj", "{AAF8CE61-BCB8-4B4E-ABBA-16A672968243}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.AuthService", "TaskManager.AuthService", "{BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.DbConnection", "TaskManager.AuthService.DbConnection\TaskManager.AuthService.DbConnection.csproj", "{3EB31442-1F83-46E9-9723-2289F549C172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.Data", "TaskManager.AuthService.Data\TaskManager.AuthService.Data.csproj", "{F72687E5-2856-40FB-B90E-407BB580DEC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.WebApi", "TaskManager.AuthService.WebApi\TaskManager.AuthService.WebApi.csproj", "{E80E007D-A597-4632-8CA4-5D90D20FAC99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +93,18 @@ Global
 		{AAF8CE61-BCB8-4B4E-ABBA-16A672968243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF8CE61-BCB8-4B4E-ABBA-16A672968243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF8CE61-BCB8-4B4E-ABBA-16A672968243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB31442-1F83-46E9-9723-2289F549C172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB31442-1F83-46E9-9723-2289F549C172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB31442-1F83-46E9-9723-2289F549C172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB31442-1F83-46E9-9723-2289F549C172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72687E5-2856-40FB-B90E-407BB580DEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72687E5-2856-40FB-B90E-407BB580DEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72687E5-2856-40FB-B90E-407BB580DEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72687E5-2856-40FB-B90E-407BB580DEC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +116,9 @@ Global
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
 		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
 		{AAF8CE61-BCB8-4B4E-ABBA-16A672968243} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
+		{3EB31442-1F83-46E9-9723-2289F549C172} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
+		{F72687E5-2856-40FB-B90E-407BB580DEC8} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
+		{E80E007D-A597-4632-8CA4-5D90D20FAC99} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BCF9DE-B1F3-48E5-AB19-4625D3CCCFBB}

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Design;
 
-namespace TaskManager.DbConnection
+namespace TaskManager.AuthService.DbConnection
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Context>
     {

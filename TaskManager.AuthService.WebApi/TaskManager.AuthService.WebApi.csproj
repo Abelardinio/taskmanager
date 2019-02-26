@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+	<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager.AuthService.Data\TaskManager.AuthService.Data.csproj" />
+    <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
+    <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app_offline.htm">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec Command="copy  app_offline.htm &quot;&quot;$(TargetDir)&quot;" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec Command="cd $(TargetDir)&#xD;&#xA;del app_offline.htm" />
+  </Target>
+  
+</Project>
