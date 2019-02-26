@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 using Ninject;
 using TaskManager.Core;
+using TaskManager.ServiceBus;
 
 namespace TaskManager.Common.AspNetCore
 {
@@ -73,7 +74,10 @@ namespace TaskManager.Common.AspNetCore
             RegisterApplicationComponents(app, _kernel);
         }
 
-        protected abstract void OnShutdown(IKernel kernel);
+        protected void OnShutdown(IKernel kernel)
+        {
+            kernel.Get<IConnectionStorage>().Get().Dispose();
+        }
 
         protected abstract void ConfigureServicesComponents(IServiceCollection services);
 

@@ -43,13 +43,6 @@ namespace TaskManager.WebApi
             {
                 storage.Get().Database.Migrate();
             }
-
-            
-        }
-
-        protected override void OnShutdown(IKernel kernel)
-        {
-            kernel.Get<IConnectionStorage>().Get().Dispose();
         }
     }
 }
