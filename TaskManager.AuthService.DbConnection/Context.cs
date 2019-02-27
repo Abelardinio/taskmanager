@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.AuthService.DbConnection.Entities;
 using TaskManager.Common.DbConnection;
 
 namespace TaskManager.AuthService.DbConnection
@@ -8,5 +9,7 @@ namespace TaskManager.AuthService.DbConnection
         public Context(string connectionString, bool isInTransactionScope) : base(connectionString, isInTransactionScope)
         {
         }
+
+        public virtual DbSet<UserEntity> Tasks { get; set; }
     }
 }
