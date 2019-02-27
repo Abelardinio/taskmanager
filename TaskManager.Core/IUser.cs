@@ -1,15 +1,11 @@
-﻿namespace TaskManager.Core
+﻿using System;
+
+namespace TaskManager.Core
 {
-    public interface IUser
+    public interface IUser : IUserInfo
     {
         int Id { get; }
 
-        string Username { get; }
-
-        string Email { get; }
-
-        string FirstName { get; }
-
-        string LastName { get; }
+        DateTime Created { get; }
     }
 }

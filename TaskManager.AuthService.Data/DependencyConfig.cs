@@ -1,10 +1,14 @@
 ﻿using Ninject;
 using Ninject.Extensions.NamedScope;
+using TaskManager.AuthService.Data.DataProviders;
 using TaskManager.AuthService.DbConnection;
+using TaskManager.AuthService.DbConnection.DataAccessors;
 using TaskManager.Common.Data;
 using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
+using TaskManager.Core.DataAccessors;
+using TaskManager.Core.DataProviders;
 using TaskManager.Core.EventAccessors;
 using TaskManager.ServiceBus;
 using TaskManager.ServiceBus.EventAccessors;
@@ -24,6 +28,8 @@ namespace TaskManager.AuthService.Data
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<IConnectionSettings, IDbConnectionSettings>().To<AppSettings>().InSingletonScope();
+            kernel.Bind<IUsersDataAccessor>().To<UsersDataAccessor>();
+            kernel.Bind<IUsersDataProvider>().To<UsersDataProvider>();
         }
     }
 }
