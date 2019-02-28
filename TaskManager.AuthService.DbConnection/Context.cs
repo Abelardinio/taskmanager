@@ -10,6 +10,6 @@ namespace TaskManager.AuthService.DbConnection
         {
         }
 
-        public virtual DbSet<UserEntity> Tasks { get; set; }
+        public virtual DbSet<UserEntity> Users { get; set; }
     }
 }

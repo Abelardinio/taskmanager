@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
+    <ProjectReference Include="..\TaskManager.Common.DbConnection\TaskManager.Common.DbConnection.csproj" />
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
   </ItemGroup>
 

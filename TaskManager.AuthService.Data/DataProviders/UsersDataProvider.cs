@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
@@ -17,6 +18,11 @@ namespace TaskManager.AuthService.Data.DataProviders
         public Task AddAsync(IUserInfo user)
         {
             return _usersDataAccessor.AddAsync(user);
+        }
+
+        public IQueryable<IUser> Get()
+        {
+            return _usersDataAccessor.Get();
         }
     }
 }

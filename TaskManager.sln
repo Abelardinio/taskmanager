@@ -33,11 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Common.Data", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.AuthService", "TaskManager.AuthService", "{BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.DbConnection", "TaskManager.AuthService.DbConnection\TaskManager.AuthService.DbConnection.csproj", "{3EB31442-1F83-46E9-9723-2289F549C172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.AuthService.DbConnection", "TaskManager.AuthService.DbConnection\TaskManager.AuthService.DbConnection.csproj", "{3EB31442-1F83-46E9-9723-2289F549C172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.Data", "TaskManager.AuthService.Data\TaskManager.AuthService.Data.csproj", "{F72687E5-2856-40FB-B90E-407BB580DEC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.AuthService.Data", "TaskManager.AuthService.Data\TaskManager.AuthService.Data.csproj", "{F72687E5-2856-40FB-B90E-407BB580DEC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.AuthService.WebApi", "TaskManager.AuthService.WebApi\TaskManager.AuthService.WebApi.csproj", "{E80E007D-A597-4632-8CA4-5D90D20FAC99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.AuthService.WebApi", "TaskManager.AuthService.WebApi\TaskManager.AuthService.WebApi.csproj", "{E80E007D-A597-4632-8CA4-5D90D20FAC99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Tests.Unit.AuthService", "TaskManager.Tests.Unit.AuthService\TaskManager.Tests.Unit.AuthService.csproj", "{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E80E007D-A597-4632-8CA4-5D90D20FAC99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{3EB31442-1F83-46E9-9723-2289F549C172} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
 		{F72687E5-2856-40FB-B90E-407BB580DEC8} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
 		{E80E007D-A597-4632-8CA4-5D90D20FAC99} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
+		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BCF9DE-B1F3-48E5-AB19-4625D3CCCFBB}

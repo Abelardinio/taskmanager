@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using TaskManager.AuthService.DbConnection.Entities;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
@@ -18,8 +19,13 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
         {
             var context = _contextStorage.Get();
 
-            context.Tasks.Add(new UserEntity(user));
+            context.Users.Add(new UserEntity(user));
             return context.SaveChangesAsync();
+        }
+
+        public IQueryable<IUser> Get()
+        {
+            return _contextStorage.Get().Users;
         }
     }
 }
