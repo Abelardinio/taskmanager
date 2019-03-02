@@ -20,7 +20,7 @@ import { PagedResult } from 'src/app/models/PagedResult';
   styleUrls: ['./tasks-page.component.css'],
   host: { 'class': 'flex-column flexible' }
 })
-export class TasksPageComponent extends TableBase<Task, TaskSortingColumn> implements OnInit {
+export class TasksPageComponent extends TableBase<Task> implements OnInit {
   public headers: TableHeaderInfo<TaskSortingColumn>[] =
     [new TableHeaderInfo('Name', 'column', TaskSortingColumn.Name),
     new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),

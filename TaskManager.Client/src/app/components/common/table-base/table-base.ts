@@ -21,15 +21,15 @@ class RowInfo<TRowModel> {
     };
 }
 
-export abstract class TableBase<TRowModel extends IRowModel, TSortingColumn> implements OnInit {
+export abstract class TableBase<TRowModel extends IRowModel> implements OnInit {
 
-    protected abstract filter: BaseFilter<TSortingColumn>;
+    protected abstract filter: BaseFilter;
     public isGridRefreshing: Boolean = false;
     public pagesCount: number;
     public rows: RowInfo<TRowModel>[];
     public selectedRow: RowInfo<TRowModel>;
 
-    protected abstract getAction(filter: BaseFilter<TSortingColumn>): Observable<PagedResult<TRowModel>>;
+    protected abstract getAction(filter: BaseFilter): Observable<PagedResult<TRowModel>>;
 
     public ngOnInit(): void {
         this.fetchData();

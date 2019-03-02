@@ -2,9 +2,9 @@ import { TaskSortingColumn } from './enums/TaskSortingColumn';
 import { NumberRange } from './NumberRange';
 import { PagingInfo } from './PagingInfo';
 import { SortingInfo } from './SortingInfo';
-import { BaseFilter } from './BaseFilter';
+import { BaseSortableFilter } from './BaseFilter';
 
-export class TaskFilter extends BaseFilter<TaskSortingColumn> {
+export class TaskFilter extends BaseSortableFilter<TaskSortingColumn> {
   constructor(
     public SortingInfo: SortingInfo<TaskSortingColumn>,
     public PagingInfo: PagingInfo,
