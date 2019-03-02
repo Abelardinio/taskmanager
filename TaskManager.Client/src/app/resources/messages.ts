@@ -4,12 +4,20 @@ export const Messages = {
         Completed: 'Task was successfully completed',
         Added: 'Task was successfully Added',
         Validation: {
-            NameRequired: 'Name is required.',
-            NameMinLength: 'Name must be between 8 and 100 characters long.',
             TimeToCompleteRequired: 'Time to complete can\'t be less then 1 hour.'
         }
     },
+    Users: {
+        Added: 'User was successfully Added'
+    },
     Common: {
-        FormValidationMessage: 'All the highlighted fields should be completed.'
+        FormValidationMessage: 'All the highlighted fields should be completed.',
+        Validation: {
+            Required: (fieldName: string) => fieldName + ' is required.',
+            LengthBetween:
+                (fieldName: string, minLength: number, maxLength: number) =>
+                    fieldName + ' must be between ' + minLength + ' and ' + maxLength + ' characters long.',
+            Email: 'Please provide a valid email address.'
+        }
     }
 };

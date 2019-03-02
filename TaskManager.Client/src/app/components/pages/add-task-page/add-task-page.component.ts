@@ -45,7 +45,7 @@ export class AddTaskPageComponent extends FormBase<TaskInfo> implements OnInit {
 
   public get name() { return this.form.get('name'); }
   public get timeToComplete() { return this.form.get('timeToComplete'); }
-  public get messages() { return Messages.Tasks.Validation; }
+  public get messages() { return Messages; }
   public get labels() { return Labels.Tasks; }
 
 }

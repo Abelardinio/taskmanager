@@ -12,6 +12,12 @@ export const Labels = {
             DateTo: 'Date to...'
         }
     },
+    Users: {
+        Username: 'Username',
+        FirstName: 'First name',
+        LastName: 'Last name',
+        Email: 'Email',
+    },
     TimePicker: {
         Weeks: 'Weeks',
         Days: 'Days',

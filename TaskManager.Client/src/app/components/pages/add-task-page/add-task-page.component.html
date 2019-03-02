@@ -15,10 +15,10 @@
       <input type="text" formControlName="name" minlength="8" maxlength="100">
       <div class="validation-error" *ngIf="name.invalid && formIsValidated">
         <div *ngIf="name.errors.required">
-          {{messages.NameRequired}}
+          {{messages.Common.Validation.Required('Name')}}
         </div>
         <div *ngIf="name.errors.minlength">
-          {{messages.NameMinLength}}
+          {{messages.Common.Validation.LengthBetween('Name', 8, 100)}}
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="flex-row">
       <app-timepicker formControlName="timeToComplete" class="flex-row"></app-timepicker>
       <div>
-        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{messages.TimeToCompleteRequired}}</div>       
+        <div class="validation-error" *ngIf="timeToComplete.invalid && formIsValidated">{{messages.Tasks.Validation.TimeToCompleteRequired}}</div>
       </div>
     </div>
     <label>{{labels.Description}}:</label>

@@ -1,0 +1,57 @@
+<div class="flex-column flexible">
+    <div class="flex-row page-header">
+        <h2>Add user</h2>
+        <div class="nav-buttons">
+            <a routerLink="/users" class="btn">
+                <i class="fa fa-arrow-left"></i>
+                Back to Users
+            </a>
+        </div>
+    </div>
+    <hr />
+    <form (ngSubmit)="onSubmit()" [class.validated]="formIsValidated" class="flex-column flexible" [formGroup]="form">
+        <label>{{labels.Username}}:</label>
+        <div class="form-row">
+            <input type="text" formControlName="username" maxlength="100">
+            <div class="validation-error" *ngIf="username.invalid && formIsValidated">
+                <div *ngIf="username.errors.required">
+                    {{messages.Common.Validation.Required('Username')}}
+                </div>
+            </div>
+        </div>
+        <label>{{labels.FirstName}}:</label>
+        <div class="form-row">
+            <input type="text" formControlName="firstName" maxlength="100">
+            <div class="validation-error" *ngIf="firstName.invalid && formIsValidated">
+                <div *ngIf="firstName.errors.required">
+                    {{messages.Common.Validation.Required('First name')}}
+                </div>
+            </div>
+        </div>
+        <label>{{labels.LastName}}:</label>
+        <div class="form-row">
+            <input type="text" formControlName="lastName" maxlength="100">
+            <div class="validation-error" *ngIf="lastName.invalid && formIsValidated">
+                <div *ngIf="lastName.errors.required">
+                    {{messages.Common.Validation.Required('Last name')}}
+                </div>
+            </div>
+        </div>
+        <label>{{labels.Email}}:</label>
+        <div class="form-row">
+            <input type="text" formControlName="email" maxlength="100">
+            <div class="validation-error" *ngIf="email.invalid && formIsValidated">
+                <div *ngIf="email.errors.required">
+                    {{messages.Common.Validation.Required('Email')}}
+                </div>
+                <div *ngIf="email.errors.email">
+                    {{messages.Common.Validation.Email}}
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-right btn-submit" [disabled]="formIsLoading"> <i
+                    class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add user</button>
+        </div>
+    </form>
+</div>

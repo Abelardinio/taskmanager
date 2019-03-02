@@ -13,6 +13,7 @@ import { TaskDetailsComponent } from './components/panels/task-details/task-deta
 import { TimepickerComponent } from './components/common/timepicker/timepicker.component';
 import { TableComponent } from './components/common/table/table.component';
 import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-page.component';
+import { AddUserPageComponent } from './components/pages/add-user-page/add-user-page.component';
 import { TasksPageComponent } from './components/pages/tasks-page/tasks-page.component';
 import { TasksGridFilterComponent } from './components/filters/tasks-grid-filter/tasks-grid-filter.component';
 import { TableHeaderComponent } from './components/common/table/table-header/table-header.component';
@@ -30,6 +31,7 @@ import { MessagingServiceConnection } from './common/MessagingServiceConnection'
     TimepickerComponent,
     TableComponent,
     AddTaskPageComponent,
+    AddUserPageComponent,
     TasksPageComponent,
     TasksGridFilterComponent,
     TableHeaderComponent,
