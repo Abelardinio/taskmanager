@@ -16,6 +16,18 @@ services:
      - .:/code
     environment:
      - ASPNETCORE_ENVIRONMENT=prod
+  auth:
+    build:
+      context: ./docker/auth
+      dockerfile: ./Dockerfile
+    volumes:
+     - .:/code
+    environment:
+     - ASPNETCORE_ENVIRONMENT=prod
+  authdb:
+    build:
+      context: .
+      dockerfile: ./docker/authdb/Dockerfile
   apidb:
     build:
       context: .
