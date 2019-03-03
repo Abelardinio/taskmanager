@@ -17,6 +17,9 @@ export const Labels = {
         FirstName: 'First name',
         LastName: 'Last name',
         Email: 'Email',
+        Placeholders: {
+            Search: 'Search by username, first name, last name or email...'
+        }
     },
     TimePicker: {
         Weeks: 'Weeks',

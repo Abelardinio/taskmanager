@@ -1,0 +1,30 @@
+<div class="flex-column flexible">
+  <div class="flex-row page-header">
+      <h2>Users</h2>
+      <div class="nav-buttons">
+          <a routerLink="/users/add" class="btn">Add User</a>
+      </div>
+  </div>
+  <hr />
+  <div class="flex-column">
+      <app-users-grid-filter (filterChange)="onFilterChange()" [isRefreshing]="isGridRefreshing" [(filter)]="filter"></app-users-grid-filter>
+  </div>
+  <div class="flex-column flexible scrollable">
+      <div>
+          <app-table [elements]="rows" (rowSelected)="onRowSelected($event)">
+              <ng-template #headerTemplate>
+                  <app-table-header [headers]="headers" (ngModelChange)="onRefresh()"></app-table-header>
+              </ng-template>
+              <ng-template #rowTemplate let-element>
+                  <td class="username-column">{{ element.Model.Username }}</td>
+                  <td class="first-name-column">{{ element.Model.FirstName }}</td>
+                  <td class="last-name-column">{{ element.Model.LastName }}</td>
+                  <td class="email-column">{{ element.Model.Email }}</td>
+              </ng-template>
+          </app-table>
+      </div>
+  </div>
+  <div class="bordered-panel pager-container">
+      <app-pager [(ngModel)]="filter.PagingInfo" (ngModelChange)="onRefresh()" [pagesCount]="pagesCount"></app-pager>
+  </div>
+</div>

@@ -12,5 +12,5 @@ export class BaseSortableFilter<T> extends BaseFilter {
     constructor(
       public SortingInfo: SortingInfo<T>,
       public PagingInfo: PagingInfo
-    ) { super(PagingInfo) }
+    ) { super(PagingInfo); }
   }

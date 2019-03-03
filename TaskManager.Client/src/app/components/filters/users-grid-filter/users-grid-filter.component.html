@@ -1,0 +1,11 @@
+<div class="filter-panel bordered-panel flex-row">
+  <div class="flex-row filter-row flexible">
+    <app-search [(ngModel)]="filter.Value"
+                (ngModelChange)="onFilterChange()"
+                [placeholder]="labels.Placeholders.Search"
+                [className]="'flexible'" ></app-search>
+  </div>
+  <div >
+    <button class="btn refresh" (click)="onClearButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Clear</button>
+  </div>
+</div>
