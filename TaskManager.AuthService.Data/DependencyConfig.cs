@@ -27,9 +27,12 @@ namespace TaskManager.AuthService.Data
             kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
-            kernel.Bind<IConnectionSettings, IDbConnectionSettings>().To<AppSettings>().InSingletonScope();
+            kernel.Bind<IConnectionSettings, IDbConnectionSettings, IAuthenticationSettings>().To<AppSettings>().InSingletonScope();
             kernel.Bind<IUsersDataAccessor>().To<UsersDataAccessor>();
             kernel.Bind<IUsersDataProvider>().To<UsersDataProvider>();
+            kernel.Bind<ILoginDataProvider>().To<LoginDataProvider>();
+            kernel.Bind<IHashCreator>().To<HashCreator>();
+            kernel.Bind<ITokenProvider>().To<TokenProvider>();
         }
     }
 }

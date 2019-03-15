@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using TaskManager.AuthService.DbConnection.Entities;
 using TaskManager.AuthService.WebApi.Models;
-using TaskManager.Core;
 using Xunit;
 
 namespace TaskManager.Tests.Unit.AuthService.Filters
@@ -29,13 +26,13 @@ namespace TaskManager.Tests.Unit.AuthService.Filters
         private const string ThirdLastName = "Dawson";
         private const string ThirdEmail = "bendawson@yahoo.com";
 
-        private readonly IQueryable<IUser> _users;
+        private readonly IQueryable<UserModel> _users;
 
         public UsersFilterTests()
         {
-            _users = new List<IUser>
+            _users = new List<UserModel>
             {
-                new UserEntity
+                new UserModel
                 {
                     Id = FirstUserId,
                     Username = FirstUserName,
@@ -43,7 +40,7 @@ namespace TaskManager.Tests.Unit.AuthService.Filters
                     LastName = FirstLastName,
                     Email = FirstEmail
                 },
-                new UserEntity
+                new UserModel
                 {
                     Id = SecondUserId,
                     Username = SecondUserName,
@@ -51,7 +48,7 @@ namespace TaskManager.Tests.Unit.AuthService.Filters
                     LastName = SecondLastName,
                     Email = SecondEmail
                 },
-                new UserEntity
+                new UserModel
                 {
                     Id = ThirdUserId,
                     Username = ThirdUserName,
@@ -77,7 +74,7 @@ namespace TaskManager.Tests.Unit.AuthService.Filters
             AssertOnlyConatainsItems(result, userIds);
         }
 
-        private void AssertOnlyConatainsItems(List<IUser> users, int[] userIds)
+        private void AssertOnlyConatainsItems(List<UserModel> users, int[] userIds)
         {
             users.Should().HaveCount(userIds.Length);
 

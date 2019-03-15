@@ -8,5 +8,7 @@ namespace TaskManager.Core.DataAccessors
         Task AddAsync(IUserInfo task);
 
         IQueryable<IUser> Get();
+
+        Task SetPasswordAsync(int userId, string password);
     }
 }

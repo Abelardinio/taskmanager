@@ -3,11 +3,11 @@ using TaskManager.Core;
 
 namespace TaskManager.AuthService.WebApi.Models
 {
-    public class UsersFilter : IUnsortableFilter<IUser>
+    public class UsersFilter : IUnsortableFilter<UserModel>
     {
         public string Value { get; set; }
 
-        public IQueryable<IUser> Filter(IQueryable<IUser> input)
+        public IQueryable<UserModel> Filter(IQueryable<UserModel> input)
         {
             return input.Where(x =>
                 string.IsNullOrEmpty(Value) ||

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 using TaskManager.Common.Resources;
@@ -59,23 +58,9 @@ namespace TaskManager.Tests.Unit.DataAccessors
             _contextMock.Setup(x => x.SaveChangesAsync(default(CancellationToken))).ReturnsAsync(0);
             contextStorageMock.Setup(x => x.Get()).Returns(_contextMock.Object);
 
-            var tasks = new List<TaskEntity> { task, activeTask, completedTask, removedTask }.AsQueryable();
-
-            var mockSetTasks = new Mock<DbSet<TaskEntity>>();
-
-            mockSetTasks.As<IAsyncEnumerable<TaskEntity>>()
-                .Setup(m => m.GetEnumerator())
-                .Returns(new TestDbAsyncEnumerator<TaskEntity>(tasks.GetEnumerator()));
-
-            mockSetTasks.As<IQueryable<TaskEntity>>()
-                .Setup(m => m.Provider)
-                .Returns(new TestDbAsyncQueryProvider<TaskEntity>(tasks.Provider));
-
-            mockSetTasks.As<IQueryable<TaskEntity>>().Setup(m => m.Expression).Returns(tasks.Expression);
-            mockSetTasks.As<IQueryable<TaskEntity>>().Setup(m => m.ElementType).Returns(tasks.ElementType);
-            mockSetTasks.As<IQueryable<TaskEntity>>().Setup(m => m.GetEnumerator()).Returns(tasks.GetEnumerator());
-
-            _contextMock.SetupGet(x => x.Tasks).Returns(mockSetTasks.Object);
+            _contextMock.SetupGet(x => x.Tasks).Returns(Extensions
+                .GetDbSetMock(new List<TaskEntity> {task, activeTask, completedTask, removedTask}.AsQueryable())
+                .Object);
 
             _taskDataAccessor = new TaskDataAccessor(contextStorageMock.Object);
         }

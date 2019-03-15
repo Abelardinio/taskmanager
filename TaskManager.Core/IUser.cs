@@ -2,10 +2,12 @@
 
 namespace TaskManager.Core
 {
-    public interface IUser : IUserInfo
+    public interface IUser : IUserInfo, IUserLoginInfo
     {
-        int Id { get; }
-
         DateTime Created { get; }
+
+        string PasswordSalt { get; }
+
+        string Password { get; }
     }
 }

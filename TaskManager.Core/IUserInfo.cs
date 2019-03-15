@@ -1,8 +1,7 @@
 ﻿namespace TaskManager.Core
 {
-    public interface IUserInfo
+    public interface IUserInfo : IUsername
     {
-        string Username { get; }
 
         string Email { get; }
 

@@ -3,10 +3,12 @@ using TaskManager.Core;
 
 namespace TaskManager.AuthService.WebApi.Models
 {
-    public class UserModel : UserInfoModel, IUser
+    public class UserModel : UserInfoModel
     {
         public int Id { get; set; }
         public DateTime Created { get; }
+
+        public UserModel() { }
 
         public UserModel(IUser user)
         {

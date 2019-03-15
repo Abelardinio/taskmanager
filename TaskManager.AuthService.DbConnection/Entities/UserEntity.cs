@@ -9,6 +9,7 @@ namespace TaskManager.AuthService.DbConnection.Entities
     public class UserEntity : IUser
     {
         public UserEntity() { }
+
         public UserEntity(IUserInfo user)
         {
             Username = user.Username;
@@ -16,7 +17,7 @@ namespace TaskManager.AuthService.DbConnection.Entities
             FirstName = user.FirstName;
             LastName = user.LastName;
             Created = DateTime.Now;
-            PasswordSalt = System.Guid.NewGuid().ToString();
+            PasswordSalt = Guid.NewGuid().ToString();
         }
 
         public int Id { get; set; }
@@ -32,6 +33,9 @@ namespace TaskManager.AuthService.DbConnection.Entities
 
         [Required]
         public string LastName { get; set; }
+
+        [Required]
+        public string Password { get; set; }
 
         [Required]
         public string PasswordSalt { get; set; }

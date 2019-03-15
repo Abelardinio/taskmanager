@@ -32,7 +32,7 @@ namespace TaskManager.AuthService.WebApi.Controllers
 
         [HttpGet]
         [Route("users")]
-        public async Task<IPagedResult<IUser>> Get([FromQuery] UsersFilter filter)
+        public async Task<IPagedResult<UserModel>> Get([FromQuery] UsersFilter filter)
         {
             using (_context.Scope())
             {

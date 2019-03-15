@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Ninject;
 using TaskManager.Core;
@@ -13,7 +16,7 @@ using TaskManager.ServiceBus;
 namespace TaskManager.Common.AspNetCore
 {
     public abstract class StartupBase<TSettingsModel, TResolver> 
-        where TSettingsModel : class, new()
+        where TSettingsModel : class, IAuthenticationSettings, new()
         where TResolver : class, IDependencyResolver
     {
         private readonly IConfiguration _configuration;
@@ -43,6 +46,26 @@ namespace TaskManager.Common.AspNetCore
             services.Configure<TSettingsModel>(_configuration);
 
             _settings = services.BuildServiceProvider().GetService<IOptions<TSettingsModel>>();
+
+            var key = Encoding.ASCII.GetBytes(_settings.Value.SecretKey);
+
+            services.AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDependencyResolverCompatibility();
