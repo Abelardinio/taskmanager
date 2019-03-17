@@ -76,6 +76,8 @@ namespace TaskManager.Common.AspNetCore
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime lifetime)
         {
+            app.UseAuthentication();
+
             _kernel = new StandardKernel();
 
             // Register application services

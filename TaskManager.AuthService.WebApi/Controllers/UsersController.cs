@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.AuthService.WebApi.Models;
 using TaskManager.Core;
@@ -9,6 +10,7 @@ using TaskManager.Common.Data;
 
 namespace TaskManager.AuthService.WebApi.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly IUsersDataProvider _usersDataProvider;

@@ -13,7 +13,7 @@ export abstract class BaseService {
     constructor(localstorageAccessor: LocalStorageAccessor) {
         this.headers = new HttpHeaders();
         this.headers = this.headers.append('Content-Type', 'application/json');
-        this.headers = this.headers.append('Token', localstorageAccessor.token);
+        this.headers = this.headers.append('Authorization', 'Bearer ' + localstorageAccessor.token);
     }
 
     /**
