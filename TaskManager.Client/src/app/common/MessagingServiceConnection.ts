@@ -1,6 +1,7 @@
 import * as signalR from '@aspnet/signalr';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { LocalStorageAccessor } from './LocalStorageAccessor';
 
 @Injectable({
     providedIn: 'root',
@@ -13,6 +14,9 @@ export class MessagingServiceConnection {
     private connection: signalR.HubConnection;
     private isStarted: boolean;
 
+    public constructor(private _localStorageAccessor: LocalStorageAccessor){
+    }
+
     /**
      * Init connection.
      *
@@ -20,7 +24,7 @@ export class MessagingServiceConnection {
      */
     public init(connectionURl: string) {
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl(environment.MESSAGING_URL + connectionURl)
+            .withUrl(environment.MESSAGING_URL + connectionURl, { accessTokenFactory: () => this._localStorageAccessor.token })
             .build();
     }
 
