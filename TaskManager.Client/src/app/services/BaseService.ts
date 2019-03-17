@@ -1,6 +1,7 @@
 import { HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { NotificationsService } from '../../../node_modules/angular2-notifications';
+import { LocalStorageAccessor } from '../common/LocalStorageAccessor';
 
 /**
  * Base class for common functionality of http requests
@@ -9,9 +10,10 @@ export abstract class BaseService {
     protected headers: HttpHeaders;
     protected abstract notifications: NotificationsService;
 
-    constructor() {
+    constructor(localstorageAccessor: LocalStorageAccessor) {
         this.headers = new HttpHeaders();
         this.headers = this.headers.append('Content-Type', 'application/json');
+        this.headers = this.headers.append('Token', localstorageAccessor.token);
     }
 
     /**

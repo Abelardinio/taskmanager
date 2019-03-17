@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { catchError} from 'rxjs/operators';
 import { BaseService } from './BaseService';
 import { LoginModel } from '../models/LoginModel';
+import { LocalStorageAccessor } from '../common/LocalStorageAccessor';
 
 @Injectable({
     providedIn: 'root',
@@ -18,8 +19,9 @@ export class LoginService extends BaseService {
 
     constructor(
         protected notifications: NotificationsService,
-        private _httpClient: HttpClient) {
-        super();
+        private _httpClient: HttpClient,
+        localstorageAccessor: LocalStorageAccessor) {
+        super(localstorageAccessor);
     }
 
     /**

@@ -10,6 +10,7 @@ import { UserInfo } from '../models/UserInfo';
 import { UserFilter } from '../models/UserFilter';
 import { PagedResult } from '../models/PagedResult';
 import { User } from '../models/User';
+import { LocalStorageAccessor } from '../common/LocalStorageAccessor';
 
 @Injectable({
     providedIn: 'root',
@@ -22,8 +23,9 @@ export class UserService extends BaseService {
 
     constructor(
         protected notifications: NotificationsService,
-        private _httpClient: HttpClient) {
-        super();
+        private _httpClient: HttpClient,
+        localstorageAccessor: LocalStorageAccessor) {
+        super(localstorageAccessor);
     }
 
     /**

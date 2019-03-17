@@ -6,6 +6,7 @@ import { NotificationsService } from 'angular2-notifications';
 import { LoginService } from 'src/app/services/LoginService';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LocalStorageAccessor } from 'src/app/common/LocalStorageAccessor';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +20,8 @@ export class LoginPageComponent extends FormBase<LoginModel> implements OnInit {
     protected notifications: NotificationsService,
     private _formBuilder: FormBuilder,
     private _loginService: LoginService,
-    private router: Router) {
+    private _router: Router,
+    private _localStorageAccessor: LocalStorageAccessor) {
     super();
   }
 
@@ -28,8 +30,8 @@ export class LoginPageComponent extends FormBase<LoginModel> implements OnInit {
   }
 
   protected onSuccess(authResult) {
-    localStorage.setItem('token', authResult.Token);
-    this.router.navigate(['/']);
+    this._localStorageAccessor.token = authResult.Token;
+    this._router.navigate(['/']);
   }
 
   public ngOnInit() {

@@ -11,6 +11,7 @@ import { TaskFilter } from '../models/TaskFilter';
 import { PagedResult } from '../models/PagedResult';
 import { Task } from '../models/Task';
 import { MessagingServiceConnection } from '../common/MessagingServiceConnection';
+import { LocalStorageAccessor } from '../common/LocalStorageAccessor';
 
 @Injectable({
     providedIn: 'root',
@@ -24,8 +25,9 @@ export class TaskService extends BaseService {
     constructor(
         protected notifications: NotificationsService,
         private _httpClient: HttpClient,
-        private _messagingConnection: MessagingServiceConnection) {
-        super();
+        private _messagingConnection: MessagingServiceConnection,
+        localstorageAccessor: LocalStorageAccessor) {
+        super(localstorageAccessor);
 
         this._messagingConnection.init('/tasks');
     }
