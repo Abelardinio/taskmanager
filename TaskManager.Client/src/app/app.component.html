@@ -1,12 +1,16 @@
-<div class="flex-row flexible">
+<div class="flex-row flexible" *ngIf="isMenuPage">
   <div class="flex-column sidebar">
     <div class="flex-column">
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/tasks" class="button">Tasks</a>
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/users" class="button">Users</a>
     </div>
-  </div>  
+  </div>
   <div class="flex-column flexible content ">
     <simple-notifications [options]="{position:['top', 'right'], timeOut: 2500, showProgressBar: false }" ></simple-notifications>
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="isMenuPage"></router-outlet>
   </div>
+</div>
+<div *ngIf="!isMenuPage" class="flexible">
+  <simple-notifications [options]="{position:['top', 'right'], timeOut: 2500, showProgressBar: false }" ></simple-notifications>
+  <router-outlet *ngIf="!isMenuPage"></router-outlet>
 </div>

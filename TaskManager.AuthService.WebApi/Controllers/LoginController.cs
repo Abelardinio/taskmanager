@@ -20,12 +20,15 @@ namespace TaskManager.AuthService.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("login/auth")]
-        public async Task<string> Authenticate([FromBody] LoginModel model)
+        [Route("login")]
+        public async Task<object> Authenticate([FromBody] LoginModel model)
         {
             using (_context.Scope())
             {
-                return await _loginDataProvider.AuthenticateAsync(model.Username, model.Password);
+                return new
+                {
+                    Token = await _loginDataProvider.AuthenticateAsync(model.Username, model.Password)
+                };
             }
         }
     }

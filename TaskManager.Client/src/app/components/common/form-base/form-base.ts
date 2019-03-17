@@ -12,6 +12,7 @@ export abstract class FormBase<T> {
     protected abstract form: FormGroup;
     protected abstract notifications: NotificationsService;
     protected abstract submitAction(value: T): Observable<Object>;
+    protected onSuccess(authResult) {}
 
     public onSubmit() {
         if (this.form.valid) {
@@ -21,7 +22,7 @@ export abstract class FormBase<T> {
             this.form.disable();
             this.submitAction(result)
                 .pipe(finalize(() => this.onSubmitEnd()))
-                .subscribe();
+                .subscribe((authResult) => this.onSuccess(authResult));
         } else {
             this.formIsValidated = true;
             this.notifications.info(Messages.Common.FormValidationMessage);

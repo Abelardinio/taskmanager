@@ -1,0 +1,15 @@
+<div class="login-form">
+    <form (ngSubmit)="onSubmit()" class="flex-column flexible" [formGroup]="form">
+        <label>Username:</label>
+        <div class="form-row">
+            <input type="text" formControlName="username" maxlength="100">
+        </div>
+        <label>Password:</label>
+        <div class="form-row">
+            <input type="password" formControlName="password" maxlength="100">
+        </div>
+        <div>
+          <button type="submit" class="btn btn-submit" [disabled]="isSubmitDisabled"> <i class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Login</button>
+        </div>
+      </form>
+</div>

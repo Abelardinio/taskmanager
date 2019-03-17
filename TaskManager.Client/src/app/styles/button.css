@@ -21,8 +21,13 @@
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover:enabled{
     background-color: #3e8e41;
+}
+
+.btn:disabled{
+    cursor: auto;
+    background-color: #7faf81;
 }
 
 .btn, .btn-submit{
@@ -33,5 +38,3 @@
     text-decoration: none;
     display: inline-block;
 }
-
-  

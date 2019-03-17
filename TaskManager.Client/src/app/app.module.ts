@@ -24,6 +24,7 @@ import { PagerComponent } from './components/common/pager/pager.component';
 import { MessagingServiceConnection } from './common/MessagingServiceConnection';
 import { UsersPageComponent } from './components/pages/users-page/users-page.component';
 import { UsersGridFilterComponent } from './components/filters/users-grid-filter/users-grid-filter.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UsersGridFilterComponent } from './components/filters/users-grid-filter
     NumberRangeComponent,
     PagerComponent,
     UsersPageComponent,
-    UsersGridFilterComponent
+    UsersGridFilterComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

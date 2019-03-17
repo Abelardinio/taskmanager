@@ -1,0 +1,18 @@
+.login-form{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.btn-submit{
+    width: 205px;
+}
+
+.btn-submit:disabled{
+    
+}

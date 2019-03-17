@@ -12,4 +12,6 @@ export class AppComponent {
   constructor(private router: Router) {
 
   }
+
+  public get isMenuPage() { return this.router.url !== '/login'; }
 }
