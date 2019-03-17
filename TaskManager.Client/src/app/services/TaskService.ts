@@ -69,7 +69,7 @@ export class TaskService extends BaseService {
      * @param taskId - task Id
      */
     public Complete(taskId: number): Observable<Object> {
-        return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete', {})
+        return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete',{}, { headers: this.headers })
                                .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed); }),
                                      catchError(this.handleError()));
     }
@@ -79,7 +79,7 @@ export class TaskService extends BaseService {
      * @param taskId - task Id
      */
     public Delete(taskId: number): Observable<Object> {
-        return this._httpClient.delete(environment.API_URL + '/task/' + taskId, {})
+        return this._httpClient.delete(environment.API_URL + '/task/' + taskId, { headers: this.headers })
                                .pipe(tap(() => { this.notifications.success(Messages.Tasks.Removed); }),
                                      catchError(this.handleError()));
     }
