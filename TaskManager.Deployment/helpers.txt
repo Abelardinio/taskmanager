@@ -1,0 +1,2 @@
+// Insert new user
+docker-compose exec authdb /opt/mssql-tools/bin/sqlcmd -U sa -P P@ssw0rd -Q "USE TaskManagerAuth insert into Users (Username, Email, FirstName, LastName, PasswordSalt, Created) VALUES ('user', 'user@user.com', 'John', 'Bernthal', 'ddfa6cda-d086-4102-ad2d-e2f1bc699231', '2019-02-28 00:17:24.4864591')"
