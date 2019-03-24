@@ -9,5 +9,6 @@ namespace TaskManager.Core
         int Priority { get; }
         DateTime TimeToComplete { get; }
         DateTime Added { get; }
+        int? FeatureId { get; }
     }
 }

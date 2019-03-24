@@ -10,5 +10,6 @@ namespace TaskManager.WebApi.Model
         public int Priority { get; set; }
         public DateTime TimeToComplete { get; set; }
         public DateTime Added { get; set; }
+        public int? FeatureId { get; set; }
     }
 }
