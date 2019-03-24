@@ -69,9 +69,9 @@ export class TaskService extends BaseService {
      * @param taskId - task Id
      */
     public Complete(taskId: number): Observable<Object> {
-        return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete',{}, { headers: this.headers })
-                               .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed); }),
-                                     catchError(this.handleError()));
+        return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/complete', {}, { headers: this.headers })
+            .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed); }),
+                catchError(this.handleError()));
     }
 
     /**

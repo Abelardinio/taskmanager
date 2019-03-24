@@ -25,6 +25,8 @@ import { MessagingServiceConnection } from './common/MessagingServiceConnection'
 import { UsersPageComponent } from './components/pages/users-page/users-page.component';
 import { UsersGridFilterComponent } from './components/filters/users-grid-filter/users-grid-filter.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { ProjectsPageComponent } from './components/pages/projects-page/projects-page.component';
+import { ProjectsGridFilterComponent } from './components/filters/projects-grid-filter/projects-grid-filter.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
     PagerComponent,
     UsersPageComponent,
     UsersGridFilterComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ProjectsPageComponent,
+    ProjectsGridFilterComponent
   ],
   imports: [
     BrowserModule,

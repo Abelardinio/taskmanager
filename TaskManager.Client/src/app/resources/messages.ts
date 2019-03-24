@@ -7,6 +7,9 @@ export const Messages = {
             TimeToCompleteRequired: 'Time to complete can\'t be less then 1 hour.'
         }
     },
+    Projects: {
+        Added: 'Project was successfully Added'
+    },
     Users: {
         Added: 'User was successfully Added'
     },

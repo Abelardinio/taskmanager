@@ -1,0 +1,27 @@
+<div class="flex-column flexible">
+  <div class="flex-row page-header">
+      <h2>Projects</h2>
+      <div class="nav-buttons">
+          <a routerLink="/projects/add" class="btn">Add Project</a>
+      </div>
+  </div>
+  <hr />
+  <div class="flex-column">
+      <app-projects-grid-filter (filterChange)="onFilterChange()" [isRefreshing]="isGridRefreshing" [(filter)]="filter"></app-projects-grid-filter>
+  </div>
+  <div class="flex-column flexible scrollable">
+      <div>
+          <app-table [elements]="rows" (rowSelected)="onRowSelected($event)">
+              <ng-template #headerTemplate>
+                  <app-table-header [headers]="headers" (ngModelChange)="onRefresh()"></app-table-header>
+              </ng-template>
+              <ng-template #rowTemplate let-element>
+                  <td class="name-column">{{ element.Model.Name }}</td>
+              </ng-template>
+          </app-table>
+      </div>
+  </div>
+  <div class="bordered-panel pager-container">
+      <app-pager [(ngModel)]="filter.PagingInfo" (ngModelChange)="onRefresh()" [pagesCount]="pagesCount"></app-pager>
+  </div>
+</div>

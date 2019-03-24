@@ -14,7 +14,7 @@ export class MessagingServiceConnection {
     private connection: signalR.HubConnection;
     private isStarted: boolean;
 
-    public constructor(private _localStorageAccessor: LocalStorageAccessor){
+    public constructor(private _localStorageAccessor: LocalStorageAccessor) {
     }
 
     /**
