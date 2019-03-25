@@ -1,0 +1,31 @@
+<div class="flex-column flexible">
+  <div class="flex-row page-header">
+      <h2>Add user</h2>
+      <div class="nav-buttons">
+          <a routerLink="/projects" class="btn">
+              <i class="fa fa-arrow-left"></i>
+              Back to Projects
+          </a>
+      </div>
+  </div>
+  <hr />
+  <form (ngSubmit)="onSubmit()" [class.validated]="formIsValidated" class="flex-column flexible" [formGroup]="form">
+      <label>{{labels.Name}}:</label>
+      <div class="form-row">
+          <input type="text" formControlName="name" maxlength="100">
+          <div class="validation-error" *ngIf="name.invalid && formIsValidated">
+              <div *ngIf="name.errors.required">
+                  {{messages.Common.Validation.Required('Project name')}}
+              </div>
+          </div>
+      </div>
+      <label>{{labels.Description}}:</label>
+      <div class="flexible flex-column textarea-container">
+        <textarea class="flexible" type="text" name="description" formControlName="description" maxlength="1000"></textarea>
+      </div>
+      <div>
+          <button type="submit" class="btn btn-right btn-submit" [disabled]="formIsLoading"> <i
+                  class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add project</button>
+      </div>
+  </form>
+</div>

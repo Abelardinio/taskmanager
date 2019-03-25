@@ -22,6 +22,8 @@ export const Labels = {
         }
     },
     Projects: {
+        Name: 'Project name',
+        Description: 'Description',
         Placeholders: {
             Search: 'Search by project name...'
         }

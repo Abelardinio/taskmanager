@@ -7,6 +7,7 @@ import { UsersPageComponent } from './components/pages/users-page/users-page.com
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { LoginActivate } from './common/LoginActivate';
 import { ProjectsPageComponent } from './components/pages/projects-page/projects-page.component';
+import { AddProjectPageComponent } from './components/pages/add-project-page/add-project-page.component';
 
 const routes: Routes = [
   { path: 'tasks', component: TasksPageComponent, canActivate: [LoginActivate] },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'users', component: UsersPageComponent, canActivate: [LoginActivate] },
   { path: 'users/add', component: AddUserPageComponent, canActivate: [LoginActivate] },
   { path: 'projects', component: ProjectsPageComponent, canActivate: [LoginActivate] },
+  { path: 'projects/add', component: AddProjectPageComponent, canActivate: [LoginActivate] },
   { path: '', redirectTo: '/tasks', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent }
 ];

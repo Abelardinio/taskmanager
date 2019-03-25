@@ -27,6 +27,7 @@ import { UsersGridFilterComponent } from './components/filters/users-grid-filter
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { ProjectsPageComponent } from './components/pages/projects-page/projects-page.component';
 import { ProjectsGridFilterComponent } from './components/filters/projects-grid-filter/projects-grid-filter.component';
+import { AddProjectPageComponent } from './components/pages/add-project-page/add-project-page.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ProjectsGridFilterComponent } from './components/filters/projects-grid-
     UsersGridFilterComponent,
     LoginPageComponent,
     ProjectsPageComponent,
-    ProjectsGridFilterComponent
+    ProjectsGridFilterComponent,
+    AddProjectPageComponent
   ],
   imports: [
     BrowserModule,
