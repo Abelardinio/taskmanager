@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 import { TableBase } from './table-base';
-import { BaseFilter } from 'src/app/models/BaseFilter';
+import { BaseSortableFilter } from 'src/app/models/BaseFilter';
 import { PagedResult } from 'src/app/models/PagedResult';
 import * as _ from 'lodash';
 
-class TableBaseTestClass extends TableBase<any, number> {
+class TableBaseTestClass extends TableBase<any> {
     public getActionObservable: Observable<PagedResult<any>>;
-    public filter: BaseFilter<number>;
+    public filter: BaseSortableFilter<number>;
     public objects: PagedResult<any> = new PagedResult<any>([{ Id: 1 }, { Id: 2 }, { Id: 3 }], 5);
     public onLoadComplete: () => void;
     constructor() {
@@ -28,7 +28,7 @@ class TableBaseTestClass extends TableBase<any, number> {
     }
 
 
-    public getAction(filter: BaseFilter<number>): Observable<PagedResult<any>> {
+    public getAction(filter: BaseSortableFilter<number>): Observable<PagedResult<any>> {
         return this.getActionObservable;
     }
 }

@@ -28,6 +28,5 @@ export class SearchComponent extends ValueAccessorBase<string> implements OnInit
 
   public onValueChanged = (value: string) => {
     this.value = value;
-    this.onValueChange();
   }
 }
