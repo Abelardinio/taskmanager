@@ -30,7 +30,7 @@ export class FeatureService extends BaseService {
      */
     public Add(featureInfo: FeatureInfo): Observable<Object> {
         return this._httpClient.post(environment.API_URL + '/features', JSON.stringify(featureInfo), { headers: this.headers })
-            .pipe(tap(() => { this.notifications.success(Messages.Projects.Added); }),
+            .pipe(tap(() => { this.notifications.success(Messages.Features.Added); }),
                 catchError(this.handleError()));
     }
 

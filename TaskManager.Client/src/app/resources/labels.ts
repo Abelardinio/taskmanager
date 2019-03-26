@@ -31,6 +31,7 @@ export const Labels = {
     Features: {
         Name: 'Feature name',
         Description: 'Description',
+        SelectProject: 'Select project',
         Placeholders: {
             Search: 'Search by feature name...'
         }

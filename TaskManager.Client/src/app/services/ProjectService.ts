@@ -11,6 +11,7 @@ import { Messages } from '../resources/messages';
 import { Project } from '../models/Project';
 import { PagedResult } from '../models/PagedResult';
 import { ProjectFilter } from '../models/ProjectFilter';
+import { Lookup } from '../models/Lookup';
 
 @Injectable({
     providedIn: 'root',
@@ -46,5 +47,11 @@ export class ProjectService extends BaseService {
         return <Observable<PagedResult<Project>>>this._httpClient
             .get(environment.API_URL + '/projects', { headers: this.headers, params: params })
             .pipe(catchError(this.handleError()));
+    }
+
+    public GetLookup(): Observable<Lookup[]> {
+        return <Observable<Lookup[]>>this._httpClient
+        .get(environment.API_URL + '/projects/lookup', { headers: this.headers,  })
+        .pipe(catchError(this.handleError()));
     }
 }

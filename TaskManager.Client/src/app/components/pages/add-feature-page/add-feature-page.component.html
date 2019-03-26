@@ -19,6 +19,15 @@
               </div>
           </div>
       </div>
+      <label>{{labels.SelectProject}}:</label>
+      <div class="form-row">
+        <ng-select class="custom project-select" [items]="projectsArray" [searchable]="false" bindLabel="Name" bindValue="Id" formControlName="projectId"></ng-select>
+        <div class="validation-error project-validation-message" *ngIf="projectId.invalid && formIsValidated">
+          <div *ngIf="projectId.errors.required">
+              {{messages.Features.Validation.ProjectIsRequired }}
+          </div>
+      </div>
+      </div>
       <label>{{labels.Description}}:</label>
       <div class="flexible flex-column textarea-container">
         <textarea class="flexible" type="text" name="description" formControlName="description" maxlength="1000"></textarea>

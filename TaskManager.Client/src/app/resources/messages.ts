@@ -10,6 +10,12 @@ export const Messages = {
     Projects: {
         Added: 'Project was successfully Added'
     },
+    Features: {
+        Added: 'Feature was successfully Added',
+        Validation: {
+            ProjectIsRequired: 'You should specify the project'
+        }
+    },
     Users: {
         Added: 'User was successfully Added'
     },

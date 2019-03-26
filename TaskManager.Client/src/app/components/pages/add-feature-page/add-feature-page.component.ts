@@ -7,6 +7,8 @@ import { Labels } from '../../../resources/labels';
 import { FormBase } from '../../common/form-base/form-base';
 import { FeatureInfo } from 'src/app/models/FeatureInfo';
 import { FeatureService } from 'src/app/services/FeatureService';
+import { ProjectService } from 'src/app/services/ProjectService';
+import { Lookup } from 'src/app/models/Lookup';
 @Component({
     selector: 'app-add-feature-page',
     templateUrl: './add-feature-page.component.html',
@@ -16,19 +18,24 @@ import { FeatureService } from 'src/app/services/FeatureService';
 
   export class AddFeaturePageComponent extends FormBase<FeatureInfo> implements OnInit {
     public form: FormGroup;
+    public projectsArray: Lookup[];
 
     public constructor(
       protected notifications: NotificationsService,
       private _formBuilder: FormBuilder,
-      private _featureService: FeatureService) {
+      private _featureService: FeatureService,
+      private _projectService: ProjectService) {
       super();
     }
 
     public ngOnInit() {
       this.form = this._formBuilder.group({
         name: new FormControl('', [Validators.required, Validators.maxLength(this.maxLength)]),
-        description: new FormControl('')
+        description: new FormControl(''),
+        projectId: new FormControl('', [Validators.required])
       });
+
+      this._projectService.GetLookup().subscribe(projects => this.projectsArray = projects);
     }
 
     protected submitAction(value: FeatureInfo): Observable<Object> {
@@ -37,7 +44,8 @@ import { FeatureService } from 'src/app/services/FeatureService';
 
     public get name() { return this.form.get('name'); }
     public get description() { return this.form.get('description'); }
+    public get projectId() { return this.form.get('projectId'); }
     public get messages() { return Messages; }
-    public get labels() { return Labels.Projects; }
+    public get labels() { return Labels.Features; }
     private get maxLength() { return 100; }
   }
