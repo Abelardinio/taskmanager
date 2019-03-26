@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ProjectFilter } from 'src/app/models/ProjectFilter';
 import { Labels } from 'src/app/resources/labels';
 import { FeatureFilter } from 'src/app/models/FeatureFilter';
 

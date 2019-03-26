@@ -2,9 +2,9 @@
   <div class="flex-row page-header">
       <h2>Add feature</h2>
       <div class="nav-buttons">
-          <a routerLink="/projects" class="btn">
+          <a routerLink="/features" class="btn">
               <i class="fa fa-arrow-left"></i>
-              Back to Projects
+              Back to Features
           </a>
       </div>
   </div>
@@ -15,7 +15,7 @@
           <input type="text" formControlName="name" maxlength="100">
           <div class="validation-error" *ngIf="name.invalid && formIsValidated">
               <div *ngIf="name.errors.required">
-                  {{messages.Common.Validation.Required('Project name')}}
+                  {{messages.Common.Validation.Required('Feature name')}}
               </div>
           </div>
       </div>
@@ -25,7 +25,7 @@
       </div>
       <div>
           <button type="submit" class="btn btn-right btn-submit" [disabled]="formIsLoading"> <i
-                  class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add project</button>
+                  class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add feature</button>
       </div>
   </form>
 </div>

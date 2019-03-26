@@ -30,6 +30,7 @@ import { ProjectsGridFilterComponent } from './components/filters/projects-grid-
 import { AddProjectPageComponent } from './components/pages/add-project-page/add-project-page.component';
 import { FeaturesPageComponent } from './components/pages/features-page/features-page.component';
 import { FeaturesGridFilterComponent } from './components/filters/features-grid-filter/features-grid-filter.component';
+import { AddFeaturePageComponent } from './components/pages/add-feature-page/add-feature-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FeaturesGridFilterComponent } from './components/filters/features-grid-
     ProjectsGridFilterComponent,
     AddProjectPageComponent,
     FeaturesPageComponent,
-    FeaturesGridFilterComponent
+    FeaturesGridFilterComponent,
+    AddFeaturePageComponent
   ],
   imports: [
     BrowserModule,

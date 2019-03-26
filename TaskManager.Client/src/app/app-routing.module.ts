@@ -9,6 +9,7 @@ import { LoginActivate } from './common/LoginActivate';
 import { ProjectsPageComponent } from './components/pages/projects-page/projects-page.component';
 import { AddProjectPageComponent } from './components/pages/add-project-page/add-project-page.component';
 import { FeaturesPageComponent } from './components/pages/features-page/features-page.component';
+import { AddFeaturePageComponent } from './components/pages/add-feature-page/add-feature-page.component';
 
 const routes: Routes = [
   { path: 'tasks', component: TasksPageComponent, canActivate: [LoginActivate] },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsPageComponent, canActivate: [LoginActivate] },
   { path: 'projects/add', component: AddProjectPageComponent, canActivate: [LoginActivate] },
   { path: 'features', component: FeaturesPageComponent, canActivate: [LoginActivate] },
+  { path: 'features/add', component: AddFeaturePageComponent, canActivate: [LoginActivate] },
   { path: '', redirectTo: '/tasks', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent }
 ];
