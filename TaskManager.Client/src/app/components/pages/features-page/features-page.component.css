@@ -1,0 +1,19 @@
+table tr td, table tr th{
+    padding-left: 24px;
+}
+
+app-features-grid-filter{
+    padding-bottom: 5px;
+}
+
+.pager-container{
+    margin-top: 5px
+}
+
+app-table-header{
+    display: contents;
+}
+
+:host ::ng-deep table td, table th {
+    padding: 15.5px;
+}

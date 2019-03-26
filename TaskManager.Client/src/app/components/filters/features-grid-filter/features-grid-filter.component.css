@@ -1,0 +1,12 @@
+button.refresh{
+    width: 100px;
+    margin-left: 10px;
+}
+
+label{
+    margin: 8px 0 0 10px;
+}
+
+.filter-panel .filter-row > *{
+    margin-left: 10px;
+}

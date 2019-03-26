@@ -28,6 +28,13 @@ export const Labels = {
             Search: 'Search by project name...'
         }
     },
+    Features: {
+        Name: 'Feature name',
+        Description: 'Description',
+        Placeholders: {
+            Search: 'Search by feature name...'
+        }
+    },
     TimePicker: {
         Weeks: 'Weeks',
         Days: 'Days',
