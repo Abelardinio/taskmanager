@@ -10,3 +10,20 @@ label{
 .filter-panel .filter-row > *{
     margin-left: 10px;
 }
+
+:host ::ng-deep .ng-select .ng-select-container{
+    min-height: auto;
+}
+
+.ng-select{
+    margin-top: 10px;
+    padding-bottom: 0;
+}
+
+:host ::ng-deep .ng-select .ng-dropdown-panel{
+    top:100%;
+}
+
+:host ::ng-deep .ng-has-value{
+    margin-top: -22px;
+}

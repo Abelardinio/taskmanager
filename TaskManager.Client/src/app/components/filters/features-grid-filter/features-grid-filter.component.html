@@ -4,6 +4,15 @@
                 (ngModelChange)="onFilterChange()"
                 [placeholder]="labels.Placeholders.Search"
                 [className]="'flexible'" ></app-search>
+    <label>Project:</label>
+    <div>
+      <ng-select class="custom project-select"
+                [(ngModel)]="filter.ProjectId"
+                [items]="projectsArray"
+                [searchable]="false"
+                bindLabel="Name" bindValue="Id"
+                (change)="onFilterChange()"></ng-select>
+    </div>
   </div>
   <div >
     <button class="btn refresh" (click)="onClearButtonClick()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': isRefreshing}"></i>Clear</button>

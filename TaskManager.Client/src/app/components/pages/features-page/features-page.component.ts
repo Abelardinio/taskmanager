@@ -16,7 +16,8 @@ import { FeatureService } from 'src/app/services/FeatureService';
 })
 export class FeaturesPageComponent extends TableBase<Feature> implements OnInit {
   public headers: TableHeaderInfo<null>[] =
-    [new TableHeaderInfo('Name', 'name-column', null, false)];
+    [new TableHeaderInfo('Name', 'name-column', null, false),
+     new TableHeaderInfo('ProjectName', 'project-name-column', null, false)];
 
   public filter: FeatureFilter = new FeatureFilter(
     new PagingInfo(1, 20));

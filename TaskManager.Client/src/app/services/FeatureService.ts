@@ -42,6 +42,7 @@ export class FeatureService extends BaseService {
         params = params.append('value', filter.Value ? filter.Value.toString() : '');
         params = params.append('pageSize', filter.PagingInfo.Size.toString());
         params = params.append('pageNumber', filter.PagingInfo.Number.toString());
+        params = params.append('projectId', filter.ProjectId ? filter.ProjectId.toString() : '');
 
         return <Observable<PagedResult<Feature>>>this._httpClient
             .get(environment.API_URL + '/features', { headers: this.headers, params: params })

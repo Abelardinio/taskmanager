@@ -16,12 +16,14 @@ namespace TaskManager.WebApi.Controllers
     public class FeaturesController : Controller
     {
         private readonly IFeaturesDataProvider _featuresDataProvider;
+        private readonly IProjectsDataProvider _projectsDataProvider;
         private readonly IConnectionContext _context;
 
-        public FeaturesController(IFeaturesDataProvider featuresDataProvider, IConnectionContext context)
+        public FeaturesController(IFeaturesDataProvider featuresDataProvider, IConnectionContext context, IProjectsDataProvider projectsDataProvider)
         {
             _featuresDataProvider = featuresDataProvider;
             _context = context;
+            _projectsDataProvider = projectsDataProvider;
         }
         [HttpGet]
         [Route("features")]
@@ -29,7 +31,16 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _featuresDataProvider.Get().GetPagedResultAsync(filter);
+                var result = _featuresDataProvider.Get().Select(x => new FeatureModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ProjectId = x.ProjectId,
+                    Description = x.Description,
+                    ProjectName = _projectsDataProvider.Get().First(y => y.Id == x.ProjectId).Name
+                });
+
+                return await result.GetPagedResultAsync(filter);
             }
         }
 
