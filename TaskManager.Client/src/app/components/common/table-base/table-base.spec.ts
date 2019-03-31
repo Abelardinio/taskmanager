@@ -9,6 +9,7 @@ class TableBaseTestClass extends TableBase<any> {
     public filter: BaseSortableFilter<number>;
     public objects: PagedResult<any> = new PagedResult<any>([{ Id: 1 }, { Id: 2 }, { Id: 3 }], 5);
     public onLoadComplete: () => void;
+    public dataFetched = false;
     constructor() {
         super();
         this.getActionObservable = new Observable(observer => {
@@ -29,6 +30,7 @@ class TableBaseTestClass extends TableBase<any> {
 
 
     public getAction(filter: BaseSortableFilter<number>): Observable<PagedResult<any>> {
+        this.dataFetched = true;
         return this.getActionObservable;
     }
 }
@@ -40,14 +42,19 @@ describe('TableBase', () => {
         component = new TableBaseTestClass();
     });
 
-    it('should load data on NgInit call', (done: DoneFn) => {
+    it('should load data on NgInit call if fetchDataOnInit is true', (done: DoneFn) => {
         component.onLoadComplete = () => {
             expect(component.rows.length).toBe(3);
             expect(component.pagesCount).toBe(5);
             done();
         };
 
+        component.fetchDataOnInit = false;
         component.ngOnInit();
+        expect(component.dataFetched).toBe(false);
+        component.fetchDataOnInit = true;
+        component.ngOnInit();
+        expect(component.dataFetched).toBe(true);
     });
 
     it('should init system info for each item', (done: DoneFn) => {

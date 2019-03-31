@@ -1,0 +1,16 @@
+<div class="flex-column flexible">
+    <div class="flex-row page-header">
+        <h2>{{ project && project.Name}}</h2>
+        <div class="nav-buttons">
+            <a routerLink="/projects" class="btn">
+                <i class="fa fa-arrow-left"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+    <hr />
+    <label>Description:</label>
+    <p>{{ project && project.Description }}</p>
+    <label class="features-label">Features:</label>
+    <app-features-table [projectId]="project && project.Id" [projectIsSelected]="true"></app-features-table>
+</div>

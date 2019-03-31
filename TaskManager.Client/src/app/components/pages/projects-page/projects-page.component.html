@@ -16,6 +16,7 @@
                   <app-table-header [headers]="headers" (ngModelChange)="onRefresh()"></app-table-header>
               </ng-template>
               <ng-template #rowTemplate let-element>
+                    <td class="project-link-column"><a routerLink="/projects/{{ element.Model.Id }}">P{{ element.Model.Id }}: {{ element.Model.Name }}</a></td>
                   <td class="name-column">{{ element.Model.Name }}</td>
               </ng-template>
           </app-table>

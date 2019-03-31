@@ -16,7 +16,8 @@ import { PagedResult } from 'src/app/models/PagedResult';
 })
 export class ProjectsPageComponent extends TableBase<Project> implements OnInit {
   public headers: TableHeaderInfo<null>[] =
-    [new TableHeaderInfo('Name', 'name-column', null, false)];
+    [ new TableHeaderInfo('Project Link', 'project-link-column', null, false),
+      new TableHeaderInfo('Name', 'name-column', null, false)];
 
   public filter: ProjectFilter = new ProjectFilter(
     new PagingInfo(1, 20));

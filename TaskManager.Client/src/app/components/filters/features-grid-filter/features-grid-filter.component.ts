@@ -3,7 +3,6 @@ import { Labels } from 'src/app/resources/labels';
 import { FeatureFilter } from 'src/app/models/FeatureFilter';
 import { Lookup } from 'src/app/models/Lookup';
 import { ProjectService } from 'src/app/services/ProjectService';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-features-grid-filter',
@@ -13,6 +12,7 @@ import { filter } from 'rxjs/operators';
 export class FeaturesGridFilterComponent implements OnInit {
 
   @Input() public isRefreshing: boolean;
+  @Input() public isProjectFilterVisible = true;
   @Input() public filter: FeatureFilter;
   @Output() public filterChange = new EventEmitter<FeatureFilter>();
 
@@ -27,7 +27,9 @@ export class FeaturesGridFilterComponent implements OnInit {
 
   public onClearButtonClick() {
     this.filter.Value = null;
-    this.filter.ProjectId = null;
+    if (this.isProjectFilterVisible) {
+      this.filter.ProjectId = null;
+    }
     this.onFilterChange();
   }
 

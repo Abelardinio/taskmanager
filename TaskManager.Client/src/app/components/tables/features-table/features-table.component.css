@@ -1,8 +1,12 @@
+:host{
+    display:contents;
+}
+
 table tr td, table tr th{
     padding-left: 24px;
 }
 
-app-projects-grid-filter{
+app-features-grid-filter{
     padding-bottom: 5px;
 }
 
@@ -16,8 +20,4 @@ app-table-header{
 
 :host ::ng-deep table td, table th {
     padding: 15.5px;
-}
-
-.project-link-column{
-    width: 200px;
 }

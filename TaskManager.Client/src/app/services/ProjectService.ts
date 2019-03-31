@@ -49,6 +49,18 @@ export class ProjectService extends BaseService {
             .pipe(catchError(this.handleError()));
     }
 
+    /**
+     * Returns an observable of http get method which returns a project
+     */
+    public GetById(id: number): Observable<Project> {
+        return <Observable<Project>>this._httpClient
+            .get(environment.API_URL + '/projects/' + id, { headers: this.headers, })
+            .pipe(catchError(this.handleError()));
+    }
+
+    /**
+     * Returns an observable of http get method which returns a collection of project lookups
+     */
     public GetLookup(): Observable<Lookup[]> {
         return <Observable<Lookup[]>>this._httpClient
         .get(environment.API_URL + '/projects/lookup', { headers: this.headers,  })

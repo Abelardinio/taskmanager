@@ -34,6 +34,16 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("projects/{id}")]
+        public async Task<IProject> Get(int id)
+        {
+            using (_context.Scope())
+            {
+                return await _projectsDataProvider.Get().FirstOrDefaultAsync(x => x.Id == id);
+            }
+        }
+
         [HttpPost]
         [Route("projects")]
         public async Task Add([FromBody] ProjectInfoModel model)

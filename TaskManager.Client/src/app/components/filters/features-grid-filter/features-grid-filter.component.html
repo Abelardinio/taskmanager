@@ -4,8 +4,8 @@
                 (ngModelChange)="onFilterChange()"
                 [placeholder]="labels.Placeholders.Search"
                 [className]="'flexible'" ></app-search>
-    <label>Project:</label>
-    <div>
+    <label *ngIf="isProjectFilterVisible">Project:</label>
+    <div *ngIf="isProjectFilterVisible">
       <ng-select class="custom project-select"
                 [(ngModel)]="filter.ProjectId"
                 [items]="projectsArray"

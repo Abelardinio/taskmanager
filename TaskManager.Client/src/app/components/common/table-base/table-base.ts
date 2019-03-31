@@ -24,6 +24,7 @@ class RowInfo<TRowModel> {
 export abstract class TableBase<TRowModel extends IRowModel> implements OnInit {
 
     protected abstract filter: BaseFilter;
+    protected fetchDataOnInit: Boolean = true;
     public isGridRefreshing: Boolean = false;
     public pagesCount: number;
     public rows: RowInfo<TRowModel>[];
@@ -32,7 +33,9 @@ export abstract class TableBase<TRowModel extends IRowModel> implements OnInit {
     protected abstract getAction(filter: BaseFilter): Observable<PagedResult<TRowModel>>;
 
     public ngOnInit(): void {
-        this.fetchData();
+        if (this.fetchDataOnInit) {
+            this.fetchData();
+        }
     }
 
     public removeRow(id: number): void {

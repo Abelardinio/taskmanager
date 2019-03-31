@@ -31,6 +31,8 @@ import { AddProjectPageComponent } from './components/pages/add-project-page/add
 import { FeaturesPageComponent } from './components/pages/features-page/features-page.component';
 import { FeaturesGridFilterComponent } from './components/filters/features-grid-filter/features-grid-filter.component';
 import { AddFeaturePageComponent } from './components/pages/add-feature-page/add-feature-page.component';
+import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
+import { FeaturesTableComponent } from './components/tables/features-table/features-table.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { AddFeaturePageComponent } from './components/pages/add-feature-page/add
     AddProjectPageComponent,
     FeaturesPageComponent,
     FeaturesGridFilterComponent,
-    AddFeaturePageComponent
+    AddFeaturePageComponent,
+    ProjectPageComponent,
+    FeaturesTableComponent
   ],
   imports: [
     BrowserModule,
