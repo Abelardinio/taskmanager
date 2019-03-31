@@ -44,6 +44,16 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("features/{id}")]
+        public async Task<IFeature> Get(int id)
+        {
+            using (_context.Scope())
+            {
+                return await _featuresDataProvider.Get().FirstOrDefaultAsync(x => x.Id == id);
+            }
+        }
+
         [HttpPost]
         [Route("features")]
         public async Task Add([FromBody] FeatureInfoModel model)
@@ -57,11 +67,13 @@ namespace TaskManager.WebApi.Controllers
 
         [HttpGet]
         [Route("features/lookup")]
-        public async Task<IEnumerable<ILookup>> Get()
+        public async Task<IEnumerable<ILookup>> Get([FromQuery] FeaturesLookupFilter filter)
         {
             using (_context.Scope())
             {
-                return await _featuresDataProvider.Get().Select(x => new LookupModel { Id = x.Id, Name = x.Name })
+                return await _featuresDataProvider.Get()
+                    .Where(x => !filter.ProjectId.HasValue || x.ProjectId == filter.ProjectId)
+                    .Select(x => new LookupModel {Id = x.Id, Name = x.Name})
                     .ToListAsync();
             }
         }

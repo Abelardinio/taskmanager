@@ -16,6 +16,10 @@ import { FeatureService } from 'src/app/services/FeatureService';
 })
 export class FeaturesTableComponent extends TableBase<Feature> implements OnInit {
   @Input() public set projectId(value: number) {
+    if (value === undefined) {
+      return;
+    }
+
     this.filter.ProjectId = value;
     this.onRefresh();
   }
@@ -23,7 +27,8 @@ export class FeaturesTableComponent extends TableBase<Feature> implements OnInit
   @Input() public projectIsSelected: boolean;
 
   public headers: TableHeaderInfo<null>[] =
-    [new TableHeaderInfo('Name', 'name-column', null, false)];
+    [new TableHeaderInfo('Feauture link', 'feature-link-column', null, false),
+     new TableHeaderInfo('Name', 'name-column', null, false)];
 
   public filter: FeatureFilter = new FeatureFilter(
     new PagingInfo(1, 20));

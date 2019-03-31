@@ -24,6 +24,7 @@ namespace TaskManager.Tests.Unit.DataProviders
         private readonly Mock<ITaskDataAccessor> _taskDataAccessorMock;
         private readonly Mock<ITaskEventAccessor> _taskEventAccessorMock;
         private readonly Mock<IConnectionContext> _connectionContextMock;
+        private readonly Mock<IFeaturesDataAccessor> _featuresDataAccessorMock;
         private readonly ITaskDataProvider _taskDataProvider;
 
         private readonly ITask _task = new TaskEntity
@@ -55,6 +56,7 @@ namespace TaskManager.Tests.Unit.DataProviders
             _taskDataAccessorMock = new Mock<ITaskDataAccessor>();
             _taskEventAccessorMock = new Mock<ITaskEventAccessor>();
             _connectionContextMock = new Mock<IConnectionContext>();
+            _featuresDataAccessorMock = new Mock<IFeaturesDataAccessor>();
 
             var tasks = new List<ITask> { _task, _activeTask, _completedTask, _removedTask };
 
@@ -63,13 +65,14 @@ namespace TaskManager.Tests.Unit.DataProviders
             _taskDataProvider = new TaskDataProvider(
                 _taskDataAccessorMock.Object,
                 _taskEventAccessorMock.Object,
-                _connectionContextMock.Object);
+                _connectionContextMock.Object,
+                _featuresDataAccessorMock.Object);
         }
 
         [Fact]
         public void GetLiveTasksTest()
         {
-            var tasks = _taskDataProvider.GetLiveTasks().ToList();
+            var tasks = _taskDataProvider.GetLiveTasks(null).ToList();
             tasks.Count.Should().Be(2);
             tasks.Should().Contain(x => x.Id == ActiveTaskId);
             tasks.Should().Contain(x => x.Id == CompletedTaskId);

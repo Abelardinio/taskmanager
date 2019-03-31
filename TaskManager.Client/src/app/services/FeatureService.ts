@@ -11,6 +11,7 @@ import { PagedResult } from '../models/PagedResult';
 import { FeatureFilter } from '../models/FeatureFilter';
 import { Feature } from '../models/Feature';
 import { FeatureInfo } from '../models/FeatureInfo';
+import { Lookup } from '../models/Lookup';
 
 @Injectable({
     providedIn: 'root',
@@ -47,5 +48,26 @@ export class FeatureService extends BaseService {
         return <Observable<PagedResult<Feature>>>this._httpClient
             .get(environment.API_URL + '/features', { headers: this.headers, params: params })
             .pipe(catchError(this.handleError()));
+    }
+
+    /**
+     * Returns an observable of http get method which returns a feature
+     */
+    public GetById(id: number): Observable<Feature> {
+        return <Observable<Feature>>this._httpClient
+            .get(environment.API_URL + '/features/' + id, { headers: this.headers, })
+            .pipe(catchError(this.handleError()));
+    }
+
+    /**
+     * Returns an observable of http get method which returns a collection of feature lookups
+     */
+    public GetLookup(projectId?: number): Observable<Lookup[]> {
+        let params = new HttpParams();
+        params = params.append('projectId', projectId ? projectId.toString() : '');
+
+        return <Observable<Lookup[]>>this._httpClient
+        .get(environment.API_URL + '/features/lookup', { headers: this.headers, params: params })
+        .pipe(catchError(this.handleError()));
     }
 }

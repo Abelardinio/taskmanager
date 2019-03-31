@@ -14,15 +14,18 @@ namespace TaskManager.Data.DataProviders
         private readonly ITaskDataAccessor _taskDataAccessor;
         private readonly ITaskEventAccessor _taskEventAccessor;
         private readonly IConnectionContext _connectionContext;
+        private readonly IFeaturesDataAccessor _featuresDataAccessor;
 
         public TaskDataProvider(
             ITaskDataAccessor taskDataAccessor,
             ITaskEventAccessor taskEventAccessor,
-            IConnectionContext connectionContext)
+            IConnectionContext connectionContext,
+            IFeaturesDataAccessor featuresDataAccessor)
         {
             _taskDataAccessor = taskDataAccessor;
             _taskEventAccessor = taskEventAccessor;
             _connectionContext = connectionContext;
+            _featuresDataAccessor = featuresDataAccessor;
         }
 
         public Task AddAsync(ITaskInfo task)
@@ -30,9 +33,12 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.AddAsync(task);
         }
 
-        public IQueryable<ITask> GetLiveTasks()
+        public IQueryable<ITask> GetLiveTasks(int? projectId)
         {
-            return _taskDataAccessor.Get().Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
+            var result = _taskDataAccessor.Get()
+                .Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
+
+            return projectId.HasValue ? result.Where(x=> _featuresDataAccessor.Get().FirstOrDefault(y=>y.Id == x.FeatureId).ProjectId == projectId.Value) : result;
         }
 
         public async Task UpdateStatusAsync(int taskId, TaskStatus status)

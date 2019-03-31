@@ -29,7 +29,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.GetLiveTasks().GetPagedResultAsync(filter);
+                return await _taskDataProvider.GetLiveTasks(filter.ProjectId).GetPagedResultAsync(filter);
             }
         }
 

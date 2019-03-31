@@ -13,11 +13,14 @@ namespace TaskManager.WebApi.Model
         public DateTime? AddedTo { get; set; }
         public int? PriorityFrom { get; set; }
         public int? PriorityTo { get; set; }
+        public int? FeatureId { get; set; }
+        public int? ProjectId { get; set; }
 
         public override IQueryable<ITask> Filter(IQueryable<ITask> input)
         {
             return input.Where(x => (string.IsNullOrEmpty(Name) || x.Name.Contains(Name)) &&
                                     (!AddedFrom.HasValue || x.Added >= AddedFrom) &&
+                                    (!FeatureId.HasValue || x.FeatureId == FeatureId) &&
                                     (!AddedTo.HasValue || x.Added <= AddedTo) &&
                                     (!PriorityFrom.HasValue || x.Priority >= PriorityFrom) &&
                                     (!PriorityTo.HasValue || x.Priority <= PriorityTo));

@@ -4,6 +4,24 @@
                 (ngModelChange)="onFilterChange()"
                 [placeholder]="labels.Placeholders.Search"
                 [className]="'flexible'" ></app-search>
+    <label>Project:</label>
+    <div>
+      <ng-select class="custom"
+                [(ngModel)]="filter.ProjectId"
+                [items]="projectsArray"
+                [searchable]="false"
+                bindLabel="Name" bindValue="Id"
+                (change)="onProjectChange()"></ng-select>
+    </div>
+    <label>Feature:</label>
+    <div>
+      <ng-select class="custom"
+                [(ngModel)]="filter.FeatureId"
+                [items]="featuresArray"
+                [searchable]="false"
+                bindLabel="Name" bindValue="Id"
+                (change)="onFilterChange()"></ng-select>
+    </div>
     <label>Added:</label>
     <div>
       <app-datepicker [(ngModel)]="filter.AddedFrom" (ngModelChange)="onFilterChange()" [placeholder]="labels.Placeholders.DateFrom"></app-datepicker>

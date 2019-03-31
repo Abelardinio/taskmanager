@@ -8,6 +8,7 @@
               <app-table-header [headers]="headers" (ngModelChange)="onRefresh()"></app-table-header>
           </ng-template>
           <ng-template #rowTemplate let-element>
+              <td class="feature-link-column"><a routerLink="/features/{{ element.Model.Id }}">F{{ element.Model.Id }}: {{ element.Model.Name }}</a></td>
               <td class="name-column">{{ element.Model.Name }}</td>
               <td *ngIf="!projectIsSelected" class="project-name-column">{{ element.Model.ProjectName }}</td>
           </ng-template>

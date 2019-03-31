@@ -11,6 +11,7 @@ import { AddProjectPageComponent } from './components/pages/add-project-page/add
 import { FeaturesPageComponent } from './components/pages/features-page/features-page.component';
 import { AddFeaturePageComponent } from './components/pages/add-feature-page/add-feature-page.component';
 import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
+import { FeaturePageComponent } from './components/pages/feature-page/feature-page.component';
 
 const routes: Routes = [
   { path: 'tasks', component: TasksPageComponent, canActivate: [LoginActivate] },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'projects/:id', component: ProjectPageComponent, canActivate: [LoginActivate] },
   { path: 'features', component: FeaturesPageComponent, canActivate: [LoginActivate] },
   { path: 'features/add', component: AddFeaturePageComponent, canActivate: [LoginActivate] },
+  { path: 'features/:id', component: FeaturePageComponent, canActivate: [LoginActivate] },
   { path: '', redirectTo: '/tasks', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent }
 ];

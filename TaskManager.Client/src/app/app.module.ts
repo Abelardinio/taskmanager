@@ -9,7 +9,6 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TimerComponent } from './components/common/timer/timer.component';
-import { TaskDetailsComponent } from './components/panels/task-details/task-details.component';
 import { TimepickerComponent } from './components/common/timepicker/timepicker.component';
 import { TableComponent } from './components/common/table/table.component';
 import { AddTaskPageComponent } from './components/pages/add-task-page/add-task-page.component';
@@ -33,12 +32,13 @@ import { FeaturesGridFilterComponent } from './components/filters/features-grid-
 import { AddFeaturePageComponent } from './components/pages/add-feature-page/add-feature-page.component';
 import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
 import { FeaturesTableComponent } from './components/tables/features-table/features-table.component';
+import { FeaturePageComponent } from './components/pages/feature-page/feature-page.component';
+import { TasksTableComponent } from './components/tables/tasks-table/tasks-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
-    TaskDetailsComponent,
     TimepickerComponent,
     TableComponent,
     AddTaskPageComponent,
@@ -60,7 +60,9 @@ import { FeaturesTableComponent } from './components/tables/features-table/featu
     FeaturesGridFilterComponent,
     AddFeaturePageComponent,
     ProjectPageComponent,
-    FeaturesTableComponent
+    FeaturesTableComponent,
+    FeaturePageComponent,
+    TasksTableComponent
   ],
   imports: [
     BrowserModule,

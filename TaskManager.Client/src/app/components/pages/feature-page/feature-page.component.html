@@ -1,0 +1,16 @@
+<div class="flex-column flexible">
+    <div class="flex-row page-header">
+        <h2>{{ feature && feature.Name}}</h2>
+        <div class="nav-buttons">
+            <a routerLink="/features" class="btn">
+                <i class="fa fa-arrow-left"></i>
+                Back to Features
+            </a>
+        </div>
+    </div>
+    <hr />
+    <label>Description:</label>
+    <p>{{ feature && feature.Description }}</p>
+    <label class="tasks-label">Tasks:</label>
+    <app-tasks-table [featureId] = "feature && feature.Id" [featureIsSelected] = "true" [filteringIsEnabled] = "false"></app-tasks-table>
+</div>
