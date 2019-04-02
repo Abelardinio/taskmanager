@@ -3,7 +3,8 @@ export class TaskInfo {
     public name: string,
     public description: string,
     public priority: number,
-    public timeToComplete: TimeSpan
+    public timeToComplete: TimeSpan,
+    public featureId: number
   ) { }
 }
 

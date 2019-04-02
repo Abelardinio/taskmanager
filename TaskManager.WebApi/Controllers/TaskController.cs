@@ -43,6 +43,7 @@ namespace TaskManager.WebApi.Controllers
                 Description = taskInfoModel.Description,
                 Priority = taskInfoModel.Priority,
                 Added = DateTime.Now,
+                FeatureId = taskInfoModel.FeatureId,
                 TimeToComplete = DateTime.Now
                     .AddDays(taskInfoModel.TimeToComplete.Days + taskInfoModel.TimeToComplete.Weeks * 7)
                     .AddHours(taskInfoModel.TimeToComplete.Hours)

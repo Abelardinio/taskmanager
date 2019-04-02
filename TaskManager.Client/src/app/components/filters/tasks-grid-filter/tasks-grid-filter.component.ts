@@ -39,7 +39,7 @@ export class TasksGridFilterComponent implements OnInit {
     this.filter.Name = null;
     this.filter.Priority = null;
 
-    if (this.filter.ProjectId){
+    if (this.filter.ProjectId) {
       this.filter.ProjectId = null;
       this.onProjectChange();
     }

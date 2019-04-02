@@ -5,6 +5,7 @@ export const Labels = {
         TimeToComplete: 'Time to complete',
         Description: 'Description',
         Added: 'Added',
+        Feature: 'Feature',
         Status: 'Status',
         Placeholders: {
             Search: 'Search by name...',

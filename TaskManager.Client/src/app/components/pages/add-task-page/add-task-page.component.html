@@ -22,6 +22,19 @@
         </div>
       </div>
     </div>
+    <label>{{labels.Feature}}:</label>
+    <div>
+      <ng-select class="custom feature-select"
+                [items]="featuresArray"
+                [searchable]="false"
+                bindLabel="Name" bindValue="Id"
+                formControlName="featureId"></ng-select>
+      <div class="validation-error" *ngIf="featureId.invalid && formIsValidated">
+        <div *ngIf="featureId.errors.required">
+          {{messages.Common.Validation.Required('Feature')}}
+        </div>
+      </div>
+    </div>
     <label>{{labels.Priority}}:</label>
     <div class="form-row">
       <ng-select class="custom" [items]="priorityArray" [searchable]="false" formControlName="priority"></ng-select>

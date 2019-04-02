@@ -17,6 +17,7 @@ namespace TaskManager.DbConnection.Entities
             Priority = taskInfo.Priority;
             TimeToComplete = taskInfo.TimeToComplete;
             Added = taskInfo.Added;
+            FeatureId = taskInfo.FeatureId;
             Status = TaskStatus.Active;
         }
 
