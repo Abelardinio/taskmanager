@@ -11,5 +11,9 @@ namespace TaskManager.AuthService.DbConnection
         }
 
         public virtual DbSet<UserEntity> Users { get; set; }
+
+        public virtual DbSet<UserRoleEntity> UserRoles { get; set; }
+
+        public virtual DbSet<UserPermissionEntity> UserPermissions { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskManager.Core;
+using TaskManager.Core.Enums;
 
 namespace TaskManager.AuthService.DbConnection.Entities
 {
@@ -18,6 +20,14 @@ namespace TaskManager.AuthService.DbConnection.Entities
             LastName = user.LastName;
             Created = DateTime.Now;
             PasswordSalt = Guid.NewGuid().ToString();
+            Password = String.Empty;
+            Roles = new List<UserRoleEntity>()
+            {
+                new UserRoleEntity
+                {
+                    Role = user.Role
+                }
+            };
         }
 
         public int Id { get; set; }
@@ -34,6 +44,9 @@ namespace TaskManager.AuthService.DbConnection.Entities
         [Required]
         public string LastName { get; set; }
 
+        [NotMapped]
+        public Role Role { get; set; }
+
         [Required]
         public string Password { get; set; }
 
@@ -42,5 +55,9 @@ namespace TaskManager.AuthService.DbConnection.Entities
 
         [Required]
         public DateTime Created { get; set; }
+
+        public List<UserRoleEntity> Roles { get; set; }
+
+        public List<UserPermissionEntity> Permissions { get; set; }
     }
 }

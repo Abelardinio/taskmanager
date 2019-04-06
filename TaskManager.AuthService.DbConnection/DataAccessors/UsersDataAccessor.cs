@@ -21,6 +21,7 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
             var context = _contextStorage.Get();
 
             context.Users.Add(new UserEntity(user));
+
             return context.SaveChangesAsync();
         }
 
