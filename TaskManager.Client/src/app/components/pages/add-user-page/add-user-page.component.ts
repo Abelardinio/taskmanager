@@ -7,14 +7,19 @@ import { Labels } from '../../../resources/labels';
 import { FormBase } from '../../common/form-base/form-base';
 import { UserInfo } from 'src/app/models/UserInfo';
 import { UserService } from 'src/app/services/UserService';
+import { Lookup } from 'src/app/models/Lookup';
+import { Lookups } from 'src/app/resources/Lookups';
+import { Role } from 'src/app/models/enums/Role';
 @Component({
     selector: 'app-add-user-page',
     templateUrl: './add-user-page.component.html',
-    host: { 'class': 'flex-column flexible' }
+    host: { 'class': 'flex-column flexible' },
+    styleUrls: ['./add-user-page.component.css']
   })
 
   export class AddUserPageComponent extends FormBase<UserInfo> implements OnInit {
     public form: FormGroup;
+    public rolesArray: Lookup[] = Lookups.Roles;
 
     public constructor(
       protected notifications: NotificationsService,
@@ -29,6 +34,7 @@ import { UserService } from 'src/app/services/UserService';
         firstName: new FormControl('', [Validators.required, Validators.maxLength(this.maxLength)]),
         lastName: new FormControl('', [Validators.required, Validators.maxLength(this.maxLength)]),
         email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(this.maxLength)]),
+        role: new FormControl(Role.User)
       });
     }
 

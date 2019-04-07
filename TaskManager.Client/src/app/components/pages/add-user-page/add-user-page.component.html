@@ -49,6 +49,15 @@
                 </div>
             </div>
         </div>
+        <label>{{labels.Role}}:</label>
+        <div class="form-row flexible">
+                <ng-select class="custom role-select"
+                 [items]="rolesArray"
+                 [searchable]="false"
+                 bindLabel="Name"
+                 bindValue="Id"
+                 formControlName="role"></ng-select>
+              </div>
         <div>
             <button type="submit" class="btn btn-right btn-submit" [disabled]="formIsLoading"> <i
                     class="fa fa-refresh fa-spin" *ngIf="formIsLoading"></i>Add user</button>

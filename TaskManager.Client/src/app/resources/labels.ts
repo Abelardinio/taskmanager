@@ -18,6 +18,7 @@ export const Labels = {
         FirstName: 'First name',
         LastName: 'Last name',
         Email: 'Email',
+        Role: 'Role',
         Placeholders: {
             Search: 'Search by username, first name, last name or email...'
         }
