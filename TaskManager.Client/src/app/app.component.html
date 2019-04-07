@@ -2,7 +2,7 @@
   <div class="flex-column sidebar">
     <div class="flex-column">
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/tasks" class="button">Tasks</a>
-        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/users" class="button">Users</a>
+        <a *ngIf="isSiteAdministrator" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/users" class="button">Users</a>
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/projects" class="button">Projects</a>
         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" routerLink="/features" class="button">Features</a>
     </div>

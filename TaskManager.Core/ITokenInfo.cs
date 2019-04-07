@@ -2,11 +2,9 @@
 
 namespace TaskManager.Core
 {
-    public interface IUserInfo 
+    public interface ITokenInfo
     {
-        string Email { get; }
-        string FirstName { get; }
-        string LastName { get; }
+        int Id { get; }
         string Username { get; }
         Role Role { get; }
     }

@@ -2,6 +2,6 @@
 {
     public interface ITokenProvider
     {
-        string Get(IUserLoginInfo info);
+        string Get(ITokenInfo info);
     }
 }

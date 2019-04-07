@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Common.Resources;
 using TaskManager.Core.DataAccessors;
@@ -25,7 +26,7 @@ namespace TaskManager.AuthService.Data.DataProviders
 
         public async Task<string> AuthenticateAsync(string username, string password)
         {
-            var user = await _usersDataAccessor.Get().FirstOrDefaultAsync(x => x.Username == username);
+            var user = await _usersDataAccessor.GetLoginInfo().FirstOrDefaultAsync(x => x.Username == username);
 
             if (user != null && string.IsNullOrEmpty(user.Password))
             {

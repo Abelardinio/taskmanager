@@ -21,7 +21,7 @@ namespace TaskManager.AuthService.DbConnection.Entities
             Created = DateTime.Now;
             PasswordSalt = Guid.NewGuid().ToString();
             Password = String.Empty;
-            Roles = new List<UserRoleEntity>()
+            Roles = new List<UserRoleEntity>
             {
                 new UserRoleEntity
                 {
@@ -43,9 +43,6 @@ namespace TaskManager.AuthService.DbConnection.Entities
 
         [Required]
         public string LastName { get; set; }
-
-        [NotMapped]
-        public Role Role { get; set; }
 
         [Required]
         public string Password { get; set; }

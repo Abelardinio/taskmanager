@@ -1,7 +1,8 @@
 ﻿namespace TaskManager.Core
 {
-    public interface IUserLoginInfo : IUsername
+    public interface IUserLoginInfo : ITokenInfo
     {
-        int Id { get; }
+        string Password { get; }
+        string PasswordSalt { get; }
     }
 }

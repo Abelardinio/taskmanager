@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.AuthService.DbConnection.Entities;
+using TaskManager.AuthService.DbConnection.Models;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 
@@ -28,6 +29,19 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
         public IQueryable<IUser> Get()
         {
             return _contextStorage.Get().Users;
+        }
+
+        public IQueryable<IUserLoginInfo> GetLoginInfo()
+        {
+            return _contextStorage.Get().Users.Join(_contextStorage.Get().UserRoles, user => user.Id,
+                userRole => userRole.UserId, (user, userRole) => new UserLoginInfoModel
+                {
+                    Id = user.Id,
+                    Password = user.Password,
+                    PasswordSalt = user.PasswordSalt,
+                    Role = userRole.Role,
+                    Username = user.Username
+                });
         }
 
         public async Task SetPasswordAsync(int userId, string password)

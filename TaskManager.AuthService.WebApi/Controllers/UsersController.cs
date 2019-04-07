@@ -10,7 +10,7 @@ using TaskManager.Common.Data;
 
 namespace TaskManager.AuthService.WebApi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Roles.SiteAdministrator)]
     public class UsersController : Controller
     {
         private readonly IUsersDataProvider _usersDataProvider;

@@ -17,7 +17,7 @@ namespace TaskManager.AuthService.Data.DataProviders
             _authenticationSettings = authenticationSettings;
         }
 
-        public string Get(IUserLoginInfo info)
+        public string Get(ITokenInfo info)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_authenticationSettings.SecretKey);
@@ -26,7 +26,8 @@ namespace TaskManager.AuthService.Data.DataProviders
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, info.Username),
-                    new Claim(JwtRegisteredClaimNames.Jti, info.Id.ToString())
+                    new Claim(JwtRegisteredClaimNames.Jti, info.Id.ToString()),
+                    new Claim(ClaimTypes.Role,Roles.Dictionary[info.Role])
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

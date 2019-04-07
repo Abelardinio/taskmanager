@@ -7,6 +7,7 @@ using Moq;
 using TaskManager.AuthService.Data;
 using TaskManager.AuthService.Data.DataProviders;
 using TaskManager.AuthService.DbConnection.Entities;
+using TaskManager.AuthService.DbConnection.Models;
 using TaskManager.Common.Resources;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
@@ -31,10 +32,10 @@ namespace TaskManager.Tests.Unit.AuthService.DataProviders
 
         public LoginDataProviderTests()
         {
-            var user = new UserEntity {Username = Username, Password = PasswordHash, PasswordSalt = PasswordSalt};
+            var user = new UserLoginInfoModel { Username = Username, Password = PasswordHash, PasswordSalt = PasswordSalt};
 
-            _usersDataAccessorMock.Setup(x => x.Get()).Returns(Extensions
-                .GetDbSetMock(new List<UserEntity> {user}.AsQueryable()).Object);
+            _usersDataAccessorMock.Setup(x => x.GetLoginInfo()).Returns(Extensions
+                .GetDbSetMock(new List<UserLoginInfoModel> {user}.AsQueryable()).Object);
 
             _hashCreatorMock.Setup(x => x.Create(Username, Password, PasswordSalt)).Returns(PasswordHash);
             _tokenProviderMock.Setup(x => x.Get(user)).Returns(Token);
