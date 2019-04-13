@@ -20,7 +20,7 @@ namespace TaskManager.Data.DataProviders
             return _featuresDataAccessor.AddAsync(info);
         }
 
-        public IQueryable<IFeature> Get()
+        public IQueryable<IFeatureModel> Get()
         {
             return _featuresDataAccessor.Get();
         }

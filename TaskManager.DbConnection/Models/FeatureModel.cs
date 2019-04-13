@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskManager.Core;
+﻿using TaskManager.Core;
 
-namespace TaskManager.WebApi.Model
+namespace TaskManager.DbConnection.Models
 {
-    public class FeatureModel : IFeature
+    public class FeatureModel : IFeatureModel
     {
         public int Id { get; set; }
         public int ProjectId { get; set; }

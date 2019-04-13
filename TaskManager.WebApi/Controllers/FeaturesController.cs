@@ -8,6 +8,7 @@ using TaskManager.Common.Data;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
+using TaskManager.DbConnection.Models;
 using TaskManager.WebApi.Model;
 
 namespace TaskManager.WebApi.Controllers
@@ -16,31 +17,20 @@ namespace TaskManager.WebApi.Controllers
     public class FeaturesController : Controller
     {
         private readonly IFeaturesDataProvider _featuresDataProvider;
-        private readonly IProjectsDataProvider _projectsDataProvider;
         private readonly IConnectionContext _context;
 
         public FeaturesController(IFeaturesDataProvider featuresDataProvider, IConnectionContext context, IProjectsDataProvider projectsDataProvider)
         {
             _featuresDataProvider = featuresDataProvider;
             _context = context;
-            _projectsDataProvider = projectsDataProvider;
         }
         [HttpGet]
         [Route("features")]
-        public async Task<IPagedResult<IFeature>> Get([FromQuery] FeaturesFilter filter)
+        public async Task<IPagedResult<IFeatureModel>> Get([FromQuery] FeaturesFilter filter)
         {
             using (_context.Scope())
             {
-                var result = _featuresDataProvider.Get().Select(x => new FeatureModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    ProjectId = x.ProjectId,
-                    Description = x.Description,
-                    ProjectName = _projectsDataProvider.Get().First(y => y.Id == x.ProjectId).Name
-                });
-
-                return await result.GetPagedResultAsync(filter);
+                return await _featuresDataProvider.Get().GetPagedResultAsync(filter);
             }
         }
 

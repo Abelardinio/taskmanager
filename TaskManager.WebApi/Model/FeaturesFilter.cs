@@ -3,10 +3,10 @@ using TaskManager.Core;
 
 namespace TaskManager.WebApi.Model
 {
-    public class FeaturesFilter : IUnsortableFilter<IFeature>
+    public class FeaturesFilter : IUnsortableFilter<IFeatureModel>
     {
         public string Value { get; set; }
-        public IQueryable<IFeature> Filter(IQueryable<IFeature> input)
+        public IQueryable<IFeatureModel> Filter(IQueryable<IFeatureModel> input)
         {
             return input.Where(x => (string.IsNullOrEmpty(Value) || x.Name.Contains(Value)) &&
                                     (!ProjectId.HasValue || x.ProjectId == ProjectId) );

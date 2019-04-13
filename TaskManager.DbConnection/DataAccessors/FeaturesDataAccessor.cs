@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.DbConnection.Entities;
+using TaskManager.DbConnection.Models;
 
 namespace TaskManager.DbConnection.DataAccessors
 {
@@ -23,9 +24,16 @@ namespace TaskManager.DbConnection.DataAccessors
             await context.SaveChangesAsync();
         }
 
-        public IQueryable<IFeature> Get()
+        public IQueryable<IFeatureModel> Get()
         {
-            return _contextStorage.Get().Features;
+            return _contextStorage.Get().Features.Join(_contextStorage.Get().Projects, feature => feature.ProjectId, project => project.Id,
+                (feature, project) => new FeatureModel
+                {
+                    Id = feature.Id,
+                    ProjectName = project.Name,
+                    Description = feature.Description,
+                    Name = feature.Name
+                });
         }
     }
 }
