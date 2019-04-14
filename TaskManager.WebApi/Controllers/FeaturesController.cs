@@ -24,6 +24,7 @@ namespace TaskManager.WebApi.Controllers
             _featuresDataProvider = featuresDataProvider;
             _context = context;
         }
+
         [HttpGet]
         [Route("features")]
         public async Task<IPagedResult<IFeatureModel>> Get([FromQuery] FeaturesFilter filter)

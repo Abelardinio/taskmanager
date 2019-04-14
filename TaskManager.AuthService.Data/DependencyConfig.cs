@@ -33,6 +33,8 @@ namespace TaskManager.AuthService.Data
             kernel.Bind<ILoginDataProvider>().To<LoginDataProvider>();
             kernel.Bind<IHashCreator>().To<HashCreator>();
             kernel.Bind<ITokenProvider>().To<TokenProvider>();
+            kernel.Bind<IPermissionsDataAccessor>().To<PermissionsDataAccessor>();
+            kernel.Bind<IPermissionsDataProvider>().To<PermissionsDataProvider>();
         }
     }
 }

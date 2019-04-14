@@ -32,7 +32,8 @@ namespace TaskManager.DbConnection.DataAccessors
                     Id = feature.Id,
                     ProjectName = project.Name,
                     Description = feature.Description,
-                    Name = feature.Name
+                    Name = feature.Name,
+                    ProjectId = feature.ProjectId
                 });
         }
     }
