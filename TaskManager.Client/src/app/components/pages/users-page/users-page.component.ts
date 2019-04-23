@@ -19,7 +19,11 @@ export class UsersPageComponent extends TableBase<User> implements OnInit {
     [new TableHeaderInfo('Username', 'username-column', null, false),
     new TableHeaderInfo('First name', 'first-name-column', null, false),
     new TableHeaderInfo('Last name', 'last-name-column', null, false),
-    new TableHeaderInfo('Email', 'email-column', null, false)];
+    new TableHeaderInfo('Email', 'email-column', null, false),
+    new TableHeaderInfo('', 'permissions-column', null, false)];
+
+  public isPermissionsEditingEnabled = false;
+  public editingUser: User = null;
 
   public filter: UserFilter = new UserFilter(
     new PagingInfo(1, 20));
@@ -35,5 +39,10 @@ export class UsersPageComponent extends TableBase<User> implements OnInit {
 
   public ngOnInit() {
     super.ngOnInit();
+  }
+
+  public onPermissionsButtonClick(user: User) {
+    this.isPermissionsEditingEnabled = true;
+    this.editingUser = user;
   }
 }

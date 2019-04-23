@@ -1,0 +1,13 @@
+<div class="modal">
+    <div class="modal-content flex-column">
+      <div class="flex-row modal-header">
+        <h2>{{headerText}}</h2>
+        <span class="close" (click)="cancelButtonClick()">&times;</span>
+      </div>
+      <ng-content></ng-content>
+      <div>
+        <button class="btn btn-right btn-cancel" (click)="cancelButtonClick()">{{cancelButtonText}}</button>
+        <button class="btn btn-right btn-ok" (click)="okButtonClick()">{{okButtonText}}</button>
+      </div>
+    </div>
+</div>

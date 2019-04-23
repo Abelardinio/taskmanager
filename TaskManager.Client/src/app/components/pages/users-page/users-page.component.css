@@ -17,3 +17,8 @@ app-table-header{
 :host ::ng-deep table td, table th {
     padding: 15.5px;
 }
+
+.permissions-column{
+    text-align: center;
+    width: 100px;
+}

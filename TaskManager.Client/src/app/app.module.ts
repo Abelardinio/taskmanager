@@ -34,6 +34,8 @@ import { ProjectPageComponent } from './components/pages/project-page/project-pa
 import { FeaturesTableComponent } from './components/tables/features-table/features-table.component';
 import { FeaturePageComponent } from './components/pages/feature-page/feature-page.component';
 import { TasksTableComponent } from './components/tables/tasks-table/tasks-table.component';
+import { ModalWindowComponent } from './components/common/modal-window/modal-window.component';
+import { ProjectPermissionModalComponent } from './components/modals/project-permission-modal/project-permission-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { TasksTableComponent } from './components/tables/tasks-table/tasks-table
     ProjectPageComponent,
     FeaturesTableComponent,
     FeaturePageComponent,
-    TasksTableComponent
+    TasksTableComponent,
+    ModalWindowComponent,
+    ProjectPermissionModalComponent
   ],
   imports: [
     BrowserModule,
