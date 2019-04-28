@@ -16,3 +16,13 @@
     overflow: hidden;
     padding: 10px 0;
 }
+
+.permissions-grid{
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.permission-row{
+    justify-content: space-between;
+    padding: 5px;
+}

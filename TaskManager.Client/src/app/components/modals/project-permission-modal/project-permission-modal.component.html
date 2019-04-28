@@ -1,19 +1,29 @@
-<app-modal-window *ngIf="isModalWindowVisible" [headerText]="'Edit Permissions'" (cancelClick)="onCancelClick()" (okClick)="onOkClick()">
+<app-modal-window *ngIf="isModalWindowVisible" [headerText]="'Edit Permissions'" (cancelClick)="onCancelClick()"
+  (okClick)="onOkClick()" [okButtonDisabled]="!isModelChanged || isLoading" [cancelButtonDisabled]="isLoading"
+  [okButtonText]="'Save changes'" [isLoading]="isLoading">
+  <label>User: {{user.Username}}</label>
   <div class="project-permission-grid flex-row flexible">
-      <div class="projects-grid scrollable">
-          <table>
-              <thead>
-                <tr>
-                  <th>Project</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let project of projectsArray; let i = index" (click)="onProjectSelect(project)" [ngClass]="{'selected': selected.Id === project.Id}"> 
-                      <td>{{project.Name}}</td>
-                  </tr>
-              </tbody>
-            </table>
+    <div class="projects-grid scrollable">
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projectsArray; let i = index" (click)="onProjectSelect(project)"
+            [ngClass]="{'selected': selected.Id === project.Id}">
+            <td>{{project.Name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="permissions-grid scrollable flexible">
+      <div *ngFor="let permission of permissionsArray; let i = index" class="permission-row flex-row">
+        <div>{{permission.Name}}</div>
+        <app-checkbox [(ngModel)]="permission.IsChecked" (change)="onPermissionUpdate()" [disabled]="isLoading">
+        </app-checkbox>
       </div>
-      <div class="permissions-grid"></div>
+    </div>
   </div>
 </app-modal-window>

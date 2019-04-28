@@ -32,4 +32,14 @@ export class Utils {
 
         return new DateTimeRange(days, hours, minutes, seconds);
     }
+
+    /**
+     * Returns true if input array are equal
+     *
+     * @param array1 first array
+     * @param array2 second array
+     */
+    public static equals(array1: number[], array2: number[]): boolean {
+        return array1.length === array2.length && array1.every(function (value, index) { return value === array2[index]; });
+    }
 }

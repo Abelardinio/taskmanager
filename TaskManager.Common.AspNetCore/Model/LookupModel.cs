@@ -1,6 +1,6 @@
 ﻿using TaskManager.Core;
 
-namespace TaskManager.WebApi.Model
+namespace TaskManager.Common.AspNetCore.Model
 {
     public class LookupModel : ILookup
     {

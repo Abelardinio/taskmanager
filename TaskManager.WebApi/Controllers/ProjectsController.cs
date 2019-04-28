@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaskManager.Common.AspNetCore.Model;
 using TaskManager.Common.Data;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;

@@ -36,6 +36,7 @@ import { FeaturePageComponent } from './components/pages/feature-page/feature-pa
 import { TasksTableComponent } from './components/tables/tasks-table/tasks-table.component';
 import { ModalWindowComponent } from './components/common/modal-window/modal-window.component';
 import { ProjectPermissionModalComponent } from './components/modals/project-permission-modal/project-permission-modal.component';
+import { CheckboxComponent } from './components/common/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ProjectPermissionModalComponent } from './components/modals/project-per
     FeaturePageComponent,
     TasksTableComponent,
     ModalWindowComponent,
-    ProjectPermissionModalComponent
+    ProjectPermissionModalComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,

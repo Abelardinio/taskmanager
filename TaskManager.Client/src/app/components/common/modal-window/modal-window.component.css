@@ -37,3 +37,7 @@
 .close:hover{
   color: gray;
 }
+
+.close.disabled{
+  cursor: default;
+}

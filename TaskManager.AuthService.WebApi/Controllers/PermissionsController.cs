@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,13 @@ namespace TaskManager.AuthService.WebApi.Controllers
             {
                 await _permissionsDataProvider.UpdatePermissionsForUserAsync(userId, model.Permissions);
             }
+        }
+
+        [HttpGet]
+        [Route("users/permissions/lookup")]
+        public ILookup[] Get()
+        {
+            return Permissions.Lookup;
         }
     }
 }

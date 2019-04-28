@@ -1,0 +1,7 @@
+<label class="container" [class.disabled]="isDisabled">
+    <input type="checkbox"
+          [ngModel]="value"
+          (ngModelChange)="value = $event"
+          [disabled] = "isDisabled">
+    <span class="checkmark"></span>
+</label>

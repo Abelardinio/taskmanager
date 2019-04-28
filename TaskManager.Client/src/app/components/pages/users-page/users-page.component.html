@@ -31,4 +31,4 @@
       <app-pager [(ngModel)]="filter.PagingInfo" (ngModelChange)="onRefresh()" [pagesCount]="pagesCount"></app-pager>
   </div>
 </div>
-<app-project-permission-modal [(isVisible)]="isPermissionsEditingEnabled"></app-project-permission-modal>
+<app-project-permission-modal [(isVisible)]="isPermissionsEditingEnabled" [user]="editingUser"></app-project-permission-modal>

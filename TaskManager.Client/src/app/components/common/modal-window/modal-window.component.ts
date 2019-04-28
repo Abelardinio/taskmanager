@@ -9,6 +9,9 @@ export class ModalWindowComponent implements OnInit {
   @Input() public headerText: string;
   @Input() public okButtonText = 'Ok';
   @Input() public cancelButtonText = 'Cancel';
+  @Input() public okButtonDisabled = false;
+  @Input() public cancelButtonDisabled = false;
+  @Input() public isLoading = false;
   @Output() public okClick = new EventEmitter<any>();
   @Output() public cancelClick = new EventEmitter<any>();
   public constructor() { }

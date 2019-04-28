@@ -20,4 +20,25 @@ describe('Utils methods tests', () => {
       expect(number).toBe(index);
     });
   });
+
+  it('should return true if arrays are equal', () => {
+    const array1 = [0, 1, 2];
+    const array2 = [0, 1, 2];
+
+    expect(Utils.equals(array1, array2)).toBe(true);
+  });
+
+  it('should return false if arrays has different length', () => {
+    const array1 = [0, 1, 2];
+    const array2 = [0, 1, 2, 3];
+
+    expect(Utils.equals(array1, array2)).toBe(false);
+  });
+
+  it('should return false if arrays are not equal', () => {
+    const array1 = [0, 1, 2];
+    const array2 = [0, 2, 1];
+
+    expect(Utils.equals(array1, array2)).toBe(false);
+  });
 });

@@ -7,6 +7,9 @@ export const Messages = {
             TimeToCompleteRequired: 'Time to complete can\'t be less then 1 hour.'
         }
     },
+    Permisssions: {
+        Updated: 'Permissions were successfully updated'
+    },
     Projects: {
         Added: 'Project was successfully Added'
     },
