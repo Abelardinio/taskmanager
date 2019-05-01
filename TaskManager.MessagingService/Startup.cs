@@ -6,6 +6,7 @@ using Ninject;
 using TaskManager.MessagingService.AppSettings;
 using TaskManager.MessagingService.Dependency;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Common.Data;
 using TaskManager.ServiceBus;
 
 namespace TaskManager.MessagingService
@@ -41,8 +42,6 @@ namespace TaskManager.MessagingService
 
             DependencyConfig.Configure(kernel);
             DependencyResolver.SetResolver(kernel);
-
-            kernel.Get<IConnectionFactory>().Create();
         }
     }
 }

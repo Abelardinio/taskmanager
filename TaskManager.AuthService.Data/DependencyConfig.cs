@@ -9,9 +9,7 @@ using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
-using TaskManager.Core.EventAccessors;
 using TaskManager.ServiceBus;
-using TaskManager.ServiceBus.EventAccessors;
 
 namespace TaskManager.AuthService.Data
 {
@@ -21,12 +19,6 @@ namespace TaskManager.AuthService.Data
         {
             kernel.Bind<IConnectionScopeFactory, IContextStorage>().To<ContextFactory>().InCallScope();
             kernel.Bind<IConnectionContext>().To<ConnectionContext>();
-            kernel.Bind<ITaskEventAccessor>().To<TaskEventAccessor>();
-            kernel.Bind<IChannelStorage, IEventScopeFactory>().To<ChannelFactory>().InCallScope();
-            kernel.Bind<IConnectionStorage, IConnectionFactory>().To<ServiceBusConnectionFactory>().InSingletonScope();
-            kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
-            kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
-            kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<IConnectionSettings, IDbConnectionSettings, IAuthenticationSettings>().To<AppSettings>().InSingletonScope();
             kernel.Bind<IUsersDataAccessor>().To<UsersDataAccessor>();
             kernel.Bind<IUsersDataProvider>().To<UsersDataProvider>();
@@ -35,6 +27,7 @@ namespace TaskManager.AuthService.Data
             kernel.Bind<ITokenProvider>().To<TokenProvider>();
             kernel.Bind<IPermissionsDataAccessor>().To<PermissionsDataAccessor>();
             kernel.Bind<IPermissionsDataProvider>().To<PermissionsDataProvider>();
+            kernel.Bind<IRouteSettings, IServiceBusClientSettings>().To<ServiceBusRouteSettings>().InSingletonScope();
         }
     }
 }

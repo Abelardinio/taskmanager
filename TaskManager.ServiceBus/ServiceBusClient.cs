@@ -8,22 +8,30 @@ namespace TaskManager.ServiceBus
     {
         private readonly IMessageSerializer _serializer;
         private readonly IChannelStorage _storage;
+        private readonly INameFactory _nameFactory;
+        private readonly IServiceBusClientSettings _serviceBusClientSettings;
 
-        public ServiceBusClient(IMessageSerializer serializer, IChannelStorage storage)
+        public ServiceBusClient(
+            IMessageSerializer serializer,
+            IChannelStorage storage,
+            INameFactory nameFactory,
+            IServiceBusClientSettings serviceBusClientSettings)
         {
             _serializer = serializer;
             _storage = storage;
+            _nameFactory = nameFactory;
+            _serviceBusClientSettings = serviceBusClientSettings;
         }
 
-        public void SendMessage(QueueNumber number, object obj)
+        public void SendMessage(EventLookup e, object obj)
         {
-            _storage.Get().BasicPublish(exchange: "",
-                routingKey: number.ToString(),
+            _storage.Get().BasicPublish(exchange: _nameFactory.GetExchange(EventExchangeMapping.Dictionary[e]),
+                routingKey: _nameFactory.GetRoutingKey(e),
                 basicProperties: null,
                 body: _serializer.Serialize(obj));
         }
 
-        public void Subscribe<T>(QueueNumber number, Action<T> handler)
+        public void Subscribe<T>(EventLookup e, Action<T> handler)
         {
             var channel = _storage.Get();
             var consumer = new EventingBasicConsumer(channel);
@@ -31,7 +39,7 @@ namespace TaskManager.ServiceBus
             {
                 handler((T)_serializer.Deserialize(ea.Body));
             };
-            channel.BasicConsume(queue: number.ToString(),
+            channel.BasicConsume(queue: _nameFactory.GetQueue(_serviceBusClientSettings.ApplicationName, e),
                 autoAck: true,
                 consumer: consumer);
         }

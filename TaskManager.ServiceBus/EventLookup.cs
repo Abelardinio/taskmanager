@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.ServiceBus
 {
-    public enum QueueNumber
+    public enum EventLookup
     {
         TaskStatusUpdated
     }

@@ -12,6 +12,7 @@ using TaskManager.DbConnection;
 using TaskManager.DbConnection.DataAccessors;
 using TaskManager.ServiceBus;
 using TaskManager.ServiceBus.EventAccessors;
+using TaskManager.ServiceBus.Routes;
 
 namespace TaskManager.Data
 {
@@ -25,14 +26,10 @@ namespace TaskManager.Data
             kernel.Bind<IConnectionScopeFactory, IContextStorage>().To<ContextFactory>().InCallScope();
             kernel.Bind<IConnectionContext>().To<ConnectionContext>();
             kernel.Bind<ITaskEventAccessor>().To<TaskEventAccessor>();
-            kernel.Bind<IChannelStorage, IEventScopeFactory>().To<ChannelFactory>().InCallScope();
-            kernel.Bind<IConnectionStorage, IConnectionFactory>().To<ServiceBusConnectionFactory>().InSingletonScope();
-            kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
-            kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
-            kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<ITaskDataProvider>().To<TaskDataProvider>();
             kernel.Bind<IProjectsDataProvider>().To<ProjectsDataProvider>();
             kernel.Bind<IFeaturesDataProvider>().To<FeaturesDataProvider>();
+            kernel.Bind<IRouteSettings, IServiceBusClientSettings>().To<ServiceBusRouteSettings>().InSingletonScope();
             kernel.Bind<IConnectionSettings, IDbConnectionSettings>().To<AppSettings>().InSingletonScope();
         }
     }

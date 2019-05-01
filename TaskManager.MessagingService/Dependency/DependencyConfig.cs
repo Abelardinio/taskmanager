@@ -8,6 +8,7 @@ using TaskManager.Core.EventAccessors;
 using TaskManager.MessagingService.MessagingServices;
 using TaskManager.ServiceBus;
 using TaskManager.ServiceBus.EventAccessors;
+using TaskManager.ServiceBus.Routes;
 
 namespace TaskManager.MessagingService.Dependency
 {
@@ -17,14 +18,11 @@ namespace TaskManager.MessagingService.Dependency
         {
             kernel.Bind<IConnectionSettings>().To<AppSettings.AppSettings>();
             kernel.Bind<ITaskEventAccessor>().To<TaskEventAccessor>();
-            kernel.Bind<IChannelStorage, IEventScopeFactory>().To<ChannelFactory>().InCallScope();
-            kernel.Bind<IConnectionStorage, IConnectionFactory>().To<ServiceBusConnectionFactory>().InSingletonScope();
-            kernel.Bind<IServiceBusClient>().To<ServiceBusClient>();
-            kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
             kernel.Bind<IDependencyResolver>().To<DependencyResolver>().InSingletonScope();
             kernel.Bind<IHostedService>().To<TasksMessagingService>();
             kernel.Bind<IEventConnectionContext>().To<ConnectionContext>();
-            kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
+            kernel.Bind<IRoute>().To<TaskStatusUpdatedRoute>().InSingletonScope();
+            kernel.Bind<IRouteSettings, IServiceBusClientSettings>().To<ServiceBusRouteSettings>().InSingletonScope();
             kernel.Bind(typeof(IHubClient<>)).To(typeof(HubClient<>));
         }
     }

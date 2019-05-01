@@ -17,13 +17,13 @@ namespace TaskManager.ServiceBus.EventAccessors
 
         public void StatusUpdated(int taskId, TaskStatus status)
         {
-            _client.SendMessage(QueueNumber.TaskStatusUpdated,
+            _client.SendMessage(EventLookup.TaskStatusUpdated, 
                 new TaskStatusUpdatedMessage {TaskId = taskId, Status = status});
         }
 
         public void OnStatusUpdated(Action<ITaskStatusUpdatedMessage> handler)
         {
-           _client.Subscribe(QueueNumber.TaskStatusUpdated, handler);
+           _client.Subscribe(EventLookup.TaskStatusUpdated, handler);
         }
     }
 }

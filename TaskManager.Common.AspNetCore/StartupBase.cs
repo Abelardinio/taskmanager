@@ -109,7 +109,10 @@ namespace TaskManager.Common.AspNetCore
 
             lifetime.ApplicationStopped.Register(() => OnShutdown(_kernel));
 
+            ServiceBusDependencyConfig.Register(_kernel);
             RegisterApplicationComponents(app, _kernel);
+            _kernel.Get<IConnectionFactory>().Create();
+            _kernel.Get<IRouteInitializer>().Init();
         }
 
         protected void OnShutdown(IKernel kernel)

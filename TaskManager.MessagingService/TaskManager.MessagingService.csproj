@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
+    <ProjectReference Include="..\TaskManager.Common.Data\TaskManager.Common.Data.csproj" />
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
     <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />
   </ItemGroup>
@@ -38,7 +39,7 @@
     <Exec Command="cd $(TargetDir)&#xD;&#xA;del app_offline.htm" />
   </Target>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent"  Condition=" '$(Configuration)' == 'Debug' ">
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
     <Exec Command="copy  app_offline.htm &quot;&quot;$(TargetDir)&quot;" />
   </Target>
 </Project>
