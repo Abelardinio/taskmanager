@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TaskManager.AuthService.DbConnection.Entities;
 using TaskManager.Common.DbConnection.DataAccessors;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.Enums;
+using TaskManager.DbConnection.Entities;
 
-namespace TaskManager.AuthService.DbConnection.DataAccessors
+namespace TaskManager.DbConnection.DataAccessors
 {
     public class PermissionsDataAccessor : PermissionsDataAccessorBase<UserPermissionEntity>, IPermissionsDataAccessor
     {
@@ -16,7 +17,7 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
             _contextStorage = contextStorage;
         }
 
-        protected override DbSet<UserPermissionEntity> Permissions => _contextStorage.Get().UserPermissions;
+        protected override DbSet<UserPermissionEntity> Permissions => _contextStorage.Get().Permissions;
         protected override Task SaveChangesAsync()
         {
             return _contextStorage.Get().SaveChangesAsync();

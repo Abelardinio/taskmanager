@@ -1,4 +1,6 @@
-﻿namespace TaskManager.AuthService.WebApi.Models
+﻿using TaskManager.Common.AspNetCore.Model;
+
+namespace TaskManager.AuthService.WebApi.Models
 {
     public class PermissionsModel
     {

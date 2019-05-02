@@ -16,6 +16,7 @@ namespace TaskManager.Common.AspNetCore
             kernel.Bind<IMessageSerializer>().To<MessageSerializer>();
             kernel.Bind<IRabbitMqConnectionFactory>().To<RabbitMqConnectionFactory>();
             kernel.Bind<IExchange>().To<TaskExchange>().InSingletonScope();
+            kernel.Bind<IExchange>().To<PermissionsExchange>().InSingletonScope();
             kernel.Bind<INameFactory>().To<NameFactory>().InSingletonScope();
             kernel.Bind<IRouteInitializer>().To<RouteInitializer>().InSingletonScope();
         }

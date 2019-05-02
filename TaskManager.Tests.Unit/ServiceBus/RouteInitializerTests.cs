@@ -62,7 +62,6 @@ namespace TaskManager.Tests.Unit.ServiceBus
         public void ShouldCreateExchangeOnlyIfThereIsRelatedRoute()
         {
             var routeMock = new Mock<IRoute>();
-            routeMock.Setup(x => x.Exchange).Returns(ExchangeLookup.Task);
             _routeSettingsMock.Setup(x => x.Routes).Returns(new []{ routeMock.Object});
             _routeInitializer.Init();
             _channelMock.Verify(x =>
@@ -78,7 +77,6 @@ namespace TaskManager.Tests.Unit.ServiceBus
             var exchange = ExchangeLookup.Task;
             var routeMock = new Mock<IRoute>();
             var queue = $"{ApplicationName}_{e.ToString()}";
-            routeMock.Setup(x => x.Exchange).Returns(exchange);
             routeMock.Setup(x => x.Event).Returns(e);
             _routeSettingsMock.Setup(x => x.Routes).Returns(new[] { routeMock.Object });
 

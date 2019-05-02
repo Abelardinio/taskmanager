@@ -24,7 +24,7 @@ namespace TaskManager.ServiceBus
             }
 
             var exchangesToDeclare =
-                _routeSettings.Exchanges.Where(x => _routeSettings.Routes.Any(y => y.Exchange == x.Exchange));
+                _routeSettings.Exchanges.Where(x => _routeSettings.Routes.Any(y => EventExchangeMapping.Dictionary[y.Event] == x.Exchange));
 
             using (var channel = _connectionStorage.Get().CreateModel())
             {
@@ -37,7 +37,7 @@ namespace TaskManager.ServiceBus
                 {
                     var routingKey = _nameFactory.GetRoutingKey(route.Event);
                     var queue = _nameFactory.GetQueue(_routeSettings.ApplicationName, route.Event);
-                    var exchange = _nameFactory.GetExchange(route.Exchange);
+                    var exchange = _nameFactory.GetExchange(EventExchangeMapping.Dictionary[route.Event]);
 
                     channel.QueueDeclare(queue: queue,
                         durable: false,

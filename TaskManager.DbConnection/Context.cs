@@ -15,5 +15,7 @@ namespace TaskManager.DbConnection
         public virtual DbSet<ProjectEntity> Projects { get; set; }
 
         public virtual DbSet<FeatureEntity> Features { get; set; }
+
+        public virtual DbSet<UserPermissionEntity> Permissions { get; set; }
     }
 }

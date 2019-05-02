@@ -2,7 +2,6 @@
 {
     public interface IRoute
     {
-        ExchangeLookup Exchange { get; }
         EventLookup Event { get; }
     }
 }

@@ -9,7 +9,9 @@ using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
+using TaskManager.Core.EventAccessors;
 using TaskManager.ServiceBus;
+using TaskManager.ServiceBus.EventAccessors;
 
 namespace TaskManager.AuthService.Data
 {
@@ -27,6 +29,7 @@ namespace TaskManager.AuthService.Data
             kernel.Bind<ITokenProvider>().To<TokenProvider>();
             kernel.Bind<IPermissionsDataAccessor>().To<PermissionsDataAccessor>();
             kernel.Bind<IPermissionsDataProvider>().To<PermissionsDataProvider>();
+            kernel.Bind<IPermissionsEventAccessor>().To<PermissionsEventAccessor>();
             kernel.Bind<IRouteSettings, IServiceBusClientSettings>().To<ServiceBusRouteSettings>().InSingletonScope();
         }
     }

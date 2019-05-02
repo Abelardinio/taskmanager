@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TaskManager.Common.DbConnection.Entities;
 using TaskManager.Core.Enums;
 
-namespace TaskManager.AuthService.DbConnection.Entities
+namespace TaskManager.DbConnection.Entities
 {
     [Table("UserPermissions")]
     public class UserPermissionEntity : IUserPermissionEntity
@@ -11,7 +11,7 @@ namespace TaskManager.AuthService.DbConnection.Entities
         public int Id { get; set; }
         [Required]
         public int UserId { get; set; }
-        public UserEntity User { get; set; }
+        public ProjectEntity Project { get; set; }
         [Required]
         public Permission Permission { get; set; }
         [Required]
