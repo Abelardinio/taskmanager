@@ -15,17 +15,20 @@ namespace TaskManager.Data.DataProviders
         private readonly ITaskEventAccessor _taskEventAccessor;
         private readonly IConnectionContext _connectionContext;
         private readonly IFeaturesDataAccessor _featuresDataAccessor;
+        private readonly IPermissionsDataAccessor _permissionsDataAccessor;
 
         public TaskDataProvider(
             ITaskDataAccessor taskDataAccessor,
             ITaskEventAccessor taskEventAccessor,
             IConnectionContext connectionContext,
-            IFeaturesDataAccessor featuresDataAccessor)
+            IFeaturesDataAccessor featuresDataAccessor,
+            IPermissionsDataAccessor permissionsDataAccessor)
         {
             _taskDataAccessor = taskDataAccessor;
             _taskEventAccessor = taskEventAccessor;
             _connectionContext = connectionContext;
             _featuresDataAccessor = featuresDataAccessor;
+            _permissionsDataAccessor = permissionsDataAccessor;
         }
 
         public Task AddAsync(ITaskInfo task)
@@ -33,7 +36,7 @@ namespace TaskManager.Data.DataProviders
             return _taskDataAccessor.AddAsync(task);
         }
 
-        public IQueryable<ITask> GetLiveTasks(int? projectId)
+        public IQueryable<ITask> GetLiveTasks(int userId, int? projectId)
         {
             var result = _taskDataAccessor.Get()
                 .Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);

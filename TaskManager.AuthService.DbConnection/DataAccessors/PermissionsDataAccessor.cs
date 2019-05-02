@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.AuthService.DbConnection.Entities;
 using TaskManager.Common.DbConnection.DataAccessors;
+using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.Enums;
 
@@ -30,6 +32,11 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
                 ProjectId = projectId,
                 Permission = permission
             };
+        }
+
+        public IQueryable<IUserProjectPermission> Get()
+        {
+            return _contextStorage.Get().UserPermissions;
         }
     }
 }

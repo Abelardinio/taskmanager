@@ -35,7 +35,7 @@ import { Lookup } from 'src/app/models/Lookup';
         projectId: new FormControl('', [Validators.required])
       });
 
-      this._projectService.GetLookup().subscribe(projects => this.projectsArray = projects);
+      this._projectService.GetLookupAddFeature().subscribe(projects => this.projectsArray = projects);
     }
 
     protected submitAction(value: FeatureInfo): Observable<Object> {

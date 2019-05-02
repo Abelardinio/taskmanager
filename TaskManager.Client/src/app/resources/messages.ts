@@ -31,5 +31,9 @@ export const Messages = {
                     fieldName + ' must be between ' + minLength + ' and ' + maxLength + ' characters long.',
             Email: 'Please provide a valid email address.'
         }
+    },
+    Errors: {
+        Unauthorized: 'You do not have permissions to complete this operation.',
+        Unknown: 'You request failed due to unknown error.'
     }
 };

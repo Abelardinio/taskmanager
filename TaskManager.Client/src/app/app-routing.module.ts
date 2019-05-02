@@ -13,6 +13,7 @@ import { AddFeaturePageComponent } from './components/pages/add-feature-page/add
 import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
 import { FeaturePageComponent } from './components/pages/feature-page/feature-page.component';
 import { SiteAdministratorActivate } from './common/SiteAdministratorActivate';
+import { ProjectsCreatorActivate } from './common/ProjectsCreatorActivate';
 
 const routes: Routes = [
   { path: 'tasks', component: TasksPageComponent, canActivate: [LoginActivate] },
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'users', component: UsersPageComponent, canActivate: [LoginActivate, SiteAdministratorActivate] },
   { path: 'users/add', component: AddUserPageComponent, canActivate: [LoginActivate, SiteAdministratorActivate] },
   { path: 'projects', component: ProjectsPageComponent, canActivate: [LoginActivate] },
-  { path: 'projects/add', component: AddProjectPageComponent, canActivate: [LoginActivate] },
+  { path: 'projects/add', component: AddProjectPageComponent, canActivate: [LoginActivate, ProjectsCreatorActivate] },
   { path: 'projects/:id', component: ProjectPageComponent, canActivate: [LoginActivate] },
   { path: 'features', component: FeaturesPageComponent, canActivate: [LoginActivate] },
   { path: 'features/add', component: AddFeaturePageComponent, canActivate: [LoginActivate] },

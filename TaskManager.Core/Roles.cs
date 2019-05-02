@@ -7,11 +7,14 @@ namespace TaskManager.Core
     {
         public const string User = "User";
         public const string SiteAdministrator = "SiteAdministrator";
+        public const string ProjectsCreator = "ProjectsCreator";
+        public const string CreateProject = "SiteAdministrator, ProjectsCreator";
 
         public static IDictionary<Role, string> Dictionary = new Dictionary<Role, string>
             {
                 {Role.User, User},
-                {Role.SiteAdministrator, SiteAdministrator }
+                {Role.SiteAdministrator, SiteAdministrator },
+                {Role.ProjectsCreator, ProjectsCreator }
             };
     }
 }

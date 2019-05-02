@@ -9,6 +9,10 @@ export const Lookups = {
         {
             Id: Role.SiteAdministrator,
             Name: 'Site Administrator'
+        },
+        {
+            Id: Role.ProjectsCreator,
+            Name: 'Projects Creator'
         }
     ]
 };

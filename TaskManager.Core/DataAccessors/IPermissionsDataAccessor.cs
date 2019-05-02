@@ -9,5 +9,7 @@ namespace TaskManager.Core.DataAccessors
         Task UpdatePermissionsForUserAsync(int userId, IProjectPermission[] permissions);
 
         IQueryable<Permission> Get(int userId, int projectId);
+
+        IQueryable<IUserProjectPermission> Get();
     }
 }

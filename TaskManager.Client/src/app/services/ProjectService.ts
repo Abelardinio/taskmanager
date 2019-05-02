@@ -63,7 +63,16 @@ export class ProjectService extends BaseService {
      */
     public GetLookup(): Observable<Lookup[]> {
         return <Observable<Lookup[]>>this._httpClient
-        .get(environment.API_URL + '/projects/lookup', { headers: this.headers,  })
+        .get(environment.API_URL + '/projects/lookup', { headers: this.headers, })
+        .pipe(catchError(this.handleError()));
+    }
+
+    /**
+     * Returns an observable of http get method which returns a collection of project lookups which allow to add features
+     */
+    public GetLookupAddFeature(): Observable<Lookup[]> {
+        return <Observable<Lookup[]>>this._httpClient
+        .get(environment.API_URL + '/projects/lookup/addFeature', { headers: this.headers, })
         .pipe(catchError(this.handleError()));
     }
 }

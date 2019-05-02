@@ -2,6 +2,7 @@ import { HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { NotificationsService } from '../../../node_modules/angular2-notifications';
 import { LocalStorageAccessor } from '../common/LocalStorageAccessor';
+import { Messages } from '../resources/messages';
 
 /**
  * Base class for common functionality of http requests
@@ -23,7 +24,14 @@ export abstract class BaseService {
      */
     protected handleError<T>(operation = 'operation', result?: T) {
         return (data: any): Observable<T> => {
-            this.notifications.error(data.error.Message);
+            if (data.error) {
+                this.notifications.error(data.error.Message);
+            } else if (data.status === 403) {
+                this.notifications.error(Messages.Errors.Unauthorized);
+            } else {
+                this.notifications.error(Messages.Errors.Unknown);
+            }
+
             throw data;
         };
     }

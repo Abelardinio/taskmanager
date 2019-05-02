@@ -5,7 +5,7 @@ namespace TaskManager.Core.DataAccessors
 {
     public interface IProjectsDataAccessor
     {
-        Task AddAsync(IProjectInfo task);
+        Task AddAsync(int userId, IProjectInfo task);
         IQueryable<IProject> Get();
     }
 }

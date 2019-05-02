@@ -2,7 +2,7 @@
   <div class="flex-row page-header">
       <h2>Projects</h2>
       <div class="nav-buttons">
-          <a routerLink="/projects/add" class="btn">Add Project</a>
+          <a *ngIf="isProjectsCreator" routerLink="/projects/add" class="btn">Add Project</a>
       </div>
   </div>
   <hr />

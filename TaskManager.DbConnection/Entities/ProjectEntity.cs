@@ -10,15 +10,17 @@ namespace TaskManager.DbConnection.Entities
     public class ProjectEntity : IProject
     {
         public ProjectEntity() { }
-        public ProjectEntity(IProjectInfo info)
+        public ProjectEntity(int userId, IProjectInfo info)
         {
             Name = info.Name;
             Description = info.Description;
+            CreatorId = userId;
         }
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        public int CreatorId { get; set; }
 
         public List<FeatureEntity> Features { get; set; }
     }

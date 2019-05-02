@@ -15,11 +15,11 @@ namespace TaskManager.DbConnection.DataAccessors
             _contextStorage = contextStorage;
         }
 
-        public async Task AddAsync(IProjectInfo info)
+        public async Task AddAsync(int userId, IProjectInfo info)
         {
             var context = _contextStorage.Get();
 
-            context.Projects.Add(new ProjectEntity(info));
+            context.Projects.Add(new ProjectEntity(userId, info));
             await context.SaveChangesAsync();
         }
 

@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaskManager.Common.AspNetCore;
 using TaskManager.Common.AspNetCore.Model;
 using TaskManager.Common.Data;
 using TaskManager.Core;
+using TaskManager.Core.Enums;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
 using TaskManager.WebApi.Model;
@@ -31,7 +33,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _projectsDataProvider.Get().GetPagedResultAsync(filter);
+                return await _projectsDataProvider.Get(HttpContext.User.GetUserId()).GetPagedResultAsync(filter);
             }
         }
 
@@ -41,17 +43,18 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _projectsDataProvider.Get().FirstOrDefaultAsync(x => x.Id == id);
+                return await _projectsDataProvider.Get(HttpContext.User.GetUserId()).FirstOrDefaultAsync(x => x.Id == id);
             }
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.CreateProject)]
         [Route("projects")]
         public async Task Add([FromBody] ProjectInfoModel model)
         {
             using (_context.Scope())
             {
-                await _projectsDataProvider.AddAsync(model);
+                await _projectsDataProvider.AddAsync(HttpContext.User.GetUserId(), model);
             }
         }
 
@@ -61,7 +64,18 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _projectsDataProvider.Get().Select(x => new LookupModel {Id = x.Id, Name = x.Name})
+                return await _projectsDataProvider.Get(HttpContext.User.GetUserId()).Select(x => new LookupModel {Id = x.Id, Name = x.Name})
+                    .ToListAsync();
+            }
+        }
+
+        [HttpGet]
+        [Route("projects/lookup/addFeature")]
+        public async Task<IEnumerable<ILookup>> GetLookupForAddProjectPage()
+        {
+            using (_context.Scope())
+            {
+                return await _projectsDataProvider.Get(HttpContext.User.GetUserId(), Permission.CreateFeature).Select(x => new LookupModel { Id = x.Id, Name = x.Name })
                     .ToListAsync();
             }
         }

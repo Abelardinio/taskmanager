@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TaskManager.Common.AspNetCore;
 using TaskManager.Common.Data;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
@@ -29,7 +30,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _taskDataProvider.GetLiveTasks(filter.ProjectId).GetPagedResultAsync(filter);
+                return await _taskDataProvider.GetLiveTasks(HttpContext.User.GetUserId(), filter.ProjectId).GetPagedResultAsync(filter);
             }
         }
 

@@ -1,12 +1,9 @@
-﻿using TaskManager.Core.Enums;
+﻿using TaskManager.Core;
 
 namespace TaskManager.Common.DbConnection.Entities
 {
-    public interface IUserPermissionEntity
+    public interface IUserPermissionEntity : IUserProjectPermission
     {
         int Id { get; }
-        int UserId { get; }
-        Permission Permission { get; }
-        int ProjectId { get; }
     }
 }

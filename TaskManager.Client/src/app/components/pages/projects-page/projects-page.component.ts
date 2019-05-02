@@ -7,6 +7,8 @@ import { TableBase } from '../../common/table-base/table-base';
 import { ProjectService } from 'src/app/services/ProjectService';
 import { Observable } from 'rxjs';
 import { PagedResult } from 'src/app/models/PagedResult';
+import { AuthService } from 'src/app/common/AuthService';
+import { Role } from 'src/app/models/enums/Role';
 
 @Component({
   selector: 'app-projects-page',
@@ -16,14 +18,15 @@ import { PagedResult } from 'src/app/models/PagedResult';
 })
 export class ProjectsPageComponent extends TableBase<Project> implements OnInit {
   public headers: TableHeaderInfo<null>[] =
-    [ new TableHeaderInfo('Project Link', 'project-link-column', null, false),
-      new TableHeaderInfo('Name', 'name-column', null, false)];
+    [new TableHeaderInfo('Project Link', 'project-link-column', null, false),
+    new TableHeaderInfo('Name', 'name-column', null, false)];
 
   public filter: ProjectFilter = new ProjectFilter(
     new PagingInfo(1, 20));
 
   constructor(
-    private _projectService: ProjectService) {
+    private _projectService: ProjectService,
+    private _authService: AuthService) {
     super();
   }
 
@@ -33,5 +36,10 @@ export class ProjectsPageComponent extends TableBase<Project> implements OnInit 
 
   public ngOnInit() {
     super.ngOnInit();
+  }
+
+  public get isProjectsCreator() {
+    return this._authService.HasRole(Role.ProjectsCreator) ||
+      this._authService.HasRole(Role.SiteAdministrator);
   }
 }
