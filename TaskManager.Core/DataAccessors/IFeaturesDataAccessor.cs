@@ -6,6 +6,6 @@ namespace TaskManager.Core.DataAccessors
     public interface IFeaturesDataAccessor
     {
         Task AddAsync(IFeatureInfo task);
-        IQueryable<IFeatureModel> Get();
+        IQueryable<IFeatureModel> Get(int userId);
     }
 }

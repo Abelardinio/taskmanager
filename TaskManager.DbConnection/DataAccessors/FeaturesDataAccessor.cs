@@ -24,16 +24,22 @@ namespace TaskManager.DbConnection.DataAccessors
             await context.SaveChangesAsync();
         }
 
-        public IQueryable<IFeatureModel> Get()
+        public IQueryable<IFeatureModel> Get(int userId)
         {
-            return _contextStorage.Get().Features.Join(_contextStorage.Get().Projects, feature => feature.ProjectId, project => project.Id,
-                (feature, project) => new FeatureModel
+            return _contextStorage.Get().Features.Join(_contextStorage.Get().Projects, feature => feature.ProjectId,
+                project => project.Id,
+                (feature, project) => new
                 {
-                    Id = feature.Id,
-                    ProjectName = project.Name,
-                    Description = feature.Description,
-                    Name = feature.Name,
-                    ProjectId = feature.ProjectId
+                    feature, project
+                }).Where(x => x.project.CreatorId == userId || _contextStorage.Get().Permissions
+                                  .Any(y => y.UserId == userId && x.project.Id == y.ProjectId)).Select(x =>
+                new FeatureModel
+                {
+                    Id = x.feature.Id,
+                    Description = x.feature.Description,
+                    Name = x.feature.Name,
+                    ProjectId = x.project.Id,
+                    ProjectName = x.project.Name
                 });
         }
     }

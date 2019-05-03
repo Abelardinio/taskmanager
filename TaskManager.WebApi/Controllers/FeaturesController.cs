@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaskManager.Common.AspNetCore;
 using TaskManager.Common.AspNetCore.Model;
 using TaskManager.Common.Data;
 using TaskManager.Core;
@@ -32,7 +33,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _featuresDataProvider.Get().GetPagedResultAsync(filter);
+                return await _featuresDataProvider.Get(HttpContext.User.GetUserId()).GetPagedResultAsync(filter);
             }
         }
 
@@ -42,7 +43,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _featuresDataProvider.Get().FirstOrDefaultAsync(x => x.Id == id);
+                return await _featuresDataProvider.Get(HttpContext.User.GetUserId()).FirstOrDefaultAsync(x => x.Id == id);
             }
         }
 
@@ -52,7 +53,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                await _featuresDataProvider.AddAsync(model);
+                await _featuresDataProvider.AddAsync(HttpContext.User.GetUserId(), model);
             }
         }
 
@@ -63,7 +64,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _featuresDataProvider.Get()
+                return await _featuresDataProvider.Get(HttpContext.User.GetUserId())
                     .Where(x => !filter.ProjectId.HasValue || x.ProjectId == filter.ProjectId)
                     .Select(x => new LookupModel {Id = x.Id, Name = x.Name})
                     .ToListAsync();

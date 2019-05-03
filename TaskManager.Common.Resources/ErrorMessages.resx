@@ -120,6 +120,9 @@
   <data name="Login_AuthError" xml:space="preserve">
     <value>Username or password provided are incorrect.</value>
   </data>
+  <data name="NoPermissionsForOperation" xml:space="preserve">
+    <value>You do not have permissions for that operation</value>
+  </data>
   <data name="Tasks_CompleteUnactive" xml:space="preserve">
     <value>Unactive task cannot be completed.</value>
   </data>

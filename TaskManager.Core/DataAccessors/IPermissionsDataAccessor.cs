@@ -11,5 +11,7 @@ namespace TaskManager.Core.DataAccessors
         IQueryable<Permission> Get(int userId, int projectId);
 
         IQueryable<IUserProjectPermission> Get();
+
+        Task<bool> HasPermission(int userId, int projectId, Permission permission);
     }
 }

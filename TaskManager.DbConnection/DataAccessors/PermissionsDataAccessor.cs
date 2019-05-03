@@ -38,5 +38,12 @@ namespace TaskManager.DbConnection.DataAccessors
         {
             return _contextStorage.Get().Permissions;
         }
+
+        public Task<bool> HasPermission(int userId, int projectId, Permission permission)
+        {
+            return _contextStorage.Get().Permissions.AnyAsync(x =>
+                x.UserId == userId && x.ProjectId == projectId &&
+                (x.Permission == permission || x.Permission == Permission.Admin));
+        }
     }
 }

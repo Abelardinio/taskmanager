@@ -38,5 +38,10 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
         {
             return _contextStorage.Get().UserPermissions;
         }
+
+        public Task<bool> HasPermission(int userId, int projectId, Permission permission)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

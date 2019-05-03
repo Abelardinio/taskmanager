@@ -41,7 +41,7 @@ namespace TaskManager.Data.DataProviders
             var result = _taskDataAccessor.Get()
                 .Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
 
-            return projectId.HasValue ? result.Where(x=> _featuresDataAccessor.Get().FirstOrDefault(y=>y.Id == x.FeatureId).ProjectId == projectId.Value) : result;
+            return projectId.HasValue ? result.Where(x=> _featuresDataAccessor.Get(userId).FirstOrDefault(y=>y.Id == x.FeatureId).ProjectId == projectId.Value) : result;
         }
 
         public async Task UpdateStatusAsync(int taskId, TaskStatus status)
