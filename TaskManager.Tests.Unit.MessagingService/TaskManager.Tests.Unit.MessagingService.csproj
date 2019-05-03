@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
-    <ProjectReference Include="..\TaskManager.MessagingService\TaskManager.MessagingService.csproj" />
+    <ProjectReference Include="..\TaskManager.MessagingService\TaskManager.MessagingService.WebApi.csproj" />
     <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />
   </ItemGroup>
 

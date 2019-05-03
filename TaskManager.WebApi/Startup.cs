@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Common.Data;
 using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Data;

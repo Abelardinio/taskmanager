@@ -7,6 +7,7 @@ using Ninject;
 using TaskManager.AuthService.Data;
 using TaskManager.AuthService.DbConnection;
 using TaskManager.Common.AspNetCore;
+using TaskManager.Common.Data;
 using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.ServiceBus;

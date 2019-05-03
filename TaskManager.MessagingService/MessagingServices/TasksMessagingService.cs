@@ -4,9 +4,10 @@ using Microsoft.Extensions.Hosting;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.EventAccessors;
 using TaskManager.Core.Messages;
+using TaskManager.MessagingService.Data;
 using TaskStatus = TaskManager.Core.TaskStatus;
 
-namespace TaskManager.MessagingService.MessagingServices
+namespace TaskManager.MessagingService.WebApi.MessagingServices
 {
     public class TasksMessagingService : IHostedService
     {

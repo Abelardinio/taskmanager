@@ -20,6 +20,8 @@
     <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
     <ProjectReference Include="..\TaskManager.Common.Data\TaskManager.Common.Data.csproj" />
     <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
+    <ProjectReference Include="..\TaskManager.MessagingService.Data\TaskManager.MessagingService.Data.csproj" />
+    <ProjectReference Include="..\TaskManager.MessagingService.DbConnection\TaskManager.MessagingService.DbConnection.csproj" />
     <ProjectReference Include="..\TaskManager.ServiceBus\TaskManager.ServiceBus.csproj" />
   </ItemGroup>
 

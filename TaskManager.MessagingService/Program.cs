@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace TaskManager.MessagingService
+namespace TaskManager.MessagingService.WebApi
 {
     public class Program
     {

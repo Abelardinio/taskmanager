@@ -1,7 +1,7 @@
 ﻿using TaskManager.Common.Data;
 using TaskManager.ServiceBus;
 
-namespace TaskManager.MessagingService
+namespace TaskManager.MessagingService.Data
 {
     public class ServiceBusRouteSettings : ServiceBusRouteSettingsBase
     {

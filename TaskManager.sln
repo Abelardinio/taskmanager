@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.Tests", "TaskMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit", "TaskManager.Tests.Unit\TaskManager.Tests.Unit.csproj", "{DF9D00DD-4598-4EF0-8C18-7925F5B405EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService", "TaskManager.MessagingService\TaskManager.MessagingService.csproj", "{5ACD06AD-99B0-4296-B46C-A503A7D20B38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService.WebApi", "TaskManager.MessagingService\TaskManager.MessagingService.WebApi.csproj", "{5ACD06AD-99B0-4296-B46C-A503A7D20B38}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.ServiceBus", "TaskManager.ServiceBus\TaskManager.ServiceBus.csproj", "{BC715178-5C5F-4023-90D0-734132D5BE1E}"
 EndProject
@@ -39,7 +39,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.AuthService.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.AuthService.WebApi", "TaskManager.AuthService.WebApi\TaskManager.AuthService.WebApi.csproj", "{E80E007D-A597-4632-8CA4-5D90D20FAC99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Tests.Unit.AuthService", "TaskManager.Tests.Unit.AuthService\TaskManager.Tests.Unit.AuthService.csproj", "{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit.AuthService", "TaskManager.Tests.Unit.AuthService\TaskManager.Tests.Unit.AuthService.csproj", "{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.MessagingService", "TaskManager.MessagingService", "{C2C70125-6EA4-420D-A766-D31ECDF623BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.MessagingService.Data", "TaskManager.MessagingService.Data\TaskManager.MessagingService.Data.csproj", "{F237E458-6B6F-4540-B99D-289EBE8E2B81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.MessagingService.DbConnection", "TaskManager.MessagingService.DbConnection\TaskManager.MessagingService.DbConnection.csproj", "{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +117,14 @@ Global
 		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F237E458-6B6F-4540-B99D-289EBE8E2B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F237E458-6B6F-4540-B99D-289EBE8E2B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F237E458-6B6F-4540-B99D-289EBE8E2B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F237E458-6B6F-4540-B99D-289EBE8E2B81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +132,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F953E910-A362-4414-A130-2B8D5F33B9F2} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
 		{DF9D00DD-4598-4EF0-8C18-7925F5B405EF} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
+		{5ACD06AD-99B0-4296-B46C-A503A7D20B38} = {C2C70125-6EA4-420D-A766-D31ECDF623BF}
 		{4B55EDB8-DC33-4F81-85CB-8FD6ECC7FFA5} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
 		{C4AFA8C1-AE62-440F-8535-E5C0C8A6098B} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
 		{091572E3-209F-4DA6-BDE8-2D3F4B648E8F} = {A4F8DA7E-F5EB-4384-BB0D-99F2ED4FB79A}
@@ -126,6 +141,8 @@ Global
 		{F72687E5-2856-40FB-B90E-407BB580DEC8} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
 		{E80E007D-A597-4632-8CA4-5D90D20FAC99} = {BA527DC2-5B0F-4502-BCA3-55EF9B17E0C9}
 		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
+		{F237E458-6B6F-4540-B99D-289EBE8E2B81} = {C2C70125-6EA4-420D-A766-D31ECDF623BF}
+		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D} = {C2C70125-6EA4-420D-A766-D31ECDF623BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BCF9DE-B1F3-48E5-AB19-4625D3CCCFBB}

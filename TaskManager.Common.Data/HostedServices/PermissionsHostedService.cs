@@ -6,7 +6,7 @@ using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.EventAccessors;
 
-namespace TaskManager.Data.HostedServices
+namespace TaskManager.Common.Data.HostedServices
 {
     public class PermissionsHostedService : IHostedService
     {

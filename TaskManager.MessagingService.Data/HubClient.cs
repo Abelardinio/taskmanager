@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace TaskManager.MessagingService
+namespace TaskManager.MessagingService.Data
 {
     public class HubClient<T> : IHubClient<T> where T: Hub
     {

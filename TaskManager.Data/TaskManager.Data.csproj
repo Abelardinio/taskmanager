@@ -7,7 +7,6 @@
       <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.3.0" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\TaskManager.Common.AspNetCore\TaskManager.Common.AspNetCore.csproj" />
       <ProjectReference Include="..\TaskManager.Common.Data\TaskManager.Common.Data.csproj" />
       <ProjectReference Include="..\TaskManager.Core\TaskManager.Core.csproj" />
       <ProjectReference Include="..\TaskManager.DbConnection\TaskManager.DbConnection.csproj" />
