@@ -28,9 +28,20 @@ namespace TaskManager.DbConnection.DataAccessors
             await context.SaveChangesAsync();
         }
 
-        public IQueryable<ITask> Get()
+        public IQueryable<ITask> Get(int userId, int? projectId)
         {
-            return _contextStorage.Get().Tasks;
+            return _contextStorage.Get().Tasks
+                .Join(_contextStorage.Get().Features,
+                    task => task.FeatureId,
+                    feature => feature.Id,
+                    (task, feature) => new {task, feature})
+                .Join(_contextStorage.Get().Projects,
+                    taskFeature => taskFeature.feature.ProjectId,
+                    project => project.Id,
+                    (taskFeature, project) => new {taskFeature.task, taskFeature.feature, project})
+                .Where(x => (!projectId.HasValue || projectId.Value == x.project.Id) &&
+                            (x.project.CreatorId == userId || _contextStorage.Get().Permissions
+                                 .Any(y => y.UserId == userId && y.ProjectId == x.project.Id))).Select(x => x.task);
         }
         
         public async Task UpdateStatusAsync(int taskId, TaskStatus status)

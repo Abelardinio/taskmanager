@@ -52,7 +52,7 @@ namespace TaskManager.WebApi.Controllers
 
             using (_context.Scope())
             {
-                await _taskDataProvider.AddAsync(taskInfo);
+                await _taskDataProvider.AddAsync(HttpContext.User.GetUserId(), taskInfo);
             }
         }
         [HttpDelete]

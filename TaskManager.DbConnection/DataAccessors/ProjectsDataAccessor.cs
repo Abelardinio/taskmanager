@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
 using TaskManager.DbConnection.Entities;
@@ -26,6 +27,14 @@ namespace TaskManager.DbConnection.DataAccessors
         public IQueryable<IProject> Get()
         {
            return _contextStorage.Get().Projects;
+        }
+
+        public Task<bool> IsProjectCreator(int userId, int featureId)
+        {
+            return _contextStorage.Get().Projects
+                .Join(_contextStorage.Get().Features, project => project.Id, feature => feature.ProjectId,
+                    (project, feature) => new {feature, project})
+                .AnyAsync(x => x.feature.Id == featureId && x.project.CreatorId == userId);
         }
     }
 }

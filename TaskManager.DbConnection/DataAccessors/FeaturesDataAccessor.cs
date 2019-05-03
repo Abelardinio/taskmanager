@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using TaskManager.Core;
 using TaskManager.Core.DataAccessors;
+using TaskManager.Core.Enums;
 using TaskManager.DbConnection.Entities;
 using TaskManager.DbConnection.Models;
 
@@ -24,7 +25,7 @@ namespace TaskManager.DbConnection.DataAccessors
             await context.SaveChangesAsync();
         }
 
-        public IQueryable<IFeatureModel> Get(int userId)
+        public IQueryable<IFeatureModel> Get(int userId, Permission? permission = null)
         {
             return _contextStorage.Get().Features.Join(_contextStorage.Get().Projects, feature => feature.ProjectId,
                 project => project.Id,
@@ -32,7 +33,9 @@ namespace TaskManager.DbConnection.DataAccessors
                 {
                     feature, project
                 }).Where(x => x.project.CreatorId == userId || _contextStorage.Get().Permissions
-                                  .Any(y => y.UserId == userId && x.project.Id == y.ProjectId)).Select(x =>
+                                  .Any(y => y.UserId == userId && x.project.Id == y.ProjectId &&
+                                            (!permission.HasValue || y.Permission == permission.Value ||
+                                             y.Permission == Permission.Admin))).Select(x =>
                 new FeatureModel
                 {
                     Id = x.feature.Id,

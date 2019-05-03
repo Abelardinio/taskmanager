@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Common.Resources;
@@ -8,7 +7,6 @@ using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
 using TaskManager.Core.Enums;
 using TaskManager.Core.Exceptions;
-using TaskManager.DbConnection.Models;
 
 namespace TaskManager.Data.DataProviders
 {
@@ -40,9 +38,9 @@ namespace TaskManager.Data.DataProviders
             throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
         }
 
-        public IQueryable<IFeatureModel> Get(int userId)
+        public IQueryable<IFeatureModel> Get(int userId, Permission? permission = null)
         {
-            return _featuresDataAccessor.Get(userId);
+            return _featuresDataAccessor.Get(userId, permission);
         }
     }
 }

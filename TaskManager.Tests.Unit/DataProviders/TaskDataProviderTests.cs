@@ -24,7 +24,7 @@ namespace TaskManager.Tests.Unit.DataProviders
         private readonly Mock<ITaskDataAccessor> _taskDataAccessorMock;
         private readonly Mock<ITaskEventAccessor> _taskEventAccessorMock;
         private readonly Mock<IConnectionContext> _connectionContextMock;
-        private readonly Mock<IFeaturesDataAccessor> _featuresDataAccessorMock;
+        private readonly Mock<IProjectsDataAccessor> _projectsDataAccessorMock;
         private readonly Mock<IPermissionsDataAccessor> _permissionsDataAccessorMock;
         private readonly ITaskDataProvider _taskDataProvider;
 
@@ -57,19 +57,19 @@ namespace TaskManager.Tests.Unit.DataProviders
             _taskDataAccessorMock = new Mock<ITaskDataAccessor>();
             _taskEventAccessorMock = new Mock<ITaskEventAccessor>();
             _connectionContextMock = new Mock<IConnectionContext>();
-            _featuresDataAccessorMock = new Mock<IFeaturesDataAccessor>();
+            _projectsDataAccessorMock = new Mock<IProjectsDataAccessor>();
             _permissionsDataAccessorMock = new Mock<IPermissionsDataAccessor>();
 
             var tasks = new List<ITask> { _task, _activeTask, _completedTask, _removedTask };
 
-            _taskDataAccessorMock.Setup(x => x.Get()).Returns(tasks.AsQueryable);
+            _taskDataAccessorMock.Setup(x => x.Get(1, null)).Returns(tasks.AsQueryable);
 
             _taskDataProvider = new TaskDataProvider(
                 _taskDataAccessorMock.Object,
                 _taskEventAccessorMock.Object,
                 _connectionContextMock.Object,
-                _featuresDataAccessorMock.Object,
-                _permissionsDataAccessorMock.Object);
+                _permissionsDataAccessorMock.Object,
+                _projectsDataAccessorMock.Object);
         }
 
         [Fact]

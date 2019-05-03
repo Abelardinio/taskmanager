@@ -70,4 +70,13 @@ export class FeatureService extends BaseService {
         .get(environment.API_URL + '/features/lookup', { headers: this.headers, params: params })
         .pipe(catchError(this.handleError()));
     }
+
+    /**
+     * Returns an observable of http get method which returns a collection of project lookups which allow to add features
+     */
+    public GetLookupAddTask(): Observable<Lookup[]> {
+        return <Observable<Lookup[]>>this._httpClient
+        .get(environment.API_URL + '/features/lookup/addTask', { headers: this.headers })
+        .pipe(catchError(this.handleError()));
+    }
 }

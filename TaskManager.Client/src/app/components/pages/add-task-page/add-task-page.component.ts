@@ -33,7 +33,7 @@ export class AddTaskPageComponent extends FormBase<TaskInfo> implements OnInit {
   }
 
   public ngOnInit() {
-    this._featureService.GetLookup().subscribe(features => this.featuresArray = features);
+    this._featureService.GetLookupAddTask().subscribe(features => this.featuresArray = features);
 
     this.form = this._formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]),

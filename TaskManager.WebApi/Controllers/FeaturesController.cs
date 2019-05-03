@@ -10,6 +10,7 @@ using TaskManager.Common.Data;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
+using TaskManager.Core.Enums;
 using TaskManager.DbConnection.Models;
 using TaskManager.WebApi.Model;
 
@@ -57,7 +58,6 @@ namespace TaskManager.WebApi.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("features/lookup")]
         public async Task<IEnumerable<ILookup>> Get([FromQuery] FeaturesLookupFilter filter)
@@ -67,6 +67,18 @@ namespace TaskManager.WebApi.Controllers
                 return await _featuresDataProvider.Get(HttpContext.User.GetUserId())
                     .Where(x => !filter.ProjectId.HasValue || x.ProjectId == filter.ProjectId)
                     .Select(x => new LookupModel {Id = x.Id, Name = x.Name})
+                    .ToListAsync();
+            }
+        }
+
+        [HttpGet]
+        [Route("features/lookup/addTask")]
+        public async Task<IEnumerable<ILookup>> GetLookupForAddTaskPage()
+        {
+            using (_context.Scope())
+            {
+                return await _featuresDataProvider.Get(HttpContext.User.GetUserId(), Permission.CreateTask)
+                    .Select(x => new LookupModel { Id = x.Id, Name = x.Name })
                     .ToListAsync();
             }
         }

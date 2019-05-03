@@ -1,10 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
+using TaskManager.Core.Enums;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Core.Exceptions;
 using TaskStatus = TaskManager.Core.TaskStatus;
 
 namespace TaskManager.Data.DataProviders
@@ -14,34 +18,39 @@ namespace TaskManager.Data.DataProviders
         private readonly ITaskDataAccessor _taskDataAccessor;
         private readonly ITaskEventAccessor _taskEventAccessor;
         private readonly IConnectionContext _connectionContext;
-        private readonly IFeaturesDataAccessor _featuresDataAccessor;
         private readonly IPermissionsDataAccessor _permissionsDataAccessor;
+        private readonly IProjectsDataAccessor _projectsDataAccessor;
 
         public TaskDataProvider(
             ITaskDataAccessor taskDataAccessor,
             ITaskEventAccessor taskEventAccessor,
             IConnectionContext connectionContext,
-            IFeaturesDataAccessor featuresDataAccessor,
-            IPermissionsDataAccessor permissionsDataAccessor)
+            IPermissionsDataAccessor permissionsDataAccessor, IProjectsDataAccessor projectsDataAccessor)
         {
             _taskDataAccessor = taskDataAccessor;
             _taskEventAccessor = taskEventAccessor;
             _connectionContext = connectionContext;
-            _featuresDataAccessor = featuresDataAccessor;
             _permissionsDataAccessor = permissionsDataAccessor;
+            _projectsDataAccessor = projectsDataAccessor;
         }
 
-        public Task AddAsync(ITaskInfo task)
+        public async Task AddAsync(int userId, ITaskInfo task)
         {
-            return _taskDataAccessor.AddAsync(task);
+            if (await _projectsDataAccessor.IsProjectCreator(userId, task.FeatureId.Value) ||
+                await _permissionsDataAccessor.HasPermissionForFeature(userId, task.FeatureId.Value, Permission.CreateTask))
+            {
+                await _taskDataAccessor.AddAsync(task);
+            }
+            else
+            {
+                throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
+            }
         }
 
         public IQueryable<ITask> GetLiveTasks(int userId, int? projectId)
         {
-            var result = _taskDataAccessor.Get()
+            return _taskDataAccessor.Get(userId, projectId)
                 .Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
-
-            return projectId.HasValue ? result.Where(x=> _featuresDataAccessor.Get(userId).FirstOrDefault(y=>y.Id == x.FeatureId).ProjectId == projectId.Value) : result;
         }
 
         public async Task UpdateStatusAsync(int taskId, TaskStatus status)

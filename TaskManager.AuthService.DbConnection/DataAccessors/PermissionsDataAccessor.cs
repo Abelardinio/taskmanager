@@ -43,5 +43,10 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<bool> HasPermissionForFeature(int userId, int featureId, Permission perm)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
