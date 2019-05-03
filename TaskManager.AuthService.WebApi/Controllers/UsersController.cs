@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.AuthService.WebApi.Models;
+using TaskManager.Common.AspNetCore;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
@@ -38,7 +39,8 @@ namespace TaskManager.AuthService.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                return await _usersDataProvider.Get().Select(x=>new UserModel(x)).GetPagedResultAsync(filter);
+                return await _usersDataProvider.Get().Where(x => x.Id != HttpContext.User.GetUserId())
+                    .Select(x => new UserModel(x)).GetPagedResultAsync(filter);
             }
         }
     }

@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.AuthService.WebApi.Models;
+using TaskManager.Common.AspNetCore;
+using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataProviders;
 using TaskManager.Core.Enums;
+using TaskManager.Core.Exceptions;
 
 namespace TaskManager.AuthService.WebApi.Controllers
 {
@@ -37,6 +40,11 @@ namespace TaskManager.AuthService.WebApi.Controllers
         [Route("users/{userId}/permissions")]
         public async Task Update(int userId, [FromBody] PermissionsModel model)
         {
+            if (userId == HttpContext.User.GetUserId())
+            {
+                throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
+            }
+
             using (_context.Scope())
             {
                 await _permissionsDataProvider.UpdatePermissionsForUserAsync(userId, model.Permissions);
