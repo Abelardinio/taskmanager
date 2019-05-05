@@ -7,6 +7,7 @@ export class Task {
     public Name: string,
     public Description: string,
     public Priority: number,
-    public Status: TaskStatus
+    public Status: TaskStatus,
+    public AssignedUserId: number
   ) { }
 }

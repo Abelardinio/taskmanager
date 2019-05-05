@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import { TableBase } from '../../common/table-base/table-base';
 import { Observable } from 'rxjs';
 import { PagedResult } from 'src/app/models/PagedResult';
+import { AuthService } from 'src/app/common/AuthService';
 
 
 @Component({
@@ -22,6 +23,8 @@ import { PagedResult } from 'src/app/models/PagedResult';
 export class TasksTableComponent extends TableBase<Task> implements OnInit {
   @Input() public filteringIsEnabled = true;
   @Input() public featureIsSelected: boolean;
+
+  public UserId: number;
 
   @Input() public set featureId(value: number) {
     if (value === undefined) {
@@ -37,6 +40,7 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
     new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
     new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
     new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
+    new TableHeaderInfo('Assigned', 'assigned-column', null, false),
     new TableHeaderInfo('Action', 'action-column', null, false)];
 
   public filter: TaskFilter = new TaskFilter(
@@ -44,7 +48,8 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
     new PagingInfo(1, 20));
 
   constructor(
-    private _taskService: TaskService) {
+    private _taskService: TaskService,
+    private _authService: AuthService) {
     super();
   }
 
@@ -58,6 +63,8 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
     this._taskService.onTaskDeleted(id => super.removeRow(id));
 
     this._taskService.onTaskCompleted(id => super.updateRow(id, (row) => { row.Status = TaskStatus.Completed; }));
+
+    this.UserId = this._authService.UserId;
 
     super.ngOnInit();
   }
@@ -74,6 +81,13 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
       element.Id,
       () => this._taskService.Delete(element.Id),
       () => super.removeRow(element.Id));
+  }
+
+  public onAssignButtonClick(element: Task){
+    this.rowAjaxAction(
+      element.Id,
+      () => this._taskService.Assign(element.Id),
+      () => super.updateRow(element.Id, (row) => { row.AssignedUserId = this.UserId; }));
   }
 
   get taskStatus() { return TaskStatus; }

@@ -3,6 +3,7 @@ export const Messages = {
         Removed: 'Task was successfully removed.',
         Completed: 'Task was successfully completed',
         Added: 'Task was successfully Added',
+        Assigned: 'Task was successfully assigned',
         Validation: {
             TimeToCompleteRequired: 'Time to complete can\'t be less then 1 hour.'
         }

@@ -9,5 +9,6 @@ namespace TaskManager.Core.DataAccessors
         IQueryable<IProject> Get();
         Task<IProject> GetAsync(int taskId);
         Task<bool> IsProjectCreator(int userId, int featureId);
+        Task<bool> IsProjectCreatorByTaskId(int userId, int taskId);
     }
 }

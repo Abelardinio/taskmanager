@@ -50,5 +50,20 @@ namespace TaskManager.DbConnection.DataAccessors
                     (project, feature) => new {feature, project})
                 .AnyAsync(x => x.feature.Id == featureId && x.project.CreatorId == userId);
         }
+
+        public Task<bool> IsProjectCreatorByTaskId(int userId, int taskId)
+        {
+            return _contextStorage.Get().Projects
+                .Join(_contextStorage.Get().Features, project => project.Id, feature => feature.ProjectId,
+                    (project, feature) => new {feature, project})
+                .Join(_contextStorage.Get().Tasks, projectFeature => projectFeature.feature.Id, task => task.FeatureId,
+                    (projectFeature, task) => new
+                    {
+                        projectFeature.feature,
+                        projectFeature.project,
+                        task
+                    })
+                .AnyAsync(x => x.task.Id == taskId && x.project.CreatorId == userId);
+        }
     }
 }

@@ -54,7 +54,8 @@ namespace TaskManager.Data.DataProviders
 
         public async Task UpdateStatusAsync(int userId, int taskId, TaskStatus status)
         {
-            if (!await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
+            if (!await _projectsDataAccessor.IsProjectCreatorByTaskId(userId, taskId) &&
+                !await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
                 throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
 
             await _taskDataAccessor.UpdateStatusAsync(taskId, status);
@@ -65,9 +66,10 @@ namespace TaskManager.Data.DataProviders
             }
         }
 
-        public async Task AssignTaskAsync(int taskId, int userId)
+        public async Task AssignTaskAsync(int userId, int taskId)
         {
-            if (!await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
+            if (!await _projectsDataAccessor.IsProjectCreatorByTaskId(userId, taskId) && 
+                !await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
                 throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
 
             await _taskDataAccessor.AssignTaskAsync(taskId, userId);

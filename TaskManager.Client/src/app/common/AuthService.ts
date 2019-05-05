@@ -21,4 +21,9 @@ export class AuthService {
         const token = this._localStorageAccessor.token;
         return token && Role[role] === this._jwtHelperService.decodeToken(token).role;
     }
+
+    public get UserId(): number {
+        const token = this._localStorageAccessor.token;
+        return Number(this._jwtHelperService.decodeToken(token).jti);
+    }
 }

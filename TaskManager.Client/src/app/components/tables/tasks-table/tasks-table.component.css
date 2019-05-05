@@ -39,6 +39,11 @@ table tr td.priority-column{
     width: 100px;
 }
 
+:host ::ng-deep .assigned-column{
+    text-align: center;
+    width: 100px;
+}
+
 :host ::ng-deep .action-column .btn{
     display: inline-flex;
 }
