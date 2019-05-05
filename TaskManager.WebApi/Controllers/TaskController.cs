@@ -79,9 +79,21 @@ namespace TaskManager.WebApi.Controllers
         [Route("task/{taskId}/assign")]
         public async Task AssignTask(int taskId)
         {
+            var userId = HttpContext.User.GetUserId();
             using (_context.Scope())
             {
-                await _taskDataProvider.AssignTaskAsync(HttpContext.User.GetUserId(), taskId);
+                await _taskDataProvider.AssignTaskAsync(userId, taskId, userId);
+            }
+        }
+
+        [HttpPut]
+        [Route("task/{taskId}/unassign")]
+        public async Task UnassignTask(int taskId)
+        {
+            var userId = HttpContext.User.GetUserId();
+            using (_context.Scope())
+            {
+                await _taskDataProvider.AssignTaskAsync(userId, taskId, null);
             }
         }
     }

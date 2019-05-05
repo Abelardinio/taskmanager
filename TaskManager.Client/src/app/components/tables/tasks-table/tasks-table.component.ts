@@ -40,7 +40,7 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
     new TableHeaderInfo('Priority', 'priority-column', TaskSortingColumn.Priority),
     new TableHeaderInfo('Added', 'added-column', TaskSortingColumn.Added),
     new TableHeaderInfo('Time to complete', 'time-to-complete-column', TaskSortingColumn.TimeToComplete),
-    new TableHeaderInfo('Assigned', 'assigned-column', null, false),
+    new TableHeaderInfo('Assign', 'assign-column', null, false),
     new TableHeaderInfo('Action', 'action-column', null, false)];
 
   public filter: TaskFilter = new TaskFilter(
@@ -88,6 +88,13 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
       element.Id,
       () => this._taskService.Assign(element.Id),
       () => super.updateRow(element.Id, (row) => { row.AssignedUserId = this.UserId; }));
+  }
+
+  public onUnassignButtonClick(element: Task){
+    this.rowAjaxAction(
+      element.Id,
+      () => this._taskService.Unassign(element.Id),
+      () => super.updateRow(element.Id, (row) => { row.AssignedUserId = null; }));
   }
 
   get taskStatus() { return TaskStatus; }

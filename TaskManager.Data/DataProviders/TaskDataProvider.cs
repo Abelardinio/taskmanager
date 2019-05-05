@@ -66,13 +66,14 @@ namespace TaskManager.Data.DataProviders
             }
         }
 
-        public async Task AssignTaskAsync(int userId, int taskId)
+        public async Task AssignTaskAsync(int userId, int taskId, int? assignedUserId)
         {
             if (!await _projectsDataAccessor.IsProjectCreatorByTaskId(userId, taskId) && 
                 !await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
                 throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
 
-            await _taskDataAccessor.AssignTaskAsync(taskId, userId);
+
+            await _taskDataAccessor.AssignTaskAsync(taskId, assignedUserId);
         }
     }
 }

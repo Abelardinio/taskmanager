@@ -96,6 +96,16 @@ export class TaskService extends BaseService {
                 catchError(this.handleError()));
     }
 
+        /**
+     * Returns an observable of http put method which unassignes task to a user
+     * @param taskId - task Id
+     */
+    public Unassign(taskId: number): Observable<Object> {
+        return this._httpClient.put(environment.API_URL + '/task/' + taskId + '/unassign', {}, { headers: this.headers })
+            .pipe(tap(() => { this.notifications.success(Messages.Tasks.Completed); }),
+                catchError(this.handleError()));
+    }
+
     /**
      * Calls a handler when task was deleted
      *

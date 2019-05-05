@@ -14,10 +14,13 @@
                 <td class="time-to-complete-column">
                     <app-timer [completionDate]="element.Model.TimeToComplete" expiredPlaceholder="Time Expired!"></app-timer>
                 </td>
-                <td class="assigned-column">
-                    <div *ngIf="element.Model.AssignedUserId === this.UserId">Assigned to you</div>
-                    <button class="btn" *ngIf="element.Model.AssignedUserId !== this.UserId" (click)="onAssignButtonClick(element.Model)"><i class="fa fa-refresh fa-spin"
+                <td class="assign-column">
+                    <button class="btn" *ngIf="element.Model.AssignedUserId !== this.UserId"
+                        (click)="onAssignButtonClick(element.Model)"><i class="fa fa-refresh fa-spin"
                             *ngIf="element.SystemInfo.IsLoading"></i>Assign</button>
+                    <button class="btn" *ngIf="element.Model.AssignedUserId === this.UserId"
+                        (click)="onUnassignButtonClick(element.Model)"><i class="fa fa-refresh fa-spin"
+                            *ngIf="element.SystemInfo.IsLoading"></i>Unassign</button>
                 </td>
                 <td class="action-column">
                     <button class="btn" *ngIf="element.Model.Status === taskStatus.Active" (click)="onCompleteButtonClick(element.Model)"><i

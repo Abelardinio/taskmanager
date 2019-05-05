@@ -39,7 +39,7 @@ table tr td.priority-column{
     width: 100px;
 }
 
-:host ::ng-deep .assigned-column{
+:host ::ng-deep .assign-column{
     text-align: center;
     width: 100px;
 }

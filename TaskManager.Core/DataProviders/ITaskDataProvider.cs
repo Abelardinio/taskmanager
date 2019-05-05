@@ -8,6 +8,6 @@ namespace TaskManager.Core.DataProviders
         Task AddAsync(int userId, ITaskInfo task);
         IQueryable<ITask> GetLiveTasks(int userId, int? projectId);
         Task UpdateStatusAsync(int userId, int taskId, TaskStatus status);
-        Task AssignTaskAsync(int userId, int taskId);
+        Task AssignTaskAsync(int userId, int taskId, int? assignedUserId);
     }
 }
