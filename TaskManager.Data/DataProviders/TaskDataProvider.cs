@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using TaskManager.Common.Resources;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
@@ -53,14 +52,25 @@ namespace TaskManager.Data.DataProviders
                 .Where(x => x.Status != TaskStatus.Removed && x.Status != TaskStatus.None);
         }
 
-        public async Task UpdateStatusAsync(int taskId, TaskStatus status)
+        public async Task UpdateStatusAsync(int userId, int taskId, TaskStatus status)
         {
+            if (!await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
+                throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
+
             await _taskDataAccessor.UpdateStatusAsync(taskId, status);
 
             using (_connectionContext.EventScope())
             {
                 _taskEventAccessor.StatusUpdated(taskId, status, await _projectsDataAccessor.GetAsync(taskId));
             }
+        }
+
+        public async Task AssignTaskAsync(int taskId, int userId)
+        {
+            if (!await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
+                throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
+
+            await _taskDataAccessor.AssignTaskAsync(taskId, userId);
         }
     }
 }

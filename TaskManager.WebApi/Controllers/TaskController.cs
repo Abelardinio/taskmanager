@@ -61,7 +61,7 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                await _taskDataProvider.UpdateStatusAsync(taskId, TaskStatus.Removed);
+                await _taskDataProvider.UpdateStatusAsync(HttpContext.User.GetUserId(), taskId, TaskStatus.Removed);
             }
         }
 
@@ -71,7 +71,17 @@ namespace TaskManager.WebApi.Controllers
         {
             using (_context.Scope())
             {
-                await _taskDataProvider.UpdateStatusAsync(taskId, TaskStatus.Completed);
+                await _taskDataProvider.UpdateStatusAsync(HttpContext.User.GetUserId(), taskId, TaskStatus.Completed);
+            }
+        }
+
+        [HttpPut]
+        [Route("task/{taskId}/assign")]
+        public async Task AssignTask(int taskId)
+        {
+            using (_context.Scope())
+            {
+                await _taskDataProvider.AssignTaskAsync(HttpContext.User.GetUserId(), taskId);
             }
         }
     }

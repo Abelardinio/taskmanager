@@ -29,6 +29,7 @@ namespace TaskManager.DbConnection.Entities
         public DateTime TimeToComplete { get; set; }
         public DateTime Added { get; set; }
         public int? FeatureId { get; set; }
+        public int? AssignedUserId { get; set; }
         public FeatureEntity Feature { get; set; }
         public TaskStatus Status { get; set; }
     }

@@ -13,7 +13,7 @@ using TaskManager.Core.UserStorage;
 using TaskManager.MessagingService.Data.DataProviders;
 using TaskManager.MessagingService.Data.UserStorage;
 using TaskManager.MessagingService.DbConnection;
-using TaskManager.MessagingService.DbConnection.DataAccessots;
+using TaskManager.MessagingService.DbConnection.DataAccessors;
 using TaskManager.ServiceBus;
 using TaskManager.ServiceBus.EventAccessors;
 using TaskManager.ServiceBus.Routes;

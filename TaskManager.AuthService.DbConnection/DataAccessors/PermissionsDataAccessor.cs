@@ -48,5 +48,10 @@ namespace TaskManager.AuthService.DbConnection.DataAccessors
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<bool> HasPermissionForTask(int userId, int taskId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
+using TaskManager.Common.Resources;
 using Xunit;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.DataProviders;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Core.Exceptions;
 using TaskManager.Data.DataProviders;
 using TaskManager.DbConnection.Entities;
 using TaskStatus = TaskManager.Core.TaskStatus;
@@ -18,6 +20,7 @@ namespace TaskManager.Tests.Unit.DataProviders
 {
     public class TaskDataProviderTests
     {
+        private const int UserId = 9;
         private const int TaskId = 5;
         private const int ActiveTaskId = 6;
         private const int CompletedTaskId = 7;
@@ -66,6 +69,8 @@ namespace TaskManager.Tests.Unit.DataProviders
 
             _taskDataAccessorMock.Setup(x => x.Get(1, null)).Returns(tasks.AsQueryable);
             _projectsDataAccessorMock.Setup(x => x.GetAsync(TaskId)).Returns(Task.FromResult(_projectMock.Object));
+            _permissionsDataAccessorMock.Setup(x => x.HasPermissionForTask(UserId, TaskId))
+                .Returns(Task.FromResult(true));
 
             _taskDataProvider = new TaskDataProvider(
                 _taskDataAccessorMock.Object,
@@ -87,7 +92,7 @@ namespace TaskManager.Tests.Unit.DataProviders
         [Fact]
         public void AfterUpdateStatusSuccessShouldCallStatusUpdatedEventTest()
         {
-            _taskDataProvider.UpdateStatusAsync(TaskId, TaskStatus.Completed);
+            _taskDataProvider.UpdateStatusAsync(UserId, TaskId, TaskStatus.Completed);
             _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
             _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed, _projectMock.Object), Times.Once());
             _connectionContextMock.Verify(x=>x.EventScope(), Times.Once);
@@ -99,13 +104,28 @@ namespace TaskManager.Tests.Unit.DataProviders
             _taskDataAccessorMock.Setup(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed)).Throws<Exception>();
             Action action = () =>
             {
-                _taskDataProvider.UpdateStatusAsync(TaskId, TaskStatus.Completed).Wait();
+                _taskDataProvider.UpdateStatusAsync(UserId, TaskId, TaskStatus.Completed).Wait();
             };
 
             action.Should().Throw<Exception>();
             _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
             _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed, _projectMock.Object), Times.Never);
             _connectionContextMock.Verify(x => x.EventScope(), Times.Never);
+        }
+
+        [Fact]
+        public void ShouldThrowIfNoPermissions()
+        {
+            const int noPermissionsId = 22;
+            _permissionsDataAccessorMock.Setup(x => x.HasPermissionForTask(UserId, noPermissionsId)).Returns(Task.FromResult(false));
+
+            Action action = () =>
+            {
+                _taskDataProvider.UpdateStatusAsync(UserId, noPermissionsId, TaskStatus.Completed).Wait();
+            };
+
+            action.Should().Throw<NoPermissionsForOperationException>()
+                .WithMessage(ErrorMessages.NoPermissionsForOperation);
         }
     }
 }

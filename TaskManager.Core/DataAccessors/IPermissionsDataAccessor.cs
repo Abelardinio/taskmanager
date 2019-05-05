@@ -15,5 +15,7 @@ namespace TaskManager.Core.DataAccessors
         Task<bool> HasPermission(int userId, int projectId, Permission permission);
 
         Task<bool> HasPermissionForFeature(int userId, int featureId, Permission perm);
+
+        Task<bool> HasPermissionForTask(int userId, int taskId);
     }
 }

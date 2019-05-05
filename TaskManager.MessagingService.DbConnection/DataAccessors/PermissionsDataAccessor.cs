@@ -7,7 +7,7 @@ using TaskManager.Core.DataAccessors;
 using TaskManager.Core.Enums;
 using TaskManager.MessagingService.DbConnection.Entities;
 
-namespace TaskManager.MessagingService.DbConnection.DataAccessots
+namespace TaskManager.MessagingService.DbConnection.DataAccessors
 {
     public class PermissionsDataAccessor : PermissionsDataAccessorBase<UserPermissionEntity>, IPermissionsDataAccessor
     {
@@ -45,6 +45,11 @@ namespace TaskManager.MessagingService.DbConnection.DataAccessots
         }
 
         public Task<bool> HasPermissionForFeature(int userId, int featureId, Permission perm)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<bool> HasPermissionForTask(int userId, int taskId)
         {
             throw new System.NotImplementedException();
         }

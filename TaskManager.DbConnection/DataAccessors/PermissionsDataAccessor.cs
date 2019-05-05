@@ -56,5 +56,20 @@ namespace TaskManager.DbConnection.DataAccessors
                 x.permission.UserId == userId && x.feature.Id == featureId &&
                 (x.permission.Permission == perm || x.permission.Permission == Permission.Admin));
         }
+
+        public Task<bool> HasPermissionForTask(int userId, int taskId)
+        {
+            return _contextStorage.Get().Tasks
+                .Join(_contextStorage.Get().Features, task => task.FeatureId,
+                    feature => feature.Id, (task, feature) => new {task, feature})
+                .Join(_contextStorage.Get().Permissions,
+                    taskFeature => taskFeature.feature.ProjectId, permission => permission.ProjectId,
+                    (taskFeature, permission) => new
+                    {
+                        taskFeature.task,
+                        taskFeature.feature,
+                        permission
+                    }).AnyAsync(x => x.task.Id == taskId && x.permission.UserId == userId);
+        }
     }
 }

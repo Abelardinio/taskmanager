@@ -70,5 +70,14 @@ namespace TaskManager.DbConnection.DataAccessors
 
             throw new NotFoundException(String.Format(ErrorMessages.Tasks_NotFound, taskId));
         }
+
+        public Task AssignTaskAsync(int taskId, int userId)
+        {
+            var context = _contextStorage.Get();
+
+            context.Tasks.First(x => x.Id == taskId).AssignedUserId = userId;
+
+            return context.SaveChangesAsync();
+        }
     }
 }
