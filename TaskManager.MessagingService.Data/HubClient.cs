@@ -11,9 +11,9 @@ namespace TaskManager.MessagingService.Data
             _hubContext = hubContext;
         }
 
-        public void SendAsync(string method, object body)
+        public void SendAsync(string method, object body, string[] connectionIds)
         {
-            _hubContext.Clients.All.SendAsync(method, body);
+            _hubContext.Clients.Clients(connectionIds).SendAsync(method, body);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace TaskManager.Data.DataProviders
 
             using (_connectionContext.EventScope())
             {
-                _taskEventAccessor.StatusUpdated(taskId, status);
+                _taskEventAccessor.StatusUpdated(taskId, status, await _projectsDataAccessor.GetAsync(taskId));
             }
         }
     }

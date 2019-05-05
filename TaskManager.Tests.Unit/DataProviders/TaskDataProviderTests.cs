@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using Xunit;
@@ -21,6 +22,7 @@ namespace TaskManager.Tests.Unit.DataProviders
         private const int ActiveTaskId = 6;
         private const int CompletedTaskId = 7;
         private const int RemovedTaskId = 8;
+        private readonly Mock<IProject> _projectMock =  new Mock<IProject>();
         private readonly Mock<ITaskDataAccessor> _taskDataAccessorMock;
         private readonly Mock<ITaskEventAccessor> _taskEventAccessorMock;
         private readonly Mock<IConnectionContext> _connectionContextMock;
@@ -63,6 +65,7 @@ namespace TaskManager.Tests.Unit.DataProviders
             var tasks = new List<ITask> { _task, _activeTask, _completedTask, _removedTask };
 
             _taskDataAccessorMock.Setup(x => x.Get(1, null)).Returns(tasks.AsQueryable);
+            _projectsDataAccessorMock.Setup(x => x.GetAsync(TaskId)).Returns(Task.FromResult(_projectMock.Object));
 
             _taskDataProvider = new TaskDataProvider(
                 _taskDataAccessorMock.Object,
@@ -86,7 +89,7 @@ namespace TaskManager.Tests.Unit.DataProviders
         {
             _taskDataProvider.UpdateStatusAsync(TaskId, TaskStatus.Completed);
             _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
-            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed), Times.Once());
+            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed, _projectMock.Object), Times.Once());
             _connectionContextMock.Verify(x=>x.EventScope(), Times.Once);
         }
 
@@ -101,7 +104,7 @@ namespace TaskManager.Tests.Unit.DataProviders
 
             action.Should().Throw<Exception>();
             _taskDataAccessorMock.Verify(x => x.UpdateStatusAsync(TaskId, TaskStatus.Completed), Times.Once());
-            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed), Times.Never);
+            _taskEventAccessorMock.Verify(x => x.StatusUpdated(TaskId, TaskStatus.Completed, _projectMock.Object), Times.Never);
             _connectionContextMock.Verify(x => x.EventScope(), Times.Never);
         }
     }

@@ -7,7 +7,11 @@ using TaskManager.Common.Data.HostedServices;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
+using TaskManager.Core.DataProviders;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Core.UserStorage;
+using TaskManager.MessagingService.Data.DataProviders;
+using TaskManager.MessagingService.Data.UserStorage;
 using TaskManager.MessagingService.DbConnection;
 using TaskManager.MessagingService.DbConnection.DataAccessots;
 using TaskManager.ServiceBus;
@@ -31,6 +35,8 @@ namespace TaskManager.MessagingService.Data
             kernel.Bind<IRoute>().To<TaskStatusUpdatedRoute>().InSingletonScope();
             kernel.Bind<IRoute>().To<PermissionsUpdatedRoute>().InSingletonScope();
             kernel.Bind<IHostedService>().To<PermissionsHostedService>();
+            kernel.Bind<ITasksHubUsersDataProvider>().To<TasksHubUsersDataProvider>();
+            kernel.Bind<ITasksHubUsersStorage>().To<TasksHubUsersStorage>().InSingletonScope();
             kernel.Bind<IRouteSettings, IServiceBusClientSettings>().To<ServiceBusRouteSettings>().InSingletonScope();
             kernel.Bind(typeof(IHubClient<>)).To(typeof(HubClient<>));
         }

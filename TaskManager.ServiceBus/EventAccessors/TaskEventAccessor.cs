@@ -15,10 +15,11 @@ namespace TaskManager.ServiceBus.EventAccessors
             _client = client;
         }
 
-        public void StatusUpdated(int taskId, TaskStatus status)
+        public void StatusUpdated(int taskId, TaskStatus status, IProject project)
         {
-            _client.SendMessage(EventLookup.TaskStatusUpdated, 
-                new TaskStatusUpdatedMessage {TaskId = taskId, Status = status});
+            _client.SendMessage(EventLookup.TaskStatusUpdated,
+                new TaskStatusUpdatedMessage
+                    {TaskId = taskId, Status = status, ProjectId = project.Id, CreatorId = project.CreatorId});
         }
 
         public void OnStatusUpdated(Action<ITaskStatusUpdatedMessage> handler)

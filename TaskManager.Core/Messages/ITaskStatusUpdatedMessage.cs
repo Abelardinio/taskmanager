@@ -5,5 +5,9 @@
         int TaskId { get; }
 
         TaskStatus Status { get; }
+
+        int ProjectId { get; }
+
+        int CreatorId { get; }
     }
 }

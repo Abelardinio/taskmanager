@@ -6,6 +6,7 @@ using Moq;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.EventAccessors;
 using TaskManager.Core.Messages;
+using TaskManager.Core.UserStorage;
 using TaskManager.MessagingService.Data;
 using TaskManager.MessagingService.WebApi;
 using TaskManager.MessagingService.WebApi.MessagingServices;
@@ -17,10 +18,14 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
 {
     public class TasksMessagingServiceTests
     {
+        private const int CreatorId = 8;
+        private const int ProjectId = 9;
+        private readonly string[] _connectionIds = {"connectionId"};
         private readonly Mock<IHubClient<TasksHub>> _hubClientMock;
         private readonly Mock<IEventConnectionContext> _eventConnectionContextMock;
         private readonly Mock<ITaskEventAccessor> _taskEventAccessorMock;
         private readonly Mock<IEventScope> _eventScopeMock;
+        private readonly Mock<ITasksHubUsersStorage> _tasksHubStorage;
         private readonly IHostedService _messagingService;
 
         public TasksMessagingServiceTests()
@@ -28,11 +33,14 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
             _eventConnectionContextMock = new Mock<IEventConnectionContext>();
             _taskEventAccessorMock = new Mock<ITaskEventAccessor>();
             _eventScopeMock = new Mock<IEventScope>();
+            _tasksHubStorage =  new Mock<ITasksHubUsersStorage>();
             _hubClientMock = new Mock<IHubClient<TasksHub>>();
 
             _eventConnectionContextMock.Setup(x => x.EventScope()).Returns(_eventScopeMock.Object);
+            _tasksHubStorage.Setup(x => x.Get(ProjectId, CreatorId)).Returns(_connectionIds);
 
-            _messagingService = new TasksMessagingService(_eventConnectionContextMock.Object, _taskEventAccessorMock.Object, _hubClientMock.Object );
+            _messagingService = new TasksMessagingService(_eventConnectionContextMock.Object,
+                _taskEventAccessorMock.Object, _hubClientMock.Object, _tasksHubStorage.Object);
         }
 
         [Fact]
@@ -62,7 +70,7 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
 
             void Action(Action<ITaskStatusUpdatedMessage> handler)
             {
-                var message = new TaskStatusUpdatedMessage { TaskId = taskId, Status = status };
+                var message = new TaskStatusUpdatedMessage { TaskId = taskId, Status = status, CreatorId = CreatorId, ProjectId = ProjectId };
                 handler(message);
             }
 
@@ -70,7 +78,7 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
                 .Callback((Action<Action<ITaskStatusUpdatedMessage>>)Action);
 
             await _messagingService.StartAsync(CancellationToken.None);
-            _hubClientMock.Verify(x => x.SendAsync(method, taskId), Times.Once);
+            _hubClientMock.Verify(x => x.SendAsync(method, taskId, _connectionIds), Times.Once);
         }
 
         [Theory]
@@ -82,7 +90,7 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
 
             void Action(Action<ITaskStatusUpdatedMessage> handler)
             {
-                var message = new TaskStatusUpdatedMessage { TaskId = taskId, Status = status };
+                var message = new TaskStatusUpdatedMessage { TaskId = taskId, Status = status, CreatorId = CreatorId, ProjectId = ProjectId };
                 handler(message);
             }
 
@@ -90,7 +98,7 @@ namespace TaskManager.Tests.Unit.MessagingService.MessagingServices
                 .Callback((Action<Action<ITaskStatusUpdatedMessage>>)Action);
 
             await _messagingService.StartAsync(CancellationToken.None);
-            _hubClientMock.Verify(x => x.SendAsync(It.IsAny<string>(), taskId), Times.Never);
+            _hubClientMock.Verify(x => x.SendAsync(It.IsAny<string>(), taskId, _connectionIds), Times.Never);
         }
     }
 }

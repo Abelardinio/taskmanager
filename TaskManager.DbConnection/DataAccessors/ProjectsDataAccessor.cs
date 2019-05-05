@@ -29,6 +29,20 @@ namespace TaskManager.DbConnection.DataAccessors
            return _contextStorage.Get().Projects;
         }
 
+        public async Task<IProject> GetAsync(int taskId)
+        {
+            return await _contextStorage.Get().Tasks
+                .Join(_contextStorage.Get().Features, task => task.FeatureId,
+                    feature => feature.Id, (task, feature) => new {task, feature})
+                .Join(_contextStorage.Get().Projects,
+                taskFeature => taskFeature.feature.ProjectId, project => project.Id, (taskFeature, project) => new
+                {
+                    taskFeature.task,
+                    taskFeature.feature,
+                    project
+                }).Where(x => x.task.Id == taskId).Select(x => x.project).FirstOrDefaultAsync();
+        }
+
         public Task<bool> IsProjectCreator(int userId, int featureId)
         {
             return _contextStorage.Get().Projects
