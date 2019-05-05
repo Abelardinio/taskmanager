@@ -32,6 +32,10 @@ services:
     build:
       context: .
       dockerfile: ./docker/apidb/Dockerfile
+  messagingdb:
+    build:
+      context: .
+      dockerfile: ./docker/messagingdb/Dockerfile
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbit"
