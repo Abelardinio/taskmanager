@@ -5,7 +5,9 @@ using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
+using TaskManager.Core.DataProviders;
 using TaskManager.Core.EventAccessors;
+using TaskManager.HomeService.Data.DataProviders;
 using TaskManager.HomeService.Data.HostedServices;
 using TaskManager.HomeService.DbConnection;
 using TaskManager.HomeService.DbConnection.DataAccessors;
@@ -27,6 +29,7 @@ namespace TaskManager.HomeService.Data
             kernel.Bind<IRoute>().To<TaskAssignedRoute>();
             kernel.Bind<IRoute>().To<TaskUnassignedRoute>();
             kernel.Bind<IUserTasksDataAccessor>().To<UserTasksDataAccessor>();
+            kernel.Bind<IUserTasksDataProvider>().To<UserTasksDataProvider>();
             kernel.Bind<IEventConnectionContext>().To<ConnectionContext>().InCallScope();
             kernel.Bind<IHostedService>().To<TaskHostedService>();
         }

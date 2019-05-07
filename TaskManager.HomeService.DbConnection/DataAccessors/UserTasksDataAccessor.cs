@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using TaskManager.Core;
@@ -43,6 +44,11 @@ namespace TaskManager.HomeService.DbConnection.DataAccessors
         {
             return _context.Users.UpdateOneAsync(x => x.UserId == userId && x.Tasks.Any(t=>t.Id == taskId),
                 Builders<UserEntity>.Update.Set("Tasks.$.Status", status));
+        }
+
+        public async Task<IReadOnlyList<IUserTask>> Get(int userId)
+        {
+            return await _context.Users.Find(x => x.UserId == userId).Project(x=>x.Tasks).FirstOrDefaultAsync() ?? new TaskEntity[0];
         }
     }
 }

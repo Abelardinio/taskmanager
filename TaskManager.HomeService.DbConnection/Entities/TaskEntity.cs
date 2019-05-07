@@ -3,7 +3,7 @@ using TaskManager.Core;
 
 namespace TaskManager.HomeService.DbConnection.Entities
 {
-    public class TaskEntity 
+    public class TaskEntity : IUserTask
     {
         public string Name { get; set; }
         public string Description { get; set; }
