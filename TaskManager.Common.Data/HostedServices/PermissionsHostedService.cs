@@ -5,6 +5,7 @@ using TaskManager.Core;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Core.DataAccessors;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Core.Messages;
 
 namespace TaskManager.Common.Data.HostedServices
 {

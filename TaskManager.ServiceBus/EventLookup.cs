@@ -3,6 +3,8 @@
     public enum EventLookup
     {
         TaskStatusUpdated,
-        PermissionsUpdated
+        PermissionsUpdated,
+        TaskAssigned,
+        TaskUnassigned
     }
 }

@@ -58,11 +58,11 @@ namespace TaskManager.Data.DataProviders
                 !await _permissionsDataAccessor.HasPermissionForTask(userId, taskId))
                 throw new NoPermissionsForOperationException(ErrorMessages.NoPermissionsForOperation);
 
-            await _taskDataAccessor.UpdateStatusAsync(taskId, status);
+            var task = await _taskDataAccessor.UpdateStatusAsync(taskId, status);
 
             using (_connectionContext.EventScope())
             {
-                _taskEventAccessor.StatusUpdated(taskId, status, await _projectsDataAccessor.GetAsync(taskId));
+                _taskEventAccessor.StatusUpdated(task, await _projectsDataAccessor.GetAsync(taskId));
             }
         }
 
@@ -74,6 +74,18 @@ namespace TaskManager.Data.DataProviders
 
 
             await _taskDataAccessor.AssignTaskAsync(taskId, assignedUserId);
+
+            using (_connectionContext.EventScope())
+            {
+                if (assignedUserId == null)
+                {
+                    _taskEventAccessor.TaskUnassigned(userId, taskId);
+                }
+                else
+                {
+                    _taskEventAccessor.TaskAssigned(assignedUserId.Value, await _taskDataAccessor.Get(taskId));
+                }
+            }
         }
     }
 }

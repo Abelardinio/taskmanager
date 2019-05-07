@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskManager.Core.Messages;
 
 namespace TaskManager.Core.EventAccessors
 {

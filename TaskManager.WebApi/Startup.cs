@@ -10,7 +10,6 @@ using TaskManager.Common.Data.AppSettings;
 using TaskManager.Core.ConnectionContext;
 using TaskManager.Data;
 using TaskManager.DbConnection;
-using TaskManager.ServiceBus;
 
 namespace TaskManager.WebApi
 {
@@ -33,8 +32,6 @@ namespace TaskManager.WebApi
 
             DependencyConfig.Register(kernel);
             DependencyResolver.SetResolver(kernel);
-
-            kernel.Get<IConnectionFactory>().Create();
 
             var tuple = kernel.Get<Tuple<IContextStorage, IConnectionContext>>();
             var storage = tuple.Item1;

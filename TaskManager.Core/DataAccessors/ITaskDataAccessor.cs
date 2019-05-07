@@ -7,7 +7,8 @@ namespace TaskManager.Core.DataAccessors
     {
         Task AddAsync(ITaskInfo task);
         IQueryable<ITask> Get(int userId, int? projectId);
-        Task UpdateStatusAsync(int taskId, TaskStatus status);
+        Task<ITask> UpdateStatusAsync(int taskId, TaskStatus status);
         Task AssignTaskAsync(int taskId, int? userId);
+        Task<ITask> Get(int taskId);
     }
 }

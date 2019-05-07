@@ -1,13 +1,12 @@
 ﻿using System;
-using TaskManager.Core;
 using TaskManager.Core.Messages;
 
 namespace TaskManager.ServiceBus.Messages
 {
     [Serializable]
-    public class PermissionsUpdatedMessage : IPermissionsUpdatedMessage
+    public class TaskUnassignedMessage : ITaskUnassignedMessage
     {
         public int UserId { get; set; }
-        public IProjectPermission[] Permissions { get; set; }
+        public int TaskId { get; set; }
     }
 }

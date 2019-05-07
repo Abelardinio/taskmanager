@@ -44,7 +44,7 @@ namespace TaskManager.DbConnection.DataAccessors
                                  .Any(y => y.UserId == userId && y.ProjectId == x.project.Id))).Select(x => x.task);
         }
         
-        public async Task UpdateStatusAsync(int taskId, TaskStatus status)
+        public async Task<ITask> UpdateStatusAsync(int taskId, TaskStatus status)
         {
             var context = _contextStorage.Get();
             var task = await context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
@@ -57,12 +57,12 @@ namespace TaskManager.DbConnection.DataAccessors
                         if (task.Status != TaskStatus.Active) throw new InvalidArgumentException(ErrorMessages.Tasks_CompleteUnactive);
                         task.Status = status;
                         await context.SaveChangesAsync();
-                        return;
+                        return task;
                     case TaskStatus.Removed:
                         if (task.Status != TaskStatus.Completed) throw new InvalidArgumentException(ErrorMessages.Tasks_RemoveUncompleted);
                         task.Status = status;
                         await context.SaveChangesAsync();
-                        return;
+                        return task;
                     default:
                         throw new InvalidArgumentException(ErrorMessages.Tasks_InvalidStatusParameterValue);
                 }
@@ -78,6 +78,11 @@ namespace TaskManager.DbConnection.DataAccessors
             context.Tasks.First(x => x.Id == taskId).AssignedUserId = userId;
 
             return context.SaveChangesAsync();
+        }
+
+        public async Task<ITask> Get(int taskId)
+        {
+            return await _contextStorage.Get().Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
         }
     }
 }

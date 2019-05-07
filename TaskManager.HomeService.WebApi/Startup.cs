@@ -1,18 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
-using TaskManager.AuthService.Data;
-using TaskManager.AuthService.DbConnection;
 using TaskManager.Common.AspNetCore;
 using TaskManager.Common.Data;
 using TaskManager.Common.Data.AppSettings;
-using TaskManager.Core.ConnectionContext;
-using TaskManager.ServiceBus;
+using TaskManager.HomeService.Data;
 
-namespace TaskManager.AuthService.WebApi
+namespace TaskManager.HomeService.WebApi
 {
     public class Startup : StartupBase<AppSettingsModel, DependencyResolver>
     {
@@ -33,15 +28,6 @@ namespace TaskManager.AuthService.WebApi
 
             DependencyConfig.Register(kernel);
             DependencyResolver.SetResolver(kernel);
-
-            var tuple = kernel.Get<Tuple<IContextStorage, IConnectionContext>>();
-            var storage = tuple.Item1;
-            var context = tuple.Item2;
-
-            using (context.Scope())
-            {
-                storage.Get().Database.Migrate();
-            }
         }
     }
 }

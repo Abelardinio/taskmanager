@@ -29,9 +29,8 @@ namespace TaskManager.MessagingService.Data
             kernel.Bind<IPermissionsDataAccessor>().To<PermissionsDataAccessor>();
             kernel.Bind<ITaskEventAccessor>().To<TaskEventAccessor>();
             kernel.Bind<IDependencyResolver>().To<DependencyResolver>().InSingletonScope();
-            kernel.Bind<IEventConnectionContext>().To<ConnectionContext>();
+            kernel.Bind<IEventConnectionContext, IConnectionContext>().To<ConnectionContext>().InCallScope();
             kernel.Bind<IConnectionScopeFactory, IContextStorage>().To<ContextFactory>().InCallScope();
-            kernel.Bind<IConnectionContext>().To<ConnectionContext>();
             kernel.Bind<IRoute>().To<TaskStatusUpdatedRoute>().InSingletonScope();
             kernel.Bind<IRoute>().To<PermissionsUpdatedRoute>().InSingletonScope();
             kernel.Bind<IHostedService>().To<PermissionsHostedService>();

@@ -43,9 +43,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Tests.Unit.Auth
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.MessagingService", "TaskManager.MessagingService", "{C2C70125-6EA4-420D-A766-D31ECDF623BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.MessagingService.Data", "TaskManager.MessagingService.Data\TaskManager.MessagingService.Data.csproj", "{F237E458-6B6F-4540-B99D-289EBE8E2B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService.Data", "TaskManager.MessagingService.Data\TaskManager.MessagingService.Data.csproj", "{F237E458-6B6F-4540-B99D-289EBE8E2B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.MessagingService.DbConnection", "TaskManager.MessagingService.DbConnection\TaskManager.MessagingService.DbConnection.csproj", "{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.MessagingService.DbConnection", "TaskManager.MessagingService.DbConnection\TaskManager.MessagingService.DbConnection.csproj", "{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskManager.HomeService", "TaskManager.HomeService", "{5E7B21CF-0A02-484F-B341-1AE80ADE5C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.HomeService.DbConnection", "TaskManager.HomeService.DbConnection\TaskManager.HomeService.DbConnection.csproj", "{54DAF935-5D85-45FB-A266-A84D116603D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.HomeService.Data", "TaskManager.HomeService.Data\TaskManager.HomeService.Data.csproj", "{63BA38D2-DDC7-419D-9538-AF46826B8642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.HomeService.WebApi", "TaskManager.HomeService.WebApi\TaskManager.HomeService.WebApi.csproj", "{A41FD535-C59D-4669-885E-5ED38CCE074D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +133,18 @@ Global
 		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54DAF935-5D85-45FB-A266-A84D116603D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54DAF935-5D85-45FB-A266-A84D116603D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54DAF935-5D85-45FB-A266-A84D116603D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54DAF935-5D85-45FB-A266-A84D116603D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63BA38D2-DDC7-419D-9538-AF46826B8642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63BA38D2-DDC7-419D-9538-AF46826B8642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63BA38D2-DDC7-419D-9538-AF46826B8642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63BA38D2-DDC7-419D-9538-AF46826B8642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A41FD535-C59D-4669-885E-5ED38CCE074D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41FD535-C59D-4669-885E-5ED38CCE074D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41FD535-C59D-4669-885E-5ED38CCE074D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41FD535-C59D-4669-885E-5ED38CCE074D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +163,9 @@ Global
 		{585A7A7A-2CD8-41B7-B7C7-52699F387FFF} = {CF8FF7F8-FBF9-4BCE-B157-28EE6E855C33}
 		{F237E458-6B6F-4540-B99D-289EBE8E2B81} = {C2C70125-6EA4-420D-A766-D31ECDF623BF}
 		{2AAB8C1F-E3C0-4D0F-B654-71DF0430211D} = {C2C70125-6EA4-420D-A766-D31ECDF623BF}
+		{54DAF935-5D85-45FB-A266-A84D116603D7} = {5E7B21CF-0A02-484F-B341-1AE80ADE5C39}
+		{63BA38D2-DDC7-419D-9538-AF46826B8642} = {5E7B21CF-0A02-484F-B341-1AE80ADE5C39}
+		{A41FD535-C59D-4669-885E-5ED38CCE074D} = {5E7B21CF-0A02-484F-B341-1AE80ADE5C39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BCF9DE-B1F3-48E5-AB19-4625D3CCCFBB}

@@ -1,6 +1,7 @@
 ﻿using System;
 using TaskManager.Core;
 using TaskManager.Core.EventAccessors;
+using TaskManager.Core.Messages;
 using TaskManager.ServiceBus.Messages;
 
 namespace TaskManager.ServiceBus.EventAccessors
