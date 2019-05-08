@@ -9,9 +9,11 @@
 * [URL Rewrite plugin for IIS](https://www.iis.net/downloads/microsoft/url-rewrite)
 * npm and Angular cli installed globally
 * MS SQL server
+* Mongo db
 
 ## Installation
 
+* Ensure you have default installation of mongo db and it is available by "mongodb://localhost:27017" connection string
 * Ensure your MS SQL Server supports both SQL Server And Windows Authentication. Ensure it is available using connection string *"Server=(local);Integrated Security=SSPI;"*.
 * Ensure your RabbitMQ Server is available by default connection:
 
@@ -26,7 +28,7 @@
 }
 
 ```
-* Execute cmd under administrator permissions within TaskManager.Deployment folder 
+* Run cmd under administrator permissions within TaskManager.Deployment folder 
 * Execute command:
 
 ```

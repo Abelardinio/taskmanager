@@ -24,6 +24,17 @@ services:
      - .:/code
     environment:
      - ASPNETCORE_ENVIRONMENT=prod
+  home:
+    build:
+      context: ./docker/home
+      dockerfile: ./Dockerfile
+    volumes:
+     - .:/code
+    environment:
+     - ASPNETCORE_ENVIRONMENT=prod
+  mongo:
+    image: mongo
+    command: --smallfiles
   authdb:
     build:
       context: .

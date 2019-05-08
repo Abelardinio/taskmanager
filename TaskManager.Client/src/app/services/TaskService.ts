@@ -135,6 +135,7 @@ export class TaskService extends BaseService {
                 new Task(
                     message.taskId,
                     message.name,
+                    message.added,
                     message.description,
                     message.priority,
                     message.status,

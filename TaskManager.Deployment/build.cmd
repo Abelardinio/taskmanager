@@ -10,6 +10,9 @@ dotnet build /p:DeployOnBuild=true /p:PublishProfile=%PROFILE_NAME%
 cd ..\TaskManager.AuthService.WebApi
 dotnet build /p:DeployOnBuild=true /p:PublishProfile=%PROFILE_NAME%
 
+cd ..\TaskManager.HomeService.WebApi
+dotnet build /p:DeployOnBuild=true /p:PublishProfile=%PROFILE_NAME%
+
 cd ..\TaskManager.Client
 call npm install
 ng build --prod --extract-css=false --output-path=%CLIENT_OUTPUT_PATH%

@@ -5,6 +5,7 @@ export class Task {
   constructor(
     public Id: number,
     public Name: string,
+    public Added: Date,
     public Description: string,
     public Priority: number,
     public Status: TaskStatus,

@@ -60,14 +60,19 @@ $clientAppPoolName = "TaskManager"
 $apiAppPoolName = "TaskManagerApi"
 $messagingAppPoolName = "TaskManagerMessaging"
 $authAppPoolName = "TaskManagerAuth"
+$homeAppPoolName = "TaskManagerHome"
+
 $sitename = "taskmanager";
 $apiname = "taskmanager\api";
 $messagingname = "taskmanager\api\messaging";
 $authname = "taskmanager\api\auth";
+$homename = "taskmanager\api\home";
+
 $clientPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.Client\dist\task-manager-client"))
 $apiPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.WebApi\bin\Debug\netcoreapp2.2"))
 $messagingPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.MessagingService\bin\Debug\netcoreapp2.2"))
 $authPath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.AuthService.WebApi\bin\Debug\netcoreapp2.2"))
+$homePath = [System.IO.Path]::GetFullPath((Join-Path $location.Path "..\TaskManager.HomeService.WebApi\bin\Debug\netcoreapp2.2"))
 
 RemoveSite $sitename
 
@@ -75,16 +80,19 @@ RemoveAppPool $clientAppPoolName
 RemoveAppPool $apiAppPoolName
 RemoveAppPool $messagingAppPoolName
 RemoveAppPool $authAppPoolName
+RemoveAppPool $homeAppPoolName
 
 CreateAppPool $clientAppPoolName
 CreateAppPool $apiAppPoolName
 CreateAppPool $messagingAppPoolName
 CreateAppPool $authAppPoolName
+CreateAppPool $homeAppPoolName
 
 CreateSite $sitename $clientAppPoolName $clientPath
 
 CreateApplication $apiname $apiAppPoolName $apiPath
 CreateApplication $messagingname $messagingAppPoolName $messagingPath
 CreateApplication $authname $authAppPoolName $authPath
+CreateApplication $homename $homeAppPoolName $homePath
 
 exit

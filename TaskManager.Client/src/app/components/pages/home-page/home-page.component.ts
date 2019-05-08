@@ -5,7 +5,7 @@ import { Labels } from 'src/app/resources/labels';
 import { TaskStatus } from 'src/app/models/enums/TaskStatus';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { TaskService } from 'src/app/services/TaskService';
-import _ = require('lodash');
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-home-page',
