@@ -1,0 +1,36 @@
+<div class="flex-column flexible">
+  <div class="flex-row page-header">
+    <h2>Assigned Tasks</h2>
+  </div>
+  <hr />
+  <div class="flex-column scrollable tasks">
+    <div class="details bordered-panel flex-row" *ngFor="let task of tasks; let i = index" [@valueUpdated]="task.Status">
+      <div class="details-left">
+          <table style="height: 100%;">
+              <tbody >
+                <tr>
+                  <td><label>{{labels.Name}}:</label> </td>
+                  <td>{{task.Name}}</td>
+                </tr>
+                <tr>
+                  <td><label>{{labels.Status}}:</label></td>
+                  <td>{{taskStatus(task.Status)}}</td>
+                </tr>
+                <tr>
+                  <td><label>{{labels.Priority}}:</label></td>
+                  <td>{{task.Priority}}</td>
+                </tr>
+                <tr>
+                  <td><label>{{labels.Added}}:</label></td>
+                  <td>{{task.Added| date: 'medium'}}</td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+      <div class="flex-column flexible">
+          <label>{{labels.Description}}:</label>
+          <div class="scrollable">{{task.Description}}</div>
+      </div>
+    </div>
+  </div>
+</div>

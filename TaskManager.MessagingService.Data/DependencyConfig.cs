@@ -33,6 +33,8 @@ namespace TaskManager.MessagingService.Data
             kernel.Bind<IConnectionScopeFactory, IContextStorage>().To<ContextFactory>().InCallScope();
             kernel.Bind<IRoute>().To<TaskStatusUpdatedRoute>().InSingletonScope();
             kernel.Bind<IRoute>().To<PermissionsUpdatedRoute>().InSingletonScope();
+            kernel.Bind<IRoute>().To<TaskAssignedRoute>().InSingletonScope();
+            kernel.Bind<IRoute>().To<TaskUnassignedRoute>().InSingletonScope();
             kernel.Bind<IHostedService>().To<PermissionsHostedService>();
             kernel.Bind<ITasksHubUsersDataProvider>().To<TasksHubUsersDataProvider>();
             kernel.Bind<ITasksHubUsersStorage>().To<TasksHubUsersStorage>().InSingletonScope();

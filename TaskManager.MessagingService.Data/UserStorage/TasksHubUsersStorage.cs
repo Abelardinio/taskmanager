@@ -24,5 +24,10 @@ namespace TaskManager.MessagingService.Data.UserStorage
             return _dictionary.Where(x => x.Value.ProjectIds.Any(y => y == projectId) || x.Value.UserId == creatorId)
                 .Select(x => x.Key).ToArray();
         }
+
+        public string[] Get(int userId)
+        {
+            return _dictionary.Where(x=>x.Value.UserId == userId).Select(x => x.Key).ToArray();
+        }
     }
 }

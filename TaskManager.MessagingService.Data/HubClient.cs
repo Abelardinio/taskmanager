@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using System.Linq;
+using Microsoft.AspNetCore.SignalR;
 
 namespace TaskManager.MessagingService.Data
 {
@@ -13,6 +14,7 @@ namespace TaskManager.MessagingService.Data
 
         public void SendAsync(string method, object body, string[] connectionIds)
         {
+            if (!connectionIds.Any()) return;
             _hubContext.Clients.Clients(connectionIds).SendAsync(method, body);
         }
     }

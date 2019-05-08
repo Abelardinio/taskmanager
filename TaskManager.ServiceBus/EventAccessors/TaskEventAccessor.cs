@@ -40,6 +40,7 @@ namespace TaskManager.ServiceBus.EventAccessors
                     Description = task.Description,
                     FeatureId = task.FeatureId,
                     Name = task.Name,
+                    Priority = task.Priority,
                     TimeToComplete = task.TimeToComplete
                 });
         }

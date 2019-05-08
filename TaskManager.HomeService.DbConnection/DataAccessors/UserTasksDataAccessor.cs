@@ -20,7 +20,7 @@ namespace TaskManager.HomeService.DbConnection.DataAccessors
 
         public Task AddTaskToUser(int userId, int taskId, TaskStatus status, ITaskInfo taskInfo)
         {
-            return _context.Users.UpdateOneAsync(x => x.UserId == userId,
+            return _context.Users.UpdateOneAsync(x => x.UserId == userId && !x.Tasks.Any(y => y.Id == taskId),
                 Builders<UserEntity>.Update.Push(x => x.Tasks, new TaskEntity
                 {
                     Id = taskId,

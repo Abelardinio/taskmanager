@@ -37,6 +37,7 @@ import { TasksTableComponent } from './components/tables/tasks-table/tasks-table
 import { ModalWindowComponent } from './components/common/modal-window/modal-window.component';
 import { ProjectPermissionModalComponent } from './components/modals/project-permission-modal/project-permission-modal.component';
 import { CheckboxComponent } from './components/common/checkbox/checkbox.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CheckboxComponent } from './components/common/checkbox/checkbox.compone
     TasksTableComponent,
     ModalWindowComponent,
     ProjectPermissionModalComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

@@ -83,14 +83,14 @@ export class TasksTableComponent extends TableBase<Task> implements OnInit {
       () => super.removeRow(element.Id));
   }
 
-  public onAssignButtonClick(element: Task){
+  public onAssignButtonClick(element: Task) {
     this.rowAjaxAction(
       element.Id,
       () => this._taskService.Assign(element.Id),
       () => super.updateRow(element.Id, (row) => { row.AssignedUserId = this.UserId; }));
   }
 
-  public onUnassignButtonClick(element: Task){
+  public onUnassignButtonClick(element: Task) {
     this.rowAjaxAction(
       element.Id,
       () => this._taskService.Unassign(element.Id),

@@ -9,5 +9,7 @@ namespace TaskManager.Core.UserStorage
         void Remove(string connectionId);
 
         string[] Get(int projectId, int creatorId);
+
+        string[] Get(int userId);
     }
 }

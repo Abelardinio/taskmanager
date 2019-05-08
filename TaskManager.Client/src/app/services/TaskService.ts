@@ -123,4 +123,30 @@ export class TaskService extends BaseService {
     public onTaskCompleted(fn: (id: number) => void) {
         this._messagingConnection.on('TASK_COMPLETED', fn);
     }
+
+     /**
+     * Calls a handler when task was assigned
+     *
+     * @param fn event handler
+     */
+    public onTaskAssigned(fn: (task: Task) => void) {
+        this._messagingConnection.on('TASK_ASSIGNED',
+            message => fn(
+                new Task(
+                    message.taskId,
+                    message.name,
+                    message.description,
+                    message.priority,
+                    message.status,
+                    message.assignedUserId)));
+    }
+
+     /**
+     * Calls a handler when task was unassigned
+     *
+     * @param fn event handler
+     */
+    public onTaskUnassigned(fn: (id: number) => void) {
+        this._messagingConnection.on('TASK_UNASSIGNED', fn);
+    }
 }

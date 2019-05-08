@@ -36,6 +36,8 @@ namespace TaskManager.MessagingService.WebApi.MessagingServices
         {
             _eventScope = _context.EventScope();
             _accessor.OnStatusUpdated(OnStatusUpdated);
+            _accessor.OnTaskAssigned(OnTaskAssigned);
+            _accessor.OnTaskUnassigned(OnTaskUnassigned);
 
             return Task.CompletedTask;
         }
@@ -50,7 +52,6 @@ namespace TaskManager.MessagingService.WebApi.MessagingServices
         {
             var connectionIds = _storage.Get(message.ProjectId, message.CreatorId);
 
-            if (!connectionIds.Any()) return;
             switch (message.Status)
             {
                 case TaskStatus.Completed:
@@ -60,6 +61,20 @@ namespace TaskManager.MessagingService.WebApi.MessagingServices
                     _tasksHubClient.SendAsync("TASK_DELETED", message.TaskId, connectionIds);
                     break;
             }
+        }
+
+        public void OnTaskAssigned(ITaskAssignedMessage message)
+        {
+            var connectionIds = _storage.Get(message.AssignedUserId);
+
+            _tasksHubClient.SendAsync("TASK_ASSIGNED", message, connectionIds);
+        }
+
+        public void OnTaskUnassigned(ITaskUnassignedMessage message)
+        {
+            var connectionIds = _storage.Get(message.UserId);
+
+            _tasksHubClient.SendAsync("TASK_UNASSIGNED", message.TaskId, connectionIds);
         }
     }
 }
